@@ -45,3 +45,37 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
+common:
+  - name: Work with a Partner | Acquia
+    description: 'null'
+    url: https://www.acquia.com/partners
+    type: Partners
+  - name: The Acquia Blog | Acquia
+    description: 'null'
+    url: https://www.acquia.com/blog
+    type: Blog
+  - name: Register for Upcoming and Recorded Webinars | Acquia
+    description: 'null'
+    url: https://www.acquia.com/events/online
+    type: Webinars
+  - name: Acquia Training & Certification | Acquia
+    description: 'null'
+    url: https://www.acquia.com/support/acquia-training-certification
+    type: Certifications
+  - name: Acquia Developer Portal Homepage
+    description: 'null'
+    url: https://dev.acquia.com/
+    type: Portal
+  - name: Acquia Developer Portal Tutorials
+    description: 'null'
+    url: https://dev.acquia.com/tutorial
+    type: Tutorials
+  - name: Support Users Guide | Service Offerings | Acquia Product Documentation
+    description: 'null'
+    url: >-
+      https://docs.acquia.com/service-offerings/support/support-users-guide#contacting-acquia-support
+    type: Support
+  - name: Acquia, Inc. Status
+    description: 'null'
+    url: https://status.acquia.com/
+    type: StatusHistory
