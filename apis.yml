@@ -2,25 +2,24 @@ aid: acquia
 url: >-
   https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/apis.yml
 apis:
-  - aid: acquia:acquia
-    name: Acquia
-    tags:
-      - API
-    humanURL: ' https://docs.acquia.com/'
-    properties:
-      - url: ' https://docs.acquia.com/'
-        type: Documentation
-    description: >-
-      Acquia is a digital experience platform that helps organizations create
-      and manage their websites and applications. They provide tools and
-      services that allow businesses to deliver personalized and engaging
-      digital experiences to their customers. Acquia's platform is built on
-      open-source technology, making it flexible and scalable for businesses of
-      all sizes. They offer services such as cloud hosting, website development,
-      and digital marketing solutions to help businesses succeed in the digital
-      landscape. Acquia's mission is to empower organizations to build and
-      maintain successful digital experiences that drive engagement, loyalty,
-      and revenue.
+  - aid: acquia:acquia-cloud-api
+    name: Acquia Cloud API
+    description: 'null'
+    humanURL: https://cloudapi-docs.acquia.com/
+    tags: []
+    properties: []
+  - aid: acquia:acquia-cloud-site-factory-api
+    name: Acquia Cloud Site Factory API
+    description: 'null'
+    humanURL: https://dev.acquia.com/api-documentation/acquia-cloud-site-factory-api
+    tags: []
+    properties: []
+  - aid: acquia:acquia-content-hub-api
+    name: Acquia Content Hub API
+    description: 'null'
+    humanURL: https://dev.acquia.com/api-documentation/acquia-content-hub-api
+    tags: []
+    properties: []
 name: Acquia
 tags:
   - Content
@@ -28,6 +27,40 @@ tags:
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
+common:
+  - url: https://www.acquia.com/partners
+    name: Work with a Partner | Acquia
+    type: Partners
+    description: 'null'
+  - url: https://www.acquia.com/blog
+    name: The Acquia Blog | Acquia
+    type: Blog
+    description: 'null'
+  - url: https://www.acquia.com/events/online
+    name: Register for Upcoming and Recorded Webinars | Acquia
+    type: Webinars
+    description: 'null'
+  - url: https://www.acquia.com/support/acquia-training-certification
+    name: Acquia Training & Certification | Acquia
+    type: Certifications
+    description: 'null'
+  - url: https://dev.acquia.com/
+    name: Acquia Developer Portal Homepage
+    type: Portal
+    description: 'null'
+  - url: https://dev.acquia.com/tutorial
+    name: Acquia Developer Portal Tutorials
+    type: Tutorials
+    description: 'null'
+  - url: >-
+      https://docs.acquia.com/service-offerings/support/support-users-guide#contacting-acquia-support
+    name: Support Users Guide | Service Offerings | Acquia Product Documentation
+    type: Support
+    description: 'null'
+  - url: https://status.acquia.com/
+    name: Acquia, Inc. Status
+    type: StatusHistory
+    description: 'null'
 created: '2025-02-17'
 modified: '2025-02-19'
 position: Consumer
@@ -45,37 +78,3 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
-common:
-  - name: Work with a Partner | Acquia
-    description: 'null'
-    url: https://www.acquia.com/partners
-    type: Partners
-  - name: The Acquia Blog | Acquia
-    description: 'null'
-    url: https://www.acquia.com/blog
-    type: Blog
-  - name: Register for Upcoming and Recorded Webinars | Acquia
-    description: 'null'
-    url: https://www.acquia.com/events/online
-    type: Webinars
-  - name: Acquia Training & Certification | Acquia
-    description: 'null'
-    url: https://www.acquia.com/support/acquia-training-certification
-    type: Certifications
-  - name: Acquia Developer Portal Homepage
-    description: 'null'
-    url: https://dev.acquia.com/
-    type: Portal
-  - name: Acquia Developer Portal Tutorials
-    description: 'null'
-    url: https://dev.acquia.com/tutorial
-    type: Tutorials
-  - name: Support Users Guide | Service Offerings | Acquia Product Documentation
-    description: 'null'
-    url: >-
-      https://docs.acquia.com/service-offerings/support/support-users-guide#contacting-acquia-support
-    type: Support
-  - name: Acquia, Inc. Status
-    description: 'null'
-    url: https://status.acquia.com/
-    type: StatusHistory
