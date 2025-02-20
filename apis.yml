@@ -11,8 +11,16 @@ apis:
       - url: ' https://docs.acquia.com/'
         type: Documentation
     description: >-
-      Welcome to the home for Acquia Product documentation including product and
-      services guides, technical features, release notes, and more. 
+      Acquia is a digital experience platform that helps organizations create
+      and manage their websites and applications. They provide tools and
+      services that allow businesses to deliver personalized and engaging
+      digital experiences to their customers. Acquia's platform is built on
+      open-source technology, making it flexible and scalable for businesses of
+      all sizes. They offer services such as cloud hosting, website development,
+      and digital marketing solutions to help businesses succeed in the digital
+      landscape. Acquia's mission is to empower organizations to build and
+      maintain successful digital experiences that drive engagement, loyalty,
+      and revenue.
 name: Acquia
 tags:
   - Content
