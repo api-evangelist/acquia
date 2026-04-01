@@ -9,6 +9,8 @@ apis:
     properties:
       - type: Documentation
         url: https://cloudapi-docs.acquia.com/
+      - type: OpenAPI
+        url: openapi/acquia-cloud-openapi.yml
     description: >-
       The Acquia Cloud API is a powerful tool that allows developers to
       programmatically interact with Acquia's cloud hosting platform. This API
@@ -98,7 +100,7 @@ common:
     type: StatusHistory
     description: 'null'
 created: '2025-02-17'
-modified: '2026-03-16'
+modified: '2026-04-01'
 position: Consumer
 description: >-
   Acquia is a leading provider of digital experience management solutions for
