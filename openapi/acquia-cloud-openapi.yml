@@ -71,24 +71,26 @@ servers:
   - url: /
     description: ""
 tags:
-  - name: Current system health
-    x-displayName: Current system health
   - name: Account
     x-displayName: Account
   - name: Agreements
     x-displayName: Agreements
-  - name: Applications
-    x-displayName: Applications
-  - name: Distributions
-    x-displayName: Distributions
-  - name: Environments
-    x-displayName: Environments
-  - name: Email
-    x-displayName: Email
   - name: Application Performance Monitoring Services
     x-displayName: Application Performance Monitoring Services
+  - name: Applications
+    x-displayName: Applications
   - name: Cloud IDE
     x-displayName: Cloud IDE
+  - name: Codebases
+    x-displayName: Codebases
+  - name: Current System Health
+    x-displayName: Current system health
+  - name: Distributions
+    x-displayName: Distributions
+  - name: Email
+    x-displayName: Email
+  - name: Environments
+    x-displayName: Environments
   - name: Identity Providers
     x-displayName: Identity Providers
   - name: Invite
@@ -101,20 +103,18 @@ tags:
     x-displayName: Options
   - name: Organizations
     x-displayName: Organizations
-  - name: Teams and Permissions
-    x-displayName: Teams and Permissions
-  - name: Subscriptions
-    x-displayName: Subscriptions
-  - name: Codebases
-    x-displayName: Codebases
   - name: Private Networks
     description: Private Network Service API
     x-displayName: Private Networks
+  - name: Subscriptions
+    x-displayName: Subscriptions
+  - name: Teams and Permissions
+    x-displayName: Teams and Permissions
 paths:
   /:
     get:
       tags:
-        - Current system health
+        - Current System Health
       summary: Acquia Return the current system health status.
       description: Returns status checks for system database, configuration and registry.
       operationId: getSystemHealthStatus
