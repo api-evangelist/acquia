@@ -115,7 +115,7 @@ paths:
     get:
       tags:
         - Current system health
-      summary: Return the current system health status.
+      summary: Acquia Return the current system health status.
       description: Returns status checks for system database, configuration and registry.
       operationId: getSystemHealthStatus
       x-cli-name: system-health-status
@@ -153,7 +153,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns details about your account.
+      summary: Acquia Returns details about your account.
       description: Returns details about your account.
       operationId: getAccount
       x-cli-name: accounts:find
@@ -174,7 +174,7 @@ paths:
                 created_at: 2016-07-17T20:35:25+00:00
                 mail: jane.doe@example.com
                 phone:
-                  office: null
+                  office:
                   mobile: "5555555555"
                   tfa: "5555555555"
                 job_title: ""
@@ -229,7 +229,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account has access to a specific application permission.
+      summary: Acquia Returns whether your account has access to a specific application permission.
       description: Returns whether your account has access to a specific application permission.
       operationId: getAccountApplicationHasPermission
       x-cli-name: accounts:application-has-permission
@@ -282,7 +282,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is an administrator for an application.
+      summary: Acquia Returns whether your account is an administrator for an application.
       description: Returns whether your account is an administrator for an application.
       operationId: getAccountApplicationIsAdministrator
       x-cli-name: accounts:is-application-admin
@@ -330,7 +330,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is the owner for an application.
+      summary: Acquia Returns whether your account is the owner for an application.
       description: Returns whether your account is the owner for an application.
       operationId: getAccountApplicationIsOwner
       x-cli-name: accounts:is-application-owner
@@ -367,7 +367,7 @@ paths:
     post:
       tags:
         - Account
-      summary: Marks an application as recently viewed.
+      summary: Acquia Marks an application as recently viewed.
       description: Marks an application as recently viewed. UUIDs and timestamps of recent applications are present in the "account" endpoint.
       operationId: postAccountApplicationMarkRecent
       x-cli-name: accounts:application-mark-recent
@@ -412,7 +412,7 @@ paths:
     post:
       tags:
         - Account
-      summary: Stars an application.
+      summary: Acquia Stars an application.
       description: Stars an application. UUIDs of starred applications are present in the "account" endpoint.
       operationId: postAccountApplicationStar
       x-cli-name: accounts:application-star
@@ -461,7 +461,7 @@ paths:
     post:
       tags:
         - Account
-      summary: Removes an application from the user's starred list.
+      summary: Acquia Removes an application from the user's starred list.
       description: Removes an application from the user's starred list. UUIDs of starred applications are present in the "account" endpoint.
       operationId: postAccountApplicationUnstar
       x-cli-name: accounts:application-unstar
@@ -510,7 +510,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns the drush aliases as a compressed archive download.
+      summary: Acquia Returns the drush aliases as a compressed archive download.
       description: Returns the drush aliases as a compressed archive download.
       operationId: getAccountDrushAliasesDownload
       x-cli-name: accounts:drush-aliases
@@ -561,7 +561,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns a list of Cloud IDEs associated with the current user.
+      summary: Acquia Returns a list of Cloud IDEs associated with the current user.
       description: Returns a list of Cloud IDEs associated with the current user.
       operationId: getAccountIdes
       x-cli-name: accounts:ide-list
@@ -620,7 +620,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Gets a list of all organization admin and team invites that are pending for the current user.
+      summary: Acquia Gets a list of all organization admin and team invites that are pending for the current user.
       description: |
         Gets a list of all organization admin and team invites that are pending for the current user.
 
@@ -726,7 +726,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns a list of messages associated with the current user.
+      summary: Acquia Returns a list of messages associated with the current user.
       description: |
         Returns a list of messages associated with the current user.
 
@@ -785,8 +785,8 @@ paths:
                     - id: 883581
                       uuid: 17ff551f-a037-4c0a-a0cb-ad6616ab3aa3
                       title: Example title
-                      body: null
-                      url: null
+                      body:
+                      url:
                       filters:
                         type: alert
                         display_mode: bar
@@ -808,8 +808,8 @@ paths:
                     - id: 883581
                       uuid: 17ff551f-a037-4c0a-a0cb-ad6616ab3aa3
                       title: Another example title
-                      body: null
-                      url: null
+                      body:
+                      url:
                       filters:
                         type: alert
                         display_mode: bar
@@ -843,7 +843,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is an administrator for an organization.
+      summary: Acquia Returns whether your account is an administrator for an organization.
       description: Returns whether your account is an administrator for an organization.
       operationId: getAccountOrganizationIsAdministrator
       x-cli-name: accounts:is-organization-admin
@@ -891,7 +891,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is the owner for an organization.
+      summary: Acquia Returns whether your account is the owner for an organization.
       description: Returns whether your account is the owner for an organization.
       operationId: getAccountOrganizationIsOwner
       x-cli-name: accounts:is-organization-owner
@@ -928,7 +928,7 @@ paths:
     post:
       tags:
         - Account
-      summary: Verifies that the supplied password matches the current user's password.
+      summary: Acquia Verifies that the supplied password matches the current user's password.
       description: Verifies that the supplied password matches the current user's password.
       operationId: postAccountPassword
       x-cli-name: accounts:password-check
@@ -960,7 +960,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Gets a list of SSH keys associated with the current user.
+      summary: Acquia Gets a list of SSH keys associated with the current user.
       description: |
         Gets a list of SSH keys associated with the current user.
 
@@ -1043,7 +1043,7 @@ paths:
     post:
       tags:
         - Account
-      summary: Installs a new SSH key for the current user.
+      summary: Acquia Installs a new SSH key for the current user.
       description: Installs a new SSH key for the current user.
       operationId: postAccountSshKeys
       x-cli-name: accounts:ssh-key-create
@@ -1137,7 +1137,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Get an SSH key associated with the currently-logged in user.
+      summary: Acquia Get an SSH key associated with the currently-logged in user.
       description: Get an SSH key associated with the currently-logged in user.
       operationId: getAccountSshKey
       x-cli-name: accounts:ssh-key-find
@@ -1181,7 +1181,7 @@ paths:
     delete:
       tags:
         - Account
-      summary: Deletes an SSH key.
+      summary: Acquia Deletes an SSH key.
       description: Deletes an SSH key.
       operationId: deleteAccountSshKey
       x-cli-name: accounts:ssh-key-delete
@@ -1226,7 +1226,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is an administrator for a subscription.
+      summary: Acquia Returns whether your account is an administrator for a subscription.
       description: Returns whether your account is an administrator for a subscription.
       operationId: getAccountSubscriptionIsAdministrator
       x-cli-name: accounts:is-subscription-admin
@@ -1274,7 +1274,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is the owner for a subscription.
+      summary: Acquia Returns whether your account is the owner for a subscription.
       description: Returns whether your account is the owner for a subscription.
       operationId: getAccountSubscriptionIsOwner
       x-cli-name: accounts:is-subscription-owner
@@ -1311,7 +1311,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account has access to a specific team permission.
+      summary: Acquia Returns whether your account has access to a specific team permission.
       description: Returns whether your account has access to a specific team permission.
       operationId: getAccountTeamHasPermission
       x-cli-name: accounts:has-team-permission
@@ -1364,7 +1364,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is an administrator for a team.
+      summary: Acquia Returns whether your account is an administrator for a team.
       description: Returns whether your account is an administrator for a team.
       operationId: getAccountTeamIsAdministrator
       x-cli-name: accounts:is-team-admin
@@ -1412,7 +1412,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns whether your account is the owner for a team.
+      summary: Acquia Returns whether your account is the owner for a team.
       description: Returns whether your account is the owner for a team.
       operationId: getAccountTeamIsOwner
       x-cli-name: accounts:is-team-owner
@@ -1449,7 +1449,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Returns a list of metadata for API access tokens tied to your account.
+      summary: Acquia Returns a list of metadata for API access tokens tied to your account.
       description: Returns a list of metadata for API access tokens tied to your account.
       operationId: getAccountTokens
       x-cli-name: accounts:tokens-list
@@ -1477,7 +1477,7 @@ paths:
                       created_at: 2016-01-22T17:41:57-0500
                       flags:
                         active: true
-                      revocation: null
+                      revocation:
                       _links:
                         self:
                           href: https://cloud.acquia.com/api/account/tokens/17feaf34-5d04-402b-9a67-15d5161d24e1
@@ -1487,7 +1487,7 @@ paths:
                       created_at: 2016-01-22T17:55:15-0500
                       flags:
                         active: true
-                      revocation: null
+                      revocation:
                       _links:
                         self:
                           href: https://cloud.acquia.com/api/account/tokens/81e8965d-0af0-460d-9e46-977dfcc38c29
@@ -1505,7 +1505,7 @@ paths:
     post:
       tags:
         - Account
-      summary: Creates an API access token tied to your account.
+      summary: Acquia Creates an API access token tied to your account.
       description: Creates an API access token tied to your account.
       operationId: postAccountTokens
       x-cli-name: accounts:token-create
@@ -1558,7 +1558,7 @@ paths:
     get:
       tags:
         - Account
-      summary: Return details about a specific token.
+      summary: Acquia Return details about a specific token.
       description: Return details about a specific token.
       operationId: getAccountToken
       x-cli-name: accounts:token-list
@@ -1578,7 +1578,7 @@ paths:
                 active: true
                 label: My App v1.0
                 created_at: 2016-01-22T17:41:57-0500
-                revocation: null
+                revocation:
                 flags:
                   active: true
                 _links:
@@ -1600,7 +1600,7 @@ paths:
     delete:
       tags:
         - Account
-      summary: Revokes an access token.
+      summary: Acquia Revokes an access token.
       description: Revokes an access token. This action will prevent the access token from being able to authorize access to the API in the future.
       operationId: deleteAccountToken
       x-cli-name: accounts:token-delete
@@ -1651,7 +1651,7 @@ paths:
     get:
       tags:
         - Agreements
-      summary: Return a list of agreements.
+      summary: Acquia Return a list of agreements.
       description: Returns a list of agreements you have been invited to accept or decline.
       operationId: getAgreements
       x-cli-name: agreements:list
@@ -1719,8 +1719,8 @@ paths:
                       body: <p>This is the body and text of one more agreement.</p>
                       status: pending
                       created_at: 2017-02-23T12:00:00Z
-                      updated_at: null
-                      actioned_by: null
+                      updated_at:
+                      actioned_by:
                       reference:
                         uuid: 9ab09eba-290d-4ed9-be4d-fa194ab92f39
                         name: Acquia Subscription
@@ -1741,7 +1741,7 @@ paths:
     get:
       tags:
         - Agreements
-      summary: Return a specific agreement by a provided UUID.
+      summary: Acquia Return a specific agreement by a provided UUID.
       description: Return a specific agreement.
       operationId: getAgreement
       x-cli-name: agreements:find
@@ -1799,7 +1799,7 @@ paths:
     post:
       tags:
         - Agreements
-      summary: Accepts a legal agreement by UUID.
+      summary: Acquia Accepts a legal agreement by UUID.
       description: Accepts a legal agreement.
       operationId: postAcceptAgreement
       x-cli-name: agreements:accept
@@ -1840,7 +1840,7 @@ paths:
     post:
       tags:
         - Agreements
-      summary: Declines a legal agreement by UUID.
+      summary: Acquia Declines a legal agreement by UUID.
       description: Declines a legal agreement.
       operationId: postDeclineAgreement
       x-cli-name: agreements:decline
@@ -1881,7 +1881,7 @@ paths:
     get:
       tags:
         - Agreements
-      summary: Returns a list of users invited to action this agreement.
+      summary: Acquia Returns a list of users invited to action this agreement.
       description: Returns a list of users invited to action this agreement by UUID.
       operationId: getInvitees
       x-cli-name: agreements:invitees-list
@@ -1930,7 +1930,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Return a list of applications the current user has access to.
+      summary: Acquia Return a list of applications the current user has access to.
       operationId: getApplications
       x-cli-name: applications:list
       security:
@@ -2065,7 +2065,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Return details about a specific application.
+      summary: Acquia Return details about a specific application.
       operationId: getApplicationByUuid
       x-cli-name: applications:find
       security:
@@ -2164,7 +2164,7 @@ paths:
     put:
       tags:
         - Applications
-      summary: Renames an application.
+      summary: Acquia Renames an application.
       operationId: putApplicationByUuid
       x-cli-name: applications:rename
       security:
@@ -2262,7 +2262,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Return application artifacts.
+      summary: Acquia Return application artifacts.
       operationId: getArtifactsByApplicationUuid
       x-cli-name: applications:artifact-list
       security:
@@ -2348,7 +2348,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Return details about a specific artifact.
+      summary: Acquia Return details about a specific artifact.
       operationId: getArtifactByApplicationUuidAndId
       x-cli-name: applications:artifact-find
       description: |
@@ -2400,7 +2400,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Return application branches and release tags.
+      summary: Acquia Return application branches and release tags.
       operationId: getCodeByApplicationUuid
       x-cli-name: applications:vcs-info
       security:
@@ -2460,7 +2460,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns details about the Code Studio project for an application.
+      summary: Acquia Returns details about the Code Studio project for an application.
       description: Return details about the Code Studio project for an application.
       operationId: getCodeStudioProject
       security:
@@ -2526,7 +2526,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Creates the Code Studio project for an application.
+      summary: Acquia Creates the Code Studio project for an application.
       description: Creates the Code Studio project for an application.
       operationId: postCodeStudioProject
       security:
@@ -2572,7 +2572,7 @@ paths:
     delete:
       tags:
         - Applications
-      summary: Removes the Code Studio project from an application.
+      summary: Acquia Removes the Code Studio project from an application.
       description: Removes the Code Studio project from an application.
       operationId: deleteCodeStudioProject
       security:
@@ -2619,7 +2619,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list database names for the application.
+      summary: Acquia Returns a list database names for the application.
       description: |
         Filterable fields:
         * `name`
@@ -2683,7 +2683,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Creates a database.
+      summary: Acquia Creates a database.
       description: This action will create a new database within each environment of the application.
       operationId: postApplicationDatabaseCreate
       x-cli-name: applications:database-create
@@ -2818,7 +2818,7 @@ paths:
     delete:
       tags:
         - Applications
-      summary: Drops (deletes) a database.
+      summary: Acquia Drops (deletes) a database.
       description: This action will delete the database in ALL environments within this application.
       operationId: postApplicationDatabaseDelete
       x-cli-name: applications:database-delete
@@ -2908,7 +2908,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Erases (truncates) a database.
+      summary: Acquia Erases (truncates) a database.
       description: This action will delete all tables of the database in ALL environments within this application.
       operationId: postApplicationDatabaseErase
       x-cli-name: applications:database-erase
@@ -2997,7 +2997,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of email domains associated with the application.
+      summary: Acquia Returns a list of email domains associated with the application.
       description: Returns a list of email domains associated with the application and domains that have been verified at the subscription level.
       operationId: getApplicationEmailDomains
       x-cli-name: applications:email-domains-list
@@ -3081,7 +3081,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Associates an email domain with an Application.
+      summary: Acquia Associates an email domain with an Application.
       description: Associates an email domain with an Application.
       operationId: postApplicationAssociateEmailDomain
       x-cli-name: applications:post-associate-email-domain
@@ -3153,7 +3153,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Disassociates an email domain with an Application.
+      summary: Acquia Disassociates an email domain with an Application.
       description: Disassociates an email domain with an Application.
       operationId: postApplicationDisassociateEmailDomain
       x-cli-name: applications:post-disassociate-email-domains
@@ -3229,7 +3229,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of Cloud IDEs associated with this application.
+      summary: Acquia Returns a list of Cloud IDEs associated with this application.
       description: Returns a list of Cloud IDEs associated with this application.
       operationId: getApplicationIdes
       x-cli-name: applications:ide-list
@@ -3309,7 +3309,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Creates a new Cloud IDE.
+      summary: Acquia Creates a new Cloud IDE.
       description: Creates a new Cloud IDE.
       operationId: postApplicationsIde
       x-cli-name: ide:create
@@ -3391,7 +3391,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of messages associated with this application.
+      summary: Acquia Returns a list of messages associated with this application.
       description: |
         Filterable fields:
         * `title`
@@ -3498,7 +3498,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of notifications associated with this application by its UUID.
+      summary: Acquia Returns a list of notifications associated with this application by its UUID.
       description: |
         Returns a list of notifications associated with this application. A notification represents an item of work to be done, initiated by someone (typically the current user) associated with the application.
 
@@ -3597,7 +3597,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of permissions the user has for this application by its UUID.
+      summary: Acquia Returns a list of permissions the user has for this application by its UUID.
       description: Returns a list of permissions the user has for this application.
       operationId: getApplicationPermissions
       x-cli-name: applications:permission-list
@@ -3629,103 +3629,103 @@ paths:
                         deprecated: false
                     - name: deploy to prod
                       label: Deploy code, files, or databases to the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: pull from prod
                       label: Pull files or databases from the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file to non-prod
                       label: Move files to non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file to prod
                       label: Move files to the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file from prod
                       label: Move files from production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file from non-prod
                       label: Move files from non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: clear varnish on non-prod
                       label: Clear Varnish cache for non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: true
                     - name: clear varnish on prod
                       label: Clear Varnish cache for the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: true
                     - name: configure prod env
                       label: Configure production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: configure non-prod env
                       label: Configure non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: add an environment
                       label: Add an environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: delete an environment
                       label: Delete an environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: administer domain non-prod
                       label: Add or remove domains for non-production environments
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: administer domain prod
                       label: Add or remove domains for the production environment
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: administer ssl prod
                       label: Add or remove SSL certificates for the production environment
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: administer ssl non-prod
                       label: Add or remove SSL certificates for the non-production environments
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: reboot server
                       label: Reboot server
-                      description: null
+                      description:
                       group_label: Server administration
                       flags:
                         deprecated: false
@@ -3737,79 +3737,79 @@ paths:
                         deprecated: false
                     - name: suspend server
                       label: Suspend server
-                      description: null
+                      description:
                       group_label: Server administration
                       flags:
                         deprecated: false
                     - name: configure server
                       label: Configure server
-                      description: null
+                      description:
                       group_label: Server administration
                       flags:
                         deprecated: false
                     - name: download logs non-prod
                       label: Download logs for non-production environments
-                      description: null
+                      description:
                       group_label: Logs
                       flags:
                         deprecated: false
                     - name: download logs prod
                       label: Download logs for the production environment
-                      description: null
+                      description:
                       group_label: Logs
                       flags:
                         deprecated: false
                     - name: add database
                       label: Add a database
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: remove database
                       label: Remove a database
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: view database connection
                       label: View database connection details (username, password, or hostname)
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: download db backup non-prod
                       label: Download database backups for non-production environments
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: download db backup prod
                       label: Download database backups for the production environment
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: create db backup non-prod
                       label: Create database backups for non-production environments
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: create db backup prod
                       label: Create database backups for the production environment
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: restore db backup non-prod
                       label: Restore database backups for non-production environments
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: restore db backup prod
                       label: Restore database backups for the production environment
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
@@ -3827,61 +3827,61 @@ paths:
                         deprecated: false
                     - name: administer cron non-prod
                       label: Modify cron tasks for non-production environments
-                      description: null
+                      description:
                       group_label: Cron
                       flags:
                         deprecated: false
                     - name: administer cron prod
                       label: Modify cron tasks for the production environment
-                      description: null
+                      description:
                       group_label: Cron
                       flags:
                         deprecated: false
                     - name: create support ticket
                       label: Create a support ticket
-                      description: null
+                      description:
                       group_label: Support
                       flags:
                         deprecated: false
                     - name: edit any support ticket
                       label: View and edit any support tickets for a subscription
-                      description: null
+                      description:
                       group_label: Support
                       flags:
                         deprecated: false
                     - name: view build plans
                       label: View Build plans
-                      description: null
+                      description:
                       group_label: Build
                       flags:
                         deprecated: false
                     - name: edit build plans
                       label: Edit Build plans
-                      description: null
+                      description:
                       group_label: Build
                       flags:
                         deprecated: false
                     - name: run build plans
                       label: Run Build plans
-                      description: null
+                      description:
                       group_label: Build
                       flags:
                         deprecated: false
                     - name: add ssh key to git
                       label: Add SSH key to git repository
-                      description: null
+                      description:
                       group_label: SSH keys
                       flags:
                         deprecated: false
                     - name: add ssh key to non-prod
                       label: Add SSH key to non-production environments
-                      description: null
+                      description:
                       group_label: SSH keys
                       flags:
                         deprecated: false
                     - name: add ssh key to prod
                       label: Add SSH key to the production environment
-                      description: null
+                      description:
                       group_label: SSH keys
                       flags:
                         deprecated: false
@@ -3899,13 +3899,13 @@ paths:
                         deprecated: false
                     - name: clear caches on prod
                       label: Clear caches for the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: clear caches on non-prod
                       label: Clear caches for non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
@@ -3924,7 +3924,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a traversal endpoint for search entities for the application.
+      summary: Acquia Returns a traversal endpoint for search entities for the application.
       description: Does not return any data. Allows traversal to search entity endpoints.
       operationId: getApplicationSearchList
       x-cli-name: applications:search:list
@@ -3973,7 +3973,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a collection of search configuration sets for an application
+      summary: Acquia Returns a collection of search configuration sets for an application
       description: A collection of search configuration sets for an application.
       operationId: getApplicationSearchConfigurationSets
       x-cli-name: applications:search:configuration-set-list
@@ -4073,7 +4073,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Creates a search configuration set for an application.
+      summary: Acquia Creates a search configuration set for an application.
       description: Creates a search configuration set for an application.
       operationId: postApplicationSearchConfigurationSets
       x-cli-name: applications:search:configuration-set-create
@@ -4169,7 +4169,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a search configuration set for an application
+      summary: Acquia Returns a search configuration set for an application
       description: A specific search configuration set.
       operationId: getApplicationSearchConfigurationSet
       x-cli-name: applications:search:configuration-set-find
@@ -4230,7 +4230,7 @@ paths:
     delete:
       tags:
         - Applications
-      summary: Removes and deletes a specific search configuration set from an application.
+      summary: Acquia Removes and deletes a specific search configuration set from an application.
       description: Removes and deletes a specific search configuration set from an application.
       operationId: deleteApplicationSearchConfigurationSet
       x-cli-name: applications:search:configuration-set-delete
@@ -4296,7 +4296,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns available settings for this application.
+      summary: Acquia Returns available settings for this application.
       description: Does not return any data. Allows traversal to settings groups endpoints.
       operationId: getApplicationSettings
       x-cli-name: applications:settings-list
@@ -4340,7 +4340,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns the hosting settings for this application.
+      summary: Acquia Returns the hosting settings for this application.
       description: Returns the hosting settings for this application.
       deprecated: true
       operationId: getApplicationHostingSettings
@@ -4391,7 +4391,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns the legacy product keys for this application.
+      summary: Acquia Returns the legacy product keys for this application.
       description: Returns the legacy product keys for this application.
       deprecated: true
       operationId: getApplicationLegacyProductKeysSettings
@@ -4445,7 +4445,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns the remote administration settings for this application.
+      summary: Acquia Returns the remote administration settings for this application.
       description: Returns the remote administration settings for this application.
       operationId: getApplicationRemoteAdministrationSettings
       x-cli-name: applications:ra-settings-find
@@ -4507,7 +4507,7 @@ paths:
     put:
       tags:
         - Applications
-      summary: Modifies the remote administration settings for an application.
+      summary: Acquia Modifies the remote administration settings for an application.
       description: Modifies the remote administration settings for an application.
       operationId: putApplicationRemoteAdministrationSettings
       x-cli-name: applications:ra-settings-update
@@ -4641,7 +4641,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns the security policy settings for this application.
+      summary: Acquia Returns the security policy settings for this application.
       description: Returns the security policy settings for this application.
       deprecated: true
       operationId: getApplicationSecuritySettings
@@ -4682,7 +4682,7 @@ paths:
     put:
       tags:
         - Applications
-      summary: Modifies the security policy settings for an application.
+      summary: Acquia Modifies the security policy settings for an application.
       description: Modifies the security policy settings for an application.
       deprecated: true
       operationId: putApplicationSecuritySettings
@@ -4802,7 +4802,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of application tags associated with this application.
+      summary: Acquia Returns a list of application tags associated with this application.
       description: Returns a list of application tags associated with this application.
       operationId: getApplicationTags
       x-cli-name: applications:tag-list
@@ -4868,7 +4868,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Creates a new application tag.
+      summary: Acquia Creates a new application tag.
       description: Creates a new application tag.
       operationId: postApplicationsTags
       x-cli-name: applications:tags-create
@@ -4948,7 +4948,7 @@ paths:
     delete:
       tags:
         - Applications
-      summary: Deletes an application tag.
+      summary: Acquia Deletes an application tag.
       description: Deletes an application tag.
       operationId: deleteApplicationTags
       x-cli-name: applications:tags-delete
@@ -4988,7 +4988,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of tasks associated with this application by its UUID.
+      summary: Acquia Returns a list of tasks associated with this application by its UUID.
       description: |
         Returns a list of tasks associated with this application. A task represents an item of work to be done, initiated by someone (typically the current user) associated with the application.
 
@@ -5152,7 +5152,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of teams associated with this application.
+      summary: Acquia Returns a list of teams associated with this application.
       description: |
         Returns a list of teams associated with this application by its UUID.
 
@@ -5222,7 +5222,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Retrieves traversal links for detailed metrics on usage (views and visits) of your application.
+      summary: Acquia Retrieves traversal links for detailed metrics on usage (views and visits) of your application.
       description: Retrieves traversal links for an application's usage data.
       operationId: getApplicationsUsageLinks
       x-cli-name: applications:usage-links
@@ -5281,7 +5281,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Retrieves aggregate usage data for an application, filterable by views or visits and by environment.
+      summary: Acquia Retrieves aggregate usage data for an application, filterable by views or visits and by environment.
       description: |
         Filterable fields:
         * `metric` - One of: {`views`, `visits`}
@@ -5315,10 +5315,10 @@ paths:
                   items:
                     - metric: views
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "9"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "9"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -5339,10 +5339,10 @@ paths:
                           href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "3"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "3"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -5387,7 +5387,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Retrieves usage data (views or visits) for an application, broken down by environment.
+      summary: Acquia Retrieves usage data (views or visits) for an application, broken down by environment.
       description: |
         Filterable fields:
         * `metric` - One of: {`views`, `visits`}
@@ -5431,7 +5431,7 @@ paths:
                   items:
                     - metric: views
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5449,7 +5449,7 @@ paths:
                           href: https://cloud.acquia.com/api/environments/123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5467,10 +5467,10 @@ paths:
                           href: https://cloud.acquia.com/api/environments/123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: views
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "9"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "9"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -5489,10 +5489,10 @@ paths:
                           href: https://cloud.acquia.com/api/environments/124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "3"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "3"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -5511,7 +5511,7 @@ paths:
                           href: https://cloud.acquia.com/api/environments/124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: views
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5529,7 +5529,7 @@ paths:
                           href: https://cloud.acquia.com/api/environments/125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5571,7 +5571,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Retrieves aggregate usage metric data (views or visits) for an application..
+      summary: Acquia Retrieves aggregate usage metric data (views or visits) for an application..
       description: |
         Filterable fields:
         * `environment`
@@ -5593,10 +5593,10 @@ paths:
               example:
                 metric: views
                 datapoints:
-                  - - 2019-03-13T00:00:00+00:00
-                    - "9"
-                  - - 2019-03-14T00:00:00+00:00
-                    - "1"
+                  -   - 2019-03-13T00:00:00+00:00
+                      - "9"
+                  -   - 2019-03-14T00:00:00+00:00
+                      - "1"
                 last_data_at: 2019-03-14T00:00:00+00:00
                 metadata:
                   subscription:
@@ -5641,7 +5641,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Retrieves views data for an application, broken down by environment.
+      summary: Acquia Retrieves views data for an application, broken down by environment.
       description: |
         Filterable fields:
         * `environment`
@@ -5684,7 +5684,7 @@ paths:
                   items:
                     - metric: views
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5702,10 +5702,10 @@ paths:
                           href: https://cloud.acquia.com/api/environments/123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: views
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "9"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "9"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -5724,7 +5724,7 @@ paths:
                           href: https://cloud.acquia.com/api/environments/124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: views
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5766,7 +5766,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Retrieves visits data for an application, broken down by environment.
+      summary: Acquia Retrieves visits data for an application, broken down by environment.
       description: |
         Filterable fields:
         * `environment`
@@ -5809,7 +5809,7 @@ paths:
                   items:
                     - metric: visits
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5827,10 +5827,10 @@ paths:
                           href: https://cloud.acquia.com/api/environments/123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "3"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "3"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -5849,7 +5849,7 @@ paths:
                           href: https://cloud.acquia.com/api/environments/124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints: []
-                      last_data_at: null
+                      last_data_at:
                       metadata:
                         subscription:
                           uuids:
@@ -5891,7 +5891,7 @@ paths:
     get:
       tags:
         - Distributions
-      summary: Return a list of Drupal distributions.
+      summary: Acquia Return a list of Drupal distributions.
       operationId: getDistributions
       x-cli-name: distributions:list
       security:
@@ -5954,7 +5954,7 @@ paths:
     get:
       tags:
         - Distributions
-      summary: Return details about a specific Drupal distribution.
+      summary: Acquia Return details about a specific Drupal distribution.
       operationId: getDistributionByName
       x-cli-name: distributions:find
       security:
@@ -6012,7 +6012,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Returns a list of environments within this application by its UUID.
+      summary: Acquia Returns a list of environments within this application by its UUID.
       description: Returns a list of environments within this application.
       operationId: getApplicationEnvironments
       x-cli-name: applications:environment-list
@@ -6060,7 +6060,7 @@ paths:
                         - example.com
                       active_domain: example.com
                       default_domain: sitedev.hosted.acquia-sites.com
-                      image_url: null
+                      image_url:
                       ssh_url: site.dev@sitedev.ssh.hosted.acquia-sites.com
                       ips:
                         - 10.0.1.5
@@ -6102,7 +6102,7 @@ paths:
                           max_input_vars: 1000
                           upload_max_filesize: 256
                           memcached_limit: 64
-                      artifact: null
+                      artifact:
                       _links:
                         self:
                           href: https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470
@@ -6120,7 +6120,7 @@ paths:
                         multi-site: prod.example.com/admin/gardens/staging
                       active_domain: example.com
                       default_domain: siteprod.hosted.acquia-sites.com
-                      image_url: null
+                      image_url:
                       ssh_url: site.prod@siteprod.ssh.hosted.acquia-sites.com
                       ips:
                         - 10.0.1.1
@@ -6149,8 +6149,8 @@ paths:
                         remote_admin: false
                         varnish: true
                         varnish_over_ssl: false
-                      configuration: null
-                      artifact: null
+                      configuration:
+                      artifact:
                       _links:
                         self:
                           href: https://cloud.acquia.com/api/environments/15-a47ac10b-58cc-4372-a567-0e02b2c3d470
@@ -6165,7 +6165,7 @@ paths:
                         - test.example.com
                       active_domain: test.example.com
                       default_domain: sitetest.hosted.acquia-sites.com
-                      image_url: null
+                      image_url:
                       ssh_url: site.test@sitetest.ssh.hosted.acquia-sites.com
                       ips: []
                       region: us-east-1
@@ -6177,7 +6177,7 @@ paths:
                       weight: 20
                       vcs:
                         type: git
-                        path: null
+                        path:
                         url: qa10@svn-3.networkdev.ahserversdev.com:qa10.git
                       flags:
                         cde: false
@@ -6216,7 +6216,7 @@ paths:
     post:
       tags:
         - Applications
-      summary: Add a new continuous delivery environment to an application by the application UUID.
+      summary: Acquia Add a new continuous delivery environment to an application by the application UUID.
       description: Add a new continuous delivery environment.
       operationId: postApplicationEnvironments
       x-cli-name: applications:environment-create
@@ -6372,7 +6372,7 @@ paths:
     get:
       tags:
         - Applications
-      summary: Return application features.
+      summary: Acquia Return application features.
       operationId: getApplicationFeatures
       x-cli-name: applications:feature-list
       security:
@@ -6407,7 +6407,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return details about a specific environment.
+      summary: Acquia Return details about a specific environment.
       description: |
         Return details about a specific environment.
 
@@ -6448,7 +6448,7 @@ paths:
                   - example.com
                 active_domain: example.com
                 default_domain: sitedev.hosted.acquia-sites.com
-                image_url: null
+                image_url:
                 ssh_url: site.dev@sitedev.ssh.hosted.acquia-sites.com
                 ips:
                   - 10.0.1.5
@@ -6495,7 +6495,7 @@ paths:
                 gardener:
                   site-update: example.com/admin/gardens/site-update
                   multi-site: example.com/admin/gardens/staging
-                artifact: null
+                artifact:
                 _links:
                   self:
                     href: https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470
@@ -6550,7 +6550,7 @@ paths:
     put:
       tags:
         - Environments
-      summary: Modifies configuration settings for an environment.
+      summary: Acquia Modifies configuration settings for an environment.
       description: Modifies configuration settings for an environment. Note that some settings cannot be configured for certain subscriptions.
       operationId: putEnvironment
       x-cli-name: environments:update
@@ -6663,7 +6663,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Deletes a CD environment.
+      summary: Acquia Deletes a CD environment.
       description: Deletes a CD environment.
       operationId: deleteEnvironment
       x-cli-name: environments:delete
@@ -6726,7 +6726,7 @@ paths:
     options:
       tags:
         - Environments
-      summary: Displays environment options.
+      summary: Acquia Displays environment options.
       description: Displays environment options.
       operationId: optionsEnvironment
       security:
@@ -6806,15 +6806,15 @@ paths:
                       default: 96
                       step: 1
                     - name: operating_system
-                      minimum: null
-                      maximum: null
-                      default: null
-                      step: null
+                      minimum:
+                      maximum:
+                      default:
+                      step:
                     - name: version
-                      minimum: null
-                      maximum: null
-                      default: null
-                      step: null
+                      minimum:
+                      maximum:
+                      default:
+                      step:
         "404":
           description: Not Found
           content:
@@ -6830,7 +6830,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Clears the caches for one or more domains attached to this environment.
+      summary: Acquia Clears the caches for one or more domains attached to this environment.
       description: Clear caches for Varnish and Platform CDN (if Platform CDN is enabled).
       operationId: postEnvironmentsClearCaches
       x-cli-name: environments:clear-caches
@@ -6906,7 +6906,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Change the label for an environment.
+      summary: Acquia Change the label for an environment.
       deprecated: true
       description: Change the label for an environment.
       operationId: postChangeEnvironmentLabel
@@ -6998,7 +6998,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Deploys an artifact to this environment.
+      summary: Acquia Deploys an artifact to this environment.
       description: Deploys an artifact to this environment.
       operationId: postDeployArtifact
       x-cli-name: environments:artifact-deploy
@@ -7108,7 +7108,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return a list of operating systems.
+      summary: Acquia Return a list of operating systems.
       description: Returns a list of operating systems.
       operationId: getOperatingSystems
       x-cli-name: environments:operating-systems-list
@@ -7151,7 +7151,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return a list of runtimes.
+      summary: Acquia Return a list of runtimes.
       description: Returns a list of available runtimes.
       operationId: getAvailableRuntimes
       x-cli-name: environments:runtime-list
@@ -7197,7 +7197,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns the CDN status for an environment.
+      summary: Acquia Returns the CDN status for an environment.
       description: Returns the CDN status for an environment. The CDN must be enabled for the status to be displayed.
       operationId: getCdnByEnvironmentId
       x-cli-name: environments:cdn-find
@@ -7233,7 +7233,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Enables a CDN for an environment.
+      summary: Acquia Enables a CDN for an environment.
       description: Enables a CDN for an environment.
       operationId: postCdnByEnvironmentId
       x-cli-name: environments:cdn-enable
@@ -7297,7 +7297,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Disables a CDN for an environment.
+      summary: Acquia Disables a CDN for an environment.
       description: Disables a CDN for an environment.
       operationId: deleteCdnByEnvironmentId
       x-cli-name: environments:cdn-disable
@@ -7362,7 +7362,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a list of Cloud Actions.
+      summary: Acquia Returns a list of Cloud Actions.
       description: Returns a list of Cloud Actions on an environment.
       operationId: getEnvironmentCloudActions
       x-cli-name: environments:cloud-actions-find
@@ -7457,7 +7457,7 @@ paths:
     put:
       tags:
         - Environments
-      summary: Modifies an existing list of Cloud Actions.
+      summary: Acquia Modifies an existing list of Cloud Actions.
       description: Modifies an existing list of Cloud Actions on an environment.
       operationId: putEnvironmentCloudActions
       x-cli-name: environments:cloud-actions-update
@@ -7525,7 +7525,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Disables Cloud Actions.
+      summary: Acquia Disables Cloud Actions.
       description: Disables Cloud Actions on an environment.
       operationId: postEnvironmentCloudActionsDisable
       x-cli-name: environments:cloud-actions-disable
@@ -7576,7 +7576,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Enables Cloud Actions.
+      summary: Acquia Enables Cloud Actions.
       description: Enables Cloud Actions on an environment.
       operationId: postEnvironmentCloudActionsEnable
       x-cli-name: environments:cloud-actions-enable
@@ -7627,7 +7627,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Resets Cloud Actions.
+      summary: Acquia Resets Cloud Actions.
       description: Resets Cloud Actions to the default on an environment.
       operationId: postEnvironmentCloudActionsReset
       x-cli-name: environments:cloud-actions-reset
@@ -7678,7 +7678,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Deploys code to this environment.
+      summary: Acquia Deploys code to this environment.
       description: Deploys code to this environment.
       operationId: postEnvironmentsDeployCode
       x-cli-name: environments:code-deploy
@@ -7783,7 +7783,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Switches code on this environment to a different branch or release tag.
+      summary: Acquia Switches code on this environment to a different branch or release tag.
       description: Switches code on this environment to a different branch or release tag.
       operationId: postEnvironmentsSwitchCode
       x-cli-name: environments:code-switch
@@ -7884,7 +7884,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Imports a site to this environment.
+      summary: Acquia Imports a site to this environment.
       description: Imports a site to this environment.
       operationId: postEnvironmentsImportSite
       x-cli-name: environments:site-import
@@ -7987,7 +7987,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return environment cron jobs.
+      summary: Acquia Return environment cron jobs.
       operationId: getCronJobsByEnvironmentId
       x-cli-name: environments:cron-job-list
       security:
@@ -8067,7 +8067,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Creates a scheduled job with cron.
+      summary: Acquia Creates a scheduled job with cron.
       description: Creates a scheduled job with cron on an environment.
       operationId: postEnvironmentCrons
       x-cli-name: environments:cron-create
@@ -8165,7 +8165,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return details about a specific cron job.
+      summary: Acquia Return details about a specific cron job.
       description: Return details about a specific cron job by environment ID and cron job ID.
       operationId: getCron
       x-cli-name: environments:cron-find
@@ -8219,7 +8219,7 @@ paths:
     put:
       tags:
         - Environments
-      summary: Modify an existing scheduled job.
+      summary: Acquia Modify an existing scheduled job.
       description: Modify an existing scheduled job on an environment.
       operationId: putCron
       x-cli-name: environments:cron-update
@@ -8315,7 +8315,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Deletes a cron job.
+      summary: Acquia Deletes a cron job.
       description: Deletes a cron job.
       operationId: postEnvironmentCronDelete
       x-cli-name: environments:cron-delete
@@ -8380,7 +8380,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Enables a cron job.
+      summary: Acquia Enables a cron job.
       description: Enables a cron job.
       operationId: postEnvironmentCronEnable
       x-cli-name: environments:cron-enable
@@ -8450,7 +8450,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Disables a cron job.
+      summary: Acquia Disables a cron job.
       description: Disables a cron job.
       operationId: postEnvironmentCronDisable
       x-cli-name: environments:cron-disable
@@ -8520,7 +8520,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a list of databases.
+      summary: Acquia Returns a list of databases.
       description: |
         Returns a list of databases.
 
@@ -8616,7 +8616,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Copies a database to this environment.
+      summary: Acquia Copies a database to this environment.
       description: Copies a database to this environment.
       operationId: postEnvironmentsDatabases
       x-cli-name: environments:database-copy
@@ -8749,7 +8749,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return details about a specific database.
+      summary: Acquia Return details about a specific database.
       description: Return details about a specific database.
       operationId: getEnvironmentsDatabase
       x-cli-name: environments:database-find
@@ -8812,7 +8812,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns PHP configuration details for this database.
+      summary: Acquia Returns PHP configuration details for this database.
       description: Returns PHP configuration details for this database.
       operationId: getEnvironmentsDatabasePhpConfig
       x-cli-name: environments:database-php-config-find
@@ -8863,7 +8863,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a list of backups.
+      summary: Acquia Returns a list of backups.
       description: |
         Returns a list of backups.
 
@@ -9015,7 +9015,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Create a backup.
+      summary: Acquia Create a backup.
       description: Create a backup.
       operationId: postEnvironmentsDatabaseBackups
       x-cli-name: environments:database-backup-create
@@ -9088,7 +9088,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return details about a specific backup.
+      summary: Acquia Return details about a specific backup.
       description: Return details about a specific backup.
       operationId: getEnvironmentsDatabaseBackup
       x-cli-name: environments:database-backup-find
@@ -9162,7 +9162,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Deletes a database backup.
+      summary: Acquia Deletes a database backup.
       description: Deletes a database backup.
       operationId: deleteEnvironmentsDatabaseBackup
       x-cli-name: environments:database-backup-delete
@@ -9240,7 +9240,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Downloads the database backup file.
+      summary: Acquia Downloads the database backup file.
       description: Downloads the database backup file.
       operationId: getEnvironmentsDatabaseDownloadBackup
       x-cli-name: environments:database-backup-download
@@ -9309,7 +9309,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Restores this backup to the appropriate environment's database.
+      summary: Acquia Restores this backup to the appropriate environment's database.
       description: Restores this backup to the appropriate environment's database.
       operationId: postEnvironmentsDatabaseRestoreBackup
       x-cli-name: environments:database-backup-restore
@@ -9394,7 +9394,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns DNS configuration details for an environment.
+      summary: Acquia Returns DNS configuration details for an environment.
       description: Returns environment DNS configuration information for apex domain and subdomains.
       operationId: getEnvironmentsDns
       x-cli-name: environments:dns-find
@@ -9456,7 +9456,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a list of domains.
+      summary: Acquia Returns a list of domains.
       description: |
         Returns a list of domains.
 
@@ -9505,7 +9505,7 @@ paths:
                         status:
                           href: https://cloud.acquia.com/api/environments/24-abcd1234-58cc-4372-a567-0e02b2c3d470/domains/www.example.com/status
                     - hostname: other.example.com
-                      cdn: null
+                      cdn:
                       flags:
                         default: false
                         active: false
@@ -9551,7 +9551,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Adds a domain to the environment.
+      summary: Acquia Adds a domain to the environment.
       description: Adds a domain to the environment.
       operationId: postEnvironmentsDomains
       x-cli-name: environments:domain-create
@@ -9660,7 +9660,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Clears the Varnish cache for one or more domains attached to this environment.
+      summary: Acquia Clears the Varnish cache for one or more domains attached to this environment.
       deprecated: true
       description: Clears the Varnish cache for one or more domains attached to this environment.
       operationId: postEnvironmentsDomainsClearVarnish
@@ -9737,7 +9737,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return details about a specific domain.
+      summary: Acquia Return details about a specific domain.
       description: Return details about a specific domain.
       operationId: getEnvironmentsDomain
       x-cli-name: environments:domain-find
@@ -9787,7 +9787,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Removes the domain from this environment.
+      summary: Acquia Removes the domain from this environment.
       description: Removes the domain from this environment.
       operationId: deleteEnvironmentsDomain
       x-cli-name: environments:domain-delete
@@ -9850,7 +9850,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Clears the Varnish cache for the specified domain.
+      summary: Acquia Clears the Varnish cache for the specified domain.
       deprecated: true
       description: Clears the Varnish cache for the specified domain.
       operationId: postEnvironmentsDomainClearVarnish
@@ -9910,7 +9910,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Clears the caches for the specified domain.
+      summary: Acquia Clears the caches for the specified domain.
       description: Clear caches for Varnish and Platform CDN (if Platform CDN is enabled).
       operationId: postEnvironmentsDomainClearCaches
       x-cli-name: environments:domain-clear-caches
@@ -9969,7 +9969,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns details about the domain.
+      summary: Acquia Returns details about the domain.
       description: Returns details about the domain.
       operationId: getEnvironmentsDomainStatus
       x-cli-name: environments:domain-status-find
@@ -10021,7 +10021,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return a list of Web EIPs.
+      summary: Acquia Return a list of Web EIPs.
       description: Returns a list of Web EIPs.
       operationId: getEIPs
       x-cli-name: environments:eips-list
@@ -10066,7 +10066,7 @@ paths:
     get:
       tags:
         - Email
-      summary: Returns the status of Platform Email for an Environment.
+      summary: Acquia Returns the status of Platform Email for an Environment.
       description: Returns the status of Platform Email for an Environment.
       operationId: getEmailStatus
       x-cli-name: environments:email-status
@@ -10103,7 +10103,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Copies files to this environment.
+      summary: Acquia Copies files to this environment.
       description: Copies files to this environment.
       operationId: postEnvironmentsFiles
       x-cli-name: environments:file-copy
@@ -10216,7 +10216,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a list of log files for this environment available for download.
+      summary: Acquia Returns a list of log files for this environment available for download.
       description: Returns a list of log files for this environment available for download.
       operationId: getEnvironmentsLogs
       x-cli-name: environments:log-list
@@ -10337,7 +10337,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Downloads the log file.
+      summary: Acquia Downloads the log file.
       description: Downloads the log file.
       operationId: getEnvironmentsLog
       x-cli-name: environments:log-download
@@ -10395,7 +10395,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Creates a log file snapshot.
+      summary: Acquia Creates a log file snapshot.
       description: Creates a log file snapshot.
       operationId: postEnvironmentsLog
       x-cli-name: environments:log-create
@@ -10497,7 +10497,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a logstream url and metadata.
+      summary: Acquia Returns a logstream url and metadata.
       description: Returns a logstream url and metadata.
       operationId: getEnvironmentsLogstream
       x-cli-name: environments:logstream-find
@@ -10548,7 +10548,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Disable Live Development on this environment.
+      summary: Acquia Disable Live Development on this environment.
       description: Disable Live Development on this environment.
       deprecated: true
       operationId: postEnvironmentsDisableLiveDev
@@ -10658,7 +10658,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Enable Live Development on this environment.
+      summary: Acquia Enable Live Development on this environment.
       description: Enable Live Development on this environment. Not supported on Acquia Cloud Next.
       deprecated: true
       operationId: postEnvironmentsEnableLiveDev
@@ -10753,7 +10753,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a collection of log forwarding destinations for this environment.
+      summary: Acquia Returns a collection of log forwarding destinations for this environment.
       description: |
         Returns a collection of log forwarding destinations for this environment.
 
@@ -10793,9 +10793,9 @@ paths:
                       address: example.com:1234
                       credentials:
                         certificate:
-                          certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                          certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                           expires_at: 2018-07-16T16:15:33+00:00
-                        key: null
+                        key:
                         token: 204d892b449026f6e4ded264c8891c400df8fc8905f07beb5f70d706f6d4d5e5
                       sources:
                         - apache-access
@@ -10822,7 +10822,7 @@ paths:
                       address: 193.169.2.19:5678
                       credentials:
                         certificate:
-                          certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                          certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                           expires_at: 2018-07-16T16:15:33+00:00
                         key: 1d0789d519c0b943cf38f401d30ffbdcd2e0c4cfb7c32ebc0c872bce62aadd4d
                         token: 204d892b449026f6e4ded264c8891c400df8fc8905f07beb5f70d706f6d4d5e5
@@ -10870,7 +10870,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Creates a log forwarding destination.
+      summary: Acquia Creates a log forwarding destination.
       description: Creates a log forwarding destination.
       operationId: postEnvironmentsLogForwardingDestinations
       x-cli-name: environments:log-forwarding-destination-create
@@ -10939,7 +10939,7 @@ paths:
                 - apache-error
               consumer: syslog
               credentials:
-                certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
               address: example.com:1234
       responses:
         "202":
@@ -11095,7 +11095,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns the specified log forwarding destination.
+      summary: Acquia Returns the specified log forwarding destination.
       description: Returns the specified log forwarding destination.
       operationId: getEnvironmentsLogForwardingDestination
       x-cli-name: environments:log-forwarding-destination-find
@@ -11116,7 +11116,7 @@ paths:
                 consumer: syslog
                 credentials:
                   certificate:
-                    certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                    certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                     expires_at: 2018-07-16T16:15:33+00:00
                   key: 1d0789d519c0b943cf38f401d30ffbdcd2e0c4cfb7c32ebc0c872bce62aadd4d
                   token: 204d892b449026f6e4ded264c8891c400df8fc8905f07beb5f70d706f6d4d5e5
@@ -11168,7 +11168,7 @@ paths:
     put:
       tags:
         - Environments
-      summary: Updates an environment's log forwarding destination.
+      summary: Acquia Updates an environment's log forwarding destination.
       description: Updates an environment's log forwarding destination.
       operationId: putEnvironmentsLogForwardingDestination
       x-cli-name: environments:log-forwarding-destination-update
@@ -11235,7 +11235,7 @@ paths:
                 - apache-error
               consumer: syslog
               credentials:
-                certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
               address: example.com:1234
       responses:
         "202":
@@ -11401,7 +11401,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Deletes the specified log forwarding destination.
+      summary: Acquia Deletes the specified log forwarding destination.
       description: Deletes the specified log forwarding destination.
       operationId: deleteEnvironmentsLogForwardingDestination
       x-cli-name: environments:log-forwarding-destination-delete
@@ -11473,7 +11473,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Disables the specified log forwarding destination.
+      summary: Acquia Disables the specified log forwarding destination.
       description: Disables the specified log forwarding destination.
       operationId: postEnvironmentsDisableLogForwardingDestination
       x-cli-name: environments:log-forwarding-destination-disable
@@ -11545,7 +11545,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Enables the specified log forwarding destination.
+      summary: Acquia Enables the specified log forwarding destination.
       description: Enables the specified log forwarding destination.
       operationId: postEnvironmentsEnableLogForwardingDestination
       x-cli-name: environments:log-forwarding-destination-enable
@@ -11637,7 +11637,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Does not return any data. Allows traversal to metrics groups endpoints.
+      summary: Acquia Does not return any data. Allows traversal to metrics groups endpoints.
       description: Does not return any data. Allows traversal to metrics groups endpoints.
       operationId: getEnvironmentsMetrics
       x-cli-name: environments:metrics
@@ -11686,7 +11686,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Does not return any data. Allows traversal to StackMetrics endpoints.
+      summary: Acquia Does not return any data. Allows traversal to StackMetrics endpoints.
       description: Does not return any data. Allows traversal to StackMetrics endpoints.
       operationId: getEnvironmentsStackMetrics
       x-cli-name: environments:stack-metrics-data-list
@@ -11735,7 +11735,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns StackMetrics data for the metrics specified in the filter paramater (e.g., apache-access, web-cpu).
+      summary: Acquia Returns StackMetrics data for the metrics specified in the filter paramater (e.g., apache-access, web-cpu).
       description: Returns StackMetrics data for the metrics specified by the filter paramater (e.g., apache-access, web-cpu).
       operationId: getEnvironmentsStackMetricsData
       x-cli-name: environments:stack-metrics-data-find
@@ -11763,45 +11763,45 @@ paths:
                   items:
                     - metric: db-cpu
                       datapoints:
-                        - - "2.5395360194838"
-                          - "1447876380"
-                        - - "3.3012513318685"
-                          - "1447876680"
-                        - - "4.568567607842"
-                          - "1447876980"
+                        -   - "2.5395360194838"
+                            - "1447876380"
+                        -   - "3.3012513318685"
+                            - "1447876680"
+                        -   - "4.568567607842"
+                            - "1447876980"
                       last_data_at: 2019-06-19T00:00:00+00:00
                       metadata:
                         host: fsdb-1.prod.hosting.acquia.com
                     - metric: db-cpu
                       datapoints:
-                        - - "22.1395360194838"
-                          - "1447876380"
-                        - - "23.7012513318685"
-                          - "1447876680"
-                        - - "24.168567607842"
-                          - "1447876980"
+                        -   - "22.1395360194838"
+                            - "1447876380"
+                        -   - "23.7012513318685"
+                            - "1447876680"
+                        -   - "24.168567607842"
+                            - "1447876980"
                       last_data_at: 2019-06-19T00:00:00+00:00
                       metadata:
                         host: fsdb-2.prod.hosting.acquia.com
                     - metric: web-cpu
                       datapoints:
-                        - - "12.1395360194838"
-                          - "1447876380"
-                        - - "12.7012513318685"
-                          - "1447876680"
-                        - - "12.168567607842"
-                          - "1447876980"
+                        -   - "12.1395360194838"
+                            - "1447876380"
+                        -   - "12.7012513318685"
+                            - "1447876680"
+                        -   - "12.168567607842"
+                            - "1447876980"
                       last_data_at: 2019-06-19T00:00:00+00:00
                       metadata:
                         host: web-1.prod.hosting.acquia.com
                     - metric: web-cpu
                       datapoints:
-                        - - "2.1395360194838"
-                          - "1447876380"
-                        - - "2.7012513318685"
-                          - "1447876680"
-                        - - "2.168567607842"
-                          - "1447876980"
+                        -   - "2.1395360194838"
+                            - "1447876380"
+                        -   - "2.7012513318685"
+                            - "1447876680"
+                        -   - "2.168567607842"
+                            - "1447876980"
                       last_data_at: 2019-06-19T00:00:00+00:00
                       metadata:
                         host: web-2.prod.hosting.acquia.com
@@ -11831,7 +11831,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Retrieves traversal links for an environment's usage data.
+      summary: Acquia Retrieves traversal links for an environment's usage data.
       description: Retrieves traversal links for an environment's usage data.
       operationId: getEnvironmentsUsageLinks
       x-cli-name: environments:usage-links
@@ -11884,7 +11884,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Retrieves usage data for an environment.
+      summary: Acquia Retrieves usage data for an environment.
       description: |
         Filterable fields:
         * `metric` - One of: {`views`, `visits`}
@@ -11917,10 +11917,10 @@ paths:
                   items:
                     - metric: views
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "9"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "9"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -11939,10 +11939,10 @@ paths:
                           href: https://cloud.acquia.com/api/environments/123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "3"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "3"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -11985,7 +11985,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Retrieves usage metric data for an environment.
+      summary: Acquia Retrieves usage metric data for an environment.
       description: Retrieves usage metric data for an environment.
       operationId: getEnvironmentsUsageMetricData
       x-cli-name: environments:usage-metric-data
@@ -12005,10 +12005,10 @@ paths:
               example:
                 metric: views
                 datapoints:
-                  - - 2019-03-13T00:00:00+00:00
-                    - "9"
-                  - - 2019-03-14T00:00:00+00:00
-                    - "1"
+                  -   - 2019-03-13T00:00:00+00:00
+                      - "9"
+                  -   - 2019-03-14T00:00:00+00:00
+                      - "1"
                 last_data_at: 2019-03-14T00:00:00+00:00
                 metadata:
                   subscription:
@@ -12055,7 +12055,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns the mod proxy status for an Environment.
+      summary: Acquia Returns the mod proxy status for an Environment.
       description: Returns the mod proxy status for an Environment.
       operationId: getModProxyStatus
       x-cli-name: environments:mod-proxy-status
@@ -12103,7 +12103,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Disables mod proxy for an environment.
+      summary: Acquia Disables mod proxy for an environment.
       description: Disables mod proxy for an environment.
       operationId: postDisableModProxy
       x-cli-name: environments:mod-proxy-disable
@@ -12160,7 +12160,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Enables mod proxy for an environment.
+      summary: Acquia Enables mod proxy for an environment.
       description: Enables mod proxy for an environment.
       operationId: postEnableModProxy
       x-cli-name: environments:mod-proxy-enable
@@ -12217,7 +12217,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Disables production mode for an environment.
+      summary: Acquia Disables production mode for an environment.
       description: Removes protection from a production environment, taking it out of production mode.
       operationId: postEnvironmentsDisableProductionMode
       x-cli-name: environments:production-mode-disable
@@ -12293,7 +12293,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Enables production mode for an environment.
+      summary: Acquia Enables production mode for an environment.
       description: Enables production mode for an environment. While production mode is enabled, files and databases cannot be copied to the production environment.
       operationId: postEnvironmentsEnableProductionMode
       x-cli-name: environments:production-mode-enable
@@ -12369,7 +12369,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a traversal endpoint for search entities for the environment.
+      summary: Acquia Returns a traversal endpoint for search entities for the environment.
       description: Does not return any data. Allows traversal to search entity endpoints.
       operationId: getEnvironmentSearchList
       x-cli-name: environments:search:list
@@ -12418,7 +12418,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a collection of search indexes for an environment.
+      summary: Acquia Returns a collection of search indexes for an environment.
       description: A collection of search indexes for an environment.
       operationId: getEnvironmentSearchIndexes
       x-cli-name: environments:search:indexes-list
@@ -12529,7 +12529,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Creates a search index for an environment.
+      summary: Acquia Creates a search index for an environment.
       description: Creates a search index for an environment.
       operationId: postEnvironmentSearchIndexes
       x-cli-name: environments:search:index-create
@@ -12637,7 +12637,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a search configuration set for an application
+      summary: Acquia Returns a search configuration set for an application
       description: A specific search configuration set.
       operationId: getEnvironmentSearchIndex
       x-cli-name: environments:search:index-find
@@ -12710,7 +12710,7 @@ paths:
     put:
       tags:
         - Environments
-      summary: Updates a search index on an environment.
+      summary: Acquia Updates a search index on an environment.
       description: Updates a search index on an environment.
       operationId: putEnvironmentSearchIndex
       x-cli-name: environments:search:index-update
@@ -12792,7 +12792,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Removes and deletes a specific search index from an environment
+      summary: Acquia Removes and deletes a specific search index from an environment
       description: Removes and deletes a specific search index from an environment
       operationId: deleteEnvironmentSearchIndex
       x-cli-name: environments:search:index-delete
@@ -12854,7 +12854,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a list of servers.
+      summary: Acquia Returns a list of servers.
       description: |
         Returns a list of servers.
 
@@ -12943,7 +12943,7 @@ paths:
                       ami_type: m1.small
                       operating_system: xenial
                       configuration:
-                        memcache: null
+                        memcache:
                         ecu: 1
                         memory: 1.7
                       flags:
@@ -12995,7 +12995,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return details about a specific server.
+      summary: Acquia Return details about a specific server.
       description: Return details about a specific server.
       operationId: getEnvironmentsServer
       x-cli-name: environments:server-find
@@ -13078,7 +13078,7 @@ paths:
     put:
       tags:
         - Environments
-      summary: Modifies configuration settings for a server.
+      summary: Acquia Modifies configuration settings for a server.
       description: Modifies configuration settings for a server.
       operationId: putEnvironmentsServer
       x-cli-name: environments:server-update
@@ -13185,7 +13185,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Reboots a server.
+      summary: Acquia Reboots a server.
       description: Reboots a server. This will cause all applications on this server to be unavailable while the server reboots.
       operationId: postEnvironmentsServerReboot
       x-cli-name: environments:server-reboot
@@ -13277,7 +13277,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Relaunches a server.
+      summary: Acquia Relaunches a server.
       description: Relaunches a server. This will cause all applications on this server to be unavailable while the server relaunches.
       operationId: postEnvironmentsServerRelaunch
       x-cli-name: environments:server-relaunch
@@ -13369,7 +13369,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Suspends a server.
+      summary: Acquia Suspends a server.
       description: Suspends a server. The server will no longer respond to web requests.
       operationId: postEnvironmentsServerSuspend
       x-cli-name: environments:server-suspend
@@ -13461,7 +13461,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Upgrades a server from "precise" to "xenial".
+      summary: Acquia Upgrades a server from "precise" to "xenial".
       description: Upgrades a server from "precise" to "xenial".
       operationId: postEnvironmentsServerUpgrade
       x-cli-name: environments:server-upgrade
@@ -13558,7 +13558,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Provides links to environment settings.
+      summary: Acquia Provides links to environment settings.
       description: Provides links to environment settings.
       operationId: getEnvironmentsSettings
       x-cli-name: environments:settings
@@ -13595,7 +13595,7 @@ paths:
       tags:
         - Application Performance Monitoring Services
       deprecated: true
-      summary: Returns a list of Application Performance Monitoring services associated with the environment.
+      summary: Acquia Returns a list of Application Performance Monitoring services associated with the environment.
       description: Returns a list of Application Performance Monitoring services associated with the environment.
       operationId: getEnvironmentsApmSetting
       x-cli-name: environments:apm-find
@@ -13652,7 +13652,7 @@ paths:
       tags:
         - Application Performance Monitoring Services
       deprecated: true
-      summary: Update configuration for an Application Performance Monitoring tool.
+      summary: Acquia Update configuration for an Application Performance Monitoring tool.
       description: Update configuration for an Application Performance Monitoring tool.
       operationId: putEnvironmentsApmSetting
       x-cli-name: environments:apm-update
@@ -13757,7 +13757,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns the SSL settings for this environment.
+      summary: Acquia Returns the SSL settings for this environment.
       description: Returns the SSL settings for this environment.
       operationId: getSsl
       x-cli-name: environments:ssl-settings-find
@@ -13812,7 +13812,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Return a list of SSL certificates.
+      summary: Acquia Return a list of SSL certificates.
       description: Returns the SSL certificates that are installed on this environment.
       operationId: getCertificates
       x-cli-name: environments:certificate-list
@@ -13835,10 +13835,10 @@ paths:
                 _embedded:
                   items:
                     - id: 7
-                      label: null
-                      certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
-                      private_key: -----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----
-                      ca: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                      label:
+                      certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       flags:
                         active: true
                         csr: true
@@ -13857,9 +13857,9 @@ paths:
                           href: https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/csrs/7
                     - id: 3
                       label: Test Certificate 1
-                      certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
-                      private_key: -----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----
-                      ca: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                      certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       flags:
                         active: true
                         csr: false
@@ -13876,9 +13876,9 @@ paths:
                           href: https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/certificates/3
                     - id: 4
                       label: Test Certificate 2
-                      certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
-                      private_key: -----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----
-                      ca: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                      certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       flags:
                         active: false
                         csr: true
@@ -13907,7 +13907,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Install an SSL certificate.
+      summary: Acquia Install an SSL certificate.
       description: Install a new SSL certificate on this environment.
       operationId: postCertificate
       x-cli-name: environments:certificate-create
@@ -13921,9 +13921,9 @@ paths:
               $ref: "#/components/schemas/Acquia_Cloud_API_Documentation_post-certificate"
             example:
               legacy: false
-              certificate: -----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----
-              private_key: -----BEGIN RSA PRIVATE KEY-----secret....-----END RSA PRIVATE KEY-----
-              ca_certificates: -----BEGIN CERTIFICATE-----123abc....-----END CERTIFICATE-----
+              certificate: '-----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----'
+              private_key: '-----BEGIN RSA PRIVATE KEY-----secret....-----END RSA PRIVATE KEY-----'
+              ca_certificates: '-----BEGIN CERTIFICATE-----123abc....-----END CERTIFICATE-----'
               csr_id: 123
               label: My New Cert
           application/x-www-form-urlencoded:
@@ -13931,9 +13931,9 @@ paths:
               $ref: "#/components/schemas/Acquia_Cloud_API_Documentation_post-certificate"
             example:
               legacy: false
-              certificate: -----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----
-              private_key: -----BEGIN RSA PRIVATE KEY-----secret....-----END RSA PRIVATE KEY-----
-              ca_certificates: -----BEGIN CERTIFICATE-----123abc....-----END CERTIFICATE-----
+              certificate: '-----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----'
+              private_key: '-----BEGIN RSA PRIVATE KEY-----secret....-----END RSA PRIVATE KEY-----'
+              ca_certificates: '-----BEGIN CERTIFICATE-----123abc....-----END CERTIFICATE-----'
               csr_id: 123
               label: My New Cert
       security:
@@ -14018,7 +14018,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a specific certificate by certificate id.
+      summary: Acquia Returns a specific certificate by certificate id.
       description: Returns details about a specific SSL certificate.
       operationId: getCertificate
       x-cli-name: environments:certificate-find
@@ -14037,9 +14037,9 @@ paths:
               example:
                 id: 13
                 label: Test Certificate
-                certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
-                private_key: -----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----
-                ca: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+                private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                 flags:
                   active: true
                   csr: true
@@ -14070,7 +14070,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Deletes a specific certificate by its ID.
+      summary: Acquia Deletes a specific certificate by its ID.
       description: Deletes a specific certificate by its ID.
       operationId: deleteCertificate
       x-cli-name: environments:certificate-delete
@@ -14145,7 +14145,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Activates an SSL certificate.
+      summary: Acquia Activates an SSL certificate.
       description: Activates an SSL certificate.
       operationId: postActivateCertificate
       x-cli-name: environments:certificate-activate
@@ -14260,7 +14260,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Deactivates an active SSL certificate.
+      summary: Acquia Deactivates an active SSL certificate.
       description: Deactivates an active SSL certificate.
       operationId: postDeactivateCertificate
       x-cli-name: environments:certificate-deactivate
@@ -14344,7 +14344,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns certificate signing requests.
+      summary: Acquia Returns certificate signing requests.
       description: Returns the certificate signing requests for this environment.
       operationId: getCertificateSigningRequests
       x-cli-name: environments:csr-list
@@ -14367,8 +14367,8 @@ paths:
                 _embedded:
                   items:
                     - id: 7
-                      csr: -----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----
-                      private_key: -----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----
+                      csr: '-----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----'
+                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
                       country: US
                       state: Massachusetts
                       locality: Boston
@@ -14390,8 +14390,8 @@ paths:
                         certificate:
                           href: https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/certificates/7
                     - id: 8
-                      csr: -----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----
-                      private_key: -----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----
+                      csr: '-----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----'
+                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
                       country: US
                       state: Massachusetts
                       locality: Boston
@@ -14424,7 +14424,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Generates a certificate signing request (CSR) for one or more domains.
+      summary: Acquia Generates a certificate signing request (CSR) for one or more domains.
       description: Generates a CSR for one or more domains.
       operationId: postCertificateSigningRequest
       x-cli-name: environments:csr-create
@@ -14577,7 +14577,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns the certificate signing request for the certificate specified by id.
+      summary: Acquia Returns the certificate signing request for the certificate specified by id.
       description: Returns details about a specific certificate signing request.
       operationId: getCertificateSigningRequest
       x-cli-name: environments:csr-find
@@ -14595,8 +14595,8 @@ paths:
                 $ref: "#/components/schemas/Acquia_Cloud_API_Documentation_csr"
               example:
                 id: 7
-                csr: -----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----
-                private_key: -----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----
+                csr: '-----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----'
+                private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
                 country: US
                 state: Massachusetts
                 locality: Boston
@@ -14656,7 +14656,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Deletes the certificate signing request.
+      summary: Acquia Deletes the certificate signing request.
       description: Deletes the certificate signing request for the certificate specified by id.
       operationId: deleteCertificateSigningRequest
       x-cli-name: environments:csr-delete
@@ -14727,7 +14727,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Returns a list of environment variables associated with this environment.
+      summary: Acquia Returns a list of environment variables associated with this environment.
       description: |
         Returns a list of environment variables associated with this environment.
 
@@ -14821,7 +14821,7 @@ paths:
     post:
       tags:
         - Environments
-      summary: Adds a new environment variable to an environment.
+      summary: Acquia Adds a new environment variable to an environment.
       description: Adds a new environment variable to an environment.
       operationId: postEnvironmentsVariables
       x-cli-name: environments:variable-create
@@ -14955,7 +14955,7 @@ paths:
     get:
       tags:
         - Environments
-      summary: Get an environment variable associated with this environment.
+      summary: Acquia Get an environment variable associated with this environment.
       description: Get an environment variable associated with this environment.
       operationId: getEnvironmentsVariable
       x-cli-name: environments:variable-find
@@ -15014,7 +15014,7 @@ paths:
     delete:
       tags:
         - Environments
-      summary: Removes an environment variable from an environment.
+      summary: Acquia Removes an environment variable from an environment.
       description: Removes an environment variable from an environment.
       operationId: deleteEnvironmentsVariable
       x-cli-name: environments:variable-delete
@@ -15095,7 +15095,7 @@ paths:
     put:
       tags:
         - Environments
-      summary: Updates an environment variable on an environment.
+      summary: Acquia Updates an environment variable on an environment.
       description: Updates an environment variable on an environment.
       operationId: putEnvironmentsVariable
       x-cli-name: environments:variable-update
@@ -15227,7 +15227,7 @@ paths:
     get:
       tags:
         - Cloud IDE
-      summary: Returns Cloud IDE info.
+      summary: Acquia Returns Cloud IDE info.
       description: Returns Cloud IDE info.
       operationId: getIde
       x-cli-name: ide:find
@@ -15281,7 +15281,7 @@ paths:
     delete:
       tags:
         - Cloud IDE
-      summary: De-provisions a specific Cloud IDE.
+      summary: Acquia De-provisions a specific Cloud IDE.
       description: De-provisions a specific Cloud IDE.
       operationId: deleteIde
       x-cli-name: ide:delete
@@ -15322,7 +15322,7 @@ paths:
     get:
       tags:
         - Identity Providers
-      summary: Returns a list of identity providers for a user.
+      summary: Acquia Returns a list of identity providers for a user.
       description: |
         Returns a list of identity providers you have access to.
 
@@ -15377,7 +15377,7 @@ paths:
                       idp_entity_id: https://idp.example.com/saml
                       sp_entity_id: https://sp.example.com/saml
                       sso_url: https://example.com/sso
-                      certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                      certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       status: enabled
                       _links:
                         self:
@@ -15391,7 +15391,7 @@ paths:
                       idp_entity_id: https://idp2.example.com/saml
                       sp_entity_id: https://sp2.example.com/saml
                       sso_url: https://example.com/sso
-                      certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+                      certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       status: enabled
                       _links:
                         self:
@@ -15404,7 +15404,7 @@ paths:
     get:
       tags:
         - Identity Providers
-      summary: Returns a specific identity provider by UUID.
+      summary: Acquia Returns a specific identity provider by UUID.
       description: Returns a specific identity provider.
       operationId: getIdentityProvider
       x-cli-name: identity-providers:find
@@ -15425,7 +15425,7 @@ paths:
                 idp_entity_id: https://idp.example.com/saml
                 sp_entity_id: https://sp.example.com/saml
                 sso_url: https://example.com/sso
-                certificate: -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----
+                certificate: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
                 status: enabled
                 _links:
                   self:
@@ -15448,7 +15448,7 @@ paths:
     put:
       tags:
         - Identity Providers
-      summary: Modifies an identity provider by its UUID.
+      summary: Acquia Modifies an identity provider by its UUID.
       description: Modifies an identity provider.
       operationId: putIdentityProvider
       x-cli-name: identity-providers:update
@@ -15478,7 +15478,7 @@ paths:
               label: New label
               entity_id: entity-id
               sso_url: https://idp.example.com
-              certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+              certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -15500,7 +15500,7 @@ paths:
               label: New label
               entity_id: entity-id
               sso_url: https://idp.example.com
-              certificate: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+              certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
       security:
         - Acquia_Cloud_API_Documentation_OAuth2: []
       responses:
@@ -15597,7 +15597,7 @@ paths:
     delete:
       tags:
         - Identity Providers
-      summary: Deletes a specific identity provider by its UUID.
+      summary: Acquia Deletes a specific identity provider by its UUID.
       description: Deletes a specific identity provider.
       operationId: deleteIdentityProvider
       x-cli-name: identity-providers:delete
@@ -15649,7 +15649,7 @@ paths:
     post:
       tags:
         - Identity Providers
-      summary: Enables an identity provider by its UUID.
+      summary: Acquia Enables an identity provider by its UUID.
       description: Enables an identity provider.
       operationId: postEnableIdentityProvider
       x-cli-name: identity-providers:enable
@@ -15706,7 +15706,7 @@ paths:
     post:
       tags:
         - Identity Providers
-      summary: Disables an identity provider by its UUID.
+      summary: Acquia Disables an identity provider by its UUID.
       description: Disables an identity provider.
       operationId: postDisableIdentityProvider
       x-cli-name: identity-providers:disable
@@ -15763,7 +15763,7 @@ paths:
     get:
       tags:
         - Invite
-      summary: Returns details about an invitation.
+      summary: Acquia Returns details about an invitation.
       description: Returns details about an invitation.
       operationId: getInviteByToken
       x-cli-name: invites:find
@@ -15836,7 +15836,7 @@ paths:
     delete:
       tags:
         - Invite
-      summary: Cancels an invitation.
+      summary: Acquia Cancels an invitation.
       description: Cancels an invitation.
       operationId: postInviteCancel
       x-cli-name: invites:cancel
@@ -15881,7 +15881,7 @@ paths:
     post:
       tags:
         - Invite
-      summary: Accepts an invite.
+      summary: Acquia Accepts an invite.
       description: Accepts an invite.
       operationId: postInviteAcceptByToken
       x-cli-name: invites:accept
@@ -15926,7 +15926,7 @@ paths:
     post:
       tags:
         - Invite
-      summary: Declines an invite.
+      summary: Acquia Declines an invite.
       description: Declines an invite.
       operationId: postInviteDecline
       x-cli-name: invites:decline
@@ -15971,7 +15971,7 @@ paths:
     post:
       tags:
         - Invite
-      summary: Resend an invite.
+      summary: Acquia Resend an invite.
       description: Resend an invite.
       operationId: postInviteResend
       x-cli-name: invites:resend
@@ -16005,7 +16005,7 @@ paths:
     post:
       tags:
         - Messages
-      summary: Dismisses a message.
+      summary: Acquia Dismisses a message.
       description: Dismisses a message.
       operationId: postDismissMessage
       x-cli-name: messages:dismiss
@@ -16052,7 +16052,7 @@ paths:
     get:
       tags:
         - Messages
-      summary: Follows an in-product message link.
+      summary: Acquia Follows an in-product message link.
       description: Follows an in-product message link.
       operationId: getMessageFollow
       x-cli-name: messages:follow
@@ -16081,7 +16081,7 @@ paths:
     get:
       tags:
         - Notifications
-      summary: Returns a single notification.
+      summary: Acquia Returns a single notification.
       description: Returns a single notification.
       operationId: getNotificationByUuid
       x-cli-name: notifications:find
@@ -16132,7 +16132,7 @@ paths:
     get:
       tags:
         - Options
-      summary: Does not return any data. Allows traversal of options groups endpoints.
+      summary: Acquia Does not return any data. Allows traversal of options groups endpoints.
       description: Does not return any data. Allows traversal of options groups endpoints.
       operationId: getOptions
       x-cli-name: options:list
@@ -16157,7 +16157,7 @@ paths:
     get:
       tags:
         - Options
-      summary: Displays the various CD Environment size options.
+      summary: Acquia Displays the various CD Environment size options.
       description: Displays the various CD Environment size options.
       operationId: getCdeSizes
       x-cli-name: options:cde-sizes-list
@@ -16211,7 +16211,7 @@ paths:
     get:
       tags:
         - Options
-      summary: Does not return any data. Allows traversal of options groups endpoints.
+      summary: Acquia Does not return any data. Allows traversal of options groups endpoints.
       description: Does not return any data. Allows traversal of options groups endpoints.
       operationId: getLogForwarding
       x-cli-name: options:log-forwarding
@@ -16236,7 +16236,7 @@ paths:
     get:
       tags:
         - Options
-      summary: Displays available log forwarding sources.
+      summary: Acquia Displays available log forwarding sources.
       description: Displays available log forwarding sources.
       operationId: getLogForwardingSources
       x-cli-name: options:log-forwarding-source-list
@@ -16264,7 +16264,7 @@ paths:
     get:
       tags:
         - Options
-      summary: Displays available log forwarding consumers.
+      summary: Acquia Displays available log forwarding consumers.
       description: Displays available log forwarding consumers.
       operationId: getLogForwardingConsumers
       x-cli-name: options:log-forwarding-consumer-list
@@ -16290,7 +16290,7 @@ paths:
     get:
       tags:
         - Options
-      summary: Displays the various color options.
+      summary: Acquia Displays the various color options.
       description: Displays the various color options.
       operationId: getColors
       x-cli-name: colors:list
@@ -16336,7 +16336,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Return a list of organizations.
+      summary: Acquia Return a list of organizations.
       description: |
         An organization is a container for some or all of a customer's subscriptions. The owner of the organization is the
         main billing contact. The owner, along with organization administrators, can set up teams and roles to grant various
@@ -16433,7 +16433,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Return details about a specific organization.
+      summary: Acquia Return details about a specific organization.
       operationId: getOrganizationByUuid
       x-cli-name: organizations:find
       security:
@@ -16512,7 +16512,7 @@ paths:
     put:
       tags:
         - Organizations
-      summary: Renames an organization.
+      summary: Acquia Renames an organization.
       description: Renames an organization.
       operationId: putOrganization
       x-cli-name: organizations:update
@@ -16586,7 +16586,7 @@ paths:
     delete:
       tags:
         - Organizations
-      summary: Deletes a specific organization by its UUID.
+      summary: Acquia Deletes a specific organization by its UUID.
       description: Deletes a specific organization.
       operationId: deleteOrganization
       x-cli-name: organizations:delete
@@ -16647,7 +16647,7 @@ paths:
     post:
       tags:
         - Organizations
-      summary: Changes the organization owner.
+      summary: Acquia Changes the organization owner.
       description: Changes the organization owner.
       operationId: postChangeOrganizationOwner
       x-cli-name: organizations:owner-change
@@ -16734,7 +16734,7 @@ paths:
     post:
       tags:
         - Organizations
-      summary: Removes your account from an organization.
+      summary: Acquia Removes your account from an organization.
       description: Removes your account from an organization.
       operationId: postLeaveOrganization
       x-cli-name: organizations:leave
@@ -16791,7 +16791,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of organization administrators.
+      summary: Acquia Returns a list of organization administrators.
       description: |
         Returns a list of organization administrators.
 
@@ -16859,7 +16859,7 @@ paths:
                     - uuid: 3bcddc3a-52ba-4cce-aaa3-9adf721c1b52
                       first_name: Jonathan
                       last_name: Archer
-                      last_login_at: null
+                      last_login_at:
                       mail: jonathan.archer@example.com
                       picture_url: https://accounts.acquia.com/images/users/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/style/avatar
                       username: jonathan.archer
@@ -16883,7 +16883,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns the user profile of this organization administrator.
+      summary: Acquia Returns the user profile of this organization administrator.
       description: Returns the user profile of this organization administrator.
       operationId: getOrganizationAdmin
       x-cli-name: organizations:admin-find
@@ -16939,7 +16939,7 @@ paths:
     delete:
       tags:
         - Organizations
-      summary: Removes the user from the list of administrators for the organization.
+      summary: Acquia Removes the user from the list of administrators for the organization.
       description: Removes the user from the list of administrators for the organization.
       operationId: deleteOrganizationAdmin
       x-cli-name: organizations:admin-delete
@@ -16986,7 +16986,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Gets a list of invitations of administrators for this organization.
+      summary: Acquia Gets a list of invitations of administrators for this organization.
       description: |
         Gets a list of invitations of administrators for this organization.
 
@@ -17078,7 +17078,7 @@ paths:
     post:
       tags:
         - Organizations
-      summary: Invites a user to be an administrator in this organization.
+      summary: Acquia Invites a user to be an administrator in this organization.
       description: Invites a user to be an administrator in this organization.
       operationId: postOrganizationAdminInvite
       x-cli-name: organizations:admin-invite-create
@@ -17152,7 +17152,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of applications that belong to the organization.
+      summary: Acquia Returns a list of applications that belong to the organization.
       description: |
         Returns a list of applications that belong to the organization.
 
@@ -17288,7 +17288,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of all available application tags.
+      summary: Acquia Returns a list of all available application tags.
       description: Returns a list of all available application tags.
       operationId: getOrganizationAvailableTags
       x-cli-name: organizations:available-tags-list
@@ -17351,7 +17351,7 @@ paths:
     post:
       tags:
         - Organizations
-      summary: Adds bulk tags to organization resources.
+      summary: Acquia Adds bulk tags to organization resources.
       description: Adds bulk tags to organization resources.
       operationId: postOrganizationAvailableTags
       x-cli-name: organizations:available-tags-create
@@ -17515,7 +17515,7 @@ paths:
     delete:
       tags:
         - Organizations
-      summary: Deletes bulk tags from organization resources.
+      summary: Acquia Deletes bulk tags from organization resources.
       description: Deletes bulk tags from organization resources.
       operationId: deleteOrganizationAvailableTags
       x-cli-name: organizations:available-tags-delete
@@ -17668,7 +17668,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns an identity provider for an organization.
+      summary: Acquia Returns an identity provider for an organization.
       description: Returns an identity provider for an organization.
       operationId: getOrganizationIdentityProvider
       x-cli-name: organizations:identity-provider-find
@@ -17689,7 +17689,7 @@ paths:
                 idp_entity_id: https://idp.example.com/saml
                 sp_entity_id: https://sp.example.com/saml
                 sso_url: https://example.com/sso
-                certificate: -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----
+                certificate: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
                 status: enabled
                 _links:
                   self:
@@ -17713,7 +17713,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of all organization members.
+      summary: Acquia Returns a list of all organization members.
       description: |
         Returns a list of all organization members, from all teams in this organization.
 
@@ -17795,7 +17795,7 @@ paths:
                     - uuid: 3bcddc3a-52ba-4cce-aaa3-9adf721c1b52
                       first_name: Jonathan
                       last_name: Archer
-                      last_login_at: null
+                      last_login_at:
                       mail: jonathan.archer@example.com
                       picture_url: https://accounts.acquia.com/images/users/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/style/avatar
                       username: jonathan.archer
@@ -17829,7 +17829,7 @@ paths:
       tags:
         - Organizations
       description: Returns the user profile of this organization member.
-      summary: Returns the user profile of this organization member.
+      summary: Acquia Returns the user profile of this organization member.
       operationId: getOrganizationMember
       x-cli-name: organizations:member-find
       security:
@@ -17895,7 +17895,7 @@ paths:
     delete:
       tags:
         - Organizations
-      summary: Removes the member from the organization.
+      summary: Acquia Removes the member from the organization.
       description: Removes the member from the organization.
       operationId: postOrganizationMemberDelete
       x-cli-name: organizations:member-delete
@@ -17953,7 +17953,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of applications that an organization member has access to.
+      summary: Acquia Returns a list of applications that an organization member has access to.
       description: Returns a list of applications that an organization member has access to.
       operationId: getOrganizationMemberApplications
       x-cli-name: organizations:member-application-list
@@ -18051,7 +18051,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of notifications associated with this organization by its UUID.
+      summary: Acquia Returns a list of notifications associated with this organization by its UUID.
       description: |
         Returns a list of notifications associated with this organization. A notification represents an item of work to be done, initiated by someone (typically the current user) associated with the organization.
 
@@ -18172,7 +18172,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of all the canonical roles within the organization.
+      summary: Acquia Returns a list of all the canonical roles within the organization.
       description: |
         Returns a list of all the canonical roles within the organization.
 
@@ -18272,7 +18272,7 @@ paths:
                           first_name: Acquia
                           last_name: Support
                           mail: support@acquia.com
-                          picture_url: null
+                          picture_url:
                           username: support.acquia
                       flags:
                         default: false
@@ -18320,7 +18320,7 @@ paths:
     post:
       tags:
         - Organizations
-      summary: Creates a role.
+      summary: Acquia Creates a role.
       description: Creates a role.
       operationId: postOrganizationRoles
       x-cli-name: organizations:role-create
@@ -18442,7 +18442,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of subscriptions that belong to the organization.
+      summary: Acquia Returns a list of subscriptions that belong to the organization.
       description: |
         Returns a list of subscriptions that belong to the organization.
 
@@ -18577,7 +18577,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Gets a list of member invitations for all teams in this organization.
+      summary: Acquia Gets a list of member invitations for all teams in this organization.
       description: |
         Gets a list of member invitations for all teams in this organization.
 
@@ -18722,7 +18722,7 @@ paths:
     get:
       tags:
         - Organizations
-      summary: Returns a list of teams associated with the organization.
+      summary: Acquia Returns a list of teams associated with the organization.
       description: |
         Returns a list of teams associated with the organization.
 
@@ -18800,7 +18800,7 @@ paths:
     post:
       tags:
         - Organizations
-      summary: Creates a team.
+      summary: Acquia Creates a team.
       description: Creates a team.
       operationId: postOrganizationTeams
       x-cli-name: organizations:team-create
@@ -18880,7 +18880,7 @@ paths:
     get:
       tags:
         - Teams and Permissions
-      summary: Return a list of permissions.
+      summary: Acquia Return a list of permissions.
       description: |
         Displays a list of all available permissions currently in the system. This will include permissions that the user
         may not have access to.
@@ -18908,103 +18908,103 @@ paths:
                         deprecated: false
                     - name: deploy to prod
                       label: Deploy code, files, or databases to the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: pull from prod
                       label: Pull files or databases from the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file to non-prod
                       label: Move files to non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file to prod
                       label: Move files to the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file from prod
                       label: Move files from production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: move file from non-prod
                       label: Move files from non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: clear varnish on non-prod
                       label: Clear Varnish cache for non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: true
                     - name: clear varnish on prod
                       label: Clear Varnish cache for the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: true
                     - name: configure prod env
                       label: Configure production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: configure non-prod env
                       label: Configure non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: add an environment
                       label: Add an environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: delete an environment
                       label: Delete an environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: administer domain non-prod
                       label: Add or remove domains for non-production environments
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: administer domain prod
                       label: Add or remove domains for the production environment
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: administer ssl prod
                       label: Add or remove SSL certificates for the production environment
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: administer ssl non-prod
                       label: Add or remove SSL certificates for the non-production environments
-                      description: null
+                      description:
                       group_label: Domains
                       flags:
                         deprecated: false
                     - name: reboot server
                       label: Reboot server
-                      description: null
+                      description:
                       group_label: Server administration
                       flags:
                         deprecated: false
@@ -19016,79 +19016,79 @@ paths:
                         deprecated: false
                     - name: suspend server
                       label: Suspend server
-                      description: null
+                      description:
                       group_label: Server administration
                       flags:
                         deprecated: false
                     - name: configure server
                       label: Configure server
-                      description: null
+                      description:
                       group_label: Server administration
                       flags:
                         deprecated: false
                     - name: download logs non-prod
                       label: Download logs for non-production environments
-                      description: null
+                      description:
                       group_label: Logs
                       flags:
                         deprecated: false
                     - name: download logs prod
                       label: Download logs for the production environment
-                      description: null
+                      description:
                       group_label: Logs
                       flags:
                         deprecated: false
                     - name: add database
                       label: Add a database
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: remove database
                       label: Remove a database
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: view database connection
                       label: View database connection details (username, password, or hostname)
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: download db backup non-prod
                       label: Download database backups for non-production environments
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: download db backup prod
                       label: Download database backups for the production environment
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: create db backup non-prod
                       label: Create database backups for non-production environments
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: create db backup prod
                       label: Create database backups for the production environment
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: restore db backup non-prod
                       label: Restore database backups for non-production environments
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
                     - name: restore db backup prod
                       label: Restore database backups for the production environment
-                      description: null
+                      description:
                       group_label: Databases
                       flags:
                         deprecated: false
@@ -19106,61 +19106,61 @@ paths:
                         deprecated: false
                     - name: administer cron non-prod
                       label: Modify cron tasks for non-production environments
-                      description: null
+                      description:
                       group_label: Cron
                       flags:
                         deprecated: false
                     - name: administer cron prod
                       label: Modify cron tasks for the production environment
-                      description: null
+                      description:
                       group_label: Cron
                       flags:
                         deprecated: false
                     - name: create support ticket
                       label: Create a support ticket
-                      description: null
+                      description:
                       group_label: Support
                       flags:
                         deprecated: false
                     - name: edit any support ticket
                       label: View and edit any support tickets for a subscription
-                      description: null
+                      description:
                       group_label: Support
                       flags:
                         deprecated: false
                     - name: view build plans
                       label: View Build plans
-                      description: null
+                      description:
                       group_label: Build
                       flags:
                         deprecated: false
                     - name: edit build plans
                       label: Edit Build plans
-                      description: null
+                      description:
                       group_label: Build
                       flags:
                         deprecated: false
                     - name: run build plans
                       label: Run Build plans
-                      description: null
+                      description:
                       group_label: Build
                       flags:
                         deprecated: false
                     - name: add ssh key to git
                       label: Add SSH key to git repository
-                      description: null
+                      description:
                       group_label: SSH keys
                       flags:
                         deprecated: false
                     - name: add ssh key to non-prod
                       label: Add SSH key to non-production environments
-                      description: null
+                      description:
                       group_label: SSH keys
                       flags:
                         deprecated: false
                     - name: add ssh key to prod
                       label: Add SSH key to the production environment
-                      description: null
+                      description:
                       group_label: SSH keys
                       flags:
                         deprecated: false
@@ -19178,13 +19178,13 @@ paths:
                         deprecated: false
                     - name: clear caches on prod
                       label: Clear caches for the production environment
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
                     - name: clear caches on non-prod
                       label: Clear caches for non-production environments
-                      description: null
+                      description:
                       group_label: Workflow
                       flags:
                         deprecated: false
@@ -19192,7 +19192,7 @@ paths:
     get:
       tags:
         - Teams and Permissions
-      summary: Return details about a specific role.
+      summary: Acquia Return details about a specific role.
       description: |
         Roles may be assigned to team members, and grant various permissions to the applications that the team is assigned
         to. Roles are unique within a organization.
@@ -19222,19 +19222,19 @@ paths:
                       deprecated: false
                   - name: configure non-prod env
                     label: Configure non-production environments
-                    description: null
+                    description:
                     group_label: Workflow
                     flags:
                       deprecated: false
                   - name: download logs non-prod
                     label: Download logs for non-production environments
-                    description: null
+                    description:
                     group_label: Logs
                     flags:
                       deprecated: false
                   - name: view database connection
                     label: View database connection details (username, password, or hostname)
-                    description: null
+                    description:
                     group_label: Databases
                     flags:
                       deprecated: false
@@ -19266,7 +19266,7 @@ paths:
     delete:
       tags:
         - Teams and Permissions
-      summary: Deletes a specific role by its UUID.
+      summary: Acquia Deletes a specific role by its UUID.
       description: Deletes a specific role.
       operationId: deleteRole
       x-cli-name: tps:roles-delete
@@ -19297,7 +19297,7 @@ paths:
     put:
       tags:
         - Teams and Permissions
-      summary: Updates a role.
+      summary: Acquia Updates a role.
       operationId: putRoleByUuid
       x-cli-name: tps:role-update
       security:
@@ -19384,7 +19384,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Return a list of subscription.
+      summary: Acquia Return a list of subscription.
       description: |
         Filterable fields:
         * `from`
@@ -19540,7 +19540,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Return details about a specific subscription.
+      summary: Acquia Return details about a specific subscription.
       description: Return details about a specific subscription.
       operationId: getSubscription
       x-cli-name: subscriptions:find
@@ -19610,7 +19610,7 @@ paths:
     put:
       tags:
         - Subscriptions
-      summary: Modifies a subscription.
+      summary: Acquia Modifies a subscription.
       description: Modifies a subscription.
       operationId: putSubscription
       x-cli-name: subscriptions:update
@@ -19655,7 +19655,7 @@ paths:
     get:
       tags:
         - Application Performance Monitoring Services
-      summary: Returns a list of Application Performance Monitoring services associated with the subscription.
+      summary: Acquia Returns a list of Application Performance Monitoring services associated with the subscription.
       description: Returns a list of Application Performance Monitoring services associated with the subscription.
       operationId: getSubscriptionApmTypes
       x-cli-name: subscriptions:apm-list
@@ -19714,7 +19714,7 @@ paths:
     get:
       tags:
         - Application Performance Monitoring Services
-      summary: Returns the Application Performance Monitoring service type associated with the subscription.
+      summary: Acquia Returns the Application Performance Monitoring service type associated with the subscription.
       description: Returns the Application Performance Monitoring service type associated with the subscription.
       operationId: getSubscriptionApmType
       x-cli-name: subscriptions:apm-list
@@ -19760,7 +19760,7 @@ paths:
     post:
       tags:
         - Application Performance Monitoring Services
-      summary: Enables New Relic Pro APM license for all applications on a subscription.
+      summary: Acquia Enables New Relic Pro APM license for all applications on a subscription.
       description: Enables New Relic Pro APM license for all applications on a subscription. This authorizes Acquia to create a new user account on the third-party New Relic platform using the name and e-mail address of the organization owner.
       operationId: postSubscriptionApmOptIn
       x-cli-name: subscriptions:apm-opt-in
@@ -19830,7 +19830,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Provides a list of applications that are a part of the subscription.
+      summary: Acquia Provides a list of applications that are a part of the subscription.
       description: |
         Filterable fields:
         * `from`
@@ -19935,7 +19935,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves Code Studio metadata for a subscription.
+      summary: Acquia Retrieves Code Studio metadata for a subscription.
       description: Retrieves Code Studio metadata for a subscription.
       operationId: getCodeStudioSubscriptionMetadata
       security:
@@ -19998,7 +19998,7 @@ paths:
     options:
       tags:
         - Subscriptions
-      summary: Displays Code Studio options for a subscription.
+      summary: Acquia Displays Code Studio options for a subscription.
       description: Displays Code Studio options for a subscription.
       operationId: optionsCodeStudio
       security:
@@ -20050,7 +20050,7 @@ paths:
     post:
       tags:
         - Subscriptions
-      summary: Enables Code Studio for a subscription.
+      summary: Acquia Enables Code Studio for a subscription.
       description: Enables and provisions Code Studio at the subscription level.
       operationId: postEnableCodeStudio
       security:
@@ -20098,7 +20098,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves a list of Code Studio enabled applications for a subscription.
+      summary: Acquia Retrieves a list of Code Studio enabled applications for a subscription.
       description: Retrieves a list of Code Studio enabled applications for a subscription.
       operationId: getCodeStudioApplications
       security:
@@ -20183,7 +20183,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves a list of users assigned to Code Studio for a subscription.
+      summary: Acquia Retrieves a list of users assigned to Code Studio for a subscription.
       description: Retrieves a list of users assigned to Code Studio for a subscription.
       operationId: getCodeStudioUsers
       security:
@@ -20259,7 +20259,7 @@ paths:
     post:
       tags:
         - Subscriptions
-      summary: Assigns a user to a Code Studio seat for a subscription.
+      summary: Acquia Assigns a user to a Code Studio seat for a subscription.
       description: Assigns a user to Code Studio seat for a subscription.
       operationId: postCodeStudioUsers
       security:
@@ -20322,7 +20322,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves details about a specific Code Studio user.
+      summary: Acquia Retrieves details about a specific Code Studio user.
       description: Retrieves details about a specific Code Studio user.
       operationId: getCodeStudioUser
       security:
@@ -20381,7 +20381,7 @@ paths:
     delete:
       tags:
         - Subscriptions
-      summary: Unassigns a user from a Code Studio seat.
+      summary: Acquia Unassigns a user from a Code Studio seat.
       description: Unassigns a user from a Code Studio seat.
       operationId: deleteCodeStudioUser
       security:
@@ -20429,7 +20429,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Returns a list of Domains registered with this subscription.
+      summary: Acquia Returns a list of Domains registered with this subscription.
       description: Returns a list of Domains registered with this subscription.
       operationId: getSubscriptionDomainRegistrations
       x-cli-name: subscriptions:domain-registrations-list
@@ -20618,7 +20618,7 @@ paths:
     post:
       tags:
         - Subscriptions
-      summary: Registers a Domain with this subscription.
+      summary: Acquia Registers a Domain with this subscription.
       description: Registers a Domain with this subscription.
       operationId: postSubscriptionDomainRegistration
       x-cli-name: subscriptions:post-domain-registration
@@ -20711,7 +20711,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Returns a speicific Domain registered with this subscription.
+      summary: Acquia Returns a speicific Domain registered with this subscription.
       description: Returns a speicific Domain registered with this subscription.
       operationId: getSubscriptionDomainRegistration
       x-cli-name: subscriptions:get-domain-registration
@@ -20805,7 +20805,7 @@ paths:
     delete:
       tags:
         - Subscriptions
-      summary: Unregisters a Domain registered with this subscription.
+      summary: Acquia Unregisters a Domain registered with this subscription.
       description: Unregisters a Domain registered with this subscription.
       operationId: deleteSubscriptionDomainRegistration
       x-cli-name: subscriptions:delete-domain-registration
@@ -20873,7 +20873,7 @@ paths:
     post:
       tags:
         - Subscriptions
-      summary: Triggers re-verification and update to the domain verification status.
+      summary: Acquia Triggers re-verification and update to the domain verification status.
       description: Triggers re-verification and update to the domain verification status.
       operationId: postSubscriptionVerifyDomainRegistration
       x-cli-name: subscriptions:post-verify-domain-registration
@@ -20941,7 +20941,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Provides a list of entitlements that are a part of the subscription.
+      summary: Acquia Provides a list of entitlements that are a part of the subscription.
       description: Provides a list of entitlements that are a part of the subscription.
       operationId: getSubscriptionEntitlements
       x-cli-name: subscriptions:entitlements-list
@@ -21026,7 +21026,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Returns a list of Cloud IDEs associated with this subscription.
+      summary: Acquia Returns a list of Cloud IDEs associated with this subscription.
       description: Returns a list of Cloud IDEs associated with this subscription.
       operationId: getSubscriptionIdes
       x-cli-name: subscriptions:ide-list
@@ -21107,7 +21107,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves traversal links for a subscription's usage data.
+      summary: Acquia Retrieves traversal links for a subscription's usage data.
       description: Retrieves traversal links for a subscription's usage data.
       operationId: getSubscriptionsUsageLinks
       x-cli-name: subscriptions:usage-links
@@ -21166,7 +21166,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves aggregate usage data for a subscription.
+      summary: Acquia Retrieves aggregate usage data for a subscription.
       description: |
         Filterable fields:
         * `metric` - One of: {`views`, `visits`}
@@ -21202,10 +21202,10 @@ paths:
                   items:
                     - metric: views
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "9"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "9"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -21221,10 +21221,10 @@ paths:
                           href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
                     - metric: visits
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "3"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "3"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -21264,7 +21264,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves usage data for a subscription, broken down by application.
+      summary: Acquia Retrieves usage data for a subscription, broken down by application.
       description: |
         Filterable fields:
         * `metric` - One of: {`views`, `visits`}
@@ -21308,10 +21308,10 @@ paths:
                   items:
                     - metric: views
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "9"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "9"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -21332,10 +21332,10 @@ paths:
                           href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
                     - metric: visits
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "3"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "3"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -21380,7 +21380,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves aggregate usage metric data for a subscription.
+      summary: Acquia Retrieves aggregate usage metric data for a subscription.
       description: |
         Filterable fields:
         * `application`
@@ -21402,10 +21402,10 @@ paths:
               example:
                 metric: views
                 datapoints:
-                  - - 2019-03-13T00:00:00+00:00
-                    - "9"
-                  - - 2019-03-14T00:00:00+00:00
-                    - "1"
+                  -   - 2019-03-13T00:00:00+00:00
+                      - "9"
+                  -   - 2019-03-14T00:00:00+00:00
+                      - "1"
                 last_data_at: 2019-03-14T00:00:00+00:00
                 metadata:
                   subscription:
@@ -21445,7 +21445,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves views data for a subscription, broken down by application.
+      summary: Acquia Retrieves views data for a subscription, broken down by application.
       description: |
         Filterable fields:
         * `application`
@@ -21488,10 +21488,10 @@ paths:
                   items:
                     - metric: views
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "9"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "9"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -21536,7 +21536,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Retrieves visits data for a subscription, broken down by application.
+      summary: Acquia Retrieves visits data for a subscription, broken down by application.
       description: |
         Filterable fields:
         * `application`
@@ -21579,10 +21579,10 @@ paths:
                   items:
                     - metric: visits
                       datapoints:
-                        - - 2019-03-13T00:00:00+00:00
-                          - "3"
-                        - - 2019-03-14T00:00:00+00:00
-                          - "1"
+                        -   - 2019-03-13T00:00:00+00:00
+                            - "3"
+                        -   - 2019-03-14T00:00:00+00:00
+                            - "1"
                       last_data_at: 2019-03-14T00:00:00+00:00
                       metadata:
                         subscription:
@@ -21627,7 +21627,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Provides a list of Shield ACL rules.
+      summary: Acquia Provides a list of Shield ACL rules.
       description: Provides a list of Shield ACL rules.
       operationId: getShieldAcl
       x-cli-name: subscriptions:shield-acl-list
@@ -21707,7 +21707,7 @@ paths:
     post:
       tags:
         - Subscriptions
-      summary: Creates a Shield ACL rule.
+      summary: Acquia Creates a Shield ACL rule.
       description: Creates a Shield ACL rule.
       operationId: postShieldAcl
       x-cli-name: subscriptions:shield-acl-create
@@ -21804,7 +21804,7 @@ paths:
     get:
       tags:
         - Subscriptions
-      summary: Returns the specified Shield ACL rule.
+      summary: Acquia Returns the specified Shield ACL rule.
       description: Returns the specified Shield access control list (ACL) rule for a subscription.
       operationId: getShieldAclRuleByUuid
       x-cli-name: subscriptions:shield-acl-find
@@ -21866,7 +21866,7 @@ paths:
     put:
       tags:
         - Subscriptions
-      summary: Updates a Shield ACL rule.
+      summary: Acquia Updates a Shield ACL rule.
       description: Updates a Shield ACL rule.
       operationId: putShieldAcl
       x-cli-name: subscriptions:shield-acl-update
@@ -21949,7 +21949,7 @@ paths:
     delete:
       tags:
         - Subscriptions
-      summary: Deletes a Shield ACL rule.
+      summary: Acquia Deletes a Shield ACL rule.
       description: Deletes a Shield ACL rule.
       operationId: deleteShieldAcl
       x-cli-name: subscriptions:shield-acl-delete
@@ -22033,7 +22033,7 @@ paths:
     post:
       tags:
         - Subscriptions
-      summary: Resets Shield ACL rules to default settings.
+      summary: Acquia Resets Shield ACL rules to default settings.
       description: |
         Resets the Shield ACL rules for a subscription to the default settings. This action is irreversible and will remove all custom rules.
 
@@ -22112,7 +22112,7 @@ paths:
     get:
       tags:
         - Teams and Permissions
-      summary: Return teams the current user has access to.
+      summary: Acquia Return teams the current user has access to.
       description: |
         Returns a list of teams the current user has access to.
 
@@ -22180,7 +22180,7 @@ paths:
     get:
       tags:
         - Teams and Permissions
-      summary: Return details about a specific team.
+      summary: Acquia Return details about a specific team.
       description: Return details about a specific team.
       operationId: getTeam
       x-cli-name: tps:team-find
@@ -22235,7 +22235,7 @@ paths:
     put:
       tags:
         - Teams and Permissions
-      summary: Change the name of a team.
+      summary: Acquia Change the name of a team.
       description: Change the name of a team.
       operationId: putTeamsName
       x-cli-name: tps:team-update
@@ -22293,7 +22293,7 @@ paths:
     delete:
       tags:
         - Teams and Permissions
-      summary: Deletes a specific team by its UUID.
+      summary: Acquia Deletes a specific team by its UUID.
       description: Deletes a specific team by its UUID.
       operationId: deleteTeam
       x-cli-name: tps:team-delete
@@ -22327,7 +22327,7 @@ paths:
     post:
       tags:
         - Teams and Permissions
-      summary: Removes the current user from a team.
+      summary: Acquia Removes the current user from a team.
       description: Removes the current user from a team.
       operationId: postLeaveTeam
       x-cli-name: tps:user-leave
@@ -22373,7 +22373,7 @@ paths:
     get:
       tags:
         - Teams and Permissions
-      summary: Returns a list of applications this team has access to.
+      summary: Acquia Returns a list of applications this team has access to.
       description: |
         Returns a list of applications this team has access to.
 
@@ -22471,7 +22471,7 @@ paths:
     post:
       tags:
         - Teams and Permissions
-      summary: Adds an application to this team.
+      summary: Acquia Adds an application to this team.
       description: Adds an application to this team.
       operationId: postTeamAddApplication
       x-cli-name: tps:team-application-add
@@ -22562,7 +22562,7 @@ paths:
     delete:
       tags:
         - Teams and Permissions
-      summary: Removes the application from this team.
+      summary: Acquia Removes the application from this team.
       description: Removes the application from this team. Team members will immediately lose access to this application.
       operationId: deleteTeamsRemoveApplication
       x-cli-name: tps:team-application-remove
@@ -22612,7 +22612,7 @@ paths:
     get:
       tags:
         - Teams and Permissions
-      summary: Returns a list of invitations to this team.
+      summary: Acquia Returns a list of invitations to this team.
       description: |
         Returns a list of invitations to this team.
 
@@ -22744,7 +22744,7 @@ paths:
     post:
       tags:
         - Teams and Permissions
-      summary: Invites a user to join a team.
+      summary: Acquia Invites a user to join a team.
       description: Invites a user to join a team.
       operationId: postTeamsInviteUser
       x-cli-name: tps:team-user-invite
@@ -22854,7 +22854,7 @@ paths:
     get:
       tags:
         - Teams and Permissions
-      summary: Returns a list of team members.
+      summary: Acquia Returns a list of team members.
       description: |
         Returns a list of team members.
 
@@ -22915,7 +22915,7 @@ paths:
                     - uuid: 3bcddc3a-52ba-4cce-aaa3-9adf721c1b52
                       first_name: Jonathan
                       last_name: Archer
-                      last_login_at: null
+                      last_login_at:
                       mail: jonathan.archer@example.com
                       picture_url: https://accounts.acquia.com/images/users/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/style/avatar
                       username: jonathan.archer
@@ -22939,7 +22939,7 @@ paths:
     put:
       tags:
         - Teams and Permissions
-      summary: Grant team roles to a member.
+      summary: Acquia Grant team roles to a member.
       description: Grant team roles to a member.
       operationId: putTeamsMember
       x-cli-name: tps:team-member-add
@@ -23023,7 +23023,7 @@ paths:
     delete:
       tags:
         - Teams and Permissions
-      summary: Remove a user from a team.
+      summary: Acquia Remove a user from a team.
       description: Remove a user from a team.
       operationId: deleteTeamsRemoveMember
       x-cli-name: tps:team-member-remove
@@ -23227,7 +23227,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves a list of bulk code switches details performed on a codebase.
+      summary: Acquia Retrieves a list of bulk code switches details performed on a codebase.
       description: Retrieves a list of bulk code switches details performed on a codebase.
       x-cli-name: codebases:bulk-code-switch:list
       parameters:
@@ -23357,7 +23357,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Starts a new Bulk Code Switch for a codebase.
+      summary: Acquia Starts a new Bulk Code Switch for a codebase.
       description: Starts a new Bulk Code Switch for a codebase.
       x-cli-name: codebases:bulk-code-switch:start
       parameters:
@@ -23488,7 +23488,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves bulk code switch details by id.
+      summary: Acquia Retrieves bulk code switch details by id.
       description: Retrieves bulk code switch details by id.
       x-cli-name: codebases:bulk-code-switch:get
       parameters:
@@ -23647,7 +23647,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves a codebase details linked to the specified application.
+      summary: Acquia Retrieves a codebase details linked to the specified application.
       description: Retrieves a codebase details linked to the specified application.
       x-cli-name: codebases:get-by-application
       parameters:
@@ -23878,7 +23878,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves a list of codebases accessible by the user.
+      summary: Acquia Retrieves a list of codebases accessible by the user.
       description: Retrieves a list of codebases accessible by the user.
       x-cli-name: codebases:get-all
       parameters: []
@@ -24015,7 +24015,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves a codebase details by its ID.
+      summary: Acquia Retrieves a codebase details by its ID.
       description: Return details about a specific codebase.
       x-cli-name: codebases:get
       parameters:
@@ -24106,7 +24106,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Update a codebase details by its ID.
+      summary: Acquia Update a codebase details by its ID.
       description: Update a codebase details by its ID.
       x-cli-name: codebases:update
       parameters:
@@ -24196,7 +24196,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Delete a codebase by its ID.
+      summary: Acquia Delete a codebase by its ID.
       description: Delete a codebase by its ID.
       x-cli-name: codebases:delete
       parameters:
@@ -24427,7 +24427,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves a list of codebases by subscription ID.
+      summary: Acquia Retrieves a list of codebases by subscription ID.
       description: Retrieves a list of codebases by subscription ID.
       x-cli-name: codebases:get-by-subscription
       parameters:
@@ -24514,7 +24514,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Gets supported regions for a new codebase.
+      summary: Acquia Gets supported regions for a new codebase.
       description: Gets supported regions for a new codebase.
       x-cli-name: codebases:get-regions
       parameters:
@@ -24683,7 +24683,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves a list of git references by codebase.
+      summary: Acquia Retrieves a list of git references by codebase.
       description: Retrieves a list of git references by codebase.
       x-cli-name: codebases:references:list
       parameters:
@@ -24776,7 +24776,7 @@ paths:
                   code:
                     type: integer
                     example: 404
-      summary: Retrieves a single git reference data for the given codebase.
+      summary: Acquia Retrieves a single git reference data for the given codebase.
       description: Retrieves a single git reference data for the given codebase.
       x-cli-name: codebases:references:get
       parameters:
@@ -24807,7 +24807,7 @@ paths:
         - Codebase_Service_JWT: []
   /private-networks:
     post:
-      summary: Create a new Private Network
+      summary: Acquia Create a new Private Network
       description: |
         Creates a new Private Network with optional subresource configuration.
 
@@ -24864,7 +24864,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}":
     get:
-      summary: Retrieve a Private Network by ID
+      summary: Acquia Retrieve a Private Network by ID
       parameters:
         - $ref: "#/components/parameters/Private_Network_Service_API_PrivateNetworkId"
       operationId: getPrivateNetwork
@@ -24886,7 +24886,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     put:
-      summary: Update a Private Network
+      summary: Acquia Update a Private Network
       description: Updates an existing Private Network by its ID. Does not allow creation of new Private Networks.
       parameters:
         - $ref: "#/components/parameters/Private_Network_Service_API_PrivateNetworkId"
@@ -24929,7 +24929,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     delete:
-      summary: Delete a Private Network
+      summary: Acquia Delete a Private Network
       description: Deletes a Private Network by its ID.
       operationId: deletePrivateNetwork
       parameters:
@@ -24963,7 +24963,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/subscriptions/{subscriptionId}/private-networks":
     get:
-      summary: List Private Networks for a Subscription
+      summary: Acquia List Private Networks for a Subscription
       operationId: getPrivateNetworksBySubscription
       description: Retrieves a paginated list of Private Networks for a given subscription.
       x-cli-name: private-networks:list
@@ -24994,7 +24994,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}/connections/vpns":
     post:
-      summary: Add a new VPN to an existing private network
+      summary: Acquia Add a new VPN to an existing private network
       operationId: addVpnToPrivateNetwork
       description: Adds a new VPN to the connections block of an existing private network
       x-cli-name: private-networks:create-vpn
@@ -25063,7 +25063,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     get:
-      summary: Get VPNs for a Private Network
+      summary: Acquia Get VPNs for a Private Network
       operationId: getAllVpnsFromPrivateNetwork
       description: Retrieves the VPN Connections for a Private Network.
       x-cli-name: private-networks:list-vpns
@@ -25090,7 +25090,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}/connections/vpns/{vpnId}":
     get:
-      summary: Retrieve a VPN for a Private Network.
+      summary: Acquia Retrieve a VPN for a Private Network.
       operationId: getVpnFromPrivateNetwork
       description: Retrieves a VPN for a Private Network by Private Network ID and VPN ID.
       x-cli-name: private-networks:find-vpn
@@ -25113,7 +25113,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     put:
-      summary: Create or update a VPN for a Private Network.
+      summary: Acquia Create or update a VPN for a Private Network.
       operationId: updateVpnInPrivateNetwork
       description: Creates a new VPN or updates an existing VPN for a Private Network by Private Network ID and VPN ID.
       x-cli-name: private-networks:update-vpn
@@ -25186,7 +25186,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     delete:
-      summary: Delete a VPN for a Private Network.
+      summary: Acquia Delete a VPN for a Private Network.
       operationId: deleteVpnFromPrivateNetwork
       description: Deletes a VPN for a Private Network by Private Network ID and VPN ID.
       x-cli-name: private-networks:delete-vpn
@@ -25223,7 +25223,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}/connections/vpc-peers":
     post:
-      summary: Add a new VPC Peer to an existing private network
+      summary: Acquia Add a new VPC Peer to an existing private network
       operationId: addVpcPeerToPrivateNetwork
       description: Adds a new VPC Peer to the connections block of an existing private network
       x-cli-name: private-networks:create-vpc-peer
@@ -25268,7 +25268,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     get:
-      summary: Get VPC Peers for a Private Network
+      summary: Acquia Get VPC Peers for a Private Network
       operationId: getAllVpcPeersFromPrivateNetwork
       description: Retrieves the VPC Peers for a Private Network.
       x-cli-name: private-networks:list-vpc-peers
@@ -25295,7 +25295,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}/connections/vpc-peers/{vpcPeerId}":
     get:
-      summary: Get a specific VPC Peer from a private network
+      summary: Acquia Get a specific VPC Peer from a private network
       operationId: getVpcPeerFromPrivateNetwork
       description: Retrieves details of a specific VPC Peer from a private network
       x-cli-name: private-networks:find-vpc-peer
@@ -25318,7 +25318,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     delete:
-      summary: Delete a VPC Peer for a Private Network.
+      summary: Acquia Delete a VPC Peer for a Private Network.
       operationId: deleteVpcPeerFromPrivateNetwork
       description: Deletes a VPC Peer for a Private Network by Private Network ID and VPC Peer name.
       x-cli-name: private-networks:delete-vpc-peer
@@ -25355,7 +25355,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}/connections":
     put:
-      summary: Update Connections for a Private Network.
+      summary: Acquia Update Connections for a Private Network.
       operationId: updatePrivateNetworkConnections
       description: Updates the Connections configuration for a Private Network by Private Network ID.
       x-cli-name: private-networks:update-connections
@@ -25400,7 +25400,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     get:
-      summary: Get Connections for a Private Network.
+      summary: Acquia Get Connections for a Private Network.
       operationId: getPrivateNetworkConnections
       x-cli-name: private-networks:get-connections
       parameters:
@@ -25423,7 +25423,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}/isolation":
     get:
-      summary: Get Isolation for a Private Network.
+      summary: Acquia Get Isolation for a Private Network.
       operationId: getPrivateNetworkIsolation
       description: Retrieves the Isolation configuration for a Private Network.
       parameters:
@@ -25445,7 +25445,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     put:
-      summary: Update isolation settings of a private network
+      summary: Acquia Update isolation settings of a private network
       operationId: updatePrivateNetworkIsolation
       description: Updates the isolation settings of a private network
       tags:
@@ -25492,7 +25492,7 @@ paths:
           Private_Network_Service_API_OIDC: []
   "/private-networks/{privateNetworkId}/ingress":
     put:
-      summary: Update Ingress for a Private Network.
+      summary: Acquia Update Ingress for a Private Network.
       operationId: updatePrivateNetworkIngress
       x-cli-name: private-networks:update-ingress
       description: Updates the Ingress configuration for a Private Network by Private Network ID. Ingress always exists for a Private Network.
@@ -25540,7 +25540,7 @@ paths:
           Private_Network_Service_API_ClientCredentials: []
           Private_Network_Service_API_OIDC: []
     get:
-      summary: Get Ingress for a Private Network
+      summary: Acquia Get Ingress for a Private Network
       operationId: getIngressFromPrivateNetwork
       x-cli-name: private-networks:get-ingress
       description: Retrieves the Ingress configuration for a Private Network.
