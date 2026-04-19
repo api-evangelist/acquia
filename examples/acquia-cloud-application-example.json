@@ -1,0 +1,22 @@
+{
+  "id": 1,
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Production Application",
+  "hosting": {
+    "type": "ace",
+    "id": "500123"
+  },
+  "subscription": "10.0.0.1",
+  "organization": "sample-value",
+  "flags": "sample-value",
+  "type": "drupal",
+  "status": "normal",
+  "_links": "sample-value",
+  "_embedded": {
+    "subscription": "10.0.0.1",
+    "organization": "sample-value",
+    "tags": [
+      "sample-value"
+    ]
+  }
+}

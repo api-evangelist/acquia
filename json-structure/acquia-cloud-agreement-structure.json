@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-structure/acquia-cloud-agreement-structure.json",
+  "description": "agreement schema from Acquia Cloud API",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "uuid",
+      "description": "The agreement UUID."
+    },
+    "document_uuid": {
+      "type": "uuid",
+      "description": "The agreement document UUID."
+    },
+    "title": {
+      "type": "string",
+      "description": "The name of the agreement."
+    },
+    "body": {
+      "type": "string",
+      "description": "The formatted agreement content."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the agreement.",
+      "enum": [
+        "pending",
+        "accepted",
+        "declined"
+      ]
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "The date the agreement was created."
+    },
+    "updated_at": {
+      "type": "datetime",
+      "description": "The date the agreement was last updated.",
+      "nullable": true
+    },
+    "actioned_by": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_user-stub-nullable"
+    },
+    "reference": {
+      "type": "object",
+      "description": "A reference to the entity for this agreement.",
+      "properties": {
+        "uuid": {
+          "type": "uuid",
+          "description": "The entity UUID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The entity name."
+        },
+        "type": {
+          "type": "string",
+          "description": "The entity type."
+        }
+      }
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    }
+  },
+  "required": [
+    "uuid",
+    "document_uuid",
+    "title",
+    "body",
+    "status",
+    "created_at",
+    "updated_at",
+    "actioned_by",
+    "reference",
+    "_links"
+  ],
+  "name": "Agreement"
+}

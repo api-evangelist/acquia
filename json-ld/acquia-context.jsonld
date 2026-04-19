@@ -1,0 +1,323 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "acquia": "https://acquia.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Error": "acquia:Error",
+    "Ux Message": "acquia:UxMessage",
+    "User": "acquia:User",
+    "Application": "acquia:Application",
+    "Subscription": "acquia:Subscription",
+    "Ide": "acquia:Ide",
+    "Environment": "acquia:Environment",
+    "Agreement": "acquia:Agreement",
+    "Ssh Key": "acquia:SshKey",
+    "Organization": "acquia:Organization",
+    "Team": "acquia:Team",
+    "Invite": "acquia:Invite",
+    "Notification": "acquia:Notification",
+    "error": {
+      "@id": "acquia:error",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "acquia:message",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "acquia:id",
+      "@type": "xsd:integer"
+    },
+    "uuid": {
+      "@id": "acquia:uuid",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "acquia:title",
+      "@type": "xsd:string"
+    },
+    "body": {
+      "@id": "acquia:body",
+      "@type": "xsd:string"
+    },
+    "url": "schema:url",
+    "filters": {
+      "@id": "acquia:filters",
+      "@type": "xsd:string"
+    },
+    "flags": {
+      "@id": "acquia:flags",
+      "@type": "xsd:string"
+    },
+    "weight": {
+      "@id": "acquia:weight",
+      "@type": "xsd:integer"
+    },
+    "start_at": {
+      "@id": "acquia:start_at",
+      "@type": "xsd:dateTime"
+    },
+    "expire_at": {
+      "@id": "acquia:expire_at",
+      "@type": "xsd:dateTime"
+    },
+    "_links": {
+      "@id": "acquia:_links",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "first_name": {
+      "@id": "acquia:first_name",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "acquia:last_name",
+      "@type": "xsd:string"
+    },
+    "last_login_at": {
+      "@id": "acquia:last_login_at",
+      "@type": "xsd:dateTime"
+    },
+    "created_at": {
+      "@id": "acquia:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "mail": {
+      "@id": "acquia:mail",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "acquia:phone",
+      "@type": "xsd:string"
+    },
+    "job_title": {
+      "@id": "acquia:job_title",
+      "@type": "xsd:string"
+    },
+    "job_function": {
+      "@id": "acquia:job_function",
+      "@type": "xsd:string"
+    },
+    "company": {
+      "@id": "acquia:company",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "acquia:country",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "acquia:state",
+      "@type": "xsd:string"
+    },
+    "timezone": {
+      "@id": "acquia:timezone",
+      "@type": "xsd:string"
+    },
+    "picture_url": {
+      "@id": "acquia:picture_url",
+      "@type": "@id"
+    },
+    "features": {
+      "@id": "acquia:features",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "acquia:metadata",
+      "@type": "xsd:string"
+    },
+    "hosting": {
+      "@id": "acquia:hosting",
+      "@type": "xsd:string"
+    },
+    "subscription": {
+      "@id": "acquia:subscription",
+      "@type": "xsd:string"
+    },
+    "organization": {
+      "@id": "acquia:organization",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "acquia:type",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "acquia:status",
+      "@type": "xsd:string"
+    },
+    "_embedded": {
+      "@id": "acquia:_embedded",
+      "@type": "xsd:string"
+    },
+    "product": {
+      "@id": "acquia:product",
+      "@type": "xsd:string"
+    },
+    "applications_total": {
+      "@id": "acquia:applications_total",
+      "@type": "xsd:integer"
+    },
+    "applications_used": {
+      "@id": "acquia:applications_used",
+      "@type": "xsd:integer"
+    },
+    "label": {
+      "@id": "acquia:label",
+      "@type": "xsd:string"
+    },
+    "application": {
+      "@id": "acquia:application",
+      "@type": "xsd:string"
+    },
+    "domains": {
+      "@id": "acquia:domains",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "active_domain": {
+      "@id": "acquia:active_domain",
+      "@type": "xsd:string"
+    },
+    "default_domain": {
+      "@id": "acquia:default_domain",
+      "@type": "xsd:string"
+    },
+    "image_url": {
+      "@id": "acquia:image_url",
+      "@type": "@id"
+    },
+    "ssh_url": {
+      "@id": "acquia:ssh_url",
+      "@type": "xsd:string"
+    },
+    "ips": {
+      "@id": "acquia:ips",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "acquia:region",
+      "@type": "xsd:string"
+    },
+    "balancer": {
+      "@id": "acquia:balancer",
+      "@type": "xsd:string"
+    },
+    "platform": {
+      "@id": "acquia:platform",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "acquia:size",
+      "@type": "xsd:string"
+    },
+    "vcs": {
+      "@id": "acquia:vcs",
+      "@type": "xsd:string"
+    },
+    "configuration": {
+      "@id": "acquia:configuration",
+      "@type": "xsd:string"
+    },
+    "artifact": {
+      "@id": "acquia:artifact",
+      "@type": "xsd:string"
+    },
+    "document_uuid": {
+      "@id": "acquia:document_uuid",
+      "@type": "xsd:string"
+    },
+    "updated_at": {
+      "@id": "acquia:updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "actioned_by": {
+      "@id": "acquia:actioned_by",
+      "@type": "xsd:string"
+    },
+    "reference": {
+      "@id": "acquia:reference",
+      "@type": "xsd:string"
+    },
+    "public_key": {
+      "@id": "acquia:public_key",
+      "@type": "xsd:string"
+    },
+    "fingerprint": {
+      "@id": "acquia:fingerprint",
+      "@type": "xsd:string"
+    },
+    "subscriptions_total": {
+      "@id": "acquia:subscriptions_total",
+      "@type": "xsd:integer"
+    },
+    "admins_total": {
+      "@id": "acquia:admins_total",
+      "@type": "xsd:integer"
+    },
+    "users_total": {
+      "@id": "acquia:users_total",
+      "@type": "xsd:integer"
+    },
+    "teams_total": {
+      "@id": "acquia:teams_total",
+      "@type": "xsd:integer"
+    },
+    "roles_total": {
+      "@id": "acquia:roles_total",
+      "@type": "xsd:integer"
+    },
+    "owner": {
+      "@id": "acquia:owner",
+      "@type": "xsd:string"
+    },
+    "email": "schema:email",
+    "token": {
+      "@id": "acquia:token",
+      "@type": "xsd:string"
+    },
+    "author": {
+      "@id": "acquia:author",
+      "@type": "xsd:string"
+    },
+    "team": {
+      "@id": "acquia:team",
+      "@type": "xsd:string"
+    },
+    "applications": {
+      "@id": "acquia:applications",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "roles": {
+      "@id": "acquia:roles",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "progress": {
+      "@id": "acquia:progress",
+      "@type": "xsd:integer"
+    },
+    "user": {
+      "@id": "acquia:user",
+      "@type": "xsd:string"
+    },
+    "description": "schema:description",
+    "started_at": {
+      "@id": "acquia:started_at",
+      "@type": "xsd:dateTime"
+    },
+    "completed_at": {
+      "@id": "acquia:completed_at",
+      "@type": "xsd:dateTime"
+    },
+    "labels": {
+      "@id": "acquia:labels",
+      "@type": "xsd:string"
+    }
+  }
+}

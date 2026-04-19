@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-schema/acquia-cloud-ux-message-schema.json",
+  "title": "Ux Message",
+  "description": "ux-message schema from Acquia Cloud API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The message identifier."
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The message unique identifier.",
+      "format": "uuid"
+    },
+    "title": {
+      "type": "string",
+      "description": "The message title."
+    },
+    "body": {
+      "type": "string",
+      "description": "The message body.",
+      "nullable": true
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The message url.",
+      "nullable": true
+    },
+    "filters": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-filters"
+    },
+    "flags": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-flags"
+    },
+    "weight": {
+      "type": "integer",
+      "description": "The message priority weight."
+    },
+    "start_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC timestamp of when the message started."
+    },
+    "expire_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC timestamp of when the message expires."
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    }
+  },
+  "required": [
+    "id",
+    "uuid",
+    "title",
+    "body",
+    "url",
+    "filters",
+    "flags",
+    "weight",
+    "start_at",
+    "expire_at",
+    "_links"
+  ]
+}

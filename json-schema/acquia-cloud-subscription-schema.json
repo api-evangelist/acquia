@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-schema/acquia-cloud-subscription-schema.json",
+  "title": "Subscription",
+  "description": "A subscription is the product that allows for applications to be hosted with Acquia.\nIn addition, a subscription grants access to various additional services.\n",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The subscription ID."
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The subscription UUID.",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "description": "The subscription name."
+    },
+    "start_at": {
+      "type": "string",
+      "description": "The time when the service defined by the subscription becomes available."
+    },
+    "expire_at": {
+      "type": "string",
+      "description": "The time when the service expires."
+    },
+    "product": {
+      "type": "object",
+      "description": "Defines the type of service this subscription is entitled to.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The product ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The product name."
+        },
+        "type": {
+          "type": "string",
+          "description": "The product type."
+        }
+      }
+    },
+    "applications_total": {
+      "type": "integer",
+      "description": "The number of applications this subscription is entitled to."
+    },
+    "applications_used": {
+      "type": "integer",
+      "description": "The number of applications used."
+    },
+    "organization": {
+      "type": "object",
+      "deprecated": true,
+      "required": [
+        "uuid",
+        "name"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The organization's UUID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The human-readable organization name."
+        }
+      }
+    },
+    "flags": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_subscription-flags"
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    },
+    "_embedded": {
+      "type": "object",
+      "description": "A collection of resources related to the subscription.",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "uuid",
+    "name",
+    "start_at",
+    "expire_at",
+    "product",
+    "applications_total",
+    "applications_used",
+    "organization",
+    "flags",
+    "_links",
+    "_embedded"
+  ]
+}

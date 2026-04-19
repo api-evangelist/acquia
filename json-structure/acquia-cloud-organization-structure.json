@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-structure/acquia-cloud-organization-structure.json",
+  "description": "Organization information.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The internal ID of the organization."
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The UUID of the organization."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the organization."
+    },
+    "subscriptions_total": {
+      "type": "int32",
+      "description": "The number of subscriptions this organization has."
+    },
+    "admins_total": {
+      "type": "int32",
+      "description": "The number of administrators this organization has."
+    },
+    "users_total": {
+      "type": "int32",
+      "description": "The number of users this organization has."
+    },
+    "teams_total": {
+      "type": "int32",
+      "description": "The number of teams this organization has."
+    },
+    "roles_total": {
+      "type": "int32",
+      "description": "The number of roles this organization has."
+    },
+    "owner": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_user-stub"
+    },
+    "flags": {
+      "type": "object",
+      "description": "An array of various flags that indicate functionality for the organization.",
+      "properties": {
+        "federated_authentication": {
+          "type": "boolean",
+          "description": "Indicates whether the organization supports federated authentication."
+        }
+      }
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    },
+    "_embedded": {
+      "type": "object",
+      "description": "Entities related to the organization.",
+      "properties": {
+        "owner": {
+          "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_user-stub-embedded"
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "uuid",
+    "name",
+    "subscriptions_total",
+    "admins_total",
+    "users_total",
+    "teams_total",
+    "roles_total",
+    "owner",
+    "flags",
+    "_links",
+    "_embedded"
+  ],
+  "name": "Organization"
+}

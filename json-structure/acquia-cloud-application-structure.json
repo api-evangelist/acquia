@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-structure/acquia-cloud-application-structure.json",
+  "description": "application schema from Acquia Cloud API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "The unique internal ID of the application."
+    },
+    "uuid": {
+      "type": "uuid",
+      "description": "The UUID of the application."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the application."
+    },
+    "hosting": {
+      "type": "object",
+      "description": "Hosting details for this application.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ace",
+            "acp",
+            "acsf",
+            "free",
+            "network",
+            "search",
+            "unknown"
+          ],
+          "description": "The hosting type."
+        },
+        "id": {
+          "type": "string",
+          "description": "The hosting ID."
+        }
+      }
+    },
+    "subscription": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub"
+    },
+    "organization": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub"
+    },
+    "flags": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_application-flags"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "drupal",
+        "node",
+        "ssg"
+      ],
+      "description": "The type of application supported."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "provisioning"
+      ],
+      "description": "The current application status."
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    },
+    "_embedded": {
+      "type": "object",
+      "description": "Entities related to the application.",
+      "properties": {
+        "subscription": {
+          "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub-embedded"
+        },
+        "organization": {
+          "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub-embedded"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_resource-tag-embedded"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "uuid",
+    "name",
+    "hosting",
+    "subscription",
+    "organization",
+    "flags",
+    "type",
+    "status",
+    "_links",
+    "_embedded"
+  ],
+  "name": "Application"
+}

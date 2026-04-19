@@ -1,0 +1,39 @@
+{
+  "id": 1,
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Production Application",
+  "first_name": "Production Application",
+  "last_name": "Production Application",
+  "last_login_at": "2025-03-15T14:30:00Z",
+  "created_at": "2025-03-15T14:30:00Z",
+  "mail": "sample-value",
+  "phone": {
+    "office": "sample-value",
+    "tfa": "sample-value"
+  },
+  "job_title": "sample-value",
+  "job_function": "--",
+  "company": "sample-value",
+  "country": "--",
+  "state": "Alabama",
+  "timezone": "sample-value",
+  "picture_url": "https://example.acquia-sites.com",
+  "features": [
+    "ci-pipelines"
+  ],
+  "flags": "sample-value",
+  "metadata": {
+    "applications": {
+      "recent": [
+        {
+          "uuid": {},
+          "recent_at": {}
+        }
+      ],
+      "starred": [
+        "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      ]
+    }
+  },
+  "_links": "sample-value"
+}

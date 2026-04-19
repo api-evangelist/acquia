@@ -1,0 +1,256 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Acquia
+  description: >-
+    Vocabulary covering Acquia Cloud Platform API taxonomy, mapping operational dimensions
+    (applications, environments, organizations) and capability dimensions (workflows, personas)
+    for Drupal cloud hosting and digital experience management.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - name: Acquia Cloud API
+      namespace: acquia-cloud
+      version: "2.0.0"
+      baseUrl: https://cloud.acquia.com/api
+      status: active
+
+    - name: Acquia Cloud Site Factory API
+      namespace: acquia-cloud-site-factory
+      version: "1.0"
+      baseUrl: https://example.enterprise-g1.acquia-sites.com/api/v1
+      status: active
+
+    - name: Acquia Content Hub API
+      namespace: acquia-content-hub
+      version: "2.0"
+      baseUrl: https://content-hub.acquia.com
+      status: active
+
+  resources:
+    - name: applications
+      apis: [acquia-cloud]
+      actions: [list, get, rename, star, unstar]
+      description: Drupal application instances managed on Acquia Cloud Platform
+
+    - name: environments
+      apis: [acquia-cloud]
+      actions: [list, get, update, deploy, clear-caches, copy-files]
+      description: Application environments (dev, staging, production) with deployment pipelines
+
+    - name: organizations
+      apis: [acquia-cloud]
+      actions: [list, get, create-team, invite-member]
+      description: Acquia organizational accounts grouping multiple subscriptions and teams
+
+    - name: teams
+      apis: [acquia-cloud]
+      actions: [list, get, create, add-member, add-application]
+      description: Teams grouping users with specific access permissions to applications
+
+    - name: subscriptions
+      apis: [acquia-cloud]
+      actions: [list, get]
+      description: Acquia Cloud subscription plans and entitlements
+
+    - name: ssh-keys
+      apis: [acquia-cloud]
+      actions: [list, create, delete]
+      description: SSH public keys for authenticated server access
+
+    - name: notifications
+      apis: [acquia-cloud]
+      actions: [list, get]
+      description: Platform notifications for deployment, backup, and system events
+
+    - name: ides
+      apis: [acquia-cloud]
+      actions: [list, create, delete]
+      description: Cloud IDE development environments for remote Drupal development
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+      description: Retrieve paginated collections with optional filtering and sorting
+
+    - name: get
+      httpMethod: GET
+      pattern: read
+      description: Retrieve a single resource by UUID
+
+    - name: create
+      httpMethod: POST
+      pattern: write
+      description: Create a new resource entity
+
+    - name: update
+      httpMethod: PUT
+      pattern: write
+      description: Update an existing resource
+
+    - name: delete
+      httpMethod: DELETE
+      pattern: destructive
+      description: Delete a resource
+
+    - name: deploy
+      httpMethod: POST
+      pattern: write
+      description: Deploy code or files to an environment
+
+    - name: star
+      httpMethod: POST
+      pattern: write
+      description: Mark an application as starred/favorited
+
+  schemas:
+    core:
+      - name: Application
+        description: Drupal application on Acquia Cloud with subscription and environment associations
+        keyProperties: [uuid, name, status, type, subscription, organization]
+
+      - name: Environment
+        description: Drupal application environment with server configuration and deployment status
+        keyProperties: [id, label, name, status, type, application, active_domain]
+
+      - name: Organization
+        description: Acquia organizational account grouping subscriptions and teams
+        keyProperties: [uuid, name, subscriptions_total, teams_total]
+
+      - name: User
+        description: Acquia platform user account with profile and permissions
+        keyProperties: [uuid, username, mail, first_name, last_name, title]
+
+      - name: Subscription
+        description: Acquia Cloud subscription plan with entitlements and limits
+        keyProperties: [uuid, name, status, plan_type, start_at, expire_at]
+
+    auxiliary:
+      - name: SshKey
+        description: SSH public key for server authentication
+        keyProperties: [uuid, label, fingerprint, created_at]
+
+      - name: Notification
+        description: Platform event notification for deployments and system events
+        keyProperties: [uuid, label, event, status, created_at]
+
+  parameters:
+    identifiers:
+      - name: applicationUuid
+        description: Application UUID (v4 format)
+      - name: environmentId
+        description: Environment identifier
+      - name: organizationUuid
+        description: Organization UUID
+      - name: teamUuid
+        description: Team UUID
+
+    pagination:
+      - name: page
+        description: Page number for paginated results
+      - name: limit
+        description: Number of results per page
+
+    filters:
+      - name: filter
+        description: Filter criteria using FIQL syntax
+      - name: sort
+        description: Sort field and direction
+
+  enums:
+    applicationStatus:
+      - normal
+      - locked
+      - archived
+
+    environmentLabel:
+      - dev
+      - stage
+      - prod
+
+  authentication:
+    schemes:
+      - name: OAuth2
+        type: oauth2
+        flow: authorizationCode
+        description: Acquia uses OAuth2 with authorization code flow for all API access
+
+capability:
+  workflows:
+    - name: Drupal Application Management
+      file: capabilities/drupal-application-management.yaml
+      description: Application discovery, environment management, and organization administration
+      apisCombined: [acquia-cloud]
+      toolCount: 6
+      personas: [Drupal Developer, DevOps Engineer, Platform Administrator]
+
+  personas:
+    - id: drupal-developer
+      name: Drupal Developer
+      description: Developer building and deploying Drupal applications on Acquia Cloud
+      workflows: [Drupal Application Management]
+
+    - id: devops-engineer
+      name: DevOps Engineer
+      description: Engineer managing CI/CD pipelines, deployments, and environment configuration
+      workflows: [Drupal Application Management]
+
+    - id: platform-administrator
+      name: Platform Administrator
+      description: Acquia platform admin managing organizations, teams, and subscriptions
+      workflows: [Drupal Application Management]
+
+  domains:
+    - name: Application Hosting
+      resources: [applications, environments]
+      description: Drupal application hosting lifecycle on Acquia Cloud Platform
+
+    - name: Team and Access Management
+      resources: [organizations, teams, ssh-keys]
+      description: User, team, and organizational access control management
+
+    - name: Developer Tooling
+      resources: [ides, notifications]
+      description: Cloud IDE environments and platform notification management
+
+  namespaces:
+    - name: acquia-cloud
+      type: consumed
+      description: Acquia Cloud Platform REST API
+
+    - name: acquia-management-api
+      type: rest-exposed
+      port: 8080
+
+    - name: acquia-management-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: ACQUIA_OAUTH_TOKEN
+      description: OAuth2 bearer token for Acquia Cloud API authentication
+      workflows: [Drupal Application Management]
+
+crossReference:
+  - resource: applications
+    operations: [list-applications, get-application]
+    workflows: [Drupal Application Management]
+    personas: [Drupal Developer, DevOps Engineer, Platform Administrator]
+
+  - resource: environments
+    operations: [list-environments, get-environment]
+    workflows: [Drupal Application Management]
+    personas: [Drupal Developer, DevOps Engineer]
+
+  - resource: organizations
+    operations: [list-organizations]
+    workflows: [Drupal Application Management]
+    personas: [Platform Administrator]
+
+  - resource: account
+    operations: [get-account]
+    workflows: [Drupal Application Management]
+    personas: [Drupal Developer, DevOps Engineer, Platform Administrator]

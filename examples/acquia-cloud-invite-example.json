@@ -1,0 +1,17 @@
+{
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "email": "admin@example.com",
+  "created_at": "2025-03-15T14:30:00Z",
+  "token": "sample-value",
+  "flags": "sample-value",
+  "author": "sample-value",
+  "organization": "sample-value",
+  "team": "sample-value",
+  "applications": [
+    "sample-value"
+  ],
+  "roles": [
+    "sample-value"
+  ],
+  "_links": "sample-value"
+}

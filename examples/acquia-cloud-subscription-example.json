@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Production Application",
+  "start_at": "sample-value",
+  "expire_at": "sample-value",
+  "product": {
+    "id": 1,
+    "name": "Production Application",
+    "type": "drupal"
+  },
+  "applications_total": 1,
+  "applications_used": 1,
+  "organization": {
+    "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Production Application"
+  },
+  "flags": "sample-value",
+  "_links": "sample-value",
+  "_embedded": {
+    "items": [
+      "sample-value"
+    ]
+  }
+}

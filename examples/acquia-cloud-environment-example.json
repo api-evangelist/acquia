@@ -1,0 +1,31 @@
+{
+  "id": "500123",
+  "label": "prod",
+  "name": "Production Application",
+  "application": "sample-value",
+  "domains": [
+    "sample-value"
+  ],
+  "active_domain": "sample-value",
+  "default_domain": "sample-value",
+  "image_url": "https://example.acquia-sites.com",
+  "ssh_url": "https://example.acquia-sites.com",
+  "ips": [
+    "10.0.0.1"
+  ],
+  "region": "us-east-1",
+  "balancer": "balancers",
+  "platform": "cloud",
+  "status": "active",
+  "type": "node",
+  "size": "small",
+  "weight": 1,
+  "vcs": "sample-value",
+  "flags": "sample-value",
+  "configuration": {
+    "operating_system": "sample-value",
+    "php": "sample-value"
+  },
+  "artifact": "sample-value",
+  "_links": "sample-value"
+}

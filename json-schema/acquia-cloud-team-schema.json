@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-schema/acquia-cloud-team-schema.json",
+  "title": "Team",
+  "description": "team schema from Acquia Cloud API",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The UUID of the team."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the team."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date the team was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date the team was last updated."
+    },
+    "organization": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub"
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    }
+  },
+  "required": [
+    "uuid",
+    "name",
+    "created_at",
+    "updated_at",
+    "organization",
+    "_links"
+  ]
+}

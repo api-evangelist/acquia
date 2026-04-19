@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-structure/acquia-cloud-invite-structure.json",
+  "description": "Details an invite.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "uuid",
+      "description": "The unique identifier of the Invite."
+    },
+    "email": {
+      "type": "string",
+      "description": "The invitee email address."
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "The invite creation time."
+    },
+    "token": {
+      "type": "string",
+      "description": "The invite token."
+    },
+    "flags": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_invite-flags"
+    },
+    "author": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_user-stub"
+    },
+    "organization": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub"
+    },
+    "team": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_team-stub"
+    },
+    "applications": {
+      "type": "array",
+      "description": "List of applications the invite will grant the invitee.",
+      "items": {
+        "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_application-stub"
+      }
+    },
+    "roles": {
+      "type": "array",
+      "description": "List of roles the invite will grant the invitee.",
+      "items": {
+        "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_role-stub"
+      }
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    }
+  },
+  "required": [
+    "uuid",
+    "email",
+    "created_at",
+    "token",
+    "flags",
+    "author",
+    "_links"
+  ],
+  "name": "Invite"
+}

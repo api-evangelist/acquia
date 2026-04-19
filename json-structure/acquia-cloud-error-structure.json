@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-structure/acquia-cloud-error-structure.json",
+  "description": "error schema from Acquia Cloud API",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "The error summary."
+    },
+    "message": {
+      "type": "string",
+      "description": "The long description for the returned error."
+    }
+  },
+  "required": [
+    "error",
+    "message"
+  ],
+  "name": "Error"
+}

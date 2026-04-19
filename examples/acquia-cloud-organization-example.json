@@ -1,0 +1,18 @@
+{
+  "id": "500123",
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Production Application",
+  "subscriptions_total": 1,
+  "admins_total": 1,
+  "users_total": 1,
+  "teams_total": 1,
+  "roles_total": 1,
+  "owner": "sample-value",
+  "flags": {
+    "federated_authentication": true
+  },
+  "_links": "sample-value",
+  "_embedded": {
+    "owner": "sample-value"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-structure/acquia-cloud-ssh-key-structure.json",
+  "description": "Details an SSH key.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "uuid",
+      "description": "The unique identifier of the SSH key."
+    },
+    "label": {
+      "type": "string",
+      "description": "The human-readable key label."
+    },
+    "public_key": {
+      "type": "string",
+      "description": "The public key.",
+      "minLength": 64
+    },
+    "fingerprint": {
+      "type": "string",
+      "description": "The public key fingerprint."
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "The key creation date."
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    }
+  },
+  "required": [
+    "uuid",
+    "label",
+    "public_key",
+    "fingerprint",
+    "created_at",
+    "_links"
+  ],
+  "name": "Ssh Key"
+}

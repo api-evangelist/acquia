@@ -1,0 +1,166 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Acquia Drupal Application Management
+  description: >-
+    Unified workflow for managing Drupal applications on Acquia Cloud, including application
+    discovery, environment management, organization administration, and account operations.
+    Used by Drupal developers, DevOps engineers, and platform administrators to automate
+    Acquia Cloud Platform workflows.
+  tags:
+    - Acquia
+    - Applications
+    - Cloud
+    - DevOps
+    - Drupal
+    - Environments
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ACQUIA_OAUTH_TOKEN: ACQUIA_OAUTH_TOKEN
+
+capability:
+  consumes:
+    - import: acquia-cloud
+      location: ./shared/acquia-cloud-applications.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: acquia-management-api
+      description: Unified REST API for Acquia Cloud application and environment management.
+      resources:
+        - path: /v1/applications
+          name: applications
+          description: Drupal application lifecycle management
+          operations:
+            - method: GET
+              name: list-applications
+              description: List all accessible Acquia Cloud applications
+              call: "acquia-cloud.list-applications"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-application
+              description: Get application details
+              call: "acquia-cloud.get-application"
+              with:
+                applicationUuid: "rest.applicationUuid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/environments
+          name: environments
+          description: Application environment operations
+          operations:
+            - method: GET
+              name: list-environments
+              description: List environments for an application
+              call: "acquia-cloud.list-environments"
+              with:
+                applicationUuid: "rest.applicationUuid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-environment
+              description: Get environment details
+              call: "acquia-cloud.get-environment"
+              with:
+                environmentId: "rest.environmentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/organizations
+          name: organizations
+          description: Organization management
+          operations:
+            - method: GET
+              name: list-organizations
+              description: List all organizations
+              call: "acquia-cloud.list-organizations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/account
+          name: account
+          description: Current user account
+          operations:
+            - method: GET
+              name: get-account
+              description: Get current user account details
+              call: "acquia-cloud.get-account"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: acquia-management-mcp
+      transport: http
+      description: MCP server for AI-assisted Acquia Cloud Drupal application management.
+      tools:
+        - name: list-applications
+          description: List all Acquia Cloud Drupal applications the current user can access
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "acquia-cloud.list-applications"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-application
+          description: Get detailed information about a specific Acquia Cloud application
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "acquia-cloud.get-application"
+          with:
+            applicationUuid: "tools.applicationUuid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-environments
+          description: List all environments (dev, staging, prod) for an Acquia Cloud application
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "acquia-cloud.list-environments"
+          with:
+            applicationUuid: "tools.applicationUuid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-environment
+          description: Get detailed information about a specific Acquia Cloud environment
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "acquia-cloud.get-environment"
+          with:
+            environmentId: "tools.environmentId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-organizations
+          description: List all organizations the current Acquia user belongs to
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "acquia-cloud.list-organizations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-account
+          description: Get the current Acquia Cloud user account profile and permissions
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "acquia-cloud.get-account"
+          outputParameters:
+            - type: object
+              mapping: "$."

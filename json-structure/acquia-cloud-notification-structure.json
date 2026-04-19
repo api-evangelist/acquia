@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-structure/acquia-cloud-notification-structure.json",
+  "description": "A notification about an event or a task.",
+  "type": "object",
+  "properties": {
+    "progress": {
+      "type": "int32",
+      "description": "The notification progress.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "user": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_user-stub"
+    },
+    "uuid": {
+      "type": "uuid",
+      "description": "The notification unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "The notification name."
+    },
+    "title": {
+      "type": "string",
+      "description": "The operation title."
+    },
+    "description": {
+      "type": "string",
+      "description": "The notification description."
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "The time that this notification was created."
+    },
+    "started_at": {
+      "type": "datetime",
+      "description": "The time that the task or event this notification is tracking was started at."
+    },
+    "completed_at": {
+      "type": "datetime",
+      "description": "The time that the task or event this notification is tracking was completed at."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the notification.",
+      "enum": [
+        "completed",
+        "in-progress",
+        "failed"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "The notification type.",
+      "enum": [
+        "task",
+        "event"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "A collection of metadata related to the notification.",
+      "properties": {
+        "environments": {
+          "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_environment-metadata"
+        }
+      }
+    },
+    "labels": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_notification-labels"
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    }
+  },
+  "required": [
+    "progress",
+    "user",
+    "uuid",
+    "name",
+    "title",
+    "description",
+    "created_at",
+    "started_at",
+    "completed_at",
+    "status",
+    "type",
+    "metadata",
+    "labels",
+    "_links"
+  ],
+  "name": "Notification"
+}

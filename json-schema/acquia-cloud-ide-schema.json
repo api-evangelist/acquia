@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-schema/acquia-cloud-ide-schema.json",
+  "title": "Ide",
+  "description": "ide schema from Acquia Cloud API",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the Cloud IDE."
+    },
+    "label": {
+      "type": "string",
+      "description": "The human-friendly label of the Cloud IDE."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current provisioning status of the Cloud IDE.",
+      "enum": [
+        "active",
+        "provisioning",
+        "deleting",
+        "updating",
+        "provision-failed",
+        "update-failed",
+        "delete-failed"
+      ]
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    },
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_user-profile"
+        }
+      }
+    }
+  },
+  "required": [
+    "uuid",
+    "label",
+    "status",
+    "_links"
+  ]
+}

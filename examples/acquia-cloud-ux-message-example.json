@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "title": "sample-value",
+  "body": "sample-value",
+  "url": "https://example.acquia-sites.com",
+  "filters": "sample-value",
+  "flags": "sample-value",
+  "weight": 1,
+  "start_at": "2025-03-15T14:30:00Z",
+  "expire_at": "2025-03-15T14:30:00Z",
+  "_links": "sample-value"
+}

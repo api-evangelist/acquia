@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/json-schema/acquia-cloud-environment-schema.json",
+  "title": "Environment",
+  "description": "environment schema from Acquia Cloud API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the environment. The ID is a compound key consisting of the internal database ID of the environment and the application UUID."
+    },
+    "label": {
+      "type": "string",
+      "description": "The human-readable name of the environment."
+    },
+    "name": {
+      "type": "string",
+      "description": "The stage name of the environment."
+    },
+    "application": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_application-stub"
+    },
+    "domains": {
+      "type": "array",
+      "description": "An array of domain names attached to this environment.",
+      "items": {
+        "type": "string",
+        "format": "hostname"
+      }
+    },
+    "active_domain": {
+      "type": "string",
+      "format": "hostname",
+      "description": "The active domain name for this environment."
+    },
+    "default_domain": {
+      "type": "string",
+      "format": "hostname",
+      "description": "The default domain name for this environment."
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to the image for this environment.",
+      "nullable": true
+    },
+    "ssh_url": {
+      "type": "string",
+      "description": "The URL used to SSH into the environment."
+    },
+    "ips": {
+      "type": "array",
+      "description": "An array of IP addresses attached to this environment.",
+      "deprecated": true,
+      "items": {
+        "type": "string",
+        "format": "ipv4"
+      }
+    },
+    "region": {
+      "type": "string",
+      "description": "The region the environment resides in."
+    },
+    "balancer": {
+      "type": "string",
+      "description": "The balancer type.\n- balancers: The environment is behind a Legacy balancer.\n- elb: The environment is behind an ELB balancer.\n- cluster: The environment is behind an Edge Cluster balancer.\n",
+      "enum": [
+        "balancers",
+        "elb",
+        "cluster"
+      ]
+    },
+    "platform": {
+      "type": "string",
+      "description": "The platform type.\n- cloud: The environment is hosted on a Cloud Classic Platform.\n- cloud-next: The environment is hosted on a Cloud Next Platform.\n- unknown:  The host information is not available for the environment.\n",
+      "enum": [
+        "cloud",
+        "cloud-next",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of this environment."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of environment.\n- node: A NodeJS environment.\n- drupal: A Drupal environment.\n- ssg: A Static Site Generator environment.\n- unknown: We were unable to determine the environment type.\n",
+      "enum": [
+        "node",
+        "drupal",
+        "ssg",
+        "unknown"
+      ]
+    },
+    "size": {
+      "type": "string",
+      "description": "The size of the environment. Will be null if the environment type does not support sizes.",
+      "nullable": true,
+      "enum": [
+        "small",
+        "medium",
+        "large",
+        "unknown"
+      ]
+    },
+    "weight": {
+      "type": "integer",
+      "nullable": true,
+      "description": "The environment weight for display purposes."
+    },
+    "vcs": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_vcs"
+    },
+    "flags": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_environment-flags"
+    },
+    "configuration": {
+      "type": "object",
+      "description": "A collection of environment configuration information.",
+      "nullable": true,
+      "properties": {
+        "operating_system": {
+          "type": "string",
+          "description": "The environment operation system."
+        },
+        "php": {
+          "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_environment-configuration"
+        }
+      }
+    },
+    "artifact": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_artifact-stub"
+    },
+    "_links": {
+      "$ref": "#/components/schemas/Acquia_Cloud_API_Documentation_links"
+    }
+  },
+  "required": [
+    "id",
+    "label",
+    "name",
+    "application",
+    "domains",
+    "active_domain",
+    "default_domain",
+    "image_url",
+    "ssh_url",
+    "ips",
+    "region",
+    "balancer",
+    "platform",
+    "status",
+    "type",
+    "size",
+    "weight",
+    "vcs",
+    "flags",
+    "configuration",
+    "artifact",
+    "_links"
+  ]
+}
