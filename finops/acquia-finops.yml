@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,142 +9,106 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Acquia
 providerId: acquia
-publisherName: Acquia
-serviceCategory: API
+publisherName: Acquia, Inc.
+serviceCategory: Digital Experience Platform
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Content
   - Experience
+  - Drupal
+  - DXP
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Acquia API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned FinOps scaffold for Acquia. Acquia's commercial model is enterprise subscription
+  per product (Cloud Platform, Site Factory, DAM, PIM, CDP, Campaign Studio, Conversion Optimization,
+  Search), sized by sites, environments, profiles, assets, or seats depending on the product.
+sources:
+  - https://www.acquia.com/products
+  - https://cloudapi-docs.acquia.com/
+notes: Public per-product prices are not published; meters describe the dimensions Acquia uses to size
+  contracts. Replace with the dollar amounts on the customer's order form when reconciling.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
+    - Usage
 focusColumns:
   ServiceName: Acquia
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Digital Experience Platform
   ProviderName: Acquia
-  PublisherName: Acquia
-  InvoiceIssuerName: Acquia
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Acquia, Inc.
+  InvoiceIssuerName: Acquia, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
-    aggregation: sum
+  - name: cloud_environment
+    description: Acquia Cloud Platform application + environment subscription.
+    unit: environment
+    aggregation: max
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - application
+      - environment_size
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
+  - name: managed_site
+    description: Site managed under Site Factory.
+    unit: site
+    aggregation: max
+    dimensions:
+      - site_factory_tenant
+  - name: dam_user
+    description: Named DAM user (Widen) seat.
+    unit: seat
+    aggregation: max
+    dimensions:
+      - role
+  - name: dam_storage
+    description: Asset storage in Acquia DAM.
     unit: GB
+    aggregation: max
+    dimensions:
+      - tenant
+  - name: cdp_profile
+    description: Active customer profile in Acquia CDP.
+    unit: profile
+    aggregation: max
+    dimensions:
+      - source_system
+  - name: cdp_event
+    description: Behavioral event ingested into CDP.
+    unit: event
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
+      - source_system
+      - event_type
+  - name: campaign_contact
+    description: Active marketable contact in Campaign Studio.
+    unit: contact
+    aggregation: max
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Acquia Cloud API
-    baseURL: ''
-    tags:
-      - Applications
-      - Cloud
-      - Drupal
-      - Environments
-      - Hosting
-    serviceName: Acquia Cloud API
-    serviceCategory: API
-  - name: Acquia Cloud Site Factory API
-    baseURL: ''
-    tags:
-      - Cloud
-      - Drupal
-      - Multisite
-      - Site Factory
-    serviceName: Acquia Cloud Site Factory API
-    serviceCategory: API
-  - name: Acquia Content Hub API
-    baseURL: ''
-    tags:
-      - Content
-      - Content Hub
-      - Drupal
-      - Syndication
-    serviceName: Acquia Content Hub API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - segment
+  - name: search_index
+    description: Search index / core in Acquia Search.
+    unit: index
+    aggregation: max
+    dimensions:
+      - environment
+principles:
+  - name: Visibility
+    description: Each Acquia product invoices on different dimensions; pull environment, site, profile,
+      and seat counts from the Cloud API and the DAM / CDP admin consoles to build a unified usage view.
+  - name: Allocation
+    description: Allocate Cloud Platform and Site Factory cost to the owning brand / property; allocate
+      DAM, CDP, and Campaign Studio cost to marketing-ops cost centers.
+  - name: Optimization
+    description: Right-size Cloud environments (down-tier non-prod, schedule lower environments off-hours),
+      reclaim DAM / CDP seats from inactive users, archive cold assets out of DAM storage tiers.
+  - name: Accountability
+    description: Engineering platform leads own Cloud / Site Factory; marketing-ops leadership owns DAM,
+      CDP, Campaign Studio, and Conversion Optimization renewals.
 maintainers:
   - FN: Kin Lane
-    email: kin@apievangelist.com
+    email: info@apievangelist.com

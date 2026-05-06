@@ -4,93 +4,47 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Acquia
 providerId: acquia
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Content
   - Experience
+  - Drupal
+  - DXP
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Acquia API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Acquia exposes a number of APIs across its DXP — Cloud API (operational control of Drupal
+  environments), Site Factory API, CDP ingestion, DAM, and Campaign Studio. Specific per-second / per-minute
+  rate-limit numbers are not published on the public Cloud API documentation home page; throttling is
+  applied per API and per subscription tier.
+sources:
+  - https://cloudapi-docs.acquia.com/
+  - https://docs.acquia.com/
+notes: Public Cloud API docs do not surface a numeric rate-limit table. Customers are expected to handle
+  HTTP 429 responses with backoff; specific limits are confirmed through Acquia support per subscription.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Acquia Cloud API
-      - Acquia Cloud Site Factory API
-      - Acquia Content Hub API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Acquia Cloud API
-      - Acquia Cloud Site Factory API
-      - Acquia Content Hub API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Acquia Cloud API
-      - Acquia Cloud Site Factory API
-      - Acquia Content Hub API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Acquia Cloud API
-      - Acquia Cloud Site Factory API
-      - Acquia Content Hub API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Acquia Cloud API
-      - Acquia Cloud Site Factory API
-      - Acquia Content Hub API
+  - name: Cloud API throttling
+    scope: api-token
+    metric: varies
+    limit: see Acquia Cloud API documentation
+    notes: Acquia does not publish a fixed RPS / RPM number on the public docs index; throttling is
+      applied at the gateway and surfaced via 429 responses.
+  - name: CDP ingestion
+    scope: tenant
+    metric: varies
+    limit: see CDP customer onboarding guide
+    notes: Profile-ingest and event-ingest throughput is sized at contract time based on event volume.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Backoff
+    description: Honor 429 responses with exponential backoff and jitter; the Cloud API may return Retry-After.
+  - name: Tenant Scoping
+    description: Limits are applied per Acquia subscription / tenant; multiple API tokens within the
+      same subscription share the underlying allowance.
+  - name: Support-Raise
+    description: Long-running migrations and bulk operations should be coordinated with Acquia support
+      so that ceilings can be temporarily lifted.
 maintainers:
   - FN: Kin Lane
-    email: kin@apievangelist.com
+    email: info@apievangelist.com
