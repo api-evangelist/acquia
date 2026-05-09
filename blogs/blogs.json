@@ -4,10 +4,10 @@
     {
       "source": "https://www.acquia.com/blog",
       "feed_url": "https://www.acquia.com/blog/rss.xml",
-      "saved": 10,
-      "title": "Acquia.com Blog"
+      "title": "Acquia.com Blog",
+      "saved": 2
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:20:38Z"
+  "post_count": 12,
+  "fetched": "2026-05-09T20:17:51Z"
 }
