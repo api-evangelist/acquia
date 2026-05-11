@@ -171,6 +171,8 @@ common:
     description: Headless Drupal with Next.js using Acquia CMS headless starter kit.
   - name: Acquia DAM
     description: Digital Asset Management integration via Widen Collective for media management in Drupal.
+- type: Integrations
+  url: https://www.acquia.com/integrations
 created: '2025-02-17'
 modified: '2026-04-19'
 position: Consumer
@@ -179,6 +181,9 @@ description: >-
   looking to enhance their online presence. They offer a range of services, including
   cloud hosting, digital asset management, and content management, to help businesses
   create, manage, and optimize their websites and digital experiences.
+integrations:
+  - name: Build the AI Content Supply Chain
+  - name: Become a Partner
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
