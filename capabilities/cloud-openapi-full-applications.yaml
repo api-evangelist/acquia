@@ -1,0 +1,1545 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Applications
+  description: 'Acquia Cloud API Documentation — Applications. 47 operations. Lead operation: Return a list of applications
+    the current user has access to.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-applications
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications
+      path: /applications
+      operations:
+      - name: getapplications
+        method: GET
+        description: Return a list of applications the current user has access to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid
+      path: /applications/{applicationUuid}
+      operations:
+      - name: getapplicationbyuuid
+        method: GET
+        description: Return details about a specific application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putapplicationbyuuid
+        method: PUT
+        description: Renames an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-artifacts
+      path: /applications/{applicationUuid}/artifacts
+      operations:
+      - name: getartifactsbyapplicationuuid
+        method: GET
+        description: Return application artifacts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-artifacts-artifactId
+      path: /applications/{applicationUuid}/artifacts/{artifactId}
+      operations:
+      - name: getartifactbyapplicationuuidandid
+        method: GET
+        description: Return details about a specific artifact.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-code
+      path: /applications/{applicationUuid}/code
+      operations:
+      - name: getcodebyapplicationuuid
+        method: GET
+        description: Return application branches and release tags.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-code-studio
+      path: /applications/{applicationUuid}/code-studio
+      operations:
+      - name: getcodestudioproject
+        method: GET
+        description: Returns details about the Code Studio project for an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postcodestudioproject
+        method: POST
+        description: Creates the Code Studio project for an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletecodestudioproject
+        method: DELETE
+        description: Removes the Code Studio project from an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-databases
+      path: /applications/{applicationUuid}/databases
+      operations:
+      - name: getapplicationdatabases
+        method: GET
+        description: Returns a list database names for the application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationdatabasecreate
+        method: POST
+        description: Creates a database.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-databases-name
+      path: /applications/{applicationUuid}/databases/{name}
+      operations:
+      - name: postapplicationdatabasedelete
+        method: DELETE
+        description: Drops (deletes) a database.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-databases-name-actions-erase
+      path: /applications/{applicationUuid}/databases/{name}/actions/erase
+      operations:
+      - name: postapplicationdatabaseerase
+        method: POST
+        description: Erases (truncates) a database.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-email-domains
+      path: /applications/{applicationUuid}/email/domains
+      operations:
+      - name: getapplicationemaildomains
+        method: GET
+        description: Returns a list of email domains associated with the application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-email-domains-domainRegistrationUuid-actions-associ
+      path: /applications/{applicationUuid}/email/domains/{domainRegistrationUuid}/actions/associate
+      operations:
+      - name: postapplicationassociateemaildomain
+        method: POST
+        description: Associates an email domain with an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-email-domains-domainRegistrationUuid-actions-disass
+      path: /applications/{applicationUuid}/email/domains/{domainRegistrationUuid}/actions/disassociate
+      operations:
+      - name: postapplicationdisassociateemaildomain
+        method: POST
+        description: Disassociates an email domain with an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-environments
+      path: /applications/{applicationUuid}/environments
+      operations:
+      - name: getapplicationenvironments
+        method: GET
+        description: Returns a list of environments within this application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationenvironments
+        method: POST
+        description: Add a new continuous delivery environment to an application by the application UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-features
+      path: /applications/{applicationUuid}/features
+      operations:
+      - name: getapplicationfeatures
+        method: GET
+        description: Return application features.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-ides
+      path: /applications/{applicationUuid}/ides
+      operations:
+      - name: getapplicationides
+        method: GET
+        description: Returns a list of Cloud IDEs associated with this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationside
+        method: POST
+        description: Creates a new Cloud IDE.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-messages
+      path: /applications/{applicationUuid}/messages
+      operations:
+      - name: getapplicationmessages
+        method: GET
+        description: Returns a list of messages associated with this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage
+      path: /applications/{applicationUuid}/metrics/usage
+      operations:
+      - name: getapplicationsusagelinks
+        method: GET
+        description: Retrieves traversal links for detailed metrics on usage (views and visits) of your application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-data
+      path: /applications/{applicationUuid}/metrics/usage/data
+      operations:
+      - name: getapplicationsusagedata
+        method: GET
+        description: Retrieves aggregate usage data for an application, filterable by views or visits and by environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-data-by-environment
+      path: /applications/{applicationUuid}/metrics/usage/data-by-environment
+      operations:
+      - name: getapplicationsusagedatabyenvironment
+        method: GET
+        description: Retrieves usage data (views or visits) for an application, broken down by environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-views-by-environment
+      path: /applications/{applicationUuid}/metrics/usage/views-by-environment
+      operations:
+      - name: getapplicationsusageviewsdatabyenvironment
+        method: GET
+        description: Retrieves views data for an application, broken down by environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-visits-by-environment
+      path: /applications/{applicationUuid}/metrics/usage/visits-by-environment
+      operations:
+      - name: getapplicationsusagevisitsdatabyenvironment
+        method: GET
+        description: Retrieves visits data for an application, broken down by environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-usageMetric
+      path: /applications/{applicationUuid}/metrics/usage/{usageMetric}
+      operations:
+      - name: getapplicationsusagemetricdata
+        method: GET
+        description: Retrieves aggregate usage metric data (views or visits) for an application..
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-notifications
+      path: /applications/{applicationUuid}/notifications
+      operations:
+      - name: getapplicationnotifications
+        method: GET
+        description: Returns a list of notifications associated with this application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-permissions
+      path: /applications/{applicationUuid}/permissions
+      operations:
+      - name: getapplicationpermissions
+        method: GET
+        description: Returns a list of permissions the user has for this application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-search
+      path: /applications/{applicationUuid}/search
+      operations:
+      - name: getapplicationsearchlist
+        method: GET
+        description: Returns a traversal endpoint for search entities for the application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-search-config-sets
+      path: /applications/{applicationUuid}/search/config-sets
+      operations:
+      - name: getapplicationsearchconfigurationsets
+        method: GET
+        description: Returns a collection of search configuration sets for an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationsearchconfigurationsets
+        method: POST
+        description: Creates a search configuration set for an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-search-config-sets-configurationSetId
+      path: /applications/{applicationUuid}/search/config-sets/{configurationSetId}
+      operations:
+      - name: getapplicationsearchconfigurationset
+        method: GET
+        description: Returns a search configuration set for an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteapplicationsearchconfigurationset
+        method: DELETE
+        description: Removes and deletes a specific search configuration set from an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings
+      path: /applications/{applicationUuid}/settings
+      operations:
+      - name: getapplicationsettings
+        method: GET
+        description: Returns available settings for this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings-hosting
+      path: /applications/{applicationUuid}/settings/hosting
+      operations:
+      - name: getapplicationhostingsettings
+        method: GET
+        description: Returns the hosting settings for this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings-keys
+      path: /applications/{applicationUuid}/settings/keys
+      operations:
+      - name: getapplicationlegacyproductkeyssettings
+        method: GET
+        description: Returns the legacy product keys for this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings-ra
+      path: /applications/{applicationUuid}/settings/ra
+      operations:
+      - name: getapplicationremoteadministrationsettings
+        method: GET
+        description: Returns the remote administration settings for this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putapplicationremoteadministrationsettings
+        method: PUT
+        description: Modifies the remote administration settings for an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-settings-security
+      path: /applications/{applicationUuid}/settings/security
+      operations:
+      - name: getapplicationsecuritysettings
+        method: GET
+        description: Returns the security policy settings for this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putapplicationsecuritysettings
+        method: PUT
+        description: Modifies the security policy settings for an application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-tags
+      path: /applications/{applicationUuid}/tags
+      operations:
+      - name: getapplicationtags
+        method: GET
+        description: Returns a list of application tags associated with this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationstags
+        method: POST
+        description: Creates a new application tag.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-tags-tagName
+      path: /applications/{applicationUuid}/tags/{tagName}
+      operations:
+      - name: deleteapplicationtags
+        method: DELETE
+        description: Deletes an application tag.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-tasks
+      path: /applications/{applicationUuid}/tasks
+      operations:
+      - name: getapplicationtasks
+        method: GET
+        description: Returns a list of tasks associated with this application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-teams
+      path: /applications/{applicationUuid}/teams
+      operations:
+      - name: getapplicationteams
+        method: GET
+        description: Returns a list of teams associated with this application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-applications-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Applications. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: REST surface for applications.
+      operations:
+      - method: GET
+        name: getapplications
+        description: Return a list of applications the current user has access to.
+        call: cloud-openapi-full-applications.getapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}
+      name: applications-applicationuuid
+      description: REST surface for applications-applicationUuid.
+      operations:
+      - method: GET
+        name: getapplicationbyuuid
+        description: Return details about a specific application.
+        call: cloud-openapi-full-applications.getapplicationbyuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putapplicationbyuuid
+        description: Renames an application.
+        call: cloud-openapi-full-applications.putapplicationbyuuid
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/artifacts
+      name: applications-applicationuuid-artifacts
+      description: REST surface for applications-applicationUuid-artifacts.
+      operations:
+      - method: GET
+        name: getartifactsbyapplicationuuid
+        description: Return application artifacts.
+        call: cloud-openapi-full-applications.getartifactsbyapplicationuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/artifacts/{artifactid}
+      name: applications-applicationuuid-artifacts-artifactid
+      description: REST surface for applications-applicationUuid-artifacts-artifactId.
+      operations:
+      - method: GET
+        name: getartifactbyapplicationuuidandid
+        description: Return details about a specific artifact.
+        call: cloud-openapi-full-applications.getartifactbyapplicationuuidandid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/code
+      name: applications-applicationuuid-code
+      description: REST surface for applications-applicationUuid-code.
+      operations:
+      - method: GET
+        name: getcodebyapplicationuuid
+        description: Return application branches and release tags.
+        call: cloud-openapi-full-applications.getcodebyapplicationuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/code-studio
+      name: applications-applicationuuid-code-studio
+      description: REST surface for applications-applicationUuid-code-studio.
+      operations:
+      - method: GET
+        name: getcodestudioproject
+        description: Returns details about the Code Studio project for an application.
+        call: cloud-openapi-full-applications.getcodestudioproject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postcodestudioproject
+        description: Creates the Code Studio project for an application.
+        call: cloud-openapi-full-applications.postcodestudioproject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecodestudioproject
+        description: Removes the Code Studio project from an application.
+        call: cloud-openapi-full-applications.deletecodestudioproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/databases
+      name: applications-applicationuuid-databases
+      description: REST surface for applications-applicationUuid-databases.
+      operations:
+      - method: GET
+        name: getapplicationdatabases
+        description: Returns a list database names for the application.
+        call: cloud-openapi-full-applications.getapplicationdatabases
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationdatabasecreate
+        description: Creates a database.
+        call: cloud-openapi-full-applications.postapplicationdatabasecreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/databases/{name}
+      name: applications-applicationuuid-databases-name
+      description: REST surface for applications-applicationUuid-databases-name.
+      operations:
+      - method: DELETE
+        name: postapplicationdatabasedelete
+        description: Drops (deletes) a database.
+        call: cloud-openapi-full-applications.postapplicationdatabasedelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/databases/{name}/actions/erase
+      name: applications-applicationuuid-databases-name-actions-erase
+      description: REST surface for applications-applicationUuid-databases-name-actions-erase.
+      operations:
+      - method: POST
+        name: postapplicationdatabaseerase
+        description: Erases (truncates) a database.
+        call: cloud-openapi-full-applications.postapplicationdatabaseerase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/email/domains
+      name: applications-applicationuuid-email-domains
+      description: REST surface for applications-applicationUuid-email-domains.
+      operations:
+      - method: GET
+        name: getapplicationemaildomains
+        description: Returns a list of email domains associated with the application.
+        call: cloud-openapi-full-applications.getapplicationemaildomains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/email/domains/{domainregistrationuuid}/actions/associate
+      name: applications-applicationuuid-email-domains-domainregistrationuuid-actions-associ
+      description: REST surface for applications-applicationUuid-email-domains-domainRegistrationUuid-actions-associ.
+      operations:
+      - method: POST
+        name: postapplicationassociateemaildomain
+        description: Associates an email domain with an Application.
+        call: cloud-openapi-full-applications.postapplicationassociateemaildomain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/email/domains/{domainregistrationuuid}/actions/disassociate
+      name: applications-applicationuuid-email-domains-domainregistrationuuid-actions-disass
+      description: REST surface for applications-applicationUuid-email-domains-domainRegistrationUuid-actions-disass.
+      operations:
+      - method: POST
+        name: postapplicationdisassociateemaildomain
+        description: Disassociates an email domain with an Application.
+        call: cloud-openapi-full-applications.postapplicationdisassociateemaildomain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/environments
+      name: applications-applicationuuid-environments
+      description: REST surface for applications-applicationUuid-environments.
+      operations:
+      - method: GET
+        name: getapplicationenvironments
+        description: Returns a list of environments within this application by its UUID.
+        call: cloud-openapi-full-applications.getapplicationenvironments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationenvironments
+        description: Add a new continuous delivery environment to an application by the application UUID.
+        call: cloud-openapi-full-applications.postapplicationenvironments
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/features
+      name: applications-applicationuuid-features
+      description: REST surface for applications-applicationUuid-features.
+      operations:
+      - method: GET
+        name: getapplicationfeatures
+        description: Return application features.
+        call: cloud-openapi-full-applications.getapplicationfeatures
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/ides
+      name: applications-applicationuuid-ides
+      description: REST surface for applications-applicationUuid-ides.
+      operations:
+      - method: GET
+        name: getapplicationides
+        description: Returns a list of Cloud IDEs associated with this application.
+        call: cloud-openapi-full-applications.getapplicationides
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationside
+        description: Creates a new Cloud IDE.
+        call: cloud-openapi-full-applications.postapplicationside
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/messages
+      name: applications-applicationuuid-messages
+      description: REST surface for applications-applicationUuid-messages.
+      operations:
+      - method: GET
+        name: getapplicationmessages
+        description: Returns a list of messages associated with this application.
+        call: cloud-openapi-full-applications.getapplicationmessages
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage
+      name: applications-applicationuuid-metrics-usage
+      description: REST surface for applications-applicationUuid-metrics-usage.
+      operations:
+      - method: GET
+        name: getapplicationsusagelinks
+        description: Retrieves traversal links for detailed metrics on usage (views and visits) of your application.
+        call: cloud-openapi-full-applications.getapplicationsusagelinks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/data
+      name: applications-applicationuuid-metrics-usage-data
+      description: REST surface for applications-applicationUuid-metrics-usage-data.
+      operations:
+      - method: GET
+        name: getapplicationsusagedata
+        description: Retrieves aggregate usage data for an application, filterable by views or visits and by environment.
+        call: cloud-openapi-full-applications.getapplicationsusagedata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/data-by-environment
+      name: applications-applicationuuid-metrics-usage-data-by-environment
+      description: REST surface for applications-applicationUuid-metrics-usage-data-by-environment.
+      operations:
+      - method: GET
+        name: getapplicationsusagedatabyenvironment
+        description: Retrieves usage data (views or visits) for an application, broken down by environment.
+        call: cloud-openapi-full-applications.getapplicationsusagedatabyenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/views-by-environment
+      name: applications-applicationuuid-metrics-usage-views-by-environment
+      description: REST surface for applications-applicationUuid-metrics-usage-views-by-environment.
+      operations:
+      - method: GET
+        name: getapplicationsusageviewsdatabyenvironment
+        description: Retrieves views data for an application, broken down by environment.
+        call: cloud-openapi-full-applications.getapplicationsusageviewsdatabyenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/visits-by-environment
+      name: applications-applicationuuid-metrics-usage-visits-by-environment
+      description: REST surface for applications-applicationUuid-metrics-usage-visits-by-environment.
+      operations:
+      - method: GET
+        name: getapplicationsusagevisitsdatabyenvironment
+        description: Retrieves visits data for an application, broken down by environment.
+        call: cloud-openapi-full-applications.getapplicationsusagevisitsdatabyenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/{usagemetric}
+      name: applications-applicationuuid-metrics-usage-usagemetric
+      description: REST surface for applications-applicationUuid-metrics-usage-usageMetric.
+      operations:
+      - method: GET
+        name: getapplicationsusagemetricdata
+        description: Retrieves aggregate usage metric data (views or visits) for an application..
+        call: cloud-openapi-full-applications.getapplicationsusagemetricdata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/notifications
+      name: applications-applicationuuid-notifications
+      description: REST surface for applications-applicationUuid-notifications.
+      operations:
+      - method: GET
+        name: getapplicationnotifications
+        description: Returns a list of notifications associated with this application by its UUID.
+        call: cloud-openapi-full-applications.getapplicationnotifications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/permissions
+      name: applications-applicationuuid-permissions
+      description: REST surface for applications-applicationUuid-permissions.
+      operations:
+      - method: GET
+        name: getapplicationpermissions
+        description: Returns a list of permissions the user has for this application by its UUID.
+        call: cloud-openapi-full-applications.getapplicationpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/search
+      name: applications-applicationuuid-search
+      description: REST surface for applications-applicationUuid-search.
+      operations:
+      - method: GET
+        name: getapplicationsearchlist
+        description: Returns a traversal endpoint for search entities for the application.
+        call: cloud-openapi-full-applications.getapplicationsearchlist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/search/config-sets
+      name: applications-applicationuuid-search-config-sets
+      description: REST surface for applications-applicationUuid-search-config-sets.
+      operations:
+      - method: GET
+        name: getapplicationsearchconfigurationsets
+        description: Returns a collection of search configuration sets for an application
+        call: cloud-openapi-full-applications.getapplicationsearchconfigurationsets
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationsearchconfigurationsets
+        description: Creates a search configuration set for an application.
+        call: cloud-openapi-full-applications.postapplicationsearchconfigurationsets
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/search/config-sets/{configurationsetid}
+      name: applications-applicationuuid-search-config-sets-configurationsetid
+      description: REST surface for applications-applicationUuid-search-config-sets-configurationSetId.
+      operations:
+      - method: GET
+        name: getapplicationsearchconfigurationset
+        description: Returns a search configuration set for an application
+        call: cloud-openapi-full-applications.getapplicationsearchconfigurationset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapplicationsearchconfigurationset
+        description: Removes and deletes a specific search configuration set from an application.
+        call: cloud-openapi-full-applications.deleteapplicationsearchconfigurationset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings
+      name: applications-applicationuuid-settings
+      description: REST surface for applications-applicationUuid-settings.
+      operations:
+      - method: GET
+        name: getapplicationsettings
+        description: Returns available settings for this application.
+        call: cloud-openapi-full-applications.getapplicationsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/hosting
+      name: applications-applicationuuid-settings-hosting
+      description: REST surface for applications-applicationUuid-settings-hosting.
+      operations:
+      - method: GET
+        name: getapplicationhostingsettings
+        description: Returns the hosting settings for this application.
+        call: cloud-openapi-full-applications.getapplicationhostingsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/keys
+      name: applications-applicationuuid-settings-keys
+      description: REST surface for applications-applicationUuid-settings-keys.
+      operations:
+      - method: GET
+        name: getapplicationlegacyproductkeyssettings
+        description: Returns the legacy product keys for this application.
+        call: cloud-openapi-full-applications.getapplicationlegacyproductkeyssettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/ra
+      name: applications-applicationuuid-settings-ra
+      description: REST surface for applications-applicationUuid-settings-ra.
+      operations:
+      - method: GET
+        name: getapplicationremoteadministrationsettings
+        description: Returns the remote administration settings for this application.
+        call: cloud-openapi-full-applications.getapplicationremoteadministrationsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putapplicationremoteadministrationsettings
+        description: Modifies the remote administration settings for an application.
+        call: cloud-openapi-full-applications.putapplicationremoteadministrationsettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/security
+      name: applications-applicationuuid-settings-security
+      description: REST surface for applications-applicationUuid-settings-security.
+      operations:
+      - method: GET
+        name: getapplicationsecuritysettings
+        description: Returns the security policy settings for this application.
+        call: cloud-openapi-full-applications.getapplicationsecuritysettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putapplicationsecuritysettings
+        description: Modifies the security policy settings for an application.
+        call: cloud-openapi-full-applications.putapplicationsecuritysettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/tags
+      name: applications-applicationuuid-tags
+      description: REST surface for applications-applicationUuid-tags.
+      operations:
+      - method: GET
+        name: getapplicationtags
+        description: Returns a list of application tags associated with this application.
+        call: cloud-openapi-full-applications.getapplicationtags
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationstags
+        description: Creates a new application tag.
+        call: cloud-openapi-full-applications.postapplicationstags
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/tags/{tagname}
+      name: applications-applicationuuid-tags-tagname
+      description: REST surface for applications-applicationUuid-tags-tagName.
+      operations:
+      - method: DELETE
+        name: deleteapplicationtags
+        description: Deletes an application tag.
+        call: cloud-openapi-full-applications.deleteapplicationtags
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/tasks
+      name: applications-applicationuuid-tasks
+      description: REST surface for applications-applicationUuid-tasks.
+      operations:
+      - method: GET
+        name: getapplicationtasks
+        description: Returns a list of tasks associated with this application by its UUID.
+        call: cloud-openapi-full-applications.getapplicationtasks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/teams
+      name: applications-applicationuuid-teams
+      description: REST surface for applications-applicationUuid-teams.
+      operations:
+      - method: GET
+        name: getapplicationteams
+        description: Returns a list of teams associated with this application.
+        call: cloud-openapi-full-applications.getapplicationteams
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Applications. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: return-list-applications-current-user
+      description: Return a list of applications the current user has access to.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-details-about-specific-application
+      description: Return details about a specific application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationbyuuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: renames-application
+      description: Renames an application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.putapplicationbyuuid
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-application-artifacts
+      description: Return application artifacts.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getartifactsbyapplicationuuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-details-about-specific-artifact
+      description: Return details about a specific artifact.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getartifactbyapplicationuuidandid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-application-branches-and-release
+      description: Return application branches and release tags.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getcodebyapplicationuuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-details-about-code-studio
+      description: Returns details about the Code Studio project for an application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getcodestudioproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-code-studio-project-application
+      description: Creates the Code Studio project for an application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postcodestudioproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removes-code-studio-project-application
+      description: Removes the Code Studio project from an application.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-applications.deletecodestudioproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-database-names-application
+      description: Returns a list database names for the application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationdatabases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-database
+      description: Creates a database.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationdatabasecreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: drops-deletes-database
+      description: Drops (deletes) a database.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-applications.postapplicationdatabasedelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: erases-truncates-database
+      description: Erases (truncates) a database.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationdatabaseerase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-email-domains-associated
+      description: Returns a list of email domains associated with the application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationemaildomains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: associates-email-domain-application
+      description: Associates an email domain with an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationassociateemaildomain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disassociates-email-domain-application
+      description: Disassociates an email domain with an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationdisassociateemaildomain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-environments-within-this
+      description: Returns a list of environments within this application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationenvironments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-continuous-delivery-environment
+      description: Add a new continuous delivery environment to an application by the application UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationenvironments
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-application-features
+      description: Return application features.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationfeatures
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-cloud-ides-associated
+      description: Returns a list of Cloud IDEs associated with this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationides
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-new-cloud-ide
+      description: Creates a new Cloud IDE.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationside
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-messages-associated-this
+      description: Returns a list of messages associated with this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationmessages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-traversal-links-detailed-metrics
+      description: Retrieves traversal links for detailed metrics on usage (views and visits) of your application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsusagelinks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-aggregate-usage-data-application
+      description: Retrieves aggregate usage data for an application, filterable by views or visits and by environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsusagedata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-usage-data-views-visits
+      description: Retrieves usage data (views or visits) for an application, broken down by environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsusagedatabyenvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-views-data-application-broken
+      description: Retrieves views data for an application, broken down by environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsusageviewsdatabyenvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-visits-data-application-broken
+      description: Retrieves visits data for an application, broken down by environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsusagevisitsdatabyenvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-aggregate-usage-metric-data
+      description: Retrieves aggregate usage metric data (views or visits) for an application..
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsusagemetricdata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-notifications-associated-this
+      description: Returns a list of notifications associated with this application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationnotifications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-permissions-user-has
+      description: Returns a list of permissions the user has for this application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-traversal-endpoint-search-entities
+      description: Returns a traversal endpoint for search entities for the application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsearchlist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-collection-search-configuration-sets
+      description: Returns a collection of search configuration sets for an application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsearchconfigurationsets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-search-configuration-set-application
+      description: Creates a search configuration set for an application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationsearchconfigurationsets
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-search-configuration-set-application
+      description: Returns a search configuration set for an application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsearchconfigurationset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removes-and-deletes-specific-search
+      description: Removes and deletes a specific search configuration set from an application.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-applications.deleteapplicationsearchconfigurationset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-available-settings-this-application
+      description: Returns available settings for this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-hosting-settings-this-application
+      description: Returns the hosting settings for this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationhostingsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-legacy-product-keys-this
+      description: Returns the legacy product keys for this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationlegacyproductkeyssettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-remote-administration-settings-this
+      description: Returns the remote administration settings for this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationremoteadministrationsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modifies-remote-administration-settings-application
+      description: Modifies the remote administration settings for an application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.putapplicationremoteadministrationsettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-security-policy-settings-this
+      description: Returns the security policy settings for this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationsecuritysettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modifies-security-policy-settings-application
+      description: Modifies the security policy settings for an application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.putapplicationsecuritysettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-application-tags-associated
+      description: Returns a list of application tags associated with this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationtags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-new-application-tag
+      description: Creates a new application tag.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-applications.postapplicationstags
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-application-tag
+      description: Deletes an application tag.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-applications.deleteapplicationtags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-tasks-associated-this
+      description: Returns a list of tasks associated with this application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationtasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-teams-associated-this
+      description: Returns a list of teams associated with this application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-applications.getapplicationteams
+      outputParameters:
+      - type: object
+        mapping: $.

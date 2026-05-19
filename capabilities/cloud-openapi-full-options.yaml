@@ -1,0 +1,230 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Options
+  description: 'Acquia Cloud API Documentation — Options. 6 operations. Lead operation: Does not return any data. Allows traversal
+    of options groups endpoints.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Options
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-options
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Options business capability. Self-contained, no shared references.
+    resources:
+    - name: options
+      path: /options
+      operations:
+      - name: getoptions
+        method: GET
+        description: Does not return any data. Allows traversal of options groups endpoints.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-cde-sizes
+      path: /options/cde-sizes
+      operations:
+      - name: getcdesizes
+        method: GET
+        description: Displays the various CD Environment size options.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-colors
+      path: /options/colors
+      operations:
+      - name: getcolors
+        method: GET
+        description: Displays the various color options.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-log-forwarding
+      path: /options/log-forwarding
+      operations:
+      - name: getlogforwarding
+        method: GET
+        description: Does not return any data. Allows traversal of options groups endpoints.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-log-forwarding-consumers
+      path: /options/log-forwarding/consumers
+      operations:
+      - name: getlogforwardingconsumers
+        method: GET
+        description: Displays available log forwarding consumers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-log-forwarding-sources
+      path: /options/log-forwarding/sources
+      operations:
+      - name: getlogforwardingsources
+        method: GET
+        description: Displays available log forwarding sources.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-options-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Options. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/options
+      name: options
+      description: REST surface for options.
+      operations:
+      - method: GET
+        name: getoptions
+        description: Does not return any data. Allows traversal of options groups endpoints.
+        call: cloud-openapi-full-options.getoptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/cde-sizes
+      name: options-cde-sizes
+      description: REST surface for options-cde-sizes.
+      operations:
+      - method: GET
+        name: getcdesizes
+        description: Displays the various CD Environment size options.
+        call: cloud-openapi-full-options.getcdesizes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/colors
+      name: options-colors
+      description: REST surface for options-colors.
+      operations:
+      - method: GET
+        name: getcolors
+        description: Displays the various color options.
+        call: cloud-openapi-full-options.getcolors
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/log-forwarding
+      name: options-log-forwarding
+      description: REST surface for options-log-forwarding.
+      operations:
+      - method: GET
+        name: getlogforwarding
+        description: Does not return any data. Allows traversal of options groups endpoints.
+        call: cloud-openapi-full-options.getlogforwarding
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/log-forwarding/consumers
+      name: options-log-forwarding-consumers
+      description: REST surface for options-log-forwarding-consumers.
+      operations:
+      - method: GET
+        name: getlogforwardingconsumers
+        description: Displays available log forwarding consumers.
+        call: cloud-openapi-full-options.getlogforwardingconsumers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/log-forwarding/sources
+      name: options-log-forwarding-sources
+      description: REST surface for options-log-forwarding-sources.
+      operations:
+      - method: GET
+        name: getlogforwardingsources
+        description: Displays available log forwarding sources.
+        call: cloud-openapi-full-options.getlogforwardingsources
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-options-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Options. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: does-not-return-any-data
+      description: Does not return any data. Allows traversal of options groups endpoints.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-options.getoptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: displays-various-cd-environment-size
+      description: Displays the various CD Environment size options.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-options.getcdesizes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: displays-various-color-options
+      description: Displays the various color options.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-options.getcolors
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: does-not-return-any-data-2
+      description: Does not return any data. Allows traversal of options groups endpoints.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-options.getlogforwarding
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: displays-available-log-forwarding-consumers
+      description: Displays available log forwarding consumers.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-options.getlogforwardingconsumers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: displays-available-log-forwarding-sources
+      description: Displays available log forwarding sources.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-options.getlogforwardingsources
+      outputParameters:
+      - type: object
+        mapping: $.

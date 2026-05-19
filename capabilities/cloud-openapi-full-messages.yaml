@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Messages
+  description: 'Acquia Cloud API Documentation — Messages. 2 operations. Lead operation: Dismisses a message.. Self-contained
+    Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Messages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-messages
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Messages business capability. Self-contained, no shared references.
+    resources:
+    - name: messages-messageUuid-actions-dismiss
+      path: /messages/{messageUuid}/actions/dismiss
+      operations:
+      - name: postdismissmessage
+        method: POST
+        description: Dismisses a message.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: messages-messageUuid-actions-follow
+      path: /messages/{messageUuid}/actions/follow
+      operations:
+      - name: getmessagefollow
+        method: GET
+        description: Follows an in-product message link.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-messages-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Messages. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/messages/{messageuuid}/actions/dismiss
+      name: messages-messageuuid-actions-dismiss
+      description: REST surface for messages-messageUuid-actions-dismiss.
+      operations:
+      - method: POST
+        name: postdismissmessage
+        description: Dismisses a message.
+        call: cloud-openapi-full-messages.postdismissmessage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/messages/{messageuuid}/actions/follow
+      name: messages-messageuuid-actions-follow
+      description: REST surface for messages-messageUuid-actions-follow.
+      operations:
+      - method: GET
+        name: getmessagefollow
+        description: Follows an in-product message link.
+        call: cloud-openapi-full-messages.getmessagefollow
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-messages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Messages. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: dismisses-message
+      description: Dismisses a message.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-messages.postdismissmessage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: follows-product-message-link
+      description: Follows an in-product message link.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-messages.getmessagefollow
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,584 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Teams and Permissions — Teams and Permissions
+  description: 'Acquia Cloud API - Teams and Permissions — Teams and Permissions. 17 operations. Lead operation: Acquia Return
+    a List of Permissions.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Teams and Permissions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-teams-and-permissions-teams-and-permissions
+    baseUri: ''
+    description: Acquia Cloud API - Teams and Permissions — Teams and Permissions business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: permissions
+      path: /permissions
+      operations:
+      - name: getpermissions
+        method: GET
+        description: Acquia Return a List of Permissions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: roles-roleUuid
+      path: /roles/{roleUuid}
+      operations:
+      - name: deleterole
+        method: DELETE
+        description: Acquia Deletes a Specific Role by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getrole
+        method: GET
+        description: Acquia Return Details About a Specific Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putrolebyuuid
+        method: PUT
+        description: Acquia Updates a Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams
+      path: /teams
+      operations:
+      - name: getteams
+        method: GET
+        description: Acquia Return Teams the Current User Has Access To.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid
+      path: /teams/{teamUuid}
+      operations:
+      - name: deleteteam
+        method: DELETE
+        description: Acquia Deletes a Specific Team by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getteam
+        method: GET
+        description: Acquia Return Details About a Specific Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putteamsname
+        method: PUT
+        description: Acquia Change the Name of a Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams-teamUuid-actions-leave
+      path: /teams/{teamUuid}/actions/leave
+      operations:
+      - name: postleaveteam
+        method: POST
+        description: Acquia Removes the Current User from a Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid-applications
+      path: /teams/{teamUuid}/applications
+      operations:
+      - name: getteamapplications
+        method: GET
+        description: Acquia Returns a List of Applications This Team Has Access To.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postteamaddapplication
+        method: POST
+        description: Acquia Adds an Application to This Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams-teamUuid-applications-applicationUuid
+      path: /teams/{teamUuid}/applications/{applicationUuid}
+      operations:
+      - name: deleteteamsremoveapplication
+        method: DELETE
+        description: Acquia Removes the Application from This Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid-invites
+      path: /teams/{teamUuid}/invites
+      operations:
+      - name: getteaminvites
+        method: GET
+        description: Acquia Returns a List of Invitations to This Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postteamsinviteuser
+        method: POST
+        description: Acquia Invites a User to Join a Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams-teamUuid-members
+      path: /teams/{teamUuid}/members
+      operations:
+      - name: getteammembers
+        method: GET
+        description: Acquia Returns a List of Team Members.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid-members-userUuid
+      path: /teams/{teamUuid}/members/{userUuid}
+      operations:
+      - name: deleteteamsremovemember
+        method: DELETE
+        description: Acquia Remove a User from a Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putteamsmember
+        method: PUT
+        description: Acquia Grant Team Roles to a Member.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-teams-and-permissions-teams-and-permissions-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Teams and Permissions — Teams and Permissions. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/permissions
+      name: permissions
+      description: REST surface for permissions.
+      operations:
+      - method: GET
+        name: getpermissions
+        description: Acquia Return a List of Permissions.
+        call: cloud-teams-and-permissions-teams-and-permissions.getpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/roles/{roleuuid}
+      name: roles-roleuuid
+      description: REST surface for roles-roleUuid.
+      operations:
+      - method: DELETE
+        name: deleterole
+        description: Acquia Deletes a Specific Role by its UUID.
+        call: cloud-teams-and-permissions-teams-and-permissions.deleterole
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getrole
+        description: Acquia Return Details About a Specific Role.
+        call: cloud-teams-and-permissions-teams-and-permissions.getrole
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putrolebyuuid
+        description: Acquia Updates a Role.
+        call: cloud-teams-and-permissions-teams-and-permissions.putrolebyuuid
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams
+      name: teams
+      description: REST surface for teams.
+      operations:
+      - method: GET
+        name: getteams
+        description: Acquia Return Teams the Current User Has Access To.
+        call: cloud-teams-and-permissions-teams-and-permissions.getteams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}
+      name: teams-teamuuid
+      description: REST surface for teams-teamUuid.
+      operations:
+      - method: DELETE
+        name: deleteteam
+        description: Acquia Deletes a Specific Team by its UUID.
+        call: cloud-teams-and-permissions-teams-and-permissions.deleteteam
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getteam
+        description: Acquia Return Details About a Specific Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.getteam
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putteamsname
+        description: Acquia Change the Name of a Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.putteamsname
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/actions/leave
+      name: teams-teamuuid-actions-leave
+      description: REST surface for teams-teamUuid-actions-leave.
+      operations:
+      - method: POST
+        name: postleaveteam
+        description: Acquia Removes the Current User from a Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.postleaveteam
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/applications
+      name: teams-teamuuid-applications
+      description: REST surface for teams-teamUuid-applications.
+      operations:
+      - method: GET
+        name: getteamapplications
+        description: Acquia Returns a List of Applications This Team Has Access To.
+        call: cloud-teams-and-permissions-teams-and-permissions.getteamapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postteamaddapplication
+        description: Acquia Adds an Application to This Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.postteamaddapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/applications/{applicationuuid}
+      name: teams-teamuuid-applications-applicationuuid
+      description: REST surface for teams-teamUuid-applications-applicationUuid.
+      operations:
+      - method: DELETE
+        name: deleteteamsremoveapplication
+        description: Acquia Removes the Application from This Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.deleteteamsremoveapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/invites
+      name: teams-teamuuid-invites
+      description: REST surface for teams-teamUuid-invites.
+      operations:
+      - method: GET
+        name: getteaminvites
+        description: Acquia Returns a List of Invitations to This Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.getteaminvites
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postteamsinviteuser
+        description: Acquia Invites a User to Join a Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.postteamsinviteuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/members
+      name: teams-teamuuid-members
+      description: REST surface for teams-teamUuid-members.
+      operations:
+      - method: GET
+        name: getteammembers
+        description: Acquia Returns a List of Team Members.
+        call: cloud-teams-and-permissions-teams-and-permissions.getteammembers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/members/{useruuid}
+      name: teams-teamuuid-members-useruuid
+      description: REST surface for teams-teamUuid-members-userUuid.
+      operations:
+      - method: DELETE
+        name: deleteteamsremovemember
+        description: Acquia Remove a User from a Team.
+        call: cloud-teams-and-permissions-teams-and-permissions.deleteteamsremovemember
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putteamsmember
+        description: Acquia Grant Team Roles to a Member.
+        call: cloud-teams-and-permissions-teams-and-permissions.putteamsmember
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-teams-and-permissions-teams-and-permissions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Teams and Permissions — Teams and Permissions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: acquia-return-list-permissions
+      description: Acquia Return a List of Permissions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.getpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-deletes-specific-role-its
+      description: Acquia Deletes a Specific Role by its UUID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.deleterole
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-details-about-specific
+      description: Acquia Return Details About a Specific Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.getrole
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-updates-role
+      description: Acquia Updates a Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.putrolebyuuid
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-teams-current-user
+      description: Acquia Return Teams the Current User Has Access To.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.getteams
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-deletes-specific-team-its
+      description: Acquia Deletes a Specific Team by its UUID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.deleteteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-details-about-specific-2
+      description: Acquia Return Details About a Specific Team.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.getteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-change-name-team
+      description: Acquia Change the Name of a Team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.putteamsname
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-removes-current-user-team
+      description: Acquia Removes the Current User from a Team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-teams-and-permissions-teams-and-permissions.postleaveteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-applications-this
+      description: Acquia Returns a List of Applications This Team Has Access To.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.getteamapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-adds-application-this-team
+      description: Acquia Adds an Application to This Team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-teams-and-permissions-teams-and-permissions.postteamaddapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-removes-application-this-team
+      description: Acquia Removes the Application from This Team.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.deleteteamsremoveapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-invitations-this
+      description: Acquia Returns a List of Invitations to This Team.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.getteaminvites
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-invites-user-join-team
+      description: Acquia Invites a User to Join a Team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-teams-and-permissions-teams-and-permissions.postteamsinviteuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-team-members
+      description: Acquia Returns a List of Team Members.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.getteammembers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-remove-user-team
+      description: Acquia Remove a User from a Team.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.deleteteamsremovemember
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-grant-team-roles-member
+      description: Acquia Grant Team Roles to a Member.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-teams-and-permissions-teams-and-permissions.putteamsmember
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

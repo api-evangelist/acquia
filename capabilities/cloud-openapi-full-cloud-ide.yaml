@@ -1,0 +1,95 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Cloud IDE
+  description: 'Acquia Cloud API Documentation — Cloud IDE. 2 operations. Lead operation: Returns Cloud IDE info.. Self-contained
+    Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Cloud IDE
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-cloud-ide
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Cloud IDE business capability. Self-contained, no shared references.
+    resources:
+    - name: ides-ideUuid
+      path: /ides/{ideUuid}
+      operations:
+      - name: getide
+        method: GET
+        description: Returns Cloud IDE info.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteide
+        method: DELETE
+        description: De-provisions a specific Cloud IDE.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-cloud-ide-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Cloud IDE. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/ides/{ideuuid}
+      name: ides-ideuuid
+      description: REST surface for ides-ideUuid.
+      operations:
+      - method: GET
+        name: getide
+        description: Returns Cloud IDE info.
+        call: cloud-openapi-full-cloud-ide.getide
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteide
+        description: De-provisions a specific Cloud IDE.
+        call: cloud-openapi-full-cloud-ide.deleteide
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-cloud-ide-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Cloud IDE. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: returns-cloud-ide-info
+      description: Returns Cloud IDE info.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-cloud-ide.getide
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: de-provisions-specific-cloud-ide
+      description: De-provisions a specific Cloud IDE.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-cloud-ide.deleteide
+      outputParameters:
+      - type: object
+        mapping: $.

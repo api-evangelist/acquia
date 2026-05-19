@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Distributions — Distributions
+  description: 'Acquia Cloud API - Distributions — Distributions. 2 operations. Lead operation: Acquia Return a List of Drupal
+    Distributions.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Distributions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-distributions-distributions
+    baseUri: ''
+    description: Acquia Cloud API - Distributions — Distributions business capability. Self-contained, no shared references.
+    resources:
+    - name: distributions
+      path: /distributions
+      operations:
+      - name: getdistributions
+        method: GET
+        description: Acquia Return a List of Drupal Distributions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: distributions-name
+      path: /distributions/{name}
+      operations:
+      - name: getdistributionbyname
+        method: GET
+        description: Acquia Return Details About a Specific Drupal Distribution.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-distributions-distributions-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Distributions — Distributions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/distributions
+      name: distributions
+      description: REST surface for distributions.
+      operations:
+      - method: GET
+        name: getdistributions
+        description: Acquia Return a List of Drupal Distributions.
+        call: cloud-distributions-distributions.getdistributions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/distributions/{name}
+      name: distributions-name
+      description: REST surface for distributions-name.
+      operations:
+      - method: GET
+        name: getdistributionbyname
+        description: Acquia Return Details About a Specific Drupal Distribution.
+        call: cloud-distributions-distributions.getdistributionbyname
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-distributions-distributions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Distributions — Distributions. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: acquia-return-list-drupal-distributions
+      description: Acquia Return a List of Drupal Distributions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-distributions-distributions.getdistributions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-details-about-specific
+      description: Acquia Return Details About a Specific Drupal Distribution.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-distributions-distributions.getdistributionbyname
+      outputParameters:
+      - type: object
+        mapping: $.

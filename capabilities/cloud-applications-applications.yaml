@@ -1,0 +1,1545 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Applications — Applications
+  description: 'Acquia Cloud API - Applications — Applications. 47 operations. Lead operation: Acquia Return a List of Applications
+    the Current User Has Access To.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-applications-applications
+    baseUri: ''
+    description: Acquia Cloud API - Applications — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications
+      path: /applications
+      operations:
+      - name: getapplications
+        method: GET
+        description: Acquia Return a List of Applications the Current User Has Access To.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid
+      path: /applications/{applicationUuid}
+      operations:
+      - name: getapplicationbyuuid
+        method: GET
+        description: Acquia Return Details About a Specific Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putapplicationbyuuid
+        method: PUT
+        description: Acquia Renames an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-artifacts
+      path: /applications/{applicationUuid}/artifacts
+      operations:
+      - name: getartifactsbyapplicationuuid
+        method: GET
+        description: Acquia Return Application Artifacts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-artifacts-artifactId
+      path: /applications/{applicationUuid}/artifacts/{artifactId}
+      operations:
+      - name: getartifactbyapplicationuuidandid
+        method: GET
+        description: Acquia Return Details About a Specific Artifact.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-code
+      path: /applications/{applicationUuid}/code
+      operations:
+      - name: getcodebyapplicationuuid
+        method: GET
+        description: Acquia Return Application Branches and Release Tags.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-code-studio
+      path: /applications/{applicationUuid}/code-studio
+      operations:
+      - name: deletecodestudioproject
+        method: DELETE
+        description: Acquia Removes the Code Studio Project from an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getcodestudioproject
+        method: GET
+        description: Acquia Returns Details About the Code Studio Project for an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postcodestudioproject
+        method: POST
+        description: Acquia Creates the Code Studio Project for an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-databases
+      path: /applications/{applicationUuid}/databases
+      operations:
+      - name: getapplicationdatabases
+        method: GET
+        description: Acquia Returns a List Database Names for the Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationdatabasecreate
+        method: POST
+        description: Acquia Creates a Database.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-databases-name
+      path: /applications/{applicationUuid}/databases/{name}
+      operations:
+      - name: postapplicationdatabasedelete
+        method: DELETE
+        description: Acquia Drops (deletes) a Database.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-databases-name-actions-erase
+      path: /applications/{applicationUuid}/databases/{name}/actions/erase
+      operations:
+      - name: postapplicationdatabaseerase
+        method: POST
+        description: Acquia Erases (truncates) a Database.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-email-domains
+      path: /applications/{applicationUuid}/email/domains
+      operations:
+      - name: getapplicationemaildomains
+        method: GET
+        description: Acquia Returns a List of Email Domains Associated with the Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-email-domains-domainRegistrationUuid-actions-associ
+      path: /applications/{applicationUuid}/email/domains/{domainRegistrationUuid}/actions/associate
+      operations:
+      - name: postapplicationassociateemaildomain
+        method: POST
+        description: Acquia Associates an Email Domain with an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-email-domains-domainRegistrationUuid-actions-disass
+      path: /applications/{applicationUuid}/email/domains/{domainRegistrationUuid}/actions/disassociate
+      operations:
+      - name: postapplicationdisassociateemaildomain
+        method: POST
+        description: Acquia Disassociates an Email Domain with an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-environments
+      path: /applications/{applicationUuid}/environments
+      operations:
+      - name: getapplicationenvironments
+        method: GET
+        description: Acquia Returns a List of Environments Within This Application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationenvironments
+        method: POST
+        description: Acquia Add a New Continuous Delivery Environment to an Application by the Application UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-features
+      path: /applications/{applicationUuid}/features
+      operations:
+      - name: getapplicationfeatures
+        method: GET
+        description: Acquia Return Application Features.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-ides
+      path: /applications/{applicationUuid}/ides
+      operations:
+      - name: getapplicationides
+        method: GET
+        description: Acquia Returns a List of Cloud IDEs Associated with This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationside
+        method: POST
+        description: Acquia Creates a New Cloud IDE.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-messages
+      path: /applications/{applicationUuid}/messages
+      operations:
+      - name: getapplicationmessages
+        method: GET
+        description: Acquia Returns a List of Messages Associated with This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage
+      path: /applications/{applicationUuid}/metrics/usage
+      operations:
+      - name: getapplicationsusagelinks
+        method: GET
+        description: Acquia Retrieves Traversal Links for Detailed Metrics on Usage (views and Visits) of Your Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-data
+      path: /applications/{applicationUuid}/metrics/usage/data
+      operations:
+      - name: getapplicationsusagedata
+        method: GET
+        description: Acquia Retrieves Aggregate Usage Data for an Application, Filterable by Views or Visits and by Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-data-by-environment
+      path: /applications/{applicationUuid}/metrics/usage/data-by-environment
+      operations:
+      - name: getapplicationsusagedatabyenvironment
+        method: GET
+        description: Acquia Retrieves Usage Data (views or Visits) for an Application, Broken Down by Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-views-by-environment
+      path: /applications/{applicationUuid}/metrics/usage/views-by-environment
+      operations:
+      - name: getapplicationsusageviewsdatabyenvironment
+        method: GET
+        description: Acquia Retrieves Views Data for an Application, Broken Down by Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-visits-by-environment
+      path: /applications/{applicationUuid}/metrics/usage/visits-by-environment
+      operations:
+      - name: getapplicationsusagevisitsdatabyenvironment
+        method: GET
+        description: Acquia Retrieves Visits Data for an Application, Broken Down by Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-metrics-usage-usageMetric
+      path: /applications/{applicationUuid}/metrics/usage/{usageMetric}
+      operations:
+      - name: getapplicationsusagemetricdata
+        method: GET
+        description: Acquia Retrieves Aggregate Usage Metric Data (views or Visits) for an Application..
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-notifications
+      path: /applications/{applicationUuid}/notifications
+      operations:
+      - name: getapplicationnotifications
+        method: GET
+        description: Acquia Returns a List of Notifications Associated with This Application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-permissions
+      path: /applications/{applicationUuid}/permissions
+      operations:
+      - name: getapplicationpermissions
+        method: GET
+        description: Acquia Returns a List of Permissions the User Has for This Application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-search
+      path: /applications/{applicationUuid}/search
+      operations:
+      - name: getapplicationsearchlist
+        method: GET
+        description: Acquia Returns a Traversal Endpoint for Search Entities for the Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-search-config-sets
+      path: /applications/{applicationUuid}/search/config-sets
+      operations:
+      - name: getapplicationsearchconfigurationsets
+        method: GET
+        description: Acquia Returns a Collection of Search Configuration Sets for an Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationsearchconfigurationsets
+        method: POST
+        description: Acquia Creates a Search Configuration Set for an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-search-config-sets-configurationSetId
+      path: /applications/{applicationUuid}/search/config-sets/{configurationSetId}
+      operations:
+      - name: deleteapplicationsearchconfigurationset
+        method: DELETE
+        description: Acquia Removes and Deletes a Specific Search Configuration Set from an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getapplicationsearchconfigurationset
+        method: GET
+        description: Acquia Returns a Search Configuration Set for an Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings
+      path: /applications/{applicationUuid}/settings
+      operations:
+      - name: getapplicationsettings
+        method: GET
+        description: Acquia Returns Available Settings for This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings-hosting
+      path: /applications/{applicationUuid}/settings/hosting
+      operations:
+      - name: getapplicationhostingsettings
+        method: GET
+        description: Acquia Returns the Hosting Settings for This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings-keys
+      path: /applications/{applicationUuid}/settings/keys
+      operations:
+      - name: getapplicationlegacyproductkeyssettings
+        method: GET
+        description: Acquia Returns the Legacy Product Keys for This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-settings-ra
+      path: /applications/{applicationUuid}/settings/ra
+      operations:
+      - name: getapplicationremoteadministrationsettings
+        method: GET
+        description: Acquia Returns the Remote Administration Settings for This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putapplicationremoteadministrationsettings
+        method: PUT
+        description: Acquia Modifies the Remote Administration Settings for an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-settings-security
+      path: /applications/{applicationUuid}/settings/security
+      operations:
+      - name: getapplicationsecuritysettings
+        method: GET
+        description: Acquia Returns the Security Policy Settings for This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putapplicationsecuritysettings
+        method: PUT
+        description: Acquia Modifies the Security Policy Settings for an Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-tags
+      path: /applications/{applicationUuid}/tags
+      operations:
+      - name: getapplicationtags
+        method: GET
+        description: Acquia Returns a List of Application Tags Associated with This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postapplicationstags
+        method: POST
+        description: Acquia Creates a New Application Tag.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationUuid-tags-tagName
+      path: /applications/{applicationUuid}/tags/{tagName}
+      operations:
+      - name: deleteapplicationtags
+        method: DELETE
+        description: Acquia Deletes an Application Tag.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-tasks
+      path: /applications/{applicationUuid}/tasks
+      operations:
+      - name: getapplicationtasks
+        method: GET
+        description: Acquia Returns a List of Tasks Associated with This Application by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationUuid-teams
+      path: /applications/{applicationUuid}/teams
+      operations:
+      - name: getapplicationteams
+        method: GET
+        description: Acquia Returns a List of Teams Associated with This Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-applications-applications-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Applications — Applications. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: REST surface for applications.
+      operations:
+      - method: GET
+        name: getapplications
+        description: Acquia Return a List of Applications the Current User Has Access To.
+        call: cloud-applications-applications.getapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}
+      name: applications-applicationuuid
+      description: REST surface for applications-applicationUuid.
+      operations:
+      - method: GET
+        name: getapplicationbyuuid
+        description: Acquia Return Details About a Specific Application.
+        call: cloud-applications-applications.getapplicationbyuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putapplicationbyuuid
+        description: Acquia Renames an Application.
+        call: cloud-applications-applications.putapplicationbyuuid
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/artifacts
+      name: applications-applicationuuid-artifacts
+      description: REST surface for applications-applicationUuid-artifacts.
+      operations:
+      - method: GET
+        name: getartifactsbyapplicationuuid
+        description: Acquia Return Application Artifacts.
+        call: cloud-applications-applications.getartifactsbyapplicationuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/artifacts/{artifactid}
+      name: applications-applicationuuid-artifacts-artifactid
+      description: REST surface for applications-applicationUuid-artifacts-artifactId.
+      operations:
+      - method: GET
+        name: getartifactbyapplicationuuidandid
+        description: Acquia Return Details About a Specific Artifact.
+        call: cloud-applications-applications.getartifactbyapplicationuuidandid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/code
+      name: applications-applicationuuid-code
+      description: REST surface for applications-applicationUuid-code.
+      operations:
+      - method: GET
+        name: getcodebyapplicationuuid
+        description: Acquia Return Application Branches and Release Tags.
+        call: cloud-applications-applications.getcodebyapplicationuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/code-studio
+      name: applications-applicationuuid-code-studio
+      description: REST surface for applications-applicationUuid-code-studio.
+      operations:
+      - method: DELETE
+        name: deletecodestudioproject
+        description: Acquia Removes the Code Studio Project from an Application.
+        call: cloud-applications-applications.deletecodestudioproject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getcodestudioproject
+        description: Acquia Returns Details About the Code Studio Project for an Application.
+        call: cloud-applications-applications.getcodestudioproject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postcodestudioproject
+        description: Acquia Creates the Code Studio Project for an Application.
+        call: cloud-applications-applications.postcodestudioproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/databases
+      name: applications-applicationuuid-databases
+      description: REST surface for applications-applicationUuid-databases.
+      operations:
+      - method: GET
+        name: getapplicationdatabases
+        description: Acquia Returns a List Database Names for the Application.
+        call: cloud-applications-applications.getapplicationdatabases
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationdatabasecreate
+        description: Acquia Creates a Database.
+        call: cloud-applications-applications.postapplicationdatabasecreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/databases/{name}
+      name: applications-applicationuuid-databases-name
+      description: REST surface for applications-applicationUuid-databases-name.
+      operations:
+      - method: DELETE
+        name: postapplicationdatabasedelete
+        description: Acquia Drops (deletes) a Database.
+        call: cloud-applications-applications.postapplicationdatabasedelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/databases/{name}/actions/erase
+      name: applications-applicationuuid-databases-name-actions-erase
+      description: REST surface for applications-applicationUuid-databases-name-actions-erase.
+      operations:
+      - method: POST
+        name: postapplicationdatabaseerase
+        description: Acquia Erases (truncates) a Database.
+        call: cloud-applications-applications.postapplicationdatabaseerase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/email/domains
+      name: applications-applicationuuid-email-domains
+      description: REST surface for applications-applicationUuid-email-domains.
+      operations:
+      - method: GET
+        name: getapplicationemaildomains
+        description: Acquia Returns a List of Email Domains Associated with the Application.
+        call: cloud-applications-applications.getapplicationemaildomains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/email/domains/{domainregistrationuuid}/actions/associate
+      name: applications-applicationuuid-email-domains-domainregistrationuuid-actions-associ
+      description: REST surface for applications-applicationUuid-email-domains-domainRegistrationUuid-actions-associ.
+      operations:
+      - method: POST
+        name: postapplicationassociateemaildomain
+        description: Acquia Associates an Email Domain with an Application.
+        call: cloud-applications-applications.postapplicationassociateemaildomain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/email/domains/{domainregistrationuuid}/actions/disassociate
+      name: applications-applicationuuid-email-domains-domainregistrationuuid-actions-disass
+      description: REST surface for applications-applicationUuid-email-domains-domainRegistrationUuid-actions-disass.
+      operations:
+      - method: POST
+        name: postapplicationdisassociateemaildomain
+        description: Acquia Disassociates an Email Domain with an Application.
+        call: cloud-applications-applications.postapplicationdisassociateemaildomain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/environments
+      name: applications-applicationuuid-environments
+      description: REST surface for applications-applicationUuid-environments.
+      operations:
+      - method: GET
+        name: getapplicationenvironments
+        description: Acquia Returns a List of Environments Within This Application by its UUID.
+        call: cloud-applications-applications.getapplicationenvironments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationenvironments
+        description: Acquia Add a New Continuous Delivery Environment to an Application by the Application UUID.
+        call: cloud-applications-applications.postapplicationenvironments
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/features
+      name: applications-applicationuuid-features
+      description: REST surface for applications-applicationUuid-features.
+      operations:
+      - method: GET
+        name: getapplicationfeatures
+        description: Acquia Return Application Features.
+        call: cloud-applications-applications.getapplicationfeatures
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/ides
+      name: applications-applicationuuid-ides
+      description: REST surface for applications-applicationUuid-ides.
+      operations:
+      - method: GET
+        name: getapplicationides
+        description: Acquia Returns a List of Cloud IDEs Associated with This Application.
+        call: cloud-applications-applications.getapplicationides
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationside
+        description: Acquia Creates a New Cloud IDE.
+        call: cloud-applications-applications.postapplicationside
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/messages
+      name: applications-applicationuuid-messages
+      description: REST surface for applications-applicationUuid-messages.
+      operations:
+      - method: GET
+        name: getapplicationmessages
+        description: Acquia Returns a List of Messages Associated with This Application.
+        call: cloud-applications-applications.getapplicationmessages
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage
+      name: applications-applicationuuid-metrics-usage
+      description: REST surface for applications-applicationUuid-metrics-usage.
+      operations:
+      - method: GET
+        name: getapplicationsusagelinks
+        description: Acquia Retrieves Traversal Links for Detailed Metrics on Usage (views and Visits) of Your Application.
+        call: cloud-applications-applications.getapplicationsusagelinks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/data
+      name: applications-applicationuuid-metrics-usage-data
+      description: REST surface for applications-applicationUuid-metrics-usage-data.
+      operations:
+      - method: GET
+        name: getapplicationsusagedata
+        description: Acquia Retrieves Aggregate Usage Data for an Application, Filterable by Views or Visits and by Environment.
+        call: cloud-applications-applications.getapplicationsusagedata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/data-by-environment
+      name: applications-applicationuuid-metrics-usage-data-by-environment
+      description: REST surface for applications-applicationUuid-metrics-usage-data-by-environment.
+      operations:
+      - method: GET
+        name: getapplicationsusagedatabyenvironment
+        description: Acquia Retrieves Usage Data (views or Visits) for an Application, Broken Down by Environment.
+        call: cloud-applications-applications.getapplicationsusagedatabyenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/views-by-environment
+      name: applications-applicationuuid-metrics-usage-views-by-environment
+      description: REST surface for applications-applicationUuid-metrics-usage-views-by-environment.
+      operations:
+      - method: GET
+        name: getapplicationsusageviewsdatabyenvironment
+        description: Acquia Retrieves Views Data for an Application, Broken Down by Environment.
+        call: cloud-applications-applications.getapplicationsusageviewsdatabyenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/visits-by-environment
+      name: applications-applicationuuid-metrics-usage-visits-by-environment
+      description: REST surface for applications-applicationUuid-metrics-usage-visits-by-environment.
+      operations:
+      - method: GET
+        name: getapplicationsusagevisitsdatabyenvironment
+        description: Acquia Retrieves Visits Data for an Application, Broken Down by Environment.
+        call: cloud-applications-applications.getapplicationsusagevisitsdatabyenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/metrics/usage/{usagemetric}
+      name: applications-applicationuuid-metrics-usage-usagemetric
+      description: REST surface for applications-applicationUuid-metrics-usage-usageMetric.
+      operations:
+      - method: GET
+        name: getapplicationsusagemetricdata
+        description: Acquia Retrieves Aggregate Usage Metric Data (views or Visits) for an Application..
+        call: cloud-applications-applications.getapplicationsusagemetricdata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/notifications
+      name: applications-applicationuuid-notifications
+      description: REST surface for applications-applicationUuid-notifications.
+      operations:
+      - method: GET
+        name: getapplicationnotifications
+        description: Acquia Returns a List of Notifications Associated with This Application by its UUID.
+        call: cloud-applications-applications.getapplicationnotifications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/permissions
+      name: applications-applicationuuid-permissions
+      description: REST surface for applications-applicationUuid-permissions.
+      operations:
+      - method: GET
+        name: getapplicationpermissions
+        description: Acquia Returns a List of Permissions the User Has for This Application by its UUID.
+        call: cloud-applications-applications.getapplicationpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/search
+      name: applications-applicationuuid-search
+      description: REST surface for applications-applicationUuid-search.
+      operations:
+      - method: GET
+        name: getapplicationsearchlist
+        description: Acquia Returns a Traversal Endpoint for Search Entities for the Application.
+        call: cloud-applications-applications.getapplicationsearchlist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/search/config-sets
+      name: applications-applicationuuid-search-config-sets
+      description: REST surface for applications-applicationUuid-search-config-sets.
+      operations:
+      - method: GET
+        name: getapplicationsearchconfigurationsets
+        description: Acquia Returns a Collection of Search Configuration Sets for an Application
+        call: cloud-applications-applications.getapplicationsearchconfigurationsets
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationsearchconfigurationsets
+        description: Acquia Creates a Search Configuration Set for an Application.
+        call: cloud-applications-applications.postapplicationsearchconfigurationsets
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/search/config-sets/{configurationsetid}
+      name: applications-applicationuuid-search-config-sets-configurationsetid
+      description: REST surface for applications-applicationUuid-search-config-sets-configurationSetId.
+      operations:
+      - method: DELETE
+        name: deleteapplicationsearchconfigurationset
+        description: Acquia Removes and Deletes a Specific Search Configuration Set from an Application.
+        call: cloud-applications-applications.deleteapplicationsearchconfigurationset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getapplicationsearchconfigurationset
+        description: Acquia Returns a Search Configuration Set for an Application
+        call: cloud-applications-applications.getapplicationsearchconfigurationset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings
+      name: applications-applicationuuid-settings
+      description: REST surface for applications-applicationUuid-settings.
+      operations:
+      - method: GET
+        name: getapplicationsettings
+        description: Acquia Returns Available Settings for This Application.
+        call: cloud-applications-applications.getapplicationsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/hosting
+      name: applications-applicationuuid-settings-hosting
+      description: REST surface for applications-applicationUuid-settings-hosting.
+      operations:
+      - method: GET
+        name: getapplicationhostingsettings
+        description: Acquia Returns the Hosting Settings for This Application.
+        call: cloud-applications-applications.getapplicationhostingsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/keys
+      name: applications-applicationuuid-settings-keys
+      description: REST surface for applications-applicationUuid-settings-keys.
+      operations:
+      - method: GET
+        name: getapplicationlegacyproductkeyssettings
+        description: Acquia Returns the Legacy Product Keys for This Application.
+        call: cloud-applications-applications.getapplicationlegacyproductkeyssettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/ra
+      name: applications-applicationuuid-settings-ra
+      description: REST surface for applications-applicationUuid-settings-ra.
+      operations:
+      - method: GET
+        name: getapplicationremoteadministrationsettings
+        description: Acquia Returns the Remote Administration Settings for This Application.
+        call: cloud-applications-applications.getapplicationremoteadministrationsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putapplicationremoteadministrationsettings
+        description: Acquia Modifies the Remote Administration Settings for an Application.
+        call: cloud-applications-applications.putapplicationremoteadministrationsettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/settings/security
+      name: applications-applicationuuid-settings-security
+      description: REST surface for applications-applicationUuid-settings-security.
+      operations:
+      - method: GET
+        name: getapplicationsecuritysettings
+        description: Acquia Returns the Security Policy Settings for This Application.
+        call: cloud-applications-applications.getapplicationsecuritysettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putapplicationsecuritysettings
+        description: Acquia Modifies the Security Policy Settings for an Application.
+        call: cloud-applications-applications.putapplicationsecuritysettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/tags
+      name: applications-applicationuuid-tags
+      description: REST surface for applications-applicationUuid-tags.
+      operations:
+      - method: GET
+        name: getapplicationtags
+        description: Acquia Returns a List of Application Tags Associated with This Application.
+        call: cloud-applications-applications.getapplicationtags
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postapplicationstags
+        description: Acquia Creates a New Application Tag.
+        call: cloud-applications-applications.postapplicationstags
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/tags/{tagname}
+      name: applications-applicationuuid-tags-tagname
+      description: REST surface for applications-applicationUuid-tags-tagName.
+      operations:
+      - method: DELETE
+        name: deleteapplicationtags
+        description: Acquia Deletes an Application Tag.
+        call: cloud-applications-applications.deleteapplicationtags
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/tasks
+      name: applications-applicationuuid-tasks
+      description: REST surface for applications-applicationUuid-tasks.
+      operations:
+      - method: GET
+        name: getapplicationtasks
+        description: Acquia Returns a List of Tasks Associated with This Application by its UUID.
+        call: cloud-applications-applications.getapplicationtasks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationuuid}/teams
+      name: applications-applicationuuid-teams
+      description: REST surface for applications-applicationUuid-teams.
+      operations:
+      - method: GET
+        name: getapplicationteams
+        description: Acquia Returns a List of Teams Associated with This Application.
+        call: cloud-applications-applications.getapplicationteams
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-applications-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Applications — Applications. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: acquia-return-list-applications-current
+      description: Acquia Return a List of Applications the Current User Has Access To.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-details-about-specific
+      description: Acquia Return Details About a Specific Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationbyuuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-renames-application
+      description: Acquia Renames an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.putapplicationbyuuid
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-application-artifacts
+      description: Acquia Return Application Artifacts.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getartifactsbyapplicationuuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-details-about-specific-2
+      description: Acquia Return Details About a Specific Artifact.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getartifactbyapplicationuuidandid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-application-branches-and
+      description: Acquia Return Application Branches and Release Tags.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getcodebyapplicationuuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-removes-code-studio-project
+      description: Acquia Removes the Code Studio Project from an Application.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-applications-applications.deletecodestudioproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-details-about-code
+      description: Acquia Returns Details About the Code Studio Project for an Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getcodestudioproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-creates-code-studio-project
+      description: Acquia Creates the Code Studio Project for an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postcodestudioproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-database-names
+      description: Acquia Returns a List Database Names for the Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationdatabases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-creates-database
+      description: Acquia Creates a Database.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationdatabasecreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-drops-deletes-database
+      description: Acquia Drops (deletes) a Database.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-applications-applications.postapplicationdatabasedelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-erases-truncates-database
+      description: Acquia Erases (truncates) a Database.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationdatabaseerase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-email-domains
+      description: Acquia Returns a List of Email Domains Associated with the Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationemaildomains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-associates-email-domain-application
+      description: Acquia Associates an Email Domain with an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationassociateemaildomain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-disassociates-email-domain-application
+      description: Acquia Disassociates an Email Domain with an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationdisassociateemaildomain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-environments-within
+      description: Acquia Returns a List of Environments Within This Application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationenvironments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-add-new-continuous-delivery
+      description: Acquia Add a New Continuous Delivery Environment to an Application by the Application UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationenvironments
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-application-features
+      description: Acquia Return Application Features.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationfeatures
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-cloud-ides
+      description: Acquia Returns a List of Cloud IDEs Associated with This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationides
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-creates-new-cloud-ide
+      description: Acquia Creates a New Cloud IDE.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationside
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-messages-associated
+      description: Acquia Returns a List of Messages Associated with This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationmessages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-traversal-links-detailed
+      description: Acquia Retrieves Traversal Links for Detailed Metrics on Usage (views and Visits) of Your Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsusagelinks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-aggregate-usage-data
+      description: Acquia Retrieves Aggregate Usage Data for an Application, Filterable by Views or Visits and by Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsusagedata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-usage-data-views
+      description: Acquia Retrieves Usage Data (views or Visits) for an Application, Broken Down by Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsusagedatabyenvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-views-data-application
+      description: Acquia Retrieves Views Data for an Application, Broken Down by Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsusageviewsdatabyenvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-visits-data-application
+      description: Acquia Retrieves Visits Data for an Application, Broken Down by Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsusagevisitsdatabyenvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-aggregate-usage-metric
+      description: Acquia Retrieves Aggregate Usage Metric Data (views or Visits) for an Application..
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsusagemetricdata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-notifications-associated
+      description: Acquia Returns a List of Notifications Associated with This Application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationnotifications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-permissions-user
+      description: Acquia Returns a List of Permissions the User Has for This Application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-traversal-endpoint-search
+      description: Acquia Returns a Traversal Endpoint for Search Entities for the Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsearchlist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-collection-search-configuration
+      description: Acquia Returns a Collection of Search Configuration Sets for an Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsearchconfigurationsets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-creates-search-configuration-set
+      description: Acquia Creates a Search Configuration Set for an Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationsearchconfigurationsets
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-removes-and-deletes-specific
+      description: Acquia Removes and Deletes a Specific Search Configuration Set from an Application.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-applications-applications.deleteapplicationsearchconfigurationset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-search-configuration-set
+      description: Acquia Returns a Search Configuration Set for an Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsearchconfigurationset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-available-settings-this
+      description: Acquia Returns Available Settings for This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-hosting-settings-this
+      description: Acquia Returns the Hosting Settings for This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationhostingsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-legacy-product-keys
+      description: Acquia Returns the Legacy Product Keys for This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationlegacyproductkeyssettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-remote-administration-settings
+      description: Acquia Returns the Remote Administration Settings for This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationremoteadministrationsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-modifies-remote-administration-settings
+      description: Acquia Modifies the Remote Administration Settings for an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.putapplicationremoteadministrationsettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-security-policy-settings
+      description: Acquia Returns the Security Policy Settings for This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationsecuritysettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-modifies-security-policy-settings
+      description: Acquia Modifies the Security Policy Settings for an Application.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.putapplicationsecuritysettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-application-tags
+      description: Acquia Returns a List of Application Tags Associated with This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationtags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-creates-new-application-tag
+      description: Acquia Creates a New Application Tag.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-applications-applications.postapplicationstags
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-deletes-application-tag
+      description: Acquia Deletes an Application Tag.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-applications-applications.deleteapplicationtags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-tasks-associated
+      description: Acquia Returns a List of Tasks Associated with This Application by its UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationtasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-teams-associated
+      description: Acquia Returns a List of Teams Associated with This Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-applications-applications.getapplicationteams
+      outputParameters:
+      - type: object
+        mapping: $.

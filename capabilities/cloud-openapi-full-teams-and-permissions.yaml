@@ -1,0 +1,583 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Teams and Permissions
+  description: 'Acquia Cloud API Documentation — Teams and Permissions. 17 operations. Lead operation: Return a list of permissions..
+    Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Teams and Permissions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-teams-and-permissions
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Teams and Permissions business capability. Self-contained, no shared references.
+    resources:
+    - name: permissions
+      path: /permissions
+      operations:
+      - name: getpermissions
+        method: GET
+        description: Return a list of permissions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: roles-roleUuid
+      path: /roles/{roleUuid}
+      operations:
+      - name: getrole
+        method: GET
+        description: Return details about a specific role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleterole
+        method: DELETE
+        description: Deletes a specific role by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putrolebyuuid
+        method: PUT
+        description: Updates a role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams
+      path: /teams
+      operations:
+      - name: getteams
+        method: GET
+        description: Return teams the current user has access to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid
+      path: /teams/{teamUuid}
+      operations:
+      - name: getteam
+        method: GET
+        description: Return details about a specific team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putteamsname
+        method: PUT
+        description: Change the name of a team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteteam
+        method: DELETE
+        description: Deletes a specific team by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid-actions-leave
+      path: /teams/{teamUuid}/actions/leave
+      operations:
+      - name: postleaveteam
+        method: POST
+        description: Removes the current user from a team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid-applications
+      path: /teams/{teamUuid}/applications
+      operations:
+      - name: getteamapplications
+        method: GET
+        description: Returns a list of applications this team has access to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postteamaddapplication
+        method: POST
+        description: Adds an application to this team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams-teamUuid-applications-applicationUuid
+      path: /teams/{teamUuid}/applications/{applicationUuid}
+      operations:
+      - name: deleteteamsremoveapplication
+        method: DELETE
+        description: Removes the application from this team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid-invites
+      path: /teams/{teamUuid}/invites
+      operations:
+      - name: getteaminvites
+        method: GET
+        description: Returns a list of invitations to this team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postteamsinviteuser
+        method: POST
+        description: Invites a user to join a team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: teams-teamUuid-members
+      path: /teams/{teamUuid}/members
+      operations:
+      - name: getteammembers
+        method: GET
+        description: Returns a list of team members.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-teamUuid-members-userUuid
+      path: /teams/{teamUuid}/members/{userUuid}
+      operations:
+      - name: putteamsmember
+        method: PUT
+        description: Grant team roles to a member.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteteamsremovemember
+        method: DELETE
+        description: Remove a user from a team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-teams-and-permissions-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Teams and Permissions. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/permissions
+      name: permissions
+      description: REST surface for permissions.
+      operations:
+      - method: GET
+        name: getpermissions
+        description: Return a list of permissions.
+        call: cloud-openapi-full-teams-and-permissions.getpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/roles/{roleuuid}
+      name: roles-roleuuid
+      description: REST surface for roles-roleUuid.
+      operations:
+      - method: GET
+        name: getrole
+        description: Return details about a specific role.
+        call: cloud-openapi-full-teams-and-permissions.getrole
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterole
+        description: Deletes a specific role by its UUID.
+        call: cloud-openapi-full-teams-and-permissions.deleterole
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putrolebyuuid
+        description: Updates a role.
+        call: cloud-openapi-full-teams-and-permissions.putrolebyuuid
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams
+      name: teams
+      description: REST surface for teams.
+      operations:
+      - method: GET
+        name: getteams
+        description: Return teams the current user has access to.
+        call: cloud-openapi-full-teams-and-permissions.getteams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}
+      name: teams-teamuuid
+      description: REST surface for teams-teamUuid.
+      operations:
+      - method: GET
+        name: getteam
+        description: Return details about a specific team.
+        call: cloud-openapi-full-teams-and-permissions.getteam
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putteamsname
+        description: Change the name of a team.
+        call: cloud-openapi-full-teams-and-permissions.putteamsname
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteteam
+        description: Deletes a specific team by its UUID.
+        call: cloud-openapi-full-teams-and-permissions.deleteteam
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/actions/leave
+      name: teams-teamuuid-actions-leave
+      description: REST surface for teams-teamUuid-actions-leave.
+      operations:
+      - method: POST
+        name: postleaveteam
+        description: Removes the current user from a team.
+        call: cloud-openapi-full-teams-and-permissions.postleaveteam
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/applications
+      name: teams-teamuuid-applications
+      description: REST surface for teams-teamUuid-applications.
+      operations:
+      - method: GET
+        name: getteamapplications
+        description: Returns a list of applications this team has access to.
+        call: cloud-openapi-full-teams-and-permissions.getteamapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postteamaddapplication
+        description: Adds an application to this team.
+        call: cloud-openapi-full-teams-and-permissions.postteamaddapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/applications/{applicationuuid}
+      name: teams-teamuuid-applications-applicationuuid
+      description: REST surface for teams-teamUuid-applications-applicationUuid.
+      operations:
+      - method: DELETE
+        name: deleteteamsremoveapplication
+        description: Removes the application from this team.
+        call: cloud-openapi-full-teams-and-permissions.deleteteamsremoveapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/invites
+      name: teams-teamuuid-invites
+      description: REST surface for teams-teamUuid-invites.
+      operations:
+      - method: GET
+        name: getteaminvites
+        description: Returns a list of invitations to this team.
+        call: cloud-openapi-full-teams-and-permissions.getteaminvites
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postteamsinviteuser
+        description: Invites a user to join a team.
+        call: cloud-openapi-full-teams-and-permissions.postteamsinviteuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/members
+      name: teams-teamuuid-members
+      description: REST surface for teams-teamUuid-members.
+      operations:
+      - method: GET
+        name: getteammembers
+        description: Returns a list of team members.
+        call: cloud-openapi-full-teams-and-permissions.getteammembers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{teamuuid}/members/{useruuid}
+      name: teams-teamuuid-members-useruuid
+      description: REST surface for teams-teamUuid-members-userUuid.
+      operations:
+      - method: PUT
+        name: putteamsmember
+        description: Grant team roles to a member.
+        call: cloud-openapi-full-teams-and-permissions.putteamsmember
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteteamsremovemember
+        description: Remove a user from a team.
+        call: cloud-openapi-full-teams-and-permissions.deleteteamsremovemember
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-teams-and-permissions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Teams and Permissions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: return-list-permissions
+      description: Return a list of permissions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.getpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-details-about-specific-role
+      description: Return details about a specific role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.getrole
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-specific-role-its-uuid
+      description: Deletes a specific role by its UUID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.deleterole
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updates-role
+      description: Updates a role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.putrolebyuuid
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-teams-current-user-has
+      description: Return teams the current user has access to.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.getteams
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-details-about-specific-team
+      description: Return details about a specific team.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.getteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: change-name-team
+      description: Change the name of a team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.putteamsname
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-specific-team-its-uuid
+      description: Deletes a specific team by its UUID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.deleteteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removes-current-user-team
+      description: Removes the current user from a team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-teams-and-permissions.postleaveteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-applications-this-team
+      description: Returns a list of applications this team has access to.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.getteamapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: adds-application-this-team
+      description: Adds an application to this team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-teams-and-permissions.postteamaddapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removes-application-this-team
+      description: Removes the application from this team.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.deleteteamsremoveapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-invitations-this-team
+      description: Returns a list of invitations to this team.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.getteaminvites
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invites-user-join-team
+      description: Invites a user to join a team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-teams-and-permissions.postteamsinviteuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-team-members
+      description: Returns a list of team members.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.getteammembers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grant-team-roles-member
+      description: Grant team roles to a member.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.putteamsmember
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-user-team
+      description: Remove a user from a team.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-teams-and-permissions.deleteteamsremovemember
+      outputParameters:
+      - type: object
+        mapping: $.

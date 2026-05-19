@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Current system health
+  description: 'Acquia Cloud API Documentation — Current system health. 1 operations. Lead operation: Return the current system
+    health status.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Current system health
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-current-system-health
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Current system health business capability. Self-contained, no shared references.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: getsystemhealthstatus
+        method: GET
+        description: Return the current system health status.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-current-system-health-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Current system health. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: GET
+        name: getsystemhealthstatus
+        description: Return the current system health status.
+        call: cloud-openapi-full-current-system-health.getsystemhealthstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-current-system-health-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Current system health. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: return-current-system-health-status
+      description: Return the current system health status.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-current-system-health.getsystemhealthstatus
+      outputParameters:
+      - type: object
+        mapping: $.

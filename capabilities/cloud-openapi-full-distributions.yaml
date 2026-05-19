@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Distributions
+  description: 'Acquia Cloud API Documentation — Distributions. 2 operations. Lead operation: Return a list of Drupal distributions..
+    Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Distributions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-distributions
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Distributions business capability. Self-contained, no shared references.
+    resources:
+    - name: distributions
+      path: /distributions
+      operations:
+      - name: getdistributions
+        method: GET
+        description: Return a list of Drupal distributions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: distributions-name
+      path: /distributions/{name}
+      operations:
+      - name: getdistributionbyname
+        method: GET
+        description: Return details about a specific Drupal distribution.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-distributions-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Distributions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/distributions
+      name: distributions
+      description: REST surface for distributions.
+      operations:
+      - method: GET
+        name: getdistributions
+        description: Return a list of Drupal distributions.
+        call: cloud-openapi-full-distributions.getdistributions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/distributions/{name}
+      name: distributions-name
+      description: REST surface for distributions-name.
+      operations:
+      - method: GET
+        name: getdistributionbyname
+        description: Return details about a specific Drupal distribution.
+        call: cloud-openapi-full-distributions.getdistributionbyname
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-distributions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Distributions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: return-list-drupal-distributions
+      description: Return a list of Drupal distributions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-distributions.getdistributions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: return-details-about-specific-drupal
+      description: Return details about a specific Drupal distribution.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-distributions.getdistributionbyname
+      outputParameters:
+      - type: object
+        mapping: $.

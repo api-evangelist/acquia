@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Invite
+  description: 'Acquia Cloud API Documentation — Invite. 5 operations. Lead operation: Returns details about an invitation..
+    Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Invite
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-invite
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Invite business capability. Self-contained, no shared references.
+    resources:
+    - name: invites-token
+      path: /invites/{token}
+      operations:
+      - name: getinvitebytoken
+        method: GET
+        description: Returns details about an invitation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postinvitecancel
+        method: DELETE
+        description: Cancels an invitation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: invites-token-actions-accept
+      path: /invites/{token}/actions/accept
+      operations:
+      - name: postinviteacceptbytoken
+        method: POST
+        description: Accepts an invite.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: invites-token-actions-decline
+      path: /invites/{token}/actions/decline
+      operations:
+      - name: postinvitedecline
+        method: POST
+        description: Declines an invite.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: invites-token-actions-resend
+      path: /invites/{token}/actions/resend
+      operations:
+      - name: postinviteresend
+        method: POST
+        description: Resend an invite.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-invite-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Invite. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/invites/{token}
+      name: invites-token
+      description: REST surface for invites-token.
+      operations:
+      - method: GET
+        name: getinvitebytoken
+        description: Returns details about an invitation.
+        call: cloud-openapi-full-invite.getinvitebytoken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: postinvitecancel
+        description: Cancels an invitation.
+        call: cloud-openapi-full-invite.postinvitecancel
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/invites/{token}/actions/accept
+      name: invites-token-actions-accept
+      description: REST surface for invites-token-actions-accept.
+      operations:
+      - method: POST
+        name: postinviteacceptbytoken
+        description: Accepts an invite.
+        call: cloud-openapi-full-invite.postinviteacceptbytoken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/invites/{token}/actions/decline
+      name: invites-token-actions-decline
+      description: REST surface for invites-token-actions-decline.
+      operations:
+      - method: POST
+        name: postinvitedecline
+        description: Declines an invite.
+        call: cloud-openapi-full-invite.postinvitedecline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/invites/{token}/actions/resend
+      name: invites-token-actions-resend
+      description: REST surface for invites-token-actions-resend.
+      operations:
+      - method: POST
+        name: postinviteresend
+        description: Resend an invite.
+        call: cloud-openapi-full-invite.postinviteresend
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-invite-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Invite. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: returns-details-about-invitation
+      description: Returns details about an invitation.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-invite.getinvitebytoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancels-invitation
+      description: Cancels an invitation.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-invite.postinvitecancel
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: accepts-invite
+      description: Accepts an invite.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-invite.postinviteacceptbytoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declines-invite
+      description: Declines an invite.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-invite.postinvitedecline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resend-invite
+      description: Resend an invite.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-invite.postinviteresend
+      outputParameters:
+      - type: object
+        mapping: $.

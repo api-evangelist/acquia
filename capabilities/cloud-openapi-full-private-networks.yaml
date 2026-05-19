@@ -1,0 +1,688 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Private Networks
+  description: 'Acquia Cloud API Documentation — Private Networks. 20 operations. Lead operation: Create a new Private Network.
+    Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Private Networks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-private-networks
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Private Networks business capability. Self-contained, no shared references.
+    resources:
+    - name: private-networks
+      path: /private-networks
+      operations:
+      - name: createprivatenetwork
+        method: POST
+        description: Create a new Private Network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: private-networks-privateNetworkId
+      path: /private-networks/{privateNetworkId}
+      operations:
+      - name: getprivatenetwork
+        method: GET
+        description: Retrieve a Private Network by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateprivatenetwork
+        method: PUT
+        description: Update a Private Network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteprivatenetwork
+        method: DELETE
+        description: Delete a Private Network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: private-networks-privateNetworkId-connections
+      path: /private-networks/{privateNetworkId}/connections
+      operations:
+      - name: updateprivatenetworkconnections
+        method: PUT
+        description: Update Connections for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: getprivatenetworkconnections
+        method: GET
+        description: Get Connections for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: private-networks-privateNetworkId-connections-vpc-peers
+      path: /private-networks/{privateNetworkId}/connections/vpc-peers
+      operations:
+      - name: addvpcpeertoprivatenetwork
+        method: POST
+        description: Add a new VPC Peer to an existing private network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: getallvpcpeersfromprivatenetwork
+        method: GET
+        description: Get VPC Peers for a Private Network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: private-networks-privateNetworkId-connections-vpc-peers-vpcPeerId
+      path: /private-networks/{privateNetworkId}/connections/vpc-peers/{vpcPeerId}
+      operations:
+      - name: getvpcpeerfromprivatenetwork
+        method: GET
+        description: Get a specific VPC Peer from a private network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletevpcpeerfromprivatenetwork
+        method: DELETE
+        description: Delete a VPC Peer for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: private-networks-privateNetworkId-connections-vpns
+      path: /private-networks/{privateNetworkId}/connections/vpns
+      operations:
+      - name: addvpntoprivatenetwork
+        method: POST
+        description: Add a new VPN to an existing private network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getallvpnsfromprivatenetwork
+        method: GET
+        description: Get VPNs for a Private Network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: private-networks-privateNetworkId-connections-vpns-vpnId
+      path: /private-networks/{privateNetworkId}/connections/vpns/{vpnId}
+      operations:
+      - name: getvpnfromprivatenetwork
+        method: GET
+        description: Retrieve a VPN for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatevpninprivatenetwork
+        method: PUT
+        description: Create or update a VPN for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletevpnfromprivatenetwork
+        method: DELETE
+        description: Delete a VPN for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: private-networks-privateNetworkId-ingress
+      path: /private-networks/{privateNetworkId}/ingress
+      operations:
+      - name: updateprivatenetworkingress
+        method: PUT
+        description: Update Ingress for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getingressfromprivatenetwork
+        method: GET
+        description: Get Ingress for a Private Network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: private-networks-privateNetworkId-isolation
+      path: /private-networks/{privateNetworkId}/isolation
+      operations:
+      - name: getprivatenetworkisolation
+        method: GET
+        description: Get Isolation for a Private Network.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateprivatenetworkisolation
+        method: PUT
+        description: Update isolation settings of a private network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscriptions-subscriptionId-private-networks
+      path: /subscriptions/{subscriptionId}/private-networks
+      operations:
+      - name: getprivatenetworksbysubscription
+        method: GET
+        description: List Private Networks for a Subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-private-networks-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Private Networks. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/private-networks
+      name: private-networks
+      description: REST surface for private-networks.
+      operations:
+      - method: POST
+        name: createprivatenetwork
+        description: Create a new Private Network
+        call: cloud-openapi-full-private-networks.createprivatenetwork
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}
+      name: private-networks-privatenetworkid
+      description: REST surface for private-networks-privateNetworkId.
+      operations:
+      - method: GET
+        name: getprivatenetwork
+        description: Retrieve a Private Network by ID
+        call: cloud-openapi-full-private-networks.getprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateprivatenetwork
+        description: Update a Private Network
+        call: cloud-openapi-full-private-networks.updateprivatenetwork
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteprivatenetwork
+        description: Delete a Private Network
+        call: cloud-openapi-full-private-networks.deleteprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}/connections
+      name: private-networks-privatenetworkid-connections
+      description: REST surface for private-networks-privateNetworkId-connections.
+      operations:
+      - method: PUT
+        name: updateprivatenetworkconnections
+        description: Update Connections for a Private Network.
+        call: cloud-openapi-full-private-networks.updateprivatenetworkconnections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getprivatenetworkconnections
+        description: Get Connections for a Private Network.
+        call: cloud-openapi-full-private-networks.getprivatenetworkconnections
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}/connections/vpc-peers
+      name: private-networks-privatenetworkid-connections-vpc-peers
+      description: REST surface for private-networks-privateNetworkId-connections-vpc-peers.
+      operations:
+      - method: POST
+        name: addvpcpeertoprivatenetwork
+        description: Add a new VPC Peer to an existing private network
+        call: cloud-openapi-full-private-networks.addvpcpeertoprivatenetwork
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getallvpcpeersfromprivatenetwork
+        description: Get VPC Peers for a Private Network
+        call: cloud-openapi-full-private-networks.getallvpcpeersfromprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}/connections/vpc-peers/{vpcpeerid}
+      name: private-networks-privatenetworkid-connections-vpc-peers-vpcpeerid
+      description: REST surface for private-networks-privateNetworkId-connections-vpc-peers-vpcPeerId.
+      operations:
+      - method: GET
+        name: getvpcpeerfromprivatenetwork
+        description: Get a specific VPC Peer from a private network
+        call: cloud-openapi-full-private-networks.getvpcpeerfromprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletevpcpeerfromprivatenetwork
+        description: Delete a VPC Peer for a Private Network.
+        call: cloud-openapi-full-private-networks.deletevpcpeerfromprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}/connections/vpns
+      name: private-networks-privatenetworkid-connections-vpns
+      description: REST surface for private-networks-privateNetworkId-connections-vpns.
+      operations:
+      - method: POST
+        name: addvpntoprivatenetwork
+        description: Add a new VPN to an existing private network
+        call: cloud-openapi-full-private-networks.addvpntoprivatenetwork
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getallvpnsfromprivatenetwork
+        description: Get VPNs for a Private Network
+        call: cloud-openapi-full-private-networks.getallvpnsfromprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}/connections/vpns/{vpnid}
+      name: private-networks-privatenetworkid-connections-vpns-vpnid
+      description: REST surface for private-networks-privateNetworkId-connections-vpns-vpnId.
+      operations:
+      - method: GET
+        name: getvpnfromprivatenetwork
+        description: Retrieve a VPN for a Private Network.
+        call: cloud-openapi-full-private-networks.getvpnfromprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatevpninprivatenetwork
+        description: Create or update a VPN for a Private Network.
+        call: cloud-openapi-full-private-networks.updatevpninprivatenetwork
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletevpnfromprivatenetwork
+        description: Delete a VPN for a Private Network.
+        call: cloud-openapi-full-private-networks.deletevpnfromprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}/ingress
+      name: private-networks-privatenetworkid-ingress
+      description: REST surface for private-networks-privateNetworkId-ingress.
+      operations:
+      - method: PUT
+        name: updateprivatenetworkingress
+        description: Update Ingress for a Private Network.
+        call: cloud-openapi-full-private-networks.updateprivatenetworkingress
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getingressfromprivatenetwork
+        description: Get Ingress for a Private Network
+        call: cloud-openapi-full-private-networks.getingressfromprivatenetwork
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/private-networks/{privatenetworkid}/isolation
+      name: private-networks-privatenetworkid-isolation
+      description: REST surface for private-networks-privateNetworkId-isolation.
+      operations:
+      - method: GET
+        name: getprivatenetworkisolation
+        description: Get Isolation for a Private Network.
+        call: cloud-openapi-full-private-networks.getprivatenetworkisolation
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateprivatenetworkisolation
+        description: Update isolation settings of a private network
+        call: cloud-openapi-full-private-networks.updateprivatenetworkisolation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/private-networks
+      name: subscriptions-subscriptionid-private-networks
+      description: REST surface for subscriptions-subscriptionId-private-networks.
+      operations:
+      - method: GET
+        name: getprivatenetworksbysubscription
+        description: List Private Networks for a Subscription
+        call: cloud-openapi-full-private-networks.getprivatenetworksbysubscription
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-private-networks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Private Networks. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: create-new-private-network
+      description: Create a new Private Network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-private-networks.createprivatenetwork
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-private-network-id
+      description: Retrieve a Private Network by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-private-network
+      description: Update a Private Network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.updateprivatenetwork
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-private-network
+      description: Delete a Private Network
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-private-networks.deleteprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-connections-private-network
+      description: Update Connections for a Private Network.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.updateprivatenetworkconnections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-connections-private-network
+      description: Get Connections for a Private Network.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getprivatenetworkconnections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-vpc-peer-existing
+      description: Add a new VPC Peer to an existing private network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-private-networks.addvpcpeertoprivatenetwork
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-vpc-peers-private-network
+      description: Get VPC Peers for a Private Network
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getallvpcpeersfromprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-vpc-peer-private
+      description: Get a specific VPC Peer from a private network
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getvpcpeerfromprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-vpc-peer-private-network
+      description: Delete a VPC Peer for a Private Network.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-private-networks.deletevpcpeerfromprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-vpn-existing-private
+      description: Add a new VPN to an existing private network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-private-networks.addvpntoprivatenetwork
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-vpns-private-network
+      description: Get VPNs for a Private Network
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getallvpnsfromprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-vpn-private-network
+      description: Retrieve a VPN for a Private Network.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getvpnfromprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-vpn-private-network
+      description: Create or update a VPN for a Private Network.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.updatevpninprivatenetwork
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-vpn-private-network
+      description: Delete a VPN for a Private Network.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-private-networks.deletevpnfromprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-ingress-private-network
+      description: Update Ingress for a Private Network.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.updateprivatenetworkingress
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ingress-private-network
+      description: Get Ingress for a Private Network
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getingressfromprivatenetwork
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-isolation-private-network
+      description: Get Isolation for a Private Network.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getprivatenetworkisolation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-isolation-settings-private-network
+      description: Update isolation settings of a private network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.updateprivatenetworkisolation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-private-networks-subscription
+      description: List Private Networks for a Subscription
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-private-networks.getprivatenetworksbysubscription
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,543 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Codebases
+  description: 'Acquia Cloud API Documentation — Codebases. 12 operations. Lead operation: Retrieves a codebase details linked
+    to the specified application.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Codebases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-codebases
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Codebases business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationId-codebase
+      path: /applications/{applicationId}/codebase
+      operations:
+      - name: apiapplicationsapplicationidcodebaseget
+        method: GET
+        description: Retrieves a codebase details linked to the specified application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationId
+          in: path
+          type: string
+          description: The entity's universally unique identifier.
+          required: true
+    - name: codebases
+      path: /codebases
+      operations:
+      - name: apicodebasesgetcollection
+        method: GET
+        description: Retrieves a list of codebases accessible by the user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: codebases-codebaseId
+      path: /codebases/{codebaseId}
+      operations:
+      - name: getcodebasebyid
+        method: GET
+        description: Retrieves a codebase details by its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          description: The codebase entity's unique identifier.
+          required: true
+      - name: apicodebasescodebaseidput
+        method: PUT
+        description: Update a codebase details by its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          description: The codebase entity's unique identifier.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: apicodebasescodebaseiddelete
+        method: DELETE
+        description: Delete a codebase by its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          description: The codebase entity's unique identifier.
+          required: true
+    - name: codebases-codebaseId-bulk-code-switch
+      path: /codebases/{codebaseId}/bulk-code-switch
+      operations:
+      - name: apicodebasescodebaseidbulkcodeswitchgetcollection
+        method: GET
+        description: Retrieves a list of bulk code switches details performed on a codebase.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          required: true
+        - name: offset
+          in: query
+          type: integer
+          description: The collection page number
+        - name: limit
+          in: query
+          type: integer
+          description: The number of items per page
+      - name: createbulkcodeswitchresource
+        method: POST
+        description: Starts a new Bulk Code Switch for a codebase.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          description: The codebase entity's unique identifier.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: codebases-codebaseId-bulk-code-switch-bulkCodeSwitchId
+      path: /codebases/{codebaseId}/bulk-code-switch/{bulkCodeSwitchId}
+      operations:
+      - name: getbulkcodeswitchresource
+        method: GET
+        description: Retrieves bulk code switch details by id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          description: The codebase entity's unique identifier.
+          required: true
+        - name: bulkCodeSwitchId
+          in: path
+          type: string
+          description: The entity's universally unique identifier.
+          required: true
+    - name: codebases-codebaseId-references
+      path: /codebases/{codebaseId}/references
+      operations:
+      - name: getreferencesbycodebase
+        method: GET
+        description: Retrieves a list of git references by codebase.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          description: The codebase entity's unique identifier.
+          required: true
+    - name: codebases-codebaseId-references-referenceName
+      path: /codebases/{codebaseId}/references/{referenceName}
+      operations:
+      - name: getsinglereference
+        method: GET
+        description: Retrieves a single git reference data for the given codebase.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: codebaseId
+          in: path
+          type: string
+          description: The codebase entity's unique identifier.
+          required: true
+        - name: referenceName
+          in: path
+          type: string
+          description: The reference name.
+          required: true
+    - name: subscriptions-subscriptionId-codebases
+      path: /subscriptions/{subscriptionId}/codebases
+      operations:
+      - name: subscriptioncodebases
+        method: GET
+        description: Retrieves a list of codebases by subscription ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: subscriptionId
+          in: path
+          type: string
+          description: The entity's universally unique identifier.
+          required: true
+      - name: apisubscriptionssubscriptionidcodebasesoptions
+        method: OPTIONS
+        description: Gets supported regions for a new codebase.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: subscriptionId
+          in: path
+          type: string
+          description: The entity's universally unique identifier.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-codebases-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Codebases. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationid}/codebase
+      name: applications-applicationid-codebase
+      description: REST surface for applications-applicationId-codebase.
+      operations:
+      - method: GET
+        name: apiapplicationsapplicationidcodebaseget
+        description: Retrieves a codebase details linked to the specified application.
+        call: cloud-openapi-full-codebases.apiapplicationsapplicationidcodebaseget
+        with:
+          applicationId: rest.applicationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/codebases
+      name: codebases
+      description: REST surface for codebases.
+      operations:
+      - method: GET
+        name: apicodebasesgetcollection
+        description: Retrieves a list of codebases accessible by the user.
+        call: cloud-openapi-full-codebases.apicodebasesgetcollection
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/codebases/{codebaseid}
+      name: codebases-codebaseid
+      description: REST surface for codebases-codebaseId.
+      operations:
+      - method: GET
+        name: getcodebasebyid
+        description: Retrieves a codebase details by its ID.
+        call: cloud-openapi-full-codebases.getcodebasebyid
+        with:
+          codebaseId: rest.codebaseId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: apicodebasescodebaseidput
+        description: Update a codebase details by its ID.
+        call: cloud-openapi-full-codebases.apicodebasescodebaseidput
+        with:
+          codebaseId: rest.codebaseId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: apicodebasescodebaseiddelete
+        description: Delete a codebase by its ID.
+        call: cloud-openapi-full-codebases.apicodebasescodebaseiddelete
+        with:
+          codebaseId: rest.codebaseId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/codebases/{codebaseid}/bulk-code-switch
+      name: codebases-codebaseid-bulk-code-switch
+      description: REST surface for codebases-codebaseId-bulk-code-switch.
+      operations:
+      - method: GET
+        name: apicodebasescodebaseidbulkcodeswitchgetcollection
+        description: Retrieves a list of bulk code switches details performed on a codebase.
+        call: cloud-openapi-full-codebases.apicodebasescodebaseidbulkcodeswitchgetcollection
+        with:
+          codebaseId: rest.codebaseId
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createbulkcodeswitchresource
+        description: Starts a new Bulk Code Switch for a codebase.
+        call: cloud-openapi-full-codebases.createbulkcodeswitchresource
+        with:
+          codebaseId: rest.codebaseId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/codebases/{codebaseid}/bulk-code-switch/{bulkcodeswitchid}
+      name: codebases-codebaseid-bulk-code-switch-bulkcodeswitchid
+      description: REST surface for codebases-codebaseId-bulk-code-switch-bulkCodeSwitchId.
+      operations:
+      - method: GET
+        name: getbulkcodeswitchresource
+        description: Retrieves bulk code switch details by id.
+        call: cloud-openapi-full-codebases.getbulkcodeswitchresource
+        with:
+          codebaseId: rest.codebaseId
+          bulkCodeSwitchId: rest.bulkCodeSwitchId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/codebases/{codebaseid}/references
+      name: codebases-codebaseid-references
+      description: REST surface for codebases-codebaseId-references.
+      operations:
+      - method: GET
+        name: getreferencesbycodebase
+        description: Retrieves a list of git references by codebase.
+        call: cloud-openapi-full-codebases.getreferencesbycodebase
+        with:
+          codebaseId: rest.codebaseId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/codebases/{codebaseid}/references/{referencename}
+      name: codebases-codebaseid-references-referencename
+      description: REST surface for codebases-codebaseId-references-referenceName.
+      operations:
+      - method: GET
+        name: getsinglereference
+        description: Retrieves a single git reference data for the given codebase.
+        call: cloud-openapi-full-codebases.getsinglereference
+        with:
+          codebaseId: rest.codebaseId
+          referenceName: rest.referenceName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/codebases
+      name: subscriptions-subscriptionid-codebases
+      description: REST surface for subscriptions-subscriptionId-codebases.
+      operations:
+      - method: GET
+        name: subscriptioncodebases
+        description: Retrieves a list of codebases by subscription ID.
+        call: cloud-openapi-full-codebases.subscriptioncodebases
+        with:
+          subscriptionId: rest.subscriptionId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: OPTIONS
+        name: apisubscriptionssubscriptionidcodebasesoptions
+        description: Gets supported regions for a new codebase.
+        call: cloud-openapi-full-codebases.apisubscriptionssubscriptionidcodebasesoptions
+        with:
+          subscriptionId: rest.subscriptionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-codebases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Codebases. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: retrieves-codebase-details-linked-specified
+      description: Retrieves a codebase details linked to the specified application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.apiapplicationsapplicationidcodebaseget
+      with:
+        applicationId: tools.applicationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-list-codebases-accessible-user
+      description: Retrieves a list of codebases accessible by the user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.apicodebasesgetcollection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-codebase-details-its-id
+      description: Retrieves a codebase details by its ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.getcodebasebyid
+      with:
+        codebaseId: tools.codebaseId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-codebase-details-its-id
+      description: Update a codebase details by its ID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.apicodebasescodebaseidput
+      with:
+        codebaseId: tools.codebaseId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-codebase-its-id
+      description: Delete a codebase by its ID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-codebases.apicodebasescodebaseiddelete
+      with:
+        codebaseId: tools.codebaseId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-list-bulk-code-switches
+      description: Retrieves a list of bulk code switches details performed on a codebase.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.apicodebasescodebaseidbulkcodeswitchgetcollection
+      with:
+        codebaseId: tools.codebaseId
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: starts-new-bulk-code-switch
+      description: Starts a new Bulk Code Switch for a codebase.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-codebases.createbulkcodeswitchresource
+      with:
+        codebaseId: tools.codebaseId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-bulk-code-switch-details
+      description: Retrieves bulk code switch details by id.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.getbulkcodeswitchresource
+      with:
+        codebaseId: tools.codebaseId
+        bulkCodeSwitchId: tools.bulkCodeSwitchId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-list-git-references-codebase
+      description: Retrieves a list of git references by codebase.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.getreferencesbycodebase
+      with:
+        codebaseId: tools.codebaseId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-single-git-reference-data
+      description: Retrieves a single git reference data for the given codebase.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.getsinglereference
+      with:
+        codebaseId: tools.codebaseId
+        referenceName: tools.referenceName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieves-list-codebases-subscription-id
+      description: Retrieves a list of codebases by subscription ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-codebases.subscriptioncodebases
+      with:
+        subscriptionId: tools.subscriptionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-supported-regions-new-codebase
+      description: Gets supported regions for a new codebase.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-codebases.apisubscriptionssubscriptionidcodebasesoptions
+      with:
+        subscriptionId: tools.subscriptionId
+      outputParameters:
+      - type: object
+        mapping: $.

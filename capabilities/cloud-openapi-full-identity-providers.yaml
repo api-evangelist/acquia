@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API Documentation — Identity Providers
+  description: 'Acquia Cloud API Documentation — Identity Providers. 6 operations. Lead operation: Returns a list of identity
+    providers for a user.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Identity Providers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openapi-full-identity-providers
+    baseUri: ''
+    description: Acquia Cloud API Documentation — Identity Providers business capability. Self-contained, no shared references.
+    resources:
+    - name: identity-providers
+      path: /identity-providers
+      operations:
+      - name: getidentityproviders
+        method: GET
+        description: Returns a list of identity providers for a user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: identity-providers-identityProviderUuid
+      path: /identity-providers/{identityProviderUuid}
+      operations:
+      - name: getidentityprovider
+        method: GET
+        description: Returns a specific identity provider by UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putidentityprovider
+        method: PUT
+        description: Modifies an identity provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteidentityprovider
+        method: DELETE
+        description: Deletes a specific identity provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: identity-providers-identityProviderUuid-actions-disable
+      path: /identity-providers/{identityProviderUuid}/actions/disable
+      operations:
+      - name: postdisableidentityprovider
+        method: POST
+        description: Disables an identity provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: identity-providers-identityProviderUuid-actions-enable
+      path: /identity-providers/{identityProviderUuid}/actions/enable
+      operations:
+      - name: postenableidentityprovider
+        method: POST
+        description: Enables an identity provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openapi-full-identity-providers-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API Documentation — Identity Providers. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/identity-providers
+      name: identity-providers
+      description: REST surface for identity-providers.
+      operations:
+      - method: GET
+        name: getidentityproviders
+        description: Returns a list of identity providers for a user.
+        call: cloud-openapi-full-identity-providers.getidentityproviders
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/identity-providers/{identityprovideruuid}
+      name: identity-providers-identityprovideruuid
+      description: REST surface for identity-providers-identityProviderUuid.
+      operations:
+      - method: GET
+        name: getidentityprovider
+        description: Returns a specific identity provider by UUID.
+        call: cloud-openapi-full-identity-providers.getidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putidentityprovider
+        description: Modifies an identity provider by its UUID.
+        call: cloud-openapi-full-identity-providers.putidentityprovider
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteidentityprovider
+        description: Deletes a specific identity provider by its UUID.
+        call: cloud-openapi-full-identity-providers.deleteidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/identity-providers/{identityprovideruuid}/actions/disable
+      name: identity-providers-identityprovideruuid-actions-disable
+      description: REST surface for identity-providers-identityProviderUuid-actions-disable.
+      operations:
+      - method: POST
+        name: postdisableidentityprovider
+        description: Disables an identity provider by its UUID.
+        call: cloud-openapi-full-identity-providers.postdisableidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/identity-providers/{identityprovideruuid}/actions/enable
+      name: identity-providers-identityprovideruuid-actions-enable
+      description: REST surface for identity-providers-identityProviderUuid-actions-enable.
+      operations:
+      - method: POST
+        name: postenableidentityprovider
+        description: Enables an identity provider by its UUID.
+        call: cloud-openapi-full-identity-providers.postenableidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openapi-full-identity-providers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API Documentation — Identity Providers. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: returns-list-identity-providers-user
+      description: Returns a list of identity providers for a user.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-identity-providers.getidentityproviders
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-specific-identity-provider-uuid
+      description: Returns a specific identity provider by UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-identity-providers.getidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modifies-identity-provider-its-uuid
+      description: Modifies an identity provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-openapi-full-identity-providers.putidentityprovider
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-specific-identity-provider-its
+      description: Deletes a specific identity provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-openapi-full-identity-providers.deleteidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disables-identity-provider-its-uuid
+      description: Disables an identity provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-identity-providers.postdisableidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enables-identity-provider-its-uuid
+      description: Enables an identity provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openapi-full-identity-providers.postenableidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.

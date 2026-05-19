@@ -1,0 +1,1017 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Subscriptions — Subscriptions
+  description: 'Acquia Cloud API - Subscriptions — Subscriptions. 31 operations. Lead operation: Acquia Return a List of Subscription..
+    Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-subscriptions-subscriptions
+    baseUri: ''
+    description: Acquia Cloud API - Subscriptions — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions
+      path: /subscriptions
+      operations:
+      - name: getsubscriptions
+        method: GET
+        description: Acquia Return a List of Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid
+      path: /subscriptions/{subscriptionUuid}
+      operations:
+      - name: getsubscription
+        method: GET
+        description: Acquia Return Details About a Specific Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putsubscription
+        method: PUT
+        description: Acquia Modifies a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscriptions-subscriptionUuid-applications
+      path: /subscriptions/{subscriptionUuid}/applications
+      operations:
+      - name: getsubscriptionapplications
+        method: GET
+        description: Acquia Provides a List of Applications That Are a Part of the Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-code-studio
+      path: /subscriptions/{subscriptionUuid}/code-studio
+      operations:
+      - name: getcodestudiosubscriptionmetadata
+        method: GET
+        description: Acquia Retrieves Code Studio Metadata for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: optionscodestudio
+        method: OPTIONS
+        description: Acquia Displays Code Studio Options for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-code-studio-actions-enable
+      path: /subscriptions/{subscriptionUuid}/code-studio/actions/enable
+      operations:
+      - name: postenablecodestudio
+        method: POST
+        description: Acquia Enables Code Studio for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-code-studio-applications
+      path: /subscriptions/{subscriptionUuid}/code-studio/applications
+      operations:
+      - name: getcodestudioapplications
+        method: GET
+        description: Acquia Retrieves a List of Code Studio Enabled Applications for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-code-studio-users
+      path: /subscriptions/{subscriptionUuid}/code-studio/users
+      operations:
+      - name: getcodestudiousers
+        method: GET
+        description: Acquia Retrieves a List of Users Assigned to Code Studio for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postcodestudiousers
+        method: POST
+        description: Acquia Assigns a User to a Code Studio Seat for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscriptions-subscriptionUuid-code-studio-users-userUuid
+      path: /subscriptions/{subscriptionUuid}/code-studio/users/{userUuid}
+      operations:
+      - name: deletecodestudiouser
+        method: DELETE
+        description: Acquia Unassigns a User from a Code Studio Seat.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getcodestudiouser
+        method: GET
+        description: Acquia Retrieves Details About a Specific Code Studio User.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-domains
+      path: /subscriptions/{subscriptionUuid}/domains
+      operations:
+      - name: getsubscriptiondomainregistrations
+        method: GET
+        description: Acquia Returns a List of Domains Registered with This Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postsubscriptiondomainregistration
+        method: POST
+        description: Acquia Registers a Domain with This Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscriptions-subscriptionUuid-domains-domainRegistrationUuid
+      path: /subscriptions/{subscriptionUuid}/domains/{domainRegistrationUuid}
+      operations:
+      - name: deletesubscriptiondomainregistration
+        method: DELETE
+        description: Acquia Unregisters a Domain Registered with This Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getsubscriptiondomainregistration
+        method: GET
+        description: Acquia Returns a Speicific Domain Registered with This Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-domains-domainRegistrationUuid-actions-verify
+      path: /subscriptions/{subscriptionUuid}/domains/{domainRegistrationUuid}/actions/verify
+      operations:
+      - name: postsubscriptionverifydomainregistration
+        method: POST
+        description: Acquia Triggers Re-verification and Update to the Domain Verification Status.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-entitlements
+      path: /subscriptions/{subscriptionUuid}/entitlements
+      operations:
+      - name: getsubscriptionentitlements
+        method: GET
+        description: Acquia Provides a List of Entitlements That Are a Part of the Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-ides
+      path: /subscriptions/{subscriptionUuid}/ides
+      operations:
+      - name: getsubscriptionides
+        method: GET
+        description: Acquia Returns a List of Cloud IDEs Associated with This Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-metrics-usage
+      path: /subscriptions/{subscriptionUuid}/metrics/usage
+      operations:
+      - name: getsubscriptionsusagelinks
+        method: GET
+        description: Acquia Retrieves Traversal Links for a Subscription's Usage Data.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-metrics-usage-data
+      path: /subscriptions/{subscriptionUuid}/metrics/usage/data
+      operations:
+      - name: getsubscriptionsusagedata
+        method: GET
+        description: Acquia Retrieves Aggregate Usage Data for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-metrics-usage-data-by-application
+      path: /subscriptions/{subscriptionUuid}/metrics/usage/data-by-application
+      operations:
+      - name: getsubscriptionsusagedatabyapplication
+        method: GET
+        description: Acquia Retrieves Usage Data for a Subscription, Broken Down by Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-metrics-usage-views-by-application
+      path: /subscriptions/{subscriptionUuid}/metrics/usage/views-by-application
+      operations:
+      - name: getsubscriptionsusageviewsdatabyapplication
+        method: GET
+        description: Acquia Retrieves Views Data for a Subscription, Broken Down by Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-metrics-usage-visits-by-application
+      path: /subscriptions/{subscriptionUuid}/metrics/usage/visits-by-application
+      operations:
+      - name: getsubscriptionsusagevisitsdatabyapplication
+        method: GET
+        description: Acquia Retrieves Visits Data for a Subscription, Broken Down by Application.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-metrics-usage-usageMetric
+      path: /subscriptions/{subscriptionUuid}/metrics/usage/{usageMetric}
+      operations:
+      - name: getsubscriptionsusagemetricdata
+        method: GET
+        description: Acquia Retrieves Aggregate Usage Metric Data for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-shield-acl
+      path: /subscriptions/{subscriptionUuid}/shield-acl
+      operations:
+      - name: getshieldacl
+        method: GET
+        description: Acquia Provides a List of Shield ACL Rules.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postshieldacl
+        method: POST
+        description: Acquia Creates a Shield ACL Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscriptions-subscriptionUuid-shield-acl-actions-reset
+      path: /subscriptions/{subscriptionUuid}/shield-acl/actions/reset
+      operations:
+      - name: postresetshieldacl
+        method: POST
+        description: Acquia Resets Shield ACL Rules to Default Settings.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionUuid-shield-acl-shieldAclUuid
+      path: /subscriptions/{subscriptionUuid}/shield-acl/{shieldAclUuid}
+      operations:
+      - name: deleteshieldacl
+        method: DELETE
+        description: Acquia Deletes a Shield ACL Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getshieldaclrulebyuuid
+        method: GET
+        description: Acquia Returns the Specified Shield ACL Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putshieldacl
+        method: PUT
+        description: Acquia Updates a Shield ACL Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-subscriptions-subscriptions-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Subscriptions — Subscriptions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions
+      name: subscriptions
+      description: REST surface for subscriptions.
+      operations:
+      - method: GET
+        name: getsubscriptions
+        description: Acquia Return a List of Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}
+      name: subscriptions-subscriptionuuid
+      description: REST surface for subscriptions-subscriptionUuid.
+      operations:
+      - method: GET
+        name: getsubscription
+        description: Acquia Return Details About a Specific Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscription
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putsubscription
+        description: Acquia Modifies a Subscription.
+        call: cloud-subscriptions-subscriptions.putsubscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/applications
+      name: subscriptions-subscriptionuuid-applications
+      description: REST surface for subscriptions-subscriptionUuid-applications.
+      operations:
+      - method: GET
+        name: getsubscriptionapplications
+        description: Acquia Provides a List of Applications That Are a Part of the Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptionapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/code-studio
+      name: subscriptions-subscriptionuuid-code-studio
+      description: REST surface for subscriptions-subscriptionUuid-code-studio.
+      operations:
+      - method: GET
+        name: getcodestudiosubscriptionmetadata
+        description: Acquia Retrieves Code Studio Metadata for a Subscription.
+        call: cloud-subscriptions-subscriptions.getcodestudiosubscriptionmetadata
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: OPTIONS
+        name: optionscodestudio
+        description: Acquia Displays Code Studio Options for a Subscription.
+        call: cloud-subscriptions-subscriptions.optionscodestudio
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/code-studio/actions/enable
+      name: subscriptions-subscriptionuuid-code-studio-actions-enable
+      description: REST surface for subscriptions-subscriptionUuid-code-studio-actions-enable.
+      operations:
+      - method: POST
+        name: postenablecodestudio
+        description: Acquia Enables Code Studio for a Subscription.
+        call: cloud-subscriptions-subscriptions.postenablecodestudio
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/code-studio/applications
+      name: subscriptions-subscriptionuuid-code-studio-applications
+      description: REST surface for subscriptions-subscriptionUuid-code-studio-applications.
+      operations:
+      - method: GET
+        name: getcodestudioapplications
+        description: Acquia Retrieves a List of Code Studio Enabled Applications for a Subscription.
+        call: cloud-subscriptions-subscriptions.getcodestudioapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/code-studio/users
+      name: subscriptions-subscriptionuuid-code-studio-users
+      description: REST surface for subscriptions-subscriptionUuid-code-studio-users.
+      operations:
+      - method: GET
+        name: getcodestudiousers
+        description: Acquia Retrieves a List of Users Assigned to Code Studio for a Subscription.
+        call: cloud-subscriptions-subscriptions.getcodestudiousers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postcodestudiousers
+        description: Acquia Assigns a User to a Code Studio Seat for a Subscription.
+        call: cloud-subscriptions-subscriptions.postcodestudiousers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/code-studio/users/{useruuid}
+      name: subscriptions-subscriptionuuid-code-studio-users-useruuid
+      description: REST surface for subscriptions-subscriptionUuid-code-studio-users-userUuid.
+      operations:
+      - method: DELETE
+        name: deletecodestudiouser
+        description: Acquia Unassigns a User from a Code Studio Seat.
+        call: cloud-subscriptions-subscriptions.deletecodestudiouser
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getcodestudiouser
+        description: Acquia Retrieves Details About a Specific Code Studio User.
+        call: cloud-subscriptions-subscriptions.getcodestudiouser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/domains
+      name: subscriptions-subscriptionuuid-domains
+      description: REST surface for subscriptions-subscriptionUuid-domains.
+      operations:
+      - method: GET
+        name: getsubscriptiondomainregistrations
+        description: Acquia Returns a List of Domains Registered with This Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptiondomainregistrations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postsubscriptiondomainregistration
+        description: Acquia Registers a Domain with This Subscription.
+        call: cloud-subscriptions-subscriptions.postsubscriptiondomainregistration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/domains/{domainregistrationuuid}
+      name: subscriptions-subscriptionuuid-domains-domainregistrationuuid
+      description: REST surface for subscriptions-subscriptionUuid-domains-domainRegistrationUuid.
+      operations:
+      - method: DELETE
+        name: deletesubscriptiondomainregistration
+        description: Acquia Unregisters a Domain Registered with This Subscription.
+        call: cloud-subscriptions-subscriptions.deletesubscriptiondomainregistration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getsubscriptiondomainregistration
+        description: Acquia Returns a Speicific Domain Registered with This Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptiondomainregistration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/domains/{domainregistrationuuid}/actions/verify
+      name: subscriptions-subscriptionuuid-domains-domainregistrationuuid-actions-verify
+      description: REST surface for subscriptions-subscriptionUuid-domains-domainRegistrationUuid-actions-verify.
+      operations:
+      - method: POST
+        name: postsubscriptionverifydomainregistration
+        description: Acquia Triggers Re-verification and Update to the Domain Verification Status.
+        call: cloud-subscriptions-subscriptions.postsubscriptionverifydomainregistration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/entitlements
+      name: subscriptions-subscriptionuuid-entitlements
+      description: REST surface for subscriptions-subscriptionUuid-entitlements.
+      operations:
+      - method: GET
+        name: getsubscriptionentitlements
+        description: Acquia Provides a List of Entitlements That Are a Part of the Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptionentitlements
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/ides
+      name: subscriptions-subscriptionuuid-ides
+      description: REST surface for subscriptions-subscriptionUuid-ides.
+      operations:
+      - method: GET
+        name: getsubscriptionides
+        description: Acquia Returns a List of Cloud IDEs Associated with This Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptionides
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/metrics/usage
+      name: subscriptions-subscriptionuuid-metrics-usage
+      description: REST surface for subscriptions-subscriptionUuid-metrics-usage.
+      operations:
+      - method: GET
+        name: getsubscriptionsusagelinks
+        description: Acquia Retrieves Traversal Links for a Subscription's Usage Data.
+        call: cloud-subscriptions-subscriptions.getsubscriptionsusagelinks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/metrics/usage/data
+      name: subscriptions-subscriptionuuid-metrics-usage-data
+      description: REST surface for subscriptions-subscriptionUuid-metrics-usage-data.
+      operations:
+      - method: GET
+        name: getsubscriptionsusagedata
+        description: Acquia Retrieves Aggregate Usage Data for a Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptionsusagedata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/metrics/usage/data-by-application
+      name: subscriptions-subscriptionuuid-metrics-usage-data-by-application
+      description: REST surface for subscriptions-subscriptionUuid-metrics-usage-data-by-application.
+      operations:
+      - method: GET
+        name: getsubscriptionsusagedatabyapplication
+        description: Acquia Retrieves Usage Data for a Subscription, Broken Down by Application.
+        call: cloud-subscriptions-subscriptions.getsubscriptionsusagedatabyapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/metrics/usage/views-by-application
+      name: subscriptions-subscriptionuuid-metrics-usage-views-by-application
+      description: REST surface for subscriptions-subscriptionUuid-metrics-usage-views-by-application.
+      operations:
+      - method: GET
+        name: getsubscriptionsusageviewsdatabyapplication
+        description: Acquia Retrieves Views Data for a Subscription, Broken Down by Application.
+        call: cloud-subscriptions-subscriptions.getsubscriptionsusageviewsdatabyapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/metrics/usage/visits-by-application
+      name: subscriptions-subscriptionuuid-metrics-usage-visits-by-application
+      description: REST surface for subscriptions-subscriptionUuid-metrics-usage-visits-by-application.
+      operations:
+      - method: GET
+        name: getsubscriptionsusagevisitsdatabyapplication
+        description: Acquia Retrieves Visits Data for a Subscription, Broken Down by Application.
+        call: cloud-subscriptions-subscriptions.getsubscriptionsusagevisitsdatabyapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/metrics/usage/{usagemetric}
+      name: subscriptions-subscriptionuuid-metrics-usage-usagemetric
+      description: REST surface for subscriptions-subscriptionUuid-metrics-usage-usageMetric.
+      operations:
+      - method: GET
+        name: getsubscriptionsusagemetricdata
+        description: Acquia Retrieves Aggregate Usage Metric Data for a Subscription.
+        call: cloud-subscriptions-subscriptions.getsubscriptionsusagemetricdata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/shield-acl
+      name: subscriptions-subscriptionuuid-shield-acl
+      description: REST surface for subscriptions-subscriptionUuid-shield-acl.
+      operations:
+      - method: GET
+        name: getshieldacl
+        description: Acquia Provides a List of Shield ACL Rules.
+        call: cloud-subscriptions-subscriptions.getshieldacl
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postshieldacl
+        description: Acquia Creates a Shield ACL Rule.
+        call: cloud-subscriptions-subscriptions.postshieldacl
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/shield-acl/actions/reset
+      name: subscriptions-subscriptionuuid-shield-acl-actions-reset
+      description: REST surface for subscriptions-subscriptionUuid-shield-acl-actions-reset.
+      operations:
+      - method: POST
+        name: postresetshieldacl
+        description: Acquia Resets Shield ACL Rules to Default Settings.
+        call: cloud-subscriptions-subscriptions.postresetshieldacl
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionuuid}/shield-acl/{shieldacluuid}
+      name: subscriptions-subscriptionuuid-shield-acl-shieldacluuid
+      description: REST surface for subscriptions-subscriptionUuid-shield-acl-shieldAclUuid.
+      operations:
+      - method: DELETE
+        name: deleteshieldacl
+        description: Acquia Deletes a Shield ACL Rule.
+        call: cloud-subscriptions-subscriptions.deleteshieldacl
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getshieldaclrulebyuuid
+        description: Acquia Returns the Specified Shield ACL Rule.
+        call: cloud-subscriptions-subscriptions.getshieldaclrulebyuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putshieldacl
+        description: Acquia Updates a Shield ACL Rule.
+        call: cloud-subscriptions-subscriptions.putshieldacl
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-subscriptions-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Subscriptions — Subscriptions. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: acquia-return-list-subscription
+      description: Acquia Return a List of Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-details-about-specific
+      description: Acquia Return Details About a Specific Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-modifies-subscription
+      description: Acquia Modifies a Subscription.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.putsubscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-provides-list-applications-that
+      description: Acquia Provides a List of Applications That Are a Part of the Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-code-studio-metadata
+      description: Acquia Retrieves Code Studio Metadata for a Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getcodestudiosubscriptionmetadata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-displays-code-studio-options
+      description: Acquia Displays Code Studio Options for a Subscription.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-subscriptions-subscriptions.optionscodestudio
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-enables-code-studio-subscription
+      description: Acquia Enables Code Studio for a Subscription.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-subscriptions-subscriptions.postenablecodestudio
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-list-code-studio
+      description: Acquia Retrieves a List of Code Studio Enabled Applications for a Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getcodestudioapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-list-users-assigned
+      description: Acquia Retrieves a List of Users Assigned to Code Studio for a Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getcodestudiousers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-assigns-user-code-studio
+      description: Acquia Assigns a User to a Code Studio Seat for a Subscription.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-subscriptions-subscriptions.postcodestudiousers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-unassigns-user-code-studio
+      description: Acquia Unassigns a User from a Code Studio Seat.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.deletecodestudiouser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-details-about-specific
+      description: Acquia Retrieves Details About a Specific Code Studio User.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getcodestudiouser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-domains-registered
+      description: Acquia Returns a List of Domains Registered with This Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptiondomainregistrations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-registers-domain-this-subscription
+      description: Acquia Registers a Domain with This Subscription.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-subscriptions-subscriptions.postsubscriptiondomainregistration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-unregisters-domain-registered-this
+      description: Acquia Unregisters a Domain Registered with This Subscription.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.deletesubscriptiondomainregistration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-speicific-domain-registered
+      description: Acquia Returns a Speicific Domain Registered with This Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptiondomainregistration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-triggers-re-verification-and
+      description: Acquia Triggers Re-verification and Update to the Domain Verification Status.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-subscriptions-subscriptions.postsubscriptionverifydomainregistration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-provides-list-entitlements-that
+      description: Acquia Provides a List of Entitlements That Are a Part of the Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionentitlements
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-cloud-ides
+      description: Acquia Returns a List of Cloud IDEs Associated with This Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionides
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-traversal-links-subscription-s
+      description: Acquia Retrieves Traversal Links for a Subscription's Usage Data.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionsusagelinks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-aggregate-usage-data
+      description: Acquia Retrieves Aggregate Usage Data for a Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionsusagedata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-usage-data-subscription
+      description: Acquia Retrieves Usage Data for a Subscription, Broken Down by Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionsusagedatabyapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-views-data-subscription
+      description: Acquia Retrieves Views Data for a Subscription, Broken Down by Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionsusageviewsdatabyapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-visits-data-subscription
+      description: Acquia Retrieves Visits Data for a Subscription, Broken Down by Application.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionsusagevisitsdatabyapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-retrieves-aggregate-usage-metric
+      description: Acquia Retrieves Aggregate Usage Metric Data for a Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getsubscriptionsusagemetricdata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-provides-list-shield-acl
+      description: Acquia Provides a List of Shield ACL Rules.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getshieldacl
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-creates-shield-acl-rule
+      description: Acquia Creates a Shield ACL Rule.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-subscriptions-subscriptions.postshieldacl
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-resets-shield-acl-rules
+      description: Acquia Resets Shield ACL Rules to Default Settings.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-subscriptions-subscriptions.postresetshieldacl
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-deletes-shield-acl-rule
+      description: Acquia Deletes a Shield ACL Rule.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.deleteshieldacl
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-specified-shield-acl
+      description: Acquia Returns the Specified Shield ACL Rule.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.getshieldaclrulebyuuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-updates-shield-acl-rule
+      description: Acquia Updates a Shield ACL Rule.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-subscriptions-subscriptions.putshieldacl
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

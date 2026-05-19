@@ -1,0 +1,230 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Options — Options
+  description: 'Acquia Cloud API - Options — Options. 6 operations. Lead operation: Acquia Does Not Return Any Data. Allows
+    Traversal of Options Groups Endpoints.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Options
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-options-options
+    baseUri: ''
+    description: Acquia Cloud API - Options — Options business capability. Self-contained, no shared references.
+    resources:
+    - name: options
+      path: /options
+      operations:
+      - name: getoptions
+        method: GET
+        description: Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-cde-sizes
+      path: /options/cde-sizes
+      operations:
+      - name: getcdesizes
+        method: GET
+        description: Acquia Displays the Various CD Environment Size Options.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-colors
+      path: /options/colors
+      operations:
+      - name: getcolors
+        method: GET
+        description: Acquia Displays the Various Color Options.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-log-forwarding
+      path: /options/log-forwarding
+      operations:
+      - name: getlogforwarding
+        method: GET
+        description: Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-log-forwarding-consumers
+      path: /options/log-forwarding/consumers
+      operations:
+      - name: getlogforwardingconsumers
+        method: GET
+        description: Acquia Displays Available Log Forwarding Consumers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: options-log-forwarding-sources
+      path: /options/log-forwarding/sources
+      operations:
+      - name: getlogforwardingsources
+        method: GET
+        description: Acquia Displays Available Log Forwarding Sources.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-options-options-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Options — Options. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/options
+      name: options
+      description: REST surface for options.
+      operations:
+      - method: GET
+        name: getoptions
+        description: Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.
+        call: cloud-options-options.getoptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/cde-sizes
+      name: options-cde-sizes
+      description: REST surface for options-cde-sizes.
+      operations:
+      - method: GET
+        name: getcdesizes
+        description: Acquia Displays the Various CD Environment Size Options.
+        call: cloud-options-options.getcdesizes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/colors
+      name: options-colors
+      description: REST surface for options-colors.
+      operations:
+      - method: GET
+        name: getcolors
+        description: Acquia Displays the Various Color Options.
+        call: cloud-options-options.getcolors
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/log-forwarding
+      name: options-log-forwarding
+      description: REST surface for options-log-forwarding.
+      operations:
+      - method: GET
+        name: getlogforwarding
+        description: Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.
+        call: cloud-options-options.getlogforwarding
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/log-forwarding/consumers
+      name: options-log-forwarding-consumers
+      description: REST surface for options-log-forwarding-consumers.
+      operations:
+      - method: GET
+        name: getlogforwardingconsumers
+        description: Acquia Displays Available Log Forwarding Consumers.
+        call: cloud-options-options.getlogforwardingconsumers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/options/log-forwarding/sources
+      name: options-log-forwarding-sources
+      description: REST surface for options-log-forwarding-sources.
+      operations:
+      - method: GET
+        name: getlogforwardingsources
+        description: Acquia Displays Available Log Forwarding Sources.
+        call: cloud-options-options.getlogforwardingsources
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-options-options-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Options — Options. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: acquia-does-not-return-any
+      description: Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-options-options.getoptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-displays-various-cd-environment
+      description: Acquia Displays the Various CD Environment Size Options.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-options-options.getcdesizes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-displays-various-color-options
+      description: Acquia Displays the Various Color Options.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-options-options.getcolors
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-does-not-return-any-2
+      description: Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-options-options.getlogforwarding
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-displays-available-log-forwarding
+      description: Acquia Displays Available Log Forwarding Consumers.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-options-options.getlogforwardingconsumers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-displays-available-log-forwarding-2
+      description: Acquia Displays Available Log Forwarding Sources.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-options-options.getlogforwardingsources
+      outputParameters:
+      - type: object
+        mapping: $.

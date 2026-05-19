@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Notifications — Notifications
+  description: 'Acquia Cloud API - Notifications — Notifications. 1 operations. Lead operation: Acquia Returns a Single Notification..
+    Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Notifications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-notifications-notifications
+    baseUri: ''
+    description: Acquia Cloud API - Notifications — Notifications business capability. Self-contained, no shared references.
+    resources:
+    - name: notifications-notificationUuid
+      path: /notifications/{notificationUuid}
+      operations:
+      - name: getnotificationbyuuid
+        method: GET
+        description: Acquia Returns a Single Notification.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-notifications-notifications-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Notifications — Notifications. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/notifications/{notificationuuid}
+      name: notifications-notificationuuid
+      description: REST surface for notifications-notificationUuid.
+      operations:
+      - method: GET
+        name: getnotificationbyuuid
+        description: Acquia Returns a Single Notification.
+        call: cloud-notifications-notifications.getnotificationbyuuid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-notifications-notifications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Notifications — Notifications. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: acquia-returns-single-notification
+      description: Acquia Returns a Single Notification.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-notifications-notifications.getnotificationbyuuid
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,227 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Identity Providers — Identity Providers
+  description: 'Acquia Cloud API - Identity Providers — Identity Providers. 6 operations. Lead operation: Acquia Returns a
+    List of Identity Providers for a User.. Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Identity Providers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-identity-providers-identity-providers
+    baseUri: ''
+    description: Acquia Cloud API - Identity Providers — Identity Providers business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: identity-providers
+      path: /identity-providers
+      operations:
+      - name: getidentityproviders
+        method: GET
+        description: Acquia Returns a List of Identity Providers for a User.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: identity-providers-identityProviderUuid
+      path: /identity-providers/{identityProviderUuid}
+      operations:
+      - name: deleteidentityprovider
+        method: DELETE
+        description: Acquia Deletes a Specific Identity Provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getidentityprovider
+        method: GET
+        description: Acquia Returns a Specific Identity Provider by UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putidentityprovider
+        method: PUT
+        description: Acquia Modifies an Identity Provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: identity-providers-identityProviderUuid-actions-disable
+      path: /identity-providers/{identityProviderUuid}/actions/disable
+      operations:
+      - name: postdisableidentityprovider
+        method: POST
+        description: Acquia Disables an Identity Provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: identity-providers-identityProviderUuid-actions-enable
+      path: /identity-providers/{identityProviderUuid}/actions/enable
+      operations:
+      - name: postenableidentityprovider
+        method: POST
+        description: Acquia Enables an Identity Provider by its UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-identity-providers-identity-providers-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Identity Providers — Identity Providers. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/identity-providers
+      name: identity-providers
+      description: REST surface for identity-providers.
+      operations:
+      - method: GET
+        name: getidentityproviders
+        description: Acquia Returns a List of Identity Providers for a User.
+        call: cloud-identity-providers-identity-providers.getidentityproviders
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/identity-providers/{identityprovideruuid}
+      name: identity-providers-identityprovideruuid
+      description: REST surface for identity-providers-identityProviderUuid.
+      operations:
+      - method: DELETE
+        name: deleteidentityprovider
+        description: Acquia Deletes a Specific Identity Provider by its UUID.
+        call: cloud-identity-providers-identity-providers.deleteidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getidentityprovider
+        description: Acquia Returns a Specific Identity Provider by UUID.
+        call: cloud-identity-providers-identity-providers.getidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putidentityprovider
+        description: Acquia Modifies an Identity Provider by its UUID.
+        call: cloud-identity-providers-identity-providers.putidentityprovider
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/identity-providers/{identityprovideruuid}/actions/disable
+      name: identity-providers-identityprovideruuid-actions-disable
+      description: REST surface for identity-providers-identityProviderUuid-actions-disable.
+      operations:
+      - method: POST
+        name: postdisableidentityprovider
+        description: Acquia Disables an Identity Provider by its UUID.
+        call: cloud-identity-providers-identity-providers.postdisableidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/identity-providers/{identityprovideruuid}/actions/enable
+      name: identity-providers-identityprovideruuid-actions-enable
+      description: REST surface for identity-providers-identityProviderUuid-actions-enable.
+      operations:
+      - method: POST
+        name: postenableidentityprovider
+        description: Acquia Enables an Identity Provider by its UUID.
+        call: cloud-identity-providers-identity-providers.postenableidentityprovider
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-identity-providers-identity-providers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Identity Providers — Identity Providers. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: acquia-returns-list-identity-providers
+      description: Acquia Returns a List of Identity Providers for a User.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-identity-providers-identity-providers.getidentityproviders
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-deletes-specific-identity-provider
+      description: Acquia Deletes a Specific Identity Provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-identity-providers-identity-providers.deleteidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-specific-identity-provider
+      description: Acquia Returns a Specific Identity Provider by UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-identity-providers-identity-providers.getidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-modifies-identity-provider-its
+      description: Acquia Modifies an Identity Provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-identity-providers-identity-providers.putidentityprovider
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-disables-identity-provider-its
+      description: Acquia Disables an Identity Provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-identity-providers-identity-providers.postdisableidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-enables-identity-provider-its
+      description: Acquia Enables an Identity Provider by its UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-identity-providers-identity-providers.postenableidentityprovider
+      outputParameters:
+      - type: object
+        mapping: $.

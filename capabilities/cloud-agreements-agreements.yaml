@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Acquia Cloud API - Agreements — Agreements
+  description: 'Acquia Cloud API - Agreements — Agreements. 5 operations. Lead operation: Acquia Return a List of Agreements..
+    Self-contained Naftiko capability covering one Acquia business surface.'
+  tags:
+  - Acquia
+  - Agreements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ACQUIA_API_KEY: ACQUIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-agreements-agreements
+    baseUri: ''
+    description: Acquia Cloud API - Agreements — Agreements business capability. Self-contained, no shared references.
+    resources:
+    - name: agreements
+      path: /agreements
+      operations:
+      - name: getagreements
+        method: GET
+        description: Acquia Return a List of Agreements.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: agreements-agreementUuid
+      path: /agreements/{agreementUuid}
+      operations:
+      - name: getagreement
+        method: GET
+        description: Acquia Return a Specific Agreement by a Provided UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: agreements-agreementUuid-actions-accept
+      path: /agreements/{agreementUuid}/actions/accept
+      operations:
+      - name: postacceptagreement
+        method: POST
+        description: Acquia Accepts a Legal Agreement by UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: agreements-agreementUuid-actions-decline
+      path: /agreements/{agreementUuid}/actions/decline
+      operations:
+      - name: postdeclineagreement
+        method: POST
+        description: Acquia Declines a Legal Agreement by UUID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: agreements-agreementUuid-invitees
+      path: /agreements/{agreementUuid}/invitees
+      operations:
+      - name: getinvitees
+        method: GET
+        description: Acquia Returns a List of Users Invited to Action This Agreement.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ACQUIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-agreements-agreements-rest
+    port: 8080
+    description: REST adapter for Acquia Cloud API - Agreements — Agreements. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/agreements
+      name: agreements
+      description: REST surface for agreements.
+      operations:
+      - method: GET
+        name: getagreements
+        description: Acquia Return a List of Agreements.
+        call: cloud-agreements-agreements.getagreements
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/agreements/{agreementuuid}
+      name: agreements-agreementuuid
+      description: REST surface for agreements-agreementUuid.
+      operations:
+      - method: GET
+        name: getagreement
+        description: Acquia Return a Specific Agreement by a Provided UUID.
+        call: cloud-agreements-agreements.getagreement
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/agreements/{agreementuuid}/actions/accept
+      name: agreements-agreementuuid-actions-accept
+      description: REST surface for agreements-agreementUuid-actions-accept.
+      operations:
+      - method: POST
+        name: postacceptagreement
+        description: Acquia Accepts a Legal Agreement by UUID.
+        call: cloud-agreements-agreements.postacceptagreement
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/agreements/{agreementuuid}/actions/decline
+      name: agreements-agreementuuid-actions-decline
+      description: REST surface for agreements-agreementUuid-actions-decline.
+      operations:
+      - method: POST
+        name: postdeclineagreement
+        description: Acquia Declines a Legal Agreement by UUID.
+        call: cloud-agreements-agreements.postdeclineagreement
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/agreements/{agreementuuid}/invitees
+      name: agreements-agreementuuid-invitees
+      description: REST surface for agreements-agreementUuid-invitees.
+      operations:
+      - method: GET
+        name: getinvitees
+        description: Acquia Returns a List of Users Invited to Action This Agreement.
+        call: cloud-agreements-agreements.getinvitees
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-agreements-agreements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Acquia Cloud API - Agreements — Agreements. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: acquia-return-list-agreements
+      description: Acquia Return a List of Agreements.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-agreements-agreements.getagreements
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-return-specific-agreement-provided
+      description: Acquia Return a Specific Agreement by a Provided UUID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-agreements-agreements.getagreement
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-accepts-legal-agreement-uuid
+      description: Acquia Accepts a Legal Agreement by UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-agreements-agreements.postacceptagreement
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-declines-legal-agreement-uuid
+      description: Acquia Declines a Legal Agreement by UUID.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-agreements-agreements.postdeclineagreement
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: acquia-returns-list-users-invited
+      description: Acquia Returns a List of Users Invited to Action This Agreement.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-agreements-agreements.getinvitees
+      outputParameters:
+      - type: object
+        mapping: $.
