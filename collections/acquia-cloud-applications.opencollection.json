@@ -1,0 +1,1682 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Applications",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Return a List of Applications the Current User Has Access To.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications",
+            "params": [
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Applications contains the code, files, and databases required to run sites. You have access to an application if you are a member of a team that has access to an application, or if you are an administrator or owner of the organization that the application belongs to. A subscription may contain one or more applications.\n\nFilterable fields:\n* `label`\n* <s>`name`</s> (Deprecated)\n* `organization_name`\n* <s>`hosting`</s> (Deprecated) Use URL encoded colon (%3A) to separate realm and sitegroup, e.g. "
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "A specific application."
+        },
+        {
+          "info": {
+            "name": "Acquia Renames an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/applications/:applicationUuid",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Renames a specific application."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Application Artifacts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/artifacts",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of this application's build artifacts. Only available for Node.js applications.\n\nFilterable fields:\n* `created`\n* `name`\n\nSortable fields:\n* `created`\n* `name`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Artifact.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "artifactId",
+                "value": "drupal8",
+                "type": "path",
+                "description": "An ID that uniquely identifies an artifact."
+              }
+            ]
+          },
+          "docs": "A specific artifact.\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Return Application Branches and Release Tags.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/code",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of branches and release (repository) tags in this application's version control system.\n\nFilterable fields:\n* `name`\n\nSortable fields:\n* `name`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Details About the Code Studio Project for an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/code-studio",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about the Code Studio project for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates the Code Studio Project for an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/code-studio",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates the Code Studio project for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes the Code Studio Project from an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/applications/:applicationUuid/code-studio",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes the Code Studio project from an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List Database Names for the Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/databases",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Filterable fields:\n* `name`\n\nSortable fields:\n* `name`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/databases",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This action will create a new database within each environment of the application."
+        },
+        {
+          "info": {
+            "name": "Acquia Drops (deletes) a Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/applications/:applicationUuid/databases/:name",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "name",
+                "value": "drupal8",
+                "type": "path",
+                "description": "A name that uniquely identifies an entity."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This action will delete the database in ALL environments within this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Erases (truncates) a Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/databases/:name/actions/erase",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "name",
+                "value": "drupal8",
+                "type": "path",
+                "description": "A name that uniquely identifies an entity."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This action will delete all tables of the database in ALL environments within this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Email Domains Associated with the Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/email/domains",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of email domains associated with the application and domains that have been verified at the subscription level."
+        },
+        {
+          "info": {
+            "name": "Acquia Associates an Email Domain with an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/email/domains/:domainRegistrationUuid/actions/associate",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "domainRegistrationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The Domain Registration universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Associates an email domain with an Application."
+        },
+        {
+          "info": {
+            "name": "Acquia Disassociates an Email Domain with an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/email/domains/:domainRegistrationUuid/actions/disassociate",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "domainRegistrationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The Domain Registration universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disassociates an email domain with an Application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Environments Within This Application by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/environments",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of environments within this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Add a New Continuous Delivery Environment to an Application by the Application UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/environments",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "branch",
+                  "value": ""
+                },
+                {
+                  "name": "databases",
+                  "value": ""
+                },
+                {
+                  "name": "label",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a new continuous delivery environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Application Features.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/features",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of feature flags for this application.\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Cloud IDEs Associated with This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/ides",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns a list of Cloud IDEs associated with this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a New Cloud IDE.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/ides",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "label",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new Cloud IDE."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Messages Associated with This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/messages",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "from",
+                "value": "2023-09-01",
+                "type": "query",
+                "description": "Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "to",
+                "value": "2023-09-29",
+                "type": "query",
+                "description": "Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-29`\n* `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Filterable fields:\n* `title`\n* `message_type`\n* `display_mode`\n\nSortable fields:\n* `title`\n* `message_type`\n* `display_mode`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Traversal Links for Detailed Metrics on Usage (views and Visits) of Your Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/metrics/usage",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves traversal links for an application's usage data."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Aggregate Usage Data for an Application, Filterable by Views or Visits and by Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/metrics/usage/data",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `metric` - One of: {`views`, `visits`}\n* `environment`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Usage Data (views or Visits) for an Application, Broken Down by Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/metrics/usage/data-by-environment",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `metric` - One of: {`views`, `visits`}\n* `environment`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Views Data for an Application, Broken Down by Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/metrics/usage/views-by-environment",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `environment`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Visits Data for an Application, Broken Down by Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/metrics/usage/visits-by-environment",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `environment`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Aggregate Usage Metric Data (views or Visits) for an Application..",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/metrics/usage/:usageMetric",
+            "params": [
+              {
+                "name": "usageMetric",
+                "value": "views",
+                "type": "path",
+                "description": "A usage data metric type."
+              },
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `environment`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Notifications Associated with This Application by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/notifications",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of notifications associated with this application. A notification represents an item of work to be done, initiated by someone (typically the current user) associated with the application.\n\nFilterable fields:\n* `event`\n* `label`\n* `description`\n* `status`\n* `author`\n* `created_at`\n* `completed_at`\n\nSortable fields:\n* `event`\n* `label`\n* `description`\n* `status`\n* `author`\n* `created_at`\n* `completed_at`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Permissions the User Has for This Application by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/permissions",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns a list of permissions the user has for this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Traversal Endpoint for Search Entities for the Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/search",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Does not return any data. Allows traversal to search entity endpoints."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Collection of Search Configuration Sets for an Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/search/config-sets",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "A collection of search configuration sets for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a Search Configuration Set for an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/search/config-sets",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "archive",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a search configuration set for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Search Configuration Set for an Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/search/config-sets/:configurationSetId",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "configurationSetId",
+                "value": "ABCDE-1234.12345ab6c7e8f90g12i1jk234l56mn78",
+                "type": "path",
+                "description": "An ID that uniquely identifies a configuration set."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "A specific search configuration set."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes and Deletes a Specific Search Configuration Set from an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/applications/:applicationUuid/search/config-sets/:configurationSetId",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "configurationSetId",
+                "value": "ABCDE-1234.12345ab6c7e8f90g12i1jk234l56mn78",
+                "type": "path",
+                "description": "An ID that uniquely identifies a configuration set."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes and deletes a specific search configuration set from an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Available Settings for This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/settings",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Does not return any data. Allows traversal to settings groups endpoints."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Hosting Settings for This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/settings/hosting",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the hosting settings for this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Legacy Product Keys for This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/settings/keys",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the legacy product keys for this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Remote Administration Settings for This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/settings/ra",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the remote administration settings for this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Modifies the Remote Administration Settings for an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/applications/:applicationUuid/settings/ra",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies the remote administration settings for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Security Policy Settings for This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/settings/security",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the security policy settings for this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Modifies the Security Policy Settings for an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/applications/:applicationUuid/settings/security",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "allowed_ips",
+                  "value": ""
+                },
+                {
+                  "name": "tfa_required",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies the security policy settings for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Application Tags Associated with This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/tags",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns a list of application tags associated with this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a New Application Tag.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/applications/:applicationUuid/tags",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "color",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new application tag."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes an Application Tag.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/applications/:applicationUuid/tags/:tagName",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "tagName",
+                "value": "green",
+                "type": "path",
+                "description": "The name of the application tag."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an application tag."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Tasks Associated with This Application by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/tasks",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of tasks associated with this application. A task represents an item of work to be done, initiated by someone (typically the current user) associated with the application.\n\nFilterable fields:\n* `name`\n* `title`\n* `created`\n* `completed`\n* `started`\n\nSortable fields:\n* `name`\n* `title`\n* `created`\n* `completed`\n* `started`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Teams Associated with This Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationUuid/teams",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "from",
+                "value": "2023-09-01",
+                "type": "query",
+                "description": "Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "to",
+                "value": "2023-09-29",
+                "type": "query",
+                "description": "Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-29`\n* `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of teams associated with this application by its UUID.\n\nFilterable fields:\n* `name`\n\nSortable fields:\n* `name`\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

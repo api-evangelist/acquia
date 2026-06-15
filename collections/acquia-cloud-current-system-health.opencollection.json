@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Current system health",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Current system health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Return the Current System Health Status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/"
+          },
+          "docs": "Returns status checks for system database, configuration and registry."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

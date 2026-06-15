@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Messages",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Dismisses a Message.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/:messageUuid/actions/dismiss",
+            "params": [
+              {
+                "name": "messageUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Dismisses a message."
+        },
+        {
+          "info": {
+            "name": "Acquia Follows an In-product Message Link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/messages/:messageUuid/actions/follow",
+            "params": [
+              {
+                "name": "messageUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Follows an in-product message link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

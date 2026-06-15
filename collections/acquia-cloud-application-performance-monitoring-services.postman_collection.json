@@ -1,0 +1,1272 @@
+{
+  "item": [
+    {
+      "id": "05f85eb4-5f8f-4438-b0c6-6c5c589a7e63",
+      "name": "Application Performance Monitoring Services",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff9d8aac-d6dd-44a2-bd02-74b7436d4e83",
+          "name": "Acquia Returns a List of Application Performance Monitoring Services Associated with the Environment.",
+          "request": {
+            "name": "Acquia Returns a List of Application Performance Monitoring Services Associated with the Environment.",
+            "description": {
+              "content": "Returns a list of Application Performance Monitoring services associated with the environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "environments",
+                ":environmentId",
+                "settings",
+                "apm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "environmentId",
+                  "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "199c5943-3b42-4b38-a174-64062d8833fb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "environments",
+                    ":environmentId",
+                    "settings",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"environment\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/environments/6-252031e4-59f0-7914-95a5-ff83699fdcde\"\n          }\n        }\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/environments/6-252031e4-59f0-7914-95a5-ff83699fdcde/settings/apm\"\n    }\n  },\n  \"flags\": {\n    \"enabled\": true\n  },\n  \"key\": \"123456789abcdef037dea2e355bc43987a123456\",\n  \"name\": \"TestApplication\",\n  \"type\": \"newrelic\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6f1c160-aa44-48c6-9794-5d3fdb65558c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "environments",
+                    ":environmentId",
+                    "settings",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"APM settings are not available for this application.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e52e169e-2bcd-4911-a5f9-757225474812",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "environments",
+                    ":environmentId",
+                    "settings",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"APM settings are not available on non-hosted applications.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5be6263a-d8d0-4dbb-9ce0-a0b739d0acac",
+          "name": "Acquia Update Configuration for an Application Performance Monitoring Tool.",
+          "request": {
+            "name": "Acquia Update Configuration for an Application Performance Monitoring Tool.",
+            "description": {
+              "content": "Update configuration for an Application Performance Monitoring tool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "environments",
+                ":environmentId",
+                "settings",
+                "apm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "environmentId",
+                  "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "The key for the APM tool. Required if installing or updating a configuration. This value should be available from your APM provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<boolean>",
+                  "description": "Whether the APM tool should be enabled or disabled. If updating an existing install, this value does not need to be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The APM tool to install. Required if installing or updating a configuration."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b3505e3-e200-46cd-bd64-45292f7842a9",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "environments",
+                    ":environmentId",
+                    "settings",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The key for the APM tool. Required if installing or updating a configuration. This value should be available from your APM provider.",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "Some New Relic key"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The APM tool to install. Required if installing or updating a configuration.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "newrelic"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"APM settings are being updated for this environment.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4862cfc4-d36c-44a8-ada0-beac26f275ba",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "environments",
+                    ":environmentId",
+                    "settings",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The key for the APM tool. Required if installing or updating a configuration. This value should be available from your APM provider.",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "Some New Relic key"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The APM tool to install. Required if installing or updating a configuration.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "newrelic"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"bad_request\",\n  \"message\": \"APM names may only contain alphanumeric, dashes, dots, colons, underscores and space characters.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42ecd056-880b-4761-9ad3-054601fe02d3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "environments",
+                    ":environmentId",
+                    "settings",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The key for the APM tool. Required if installing or updating a configuration. This value should be available from your APM provider.",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "Some New Relic key"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The APM tool to install. Required if installing or updating a configuration.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "newrelic"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"Acquia Cloud Free accounts are not able to modify APM settings.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16a33894-b0c8-4544-92f7-712bb50ae03a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "environments",
+                    ":environmentId",
+                    "settings",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "environmentId",
+                      "description": "(Required) The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The key for the APM tool. Required if installing or updating a configuration. This value should be available from your APM provider.",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "Some New Relic key"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The APM tool to install. Required if installing or updating a configuration.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "newrelic"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The environment you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "119e0c7f-1dfb-4cbb-ad9a-380a51c45bdd",
+          "name": "Acquia Returns a List of Application Performance Monitoring Services Associated with the Subscription.",
+          "request": {
+            "name": "Acquia Returns a List of Application Performance Monitoring Services Associated with the Subscription.",
+            "description": {
+              "content": "Returns a list of Application Performance Monitoring services associated with the subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionUuid",
+                "apm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionUuid",
+                  "description": "(Required) The subscription entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91fa4d5f-e51f-44cd-a416-1b609264704b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"parent\": {\n            \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm/newrelic\"\n          }\n        },\n        \"flags\": {\n          \"opted-in\": true\n        },\n        \"key\": \"2d1dfa83d5e1494793957e7ce572942b\",\n        \"type\": \"newrelic\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm{?filter}\",\n      \"templated\": true\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm\"\n    },\n    \"sort\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm{?sort}\",\n      \"templated\": true\n    }\n  },\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd62d62b-6d03-4512-97de-19cb208d3bae",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to access APM summaries for this subscription.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07fd69d4-1e27-4d68-82ce-c53cf6ade4c1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The subscription you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e03b407-1da7-4e6b-972a-304219c7e686",
+          "name": "Acquia Returns the Application Performance Monitoring Service Type Associated with the Subscription.",
+          "request": {
+            "name": "Acquia Returns the Application Performance Monitoring Service Type Associated with the Subscription.",
+            "description": {
+              "content": "Returns the Application Performance Monitoring service type associated with the subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionUuid",
+                "apm",
+                ":apmType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionUuid",
+                  "description": "(Required) The subscription entity's universally unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apmType",
+                  "description": "(Required) The APM type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f92fd58c-32ee-44c8-8061-17b4e2991aa0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm",
+                    ":apmType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apmType",
+                      "description": "(Required) The APM type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a\"\n    }\n  },\n  \"flags\": {\n    \"opted-in\": true\n  },\n  \"key\": \"2d1dfa83d5e1494793957e7ce572942b\",\n  \"type\": \"newrelic\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6304e23-4ae3-4ad3-a781-cffe049ca1b3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm",
+                    ":apmType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apmType",
+                      "description": "(Required) The APM type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to access this APM summary type.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77621b70-6cdb-45d3-becf-2a8e93fc383e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm",
+                    ":apmType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apmType",
+                      "description": "(Required) The APM type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The subscription you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0570403a-138a-4ca1-bf4d-b69dbe07b897",
+          "name": "Acquia Enables New Relic Pro APM License for All Applications on a Subscription.",
+          "request": {
+            "name": "Acquia Enables New Relic Pro APM License for All Applications on a Subscription.",
+            "description": {
+              "content": "Enables New Relic Pro APM license for all applications on a subscription. This authorizes Acquia to create a new user account on the third-party New Relic platform using the name and e-mail address of the organization owner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionUuid",
+                "apm",
+                ":apmType",
+                "actions",
+                "opt-in"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionUuid",
+                  "description": "(Required) The subscription entity's universally unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apmType",
+                  "description": "(Required) The APM type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "45247e8f-b67e-41ff-83d4-39a91c095e6e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm",
+                    ":apmType",
+                    "actions",
+                    "opt-in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apmType",
+                      "description": "(Required) The APM type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"notification\": {\n      \"href\": \"https://cloud.acquia.com/api/notifications/7b37b885-8ae4-454b-b8fa-ffaeff54f6a4\"\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm/newrelic/actions\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm/newrelic/actions/opt-in\"\n    }\n  },\n  \"message\": \"APM type newrelic has been enabled on the example subscription.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3eed1e3d-ea81-41da-90e3-5fababc9c2ea",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm",
+                    ":apmType",
+                    "actions",
+                    "opt-in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apmType",
+                      "description": "(Required) The APM type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"validation_failed\",\n  \"message\": {\n    \"name\": \"New Relic is not available for this subscription.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bd77cd2-1365-49bf-b28d-62e315e3ebee",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm",
+                    ":apmType",
+                    "actions",
+                    "opt-in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apmType",
+                      "description": "(Required) The APM type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to opt-in to APM settings for this subscription.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2a389b2-64cf-46dd-9a4b-4be9854a8c06",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionUuid",
+                    "apm",
+                    ":apmType",
+                    "actions",
+                    "opt-in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionUuid",
+                      "description": "(Required) The subscription entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apmType",
+                      "description": "(Required) The APM type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The subscription you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4a0906f0-71a0-40bb-a724-3fcfe26a8565",
+    "name": "Acquia Cloud API - Application Performance Monitoring Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
+      "type": "text/plain"
+    }
+  }
+}

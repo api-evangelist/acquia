@@ -1,0 +1,466 @@
+{
+  "item": [
+    {
+      "id": "e88fb818-6acf-4ce4-b40a-b2b98fe4e446",
+      "name": "Options",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f0ff53a-81df-4a1c-bf4f-03f2dbe9c6aa",
+          "name": "Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.",
+          "request": {
+            "name": "Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.",
+            "description": {
+              "content": "Does not return any data. Allows traversal of options groups endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d71a3049-f4b5-4dbb-87d8-730c89a1dac6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"cde-sizes\": {\n      \"href\": \"https://cloud.acquia.com/api/options/cde-sizes\"\n    },\n    \"log-forwarding\": {\n      \"href\": \"https://cloud.acquia.com/api/options/log-forwarding\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/options\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dd52a24-b083-41c0-8435-a776d8acd618",
+          "name": "Acquia Displays the Various CD Environment Size Options.",
+          "request": {
+            "name": "Acquia Displays the Various CD Environment Size Options.",
+            "description": {
+              "content": "Displays the various CD Environment size options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "options",
+                "cde-sizes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6a56516-45d9-4851-8862-6becdd577401",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "options",
+                    "cde-sizes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"databases\": 3,\n        \"memory\": 256,\n        \"name\": \"1X\",\n        \"size\": \"1x\",\n        \"slots\": 1,\n        \"storage\": 5\n      },\n      {\n        \"databases\": 6,\n        \"memory\": 512,\n        \"name\": \"2X\",\n        \"size\": \"2x\",\n        \"slots\": 2,\n        \"storage\": 10\n      },\n      {\n        \"databases\": 9,\n        \"memory\": 768,\n        \"name\": \"3X\",\n        \"size\": \"3x\",\n        \"slots\": 3,\n        \"storage\": 15\n      },\n      {\n        \"databases\": 12,\n        \"memory\": 1024,\n        \"name\": \"4X\",\n        \"size\": \"4x\",\n        \"slots\": 4,\n        \"storage\": 20\n      },\n      {\n        \"databases\": 24,\n        \"memory\": 2048,\n        \"name\": \"8X\",\n        \"size\": \"8x\",\n        \"slots\": 8,\n        \"storage\": 40\n      }\n    ]\n  },\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/options\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/options/cde-sizes\"\n    }\n  },\n  \"total\": 5\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d6de774-91e7-4853-959e-292419c8cdf2",
+          "name": "Acquia Displays the Various Color Options.",
+          "request": {
+            "name": "Acquia Displays the Various Color Options.",
+            "description": {
+              "content": "Displays the various color options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "options",
+                "colors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ae41ebf-660c-4650-a127-483e05d6946f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "options",
+                    "colors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"color\": \"blue\"\n      },\n      {\n        \"color\": \"blush\"\n      },\n      {\n        \"color\": \"gray\"\n      },\n      {\n        \"color\": \"green\"\n      },\n      {\n        \"color\": \"light-blue\"\n      },\n      {\n        \"color\": \"orange\"\n      },\n      {\n        \"color\": \"pink\"\n      },\n      {\n        \"color\": \"purple\"\n      },\n      {\n        \"color\": \"teal\"\n      },\n      {\n        \"color\": \"yellow\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/options/colors{?filter}\",\n      \"templated\": true\n    },\n    \"limit\": {\n      \"href\": \"https://cloud.acquia.com/api/options/colors{?limit}\",\n      \"templated\": true\n    },\n    \"offset\": {\n      \"href\": \"https://cloud.acquia.com/api/options/colors{?offset}\",\n      \"templated\": true\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/options\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/options/colors\"\n    },\n    \"sort\": {\n      \"href\": \"https://cloud.acquia.com/api/options/colors{?sort}\",\n      \"templated\": true\n    }\n  },\n  \"total\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43d01cf2-8203-421f-a1a2-a4e5046735b1",
+          "name": "Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.",
+          "request": {
+            "name": "Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.",
+            "description": {
+              "content": "Does not return any data. Allows traversal of options groups endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "options",
+                "log-forwarding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ab78418-b732-46f4-9e59-0513471fd25b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "options",
+                    "log-forwarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"consumers\": {\n      \"href\": \"https://cloud.acquia.com/api/options/log-forwarding/consumers\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/options/log-forwarding\"\n    },\n    \"sources\": {\n      \"href\": \"https://cloud.acquia.com/api/options/log-forwarding/sources\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05cee741-8af9-420e-8cfd-5bb1f8d666cf",
+          "name": "Acquia Displays Available Log Forwarding Consumers.",
+          "request": {
+            "name": "Acquia Displays Available Log Forwarding Consumers.",
+            "description": {
+              "content": "Displays available log forwarding consumers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "options",
+                "log-forwarding",
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "073ca0e4-a68f-45de-a6ea-e839327f254e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "options",
+                    "log-forwarding",
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"label\": \"Sumologic\",\n        \"name\": \"sumologic\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/log-forwarding\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/log-forwarding/consumers\"\n    }\n  },\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cd95ec4-8327-4bcc-b8a1-f9397dab7c21",
+          "name": "Acquia Displays Available Log Forwarding Sources.",
+          "request": {
+            "name": "Acquia Displays Available Log Forwarding Sources.",
+            "description": {
+              "content": "Displays available log forwarding sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "options",
+                "log-forwarding",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2519c54f-8646-4bdc-af42-92b7228cf648",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "options",
+                    "log-forwarding",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"label\": \"Apache access\",\n        \"name\": \"apache-access\",\n        \"platforms\": [\n          \"drupal\"\n        ]\n      }\n    ]\n  },\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/log-forwarding\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/log-forwarding/sources\"\n    }\n  },\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "457359f4-e3e8-48a2-9fa4-47a725fd21f2",
+    "name": "Acquia Cloud API - Options",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,524 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Private Networks",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Private Networks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Create a New Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/private-networks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Private Network with optional subresource configuration.\n\nThis comprehensive endpoint allows you to create a private network and optionally configure \nits subresources (connections, VPNs, VPC peers, ingress, and isolation) during the initial creation.\n\n**Subresource Creation:**\n- **Connections**: Configure CIDR block and egress access settings\n- **VPNs**: Create one or more VPN connections with tunnel configurations\n- **VPC Peers**: Create one or more VPC peering connections\n- **In"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieve a Private Network by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ]
+          },
+          "docs": "Retrieves a Private Network by its ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Update a Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Private Network by its ID. Does not allow creation of new Private Networks."
+        },
+        {
+          "info": {
+            "name": "Acquia Delete a Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ]
+          },
+          "docs": "Deletes a Private Network by its ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Get Connections for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ]
+          },
+          "docs": "Retrieves the Connections block for a Private Network, including VPNs and VPC Peers."
+        },
+        {
+          "info": {
+            "name": "Acquia Update Connections for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the Connections configuration for a Private Network by Private Network ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Get VPC Peers for a Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpc-peers",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "sort",
+                "value": "name,-created_at",
+                "type": "query",
+                "description": "Sort the result set by one or more fields.\n\n**Format:** `field1,field2,-field3`\n\n**Sort order:**\n- No prefix - Ascending order (default)\n- `-` prefix - Descending order\n\n**Multiple fields:**\n- Fields are processed in the order specified\n- First field has highest priority\n- Use comma to separate multiple fields\n\n**Examples:**\n- `name` - Sort by name in ascending order\n- `-created_at` - Sort by created_at in descending order\n- `name,-created_at` - Sort by name ascending, then created_at descending\n- `status,name,-updated_at` - Sort by status ascending, then name ascending, then updated_at descending\n"
+              },
+              {
+                "name": "filter",
+                "value": "status:active;type:standard",
+                "type": "query",
+                "description": "Filter the result set using field-based criteria.\n\n**Format:** `field:value`, `field=value` or `field:operator:value`\n\n**Logical operators:**\n- `,` (comma) - OR logic between filters\n- `;` (semicolon) - AND logic between filters\n- **Note:** Cannot mix OR and AND operators in the same query\n\n**Comparison operators:**\n- `=` - Equals (default if no operator specified)\n- `!=` - Does not equal\n- `>` - Greater than\n- `<` - Less than\n- `>=` - Greater than or equal to\n- `<=` - Less than or equal to\n- `=@` - Contains substring\n- `!@` - Does not contain substring\n\n**Wildcards:**\n- `*` - Wildcard character for pattern matching\n\n**Examples:**\n- `status=active` - Filter by status equals active\n- `name=@prod` - Filter by name containing \"prod\"\n- `status=active;type=standard` - Status is active AND type is standard\n- `status=active,status=pending` - Status is active OR pending\n"
+              }
+            ]
+          },
+          "docs": "Retrieves the VPC Peers for a Private Network."
+        },
+        {
+          "info": {
+            "name": "Acquia Add a New VPC Peer to an Existing Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpc-peers",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new VPC Peer to the connections block of an existing private network"
+        },
+        {
+          "info": {
+            "name": "Acquia Get a Specific VPC Peer from a Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpc-peers/:vpcPeerId",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              },
+              {
+                "name": "vpcPeerId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the VPC Peer"
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific VPC Peer from a private network"
+        },
+        {
+          "info": {
+            "name": "Acquia Delete a VPC Peer for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpc-peers/:vpcPeerId",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              },
+              {
+                "name": "vpcPeerId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the VPC Peer"
+              }
+            ]
+          },
+          "docs": "Deletes a VPC Peer for a Private Network by Private Network ID and VPC Peer name."
+        },
+        {
+          "info": {
+            "name": "Acquia Get VPNs for a Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpns",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "sort",
+                "value": "name,-created_at",
+                "type": "query",
+                "description": "Sort the result set by one or more fields.\n\n**Format:** `field1,field2,-field3`\n\n**Sort order:**\n- No prefix - Ascending order (default)\n- `-` prefix - Descending order\n\n**Multiple fields:**\n- Fields are processed in the order specified\n- First field has highest priority\n- Use comma to separate multiple fields\n\n**Examples:**\n- `name` - Sort by name in ascending order\n- `-created_at` - Sort by created_at in descending order\n- `name,-created_at` - Sort by name ascending, then created_at descending\n- `status,name,-updated_at` - Sort by status ascending, then name ascending, then updated_at descending\n"
+              },
+              {
+                "name": "filter",
+                "value": "status:active;type:standard",
+                "type": "query",
+                "description": "Filter the result set using field-based criteria.\n\n**Format:** `field:value`, `field=value` or `field:operator:value`\n\n**Logical operators:**\n- `,` (comma) - OR logic between filters\n- `;` (semicolon) - AND logic between filters\n- **Note:** Cannot mix OR and AND operators in the same query\n\n**Comparison operators:**\n- `=` - Equals (default if no operator specified)\n- `!=` - Does not equal\n- `>` - Greater than\n- `<` - Less than\n- `>=` - Greater than or equal to\n- `<=` - Less than or equal to\n- `=@` - Contains substring\n- `!@` - Does not contain substring\n\n**Wildcards:**\n- `*` - Wildcard character for pattern matching\n\n**Examples:**\n- `status=active` - Filter by status equals active\n- `name=@prod` - Filter by name containing \"prod\"\n- `status=active;type=standard` - Status is active AND type is standard\n- `status=active,status=pending` - Status is active OR pending\n"
+              }
+            ]
+          },
+          "docs": "Retrieves the VPN Connections for a Private Network."
+        },
+        {
+          "info": {
+            "name": "Acquia Add a New VPN to an Existing Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpns",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new VPN to the connections block of an existing private network"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieve a VPN for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpns/:vpnId",
+            "params": [
+              {
+                "name": "vpnId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the VPN"
+              },
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ]
+          },
+          "docs": "Retrieves a VPN for a Private Network by Private Network ID and VPN ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Create or Update a VPN for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpns/:vpnId",
+            "params": [
+              {
+                "name": "vpnId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the VPN"
+              },
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new VPN or updates an existing VPN for a Private Network by Private Network ID and VPN ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Delete a VPN for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/connections/vpns/:vpnId",
+            "params": [
+              {
+                "name": "vpnId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the VPN"
+              },
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ]
+          },
+          "docs": "Deletes a VPN for a Private Network by Private Network ID and VPN ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Get Ingress for a Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/ingress",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ]
+          },
+          "docs": "Retrieves the Ingress configuration for a Private Network."
+        },
+        {
+          "info": {
+            "name": "Acquia Update Ingress for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/ingress",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the Ingress configuration for a Private Network by Private Network ID. Ingress always exists for a Private Network."
+        },
+        {
+          "info": {
+            "name": "Acquia Get Isolation for a Private Network.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/isolation",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ]
+          },
+          "docs": "Retrieves the Isolation configuration for a Private Network."
+        },
+        {
+          "info": {
+            "name": "Acquia Update Isolation Settings of a Private Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/private-networks/:privateNetworkId/isolation",
+            "params": [
+              {
+                "name": "privateNetworkId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the private network"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the isolation settings of a private network"
+        },
+        {
+          "info": {
+            "name": "Acquia List Private Networks for a Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/private-networks",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the subscription"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "sort",
+                "value": "name,-created_at",
+                "type": "query",
+                "description": "Sort the result set by one or more fields.\n\n**Format:** `field1,field2,-field3`\n\n**Sort order:**\n- No prefix - Ascending order (default)\n- `-` prefix - Descending order\n\n**Multiple fields:**\n- Fields are processed in the order specified\n- First field has highest priority\n- Use comma to separate multiple fields\n\n**Examples:**\n- `name` - Sort by name in ascending order\n- `-created_at` - Sort by created_at in descending order\n- `name,-created_at` - Sort by name ascending, then created_at descending\n- `status,name,-updated_at` - Sort by status ascending, then name ascending, then updated_at descending\n"
+              },
+              {
+                "name": "filter",
+                "value": "status:active;type:standard",
+                "type": "query",
+                "description": "Filter the result set using field-based criteria.\n\n**Format:** `field:value`, `field=value` or `field:operator:value`\n\n**Logical operators:**\n- `,` (comma) - OR logic between filters\n- `;` (semicolon) - AND logic between filters\n- **Note:** Cannot mix OR and AND operators in the same query\n\n**Comparison operators:**\n- `=` - Equals (default if no operator specified)\n- `!=` - Does not equal\n- `>` - Greater than\n- `<` - Less than\n- `>=` - Greater than or equal to\n- `<=` - Less than or equal to\n- `=@` - Contains substring\n- `!@` - Does not contain substring\n\n**Wildcards:**\n- `*` - Wildcard character for pattern matching\n\n**Examples:**\n- `status=active` - Filter by status equals active\n- `name=@prod` - Filter by name containing \"prod\"\n- `status=active;type=standard` - Status is active AND type is standard\n- `status=active,status=pending` - Status is active OR pending\n"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of Private Networks for a given subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

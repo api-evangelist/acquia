@@ -1,0 +1,3225 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Environments",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a specific environment.\n\nTo find your environment ID via API:\n\n1. Make a request to GET `/api/applications/[uuid]/environments`.\n2. Find the entry that matches your environment. If you don't know the application UUID, first make a request to GET `/api/applications`.\n\nTo find your environment ID via cloud.acquia.com:\n\n1. Open [https://cloud.acquia.com](https://cloud.acquia.com).\n2. Navigate to your application.\n3. Navigate to the environment.\n4. See the environment ID in the "
+        },
+        {
+          "info": {
+            "name": "Acquia Modifies Configuration Settings for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies configuration settings for an environment. Note that some settings cannot be configured for certain subscriptions."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a CD Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a CD environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Displays Environment Options.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "{{baseUrl}}/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Displays environment options."
+        },
+        {
+          "info": {
+            "name": "Acquia Change the Label for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/actions/change-label",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "label",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Change the label for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Clears the Caches for One or More Domains Attached to This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/actions/clear-caches",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Clear caches for Varnish and Platform CDN (if Platform CDN is enabled)."
+        },
+        {
+          "info": {
+            "name": "Acquia Deploys an Artifact to This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/artifacts/actions/switch",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "artifact_id",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deploys an artifact to this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Return a List of Runtimes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/available-runtimes",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns a list of available runtimes."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the CDN Status for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/cdn",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the CDN status for an environment. The CDN must be enabled for the status to be displayed."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables a CDN for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/cdn",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables a CDN for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Disables a CDN for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/cdn",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disables a CDN for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Cloud Actions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/cloud-actions",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of Cloud Actions on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Modifies an Existing List of Cloud Actions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId/cloud-actions",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies an existing list of Cloud Actions on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Disables Cloud Actions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/cloud-actions/actions/disable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disables Cloud Actions on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables Cloud Actions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/cloud-actions/actions/enable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables Cloud Actions on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Resets Cloud Actions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/cloud-actions/actions/reset",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Resets Cloud Actions to the default on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Deploys Code to This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/code",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deploys code to this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Imports a Site to This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/code/actions/import",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Imports a site to this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Switches Code on This Environment to a Different Branch or Release Tag.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/code/actions/switch",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Switches code on this environment to a different branch or release tag."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Environment Cron Jobs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/crons",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of the cron jobs on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a Scheduled Job with Cron.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/crons",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a scheduled job with cron on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Cron Job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/crons/:cronId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "cronId",
+                "value": "e10a665c-c9ec-4422-a82b-b32c82329f9d",
+                "type": "path",
+                "description": "An ID that uniquely identifies a cron job."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a specific cron job by environment ID and cron job ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Modify an Existing Scheduled Job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId/crons/:cronId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "cronId",
+                "value": "e10a665c-c9ec-4422-a82b-b32c82329f9d",
+                "type": "path",
+                "description": "An ID that uniquely identifies a cron job."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modify an existing scheduled job on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a Cron Job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/crons/:cronId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "cronId",
+                "value": "e10a665c-c9ec-4422-a82b-b32c82329f9d",
+                "type": "path",
+                "description": "An ID that uniquely identifies a cron job."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a cron job."
+        },
+        {
+          "info": {
+            "name": "Acquia Disables a Cron Job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/crons/:cronId/actions/disable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "cronId",
+                "value": "e10a665c-c9ec-4422-a82b-b32c82329f9d",
+                "type": "path",
+                "description": "An ID that uniquely identifies a cron job."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disables a cron job."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables a Cron Job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/crons/:cronId/actions/enable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "cronId",
+                "value": "e10a665c-c9ec-4422-a82b-b32c82329f9d",
+                "type": "path",
+                "description": "An ID that uniquely identifies a cron job."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables a cron job."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Databases.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/databases",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of databases.\n\nFilterable fields:\n* `name`\n* `id`\n\nSortable fields:\n* `name`\n* `id`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Copies a Database to This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/databases",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                },
+                {
+                  "name": "source",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Copies a database to this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              }
+            ]
+          },
+          "docs": "Return details about a specific database."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Backups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName/backups",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              },
+              {
+                "name": "from",
+                "value": "2019-10-01",
+                "type": "query",
+                "description": "(Use filter `from` instead.) Specifies an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted date. Used in conjunction with `to` query."
+              },
+              {
+                "name": "to",
+                "value": "2020-01-01",
+                "type": "query",
+                "description": "(Use filter `to` instead.) Specifies an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted date. Used in conjunction with `from` query."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of backups.\n\nFilterable fields:\n* `type`\n* `created` Specifies an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted date.\n\nSortable fields:\n* `type`\n* `created`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Create a Backup.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName/backups",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a backup."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Backup.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName/backups/:backupId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              },
+              {
+                "name": "backupId",
+                "value": "1",
+                "type": "path",
+                "description": "The database backup identifier."
+              }
+            ]
+          },
+          "docs": "Return details about a specific backup."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a Database Backup.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName/backups/:backupId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              },
+              {
+                "name": "backupId",
+                "value": "1",
+                "type": "path",
+                "description": "The database backup identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a database backup."
+        },
+        {
+          "info": {
+            "name": "Acquia Downloads the Database Backup File.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName/backups/:backupId/actions/download",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              },
+              {
+                "name": "backupId",
+                "value": "1",
+                "type": "path",
+                "description": "The database backup identifier."
+              }
+            ]
+          },
+          "docs": "Downloads the database backup file."
+        },
+        {
+          "info": {
+            "name": "Acquia Restores This Backup to the Appropriate Environment's Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName/backups/:backupId/actions/restore",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              },
+              {
+                "name": "backupId",
+                "value": "1",
+                "type": "path",
+                "description": "The database backup identifier."
+              }
+            ]
+          },
+          "docs": "Restores this backup to the appropriate environment's database."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns PHP Configuration Details for This Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/databases/:databaseName/php-config",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "databaseName",
+                "value": "my_db",
+                "type": "path",
+                "description": "The database name, typically lower snake case."
+              }
+            ]
+          },
+          "docs": "Returns PHP configuration details for this database."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns DNS Configuration Details for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/dns",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns environment DNS configuration information for apex domain and subdomains."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Domains.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/domains",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of domains.\n\nFilterable fields:\n* `hostname`\n\nSortable fields:\n* `hostname`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Adds a Domain to the Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/domains",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "hostname",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds a domain to the environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Clears the Varnish Cache for One or More Domains Attached to This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/domains/actions/clear-varnish",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Clears the Varnish cache for one or more domains attached to this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/domains/:domain",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "domain",
+                "value": "example.com",
+                "type": "path",
+                "description": "A domain name."
+              }
+            ]
+          },
+          "docs": "Return details about a specific domain."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes the Domain from This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/domains/:domain",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "domain",
+                "value": "example.com",
+                "type": "path",
+                "description": "A domain name."
+              }
+            ]
+          },
+          "docs": "Removes the domain from this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Clears the Caches for the Specified Domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/domains/:domain/actions/clear-caches",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "domain",
+                "value": "example.com",
+                "type": "path",
+                "description": "A domain name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Clear caches for Varnish and Platform CDN (if Platform CDN is enabled)."
+        },
+        {
+          "info": {
+            "name": "Acquia Clears the Varnish Cache for the Specified Domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/domains/:domain/actions/clear-varnish",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "domain",
+                "value": "example.com",
+                "type": "path",
+                "description": "A domain name."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Clears the Varnish cache for the specified domain."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Details About the Domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/domains/:domain/status",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "domain",
+                "value": "example.com",
+                "type": "path",
+                "description": "A domain name."
+              }
+            ]
+          },
+          "docs": "Returns details about the domain."
+        },
+        {
+          "info": {
+            "name": "Acquia Return a List of Web EIPs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/eips",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns a list of Web EIPs."
+        },
+        {
+          "info": {
+            "name": "Acquia Copies Files to This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/files",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "source",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Copies files to this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Disable Live Development on This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/livedev/actions/disable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "discard",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disable Live Development on this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Enable Live Development on This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/livedev/actions/enable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enable Live Development on this environment. Not supported on Acquia Cloud Next."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Collection of Log Forwarding Destinations for This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/log-forwarding-destinations",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a collection of log forwarding destinations for this environment.\n\nFilterable fields:\n* `label`\n* `consumer`\n\nSortable fields:\n* `label`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a Log Forwarding Destination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/log-forwarding-destinations",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a log forwarding destination."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Specified Log Forwarding Destination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/log-forwarding-destinations/:logForwardingDestinationUuid",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "logForwardingDestinationUuid",
+                "value": "dbd8a966-2b25-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the specified log forwarding destination."
+        },
+        {
+          "info": {
+            "name": "Acquia Updates an Environment's Log Forwarding Destination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId/log-forwarding-destinations/:logForwardingDestinationUuid",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "logForwardingDestinationUuid",
+                "value": "dbd8a966-2b25-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an environment's log forwarding destination."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes the Specified Log Forwarding Destination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/log-forwarding-destinations/:logForwardingDestinationUuid",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "logForwardingDestinationUuid",
+                "value": "dbd8a966-2b25-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Deletes the specified log forwarding destination."
+        },
+        {
+          "info": {
+            "name": "Acquia Disables the Specified Log Forwarding Destination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/log-forwarding-destinations/:logForwardingDestinationUuid/actions/disable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "logForwardingDestinationUuid",
+                "value": "dbd8a966-2b25-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Disables the specified log forwarding destination."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables the Specified Log Forwarding Destination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/log-forwarding-destinations/:logForwardingDestinationUuid/actions/enable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "logForwardingDestinationUuid",
+                "value": "dbd8a966-2b25-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Enables the specified log forwarding destination."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Log Files for This Environment Available for Download.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/logs",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns a list of log files for this environment available for download."
+        },
+        {
+          "info": {
+            "name": "Acquia Downloads the Log File.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/logs/:logType",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "logType",
+                "value": "php-error",
+                "type": "path",
+                "description": "An ID that uniquely identifies a log type."
+              }
+            ]
+          },
+          "docs": "Downloads the log file."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a Log File Snapshot.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/logs/:logType",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "logType",
+                "value": "php-error",
+                "type": "path",
+                "description": "An ID that uniquely identifies a log type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a log file snapshot."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Logstream Url and Metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/logstream",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns a logstream url and metadata."
+        },
+        {
+          "info": {
+            "name": "Acquia Does Not Return Any Data. Allows Traversal to Metrics Groups Endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/metrics",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Does not return any data. Allows traversal to metrics groups endpoints."
+        },
+        {
+          "info": {
+            "name": "Acquia Does Not Return Any Data. Allows Traversal to StackMetrics Endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/metrics/stackmetrics",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Does not return any data. Allows traversal to StackMetrics endpoints."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns StackMetrics Data for the Metrics Specified in the Filter Paramater (e.g., Apache-access, Web-cpu).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/metrics/stackmetrics/data",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n\n**For this endpoint, the \"metric\" filter is required. Multiple metrics can be returned in one request. The following metrics are available:**\n\n* apache-requests, bal-cpu, bal-memory, cron-memory, db-cpu, db-disk-size, db-disk-usage, db-memory, file-disk-size, file-cpu, file-disk-usage, file-memory, http-2xx, http-3xx, http-4xx, http-5xx, mysql-slow-query-count, nginx-requests, out-of-memory, php-proc-max-reached-site, php-proc-max-reached-total, php-proc-site, php-proc-total, varnish-cache-hit-rate, varnish-requests, web-cpu, web-memory\n"
+              },
+              {
+                "name": "from",
+                "value": "2021-01-29T22:45:21+00:00",
+                "type": "query",
+                "description": "An ISO-8601 formatted date retrieve metrics from."
+              },
+              {
+                "name": "to",
+                "value": "2021-01-29T23:55:21+00:00",
+                "type": "query",
+                "description": "An ISO-8601 formatted date retrieve results to."
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns StackMetrics data for the metrics specified by the filter paramater (e.g., apache-access, web-cpu)."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Traversal Links for an Environment's Usage Data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/metrics/usage",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves traversal links for an environment's usage data."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Usage Data for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/metrics/usage/data",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `metric` - One of: {`views`, `visits`}\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Usage Metric Data for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/metrics/usage/:usageMetric",
+            "params": [
+              {
+                "name": "usageMetric",
+                "value": "views",
+                "type": "path",
+                "description": "A usage data metric type."
+              },
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves usage metric data for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Mod Proxy Status for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/mod-proxy",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the mod proxy status for an Environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Disables Mod Proxy for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/mod-proxy/actions/disable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disables mod proxy for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables Mod Proxy for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/mod-proxy/actions/enable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables mod proxy for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Return a List of Operating Systems.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/operating-systems",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns a list of operating systems."
+        },
+        {
+          "info": {
+            "name": "Acquia Disables Production Mode for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/production-mode/actions/disable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes protection from a production environment, taking it out of production mode."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables Production Mode for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/production-mode/actions/enable",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables production mode for an environment. While production mode is enabled, files and databases cannot be copied to the production environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Traversal Endpoint for Search Entities for the Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/search",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Does not return any data. Allows traversal to search entity endpoints."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Collection of Search Indexes for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/search/indexes",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "A collection of search indexes for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a Search Index for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/search/indexes",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "config_set_id",
+                  "value": ""
+                },
+                {
+                  "name": "database_role",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a search index for an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Search Configuration Set for an Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/search/indexes/:indexId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "indexId",
+                "value": "ABCDE-1234.test.example",
+                "type": "path",
+                "description": "An ID that uniquely identifies an index."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "A specific search configuration set."
+        },
+        {
+          "info": {
+            "name": "Acquia Updates a Search Index on an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId/search/indexes/:indexId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "indexId",
+                "value": "ABCDE-1234.test.example",
+                "type": "path",
+                "description": "An ID that uniquely identifies an index."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "config_set_id",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates a search index on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes and Deletes a Specific Search Index from an Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/search/indexes/:indexId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "indexId",
+                "value": "ABCDE-1234.test.example",
+                "type": "path",
+                "description": "An ID that uniquely identifies an index."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes and deletes a specific search index from an environment"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Servers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/servers",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of servers.\n\nFilterable fields:\n* `name`\n* `region`\n* `hostname`\n* `ip`\n* `status`\n\nSortable fields:\n* `name`\n* `region`\n* `hostname`\n* `ip`\n* `status`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Server.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/servers/:serverId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "serverId",
+                "value": "42",
+                "type": "path",
+                "description": "The internal database identifier of the server."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a specific server."
+        },
+        {
+          "info": {
+            "name": "Acquia Modifies Configuration Settings for a Server.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId/servers/:serverId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "serverId",
+                "value": "42",
+                "type": "path",
+                "description": "The internal database identifier of the server."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "memcache",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies configuration settings for a server."
+        },
+        {
+          "info": {
+            "name": "Acquia Reboots a Server.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/servers/:serverId/actions/reboot",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "serverId",
+                "value": "42",
+                "type": "path",
+                "description": "The internal database identifier of the server."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Reboots a server. This will cause all applications on this server to be unavailable while the server reboots."
+        },
+        {
+          "info": {
+            "name": "Acquia Relaunches a Server.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/servers/:serverId/actions/relaunch",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "serverId",
+                "value": "42",
+                "type": "path",
+                "description": "The internal database identifier of the server."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Relaunches a server. This will cause all applications on this server to be unavailable while the server relaunches."
+        },
+        {
+          "info": {
+            "name": "Acquia Suspends a Server.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/servers/:serverId/actions/suspend",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "serverId",
+                "value": "42",
+                "type": "path",
+                "description": "The internal database identifier of the server."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Suspends a server. The server will no longer respond to web requests."
+        },
+        {
+          "info": {
+            "name": "Acquia Upgrades a Server from \"precise\" to \"xenial\".",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/servers/:serverId/actions/upgrade",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "serverId",
+                "value": "42",
+                "type": "path",
+                "description": "The internal database identifier of the server."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Upgrades a server from \"precise\" to \"xenial\"."
+        },
+        {
+          "info": {
+            "name": "Acquia Provides Links to Environment Settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/settings",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Provides links to environment settings."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the SSL Settings for This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the SSL settings for this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Return a List of SSL Certificates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/certificates",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns the SSL certificates that are installed on this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Install an SSL Certificate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/certificates",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Install a new SSL certificate on this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Specific Certificate by Certificate Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/certificates/:certificateId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "certificateId",
+                "value": "7",
+                "type": "path",
+                "description": "An ID that uniquely identifies a certificate."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details about a specific SSL certificate."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a Specific Certificate by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/certificates/:certificateId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "certificateId",
+                "value": "7",
+                "type": "path",
+                "description": "An ID that uniquely identifies a certificate."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a specific certificate by its ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Activates an SSL Certificate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/certificates/:certificateId/actions/activate",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "certificateId",
+                "value": "7",
+                "type": "path",
+                "description": "An ID that uniquely identifies a certificate."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activates an SSL certificate."
+        },
+        {
+          "info": {
+            "name": "Acquia Deactivates an Active SSL Certificate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/certificates/:certificateId/actions/deactivate",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "certificateId",
+                "value": "7",
+                "type": "path",
+                "description": "An ID that uniquely identifies a certificate."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deactivates an active SSL certificate."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Certificate Signing Requests.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/csrs",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns the certificate signing requests for this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Generates a Certificate Signing Request (CSR) for One or More Domains.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/csrs",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates a CSR for one or more domains."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Certificate Signing Request for the Certificate Specified by Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/csrs/:certificateId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "certificateId",
+                "value": "7",
+                "type": "path",
+                "description": "An ID that uniquely identifies a certificate."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details about a specific certificate signing request."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes the Certificate Signing Request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/ssl/csrs/:certificateId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "certificateId",
+                "value": "7",
+                "type": "path",
+                "description": "An ID that uniquely identifies a certificate."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes the certificate signing request for the certificate specified by id."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Environment Variables Associated with This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/variables",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of environment variables associated with this environment.\n\nFilterable fields:\n* `name`\n\nSortable fields:\n* `name`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Adds a New Environment Variable to an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/environments/:environmentId/variables",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                },
+                {
+                  "name": "value",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Adds a new environment variable to an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Get an Environment Variable Associated with This Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/variables/:environmentVariableName",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "environmentVariableName",
+                "value": "EXAMPLE_VARIABLE_NAME",
+                "type": "path",
+                "description": "The environment variable name."
+              }
+            ]
+          },
+          "docs": "Get an environment variable associated with this environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Updates an Environment Variable on an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId/variables/:environmentVariableName",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "environmentVariableName",
+                "value": "EXAMPLE_VARIABLE_NAME",
+                "type": "path",
+                "description": "The environment variable name."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                },
+                {
+                  "name": "value",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates an environment variable on an environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes an Environment Variable from an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/environments/:environmentId/variables/:environmentVariableName",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              },
+              {
+                "name": "environmentVariableName",
+                "value": "EXAMPLE_VARIABLE_NAME",
+                "type": "path",
+                "description": "The environment variable name."
+              }
+            ]
+          },
+          "docs": "Removes an environment variable from an environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

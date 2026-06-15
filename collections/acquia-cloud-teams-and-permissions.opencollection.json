@@ -1,0 +1,618 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Teams and Permissions",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams and Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Return a List of Permissions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/permissions"
+          },
+          "docs": "Displays a list of all available permissions currently in the system. This will include permissions that the user\nmay not have access to.\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleUuid",
+            "params": [
+              {
+                "name": "roleUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Roles may be assigned to team members, and grant various permissions to the applications that the team is assigned\nto. Roles are unique within a organization.\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Updates a Role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/roles/:roleUuid",
+            "params": [
+              {
+                "name": "roleUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "description",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "value": ""
+                },
+                {
+                  "name": "permissions",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies a role."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a Specific Role by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/roles/:roleUuid",
+            "params": [
+              {
+                "name": "roleUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a specific role."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Teams the Current User Has Access To.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams",
+            "params": [
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "ISO-8601 date/time of invite create date/time."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of teams the current user has access to.\n\nFilterable fields:\n* `name`\n\nSortable fields:\n* `name`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams/:teamUuid",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a specific team."
+        },
+        {
+          "info": {
+            "name": "Acquia Change the Name of a Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/teams/:teamUuid",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Change the name of a team."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a Specific Team by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/teams/:teamUuid",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a specific team by its UUID."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes the Current User from a Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/teams/:teamUuid/actions/leave",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes the current user from a team."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Applications This Team Has Access To.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams/:teamUuid/applications",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of applications this team has access to.\n\nFilterable fields:\n* `name`\n\nSortable fields:\n* `name`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Adds an Application to This Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/teams/:teamUuid/applications",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "uuid",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds an application to this team."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes the Application from This Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/teams/:teamUuid/applications/:applicationUuid",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes the application from this team. Team members will immediately lose access to this application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Invitations to This Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams/:teamUuid/invites",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "ISO-8601 date/time of invite create date/time."
+              }
+            ]
+          },
+          "docs": "Returns a list of invitations to this team.\n\nFilterable fields:\n* `mail`\n* `token`\n* `author`\n\nSortable fields:\n* `mail`\n* `token`\n* `author`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Invites a User to Join a Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/teams/:teamUuid/invites",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Invites a user to join a team."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Team Members.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams/:teamUuid/members",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of team members.\n\nFilterable fields:\n* `permission`\n* `first_name`\n* `last_name`\n* `user`\n\nSortable fields:\n* `permission`\n* `first_name`\n* `last_name`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Grant Team Roles to a Member.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/teams/:teamUuid/members/:userUuid",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "userUuid",
+                "value": "f2daa9cc-e5a0-4036-a5c8-f96e336c62b5",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "roles",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Grant team roles to a member."
+        },
+        {
+          "info": {
+            "name": "Acquia Remove a User from a Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/teams/:teamUuid/members/:userUuid",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "userUuid",
+                "value": "f2daa9cc-e5a0-4036-a5c8-f96e336c62b5",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove a user from a team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Cloud IDE",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cloud IDE",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Returns Cloud IDE Info.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ides/:ideUuid",
+            "params": [
+              {
+                "name": "ideUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The Cloud IDE universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns Cloud IDE info."
+        },
+        {
+          "info": {
+            "name": "Acquia De-provisions a Specific Cloud IDE.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ides/:ideUuid",
+            "params": [
+              {
+                "name": "ideUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The Cloud IDE universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "De-provisions a specific Cloud IDE."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

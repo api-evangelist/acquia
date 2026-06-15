@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Email",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Returns the Status of Platform Email for an Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/email",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the status of Platform Email for an Environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

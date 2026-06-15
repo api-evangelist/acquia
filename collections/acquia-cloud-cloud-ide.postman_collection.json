@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "0cc134cd-94d6-4c29-aaf5-a0c91fc819ca",
+      "name": "Cloud IDE",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93bf8a82-c60d-4db0-8c14-6db2ab728f12",
+          "name": "Acquia De-provisions a Specific Cloud IDE.",
+          "request": {
+            "name": "Acquia De-provisions a Specific Cloud IDE.",
+            "description": {
+              "content": "De-provisions a specific Cloud IDE.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ides",
+                ":ideUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ideUuid",
+                  "description": "(Required) The Cloud IDE universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3eefb493-7fd8-4b8a-b897-8bd65bca0b96",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ides",
+                    ":ideUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ideUuid",
+                      "description": "(Required) The Cloud IDE universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"notification\": {\n      \"href\": \"https://cloud.acquia.com/api/notifications/e98577df-840a-4fef-8775-66cf90b3530e\"\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/ides\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/ides/215824ff-272a-4a8c-9027-df32ed1d68a9\"\n    }\n  },\n  \"message\": \"The Cloud IDE is being deleted.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e4324be-4ec9-4579-b406-5e46abcef99d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ides",
+                    ":ideUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ideUuid",
+                      "description": "(Required) The Cloud IDE universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The IDE you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa328bdd-20ad-4152-81eb-f24abe09232c",
+          "name": "Acquia Returns Cloud IDE Info.",
+          "request": {
+            "name": "Acquia Returns Cloud IDE Info.",
+            "description": {
+              "content": "Returns Cloud IDE info.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ides",
+                ":ideUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ideUuid",
+                  "description": "(Required) The Cloud IDE universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5d755f34-6d2f-4a29-9e40-3f0c50f214fa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ides",
+                    ":ideUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ideUuid",
+                      "description": "(Required) The Cloud IDE universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"owner\": {\n      \"created_at\": \"2016-08-14T17:38:59-04:00\",\n      \"email\": \"user.name@example.com\",\n      \"first_name\": \"First\",\n      \"last_login_at\": \"2019-01-31T10:53:11-05:00\",\n      \"last_name\": \"Last\",\n      \"picture_url\": \"https://accounts.acquia.com/path/to/image.png\",\n      \"username\": \"user.name\",\n      \"uuid\": \"10be1d3e-f2b4-4d34-855d-321df3938ffd\"\n    }\n  },\n  \"_links\": {\n    \"application\": {\n      \"href\": \"https://cloud.acquia.com/api/applications/461fe350-7988-42b3-a73e-cffcdbb94199\"\n    },\n    \"ide\": {\n      \"href\": \"https://215824ff-272a-4a8c-9027-df32ed1d68a9.ides.acquia.com\"\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/ides\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/ides/215824ff-272a-4a8c-9027-df32ed1d68a9\"\n    },\n    \"web\": {\n      \"href\": \"https://ide-215824ff-272a-4a8c-9027-df32ed1d68a9.prod.acquia-sites.com\"\n    }\n  },\n  \"label\": \"Example IDE\",\n  \"status\": \"active\",\n  \"uuid\": \"215824ff-272a-4a8c-9027-df32ed1d68a9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b9ad94b-bf08-44ca-b7b4-cf5d6559bd67",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ides",
+                    ":ideUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ideUuid",
+                      "description": "(Required) The Cloud IDE universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The IDE you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "38ff37a1-c97d-4153-abe0-7a800063f561",
+    "name": "Acquia Cloud API - Cloud IDE",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
+      "type": "text/plain"
+    }
+  }
+}

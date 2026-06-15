@@ -1,0 +1,225 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Identity Providers",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Returns a List of Identity Providers for a User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identity-providers",
+            "params": [
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of identity providers you have access to.\n\nFilterable fields:\n* `label`\n\nSortable fields:\n* `label`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Specific Identity Provider by UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/identity-providers/:identityProviderUuid",
+            "params": [
+              {
+                "name": "identityProviderUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a specific identity provider."
+        },
+        {
+          "info": {
+            "name": "Acquia Modifies an Identity Provider by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/identity-providers/:identityProviderUuid",
+            "params": [
+              {
+                "name": "identityProviderUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "certificate",
+                  "value": ""
+                },
+                {
+                  "name": "entity_id",
+                  "value": ""
+                },
+                {
+                  "name": "label",
+                  "value": ""
+                },
+                {
+                  "name": "sso_url",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies an identity provider."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a Specific Identity Provider by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/identity-providers/:identityProviderUuid",
+            "params": [
+              {
+                "name": "identityProviderUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a specific identity provider."
+        },
+        {
+          "info": {
+            "name": "Acquia Disables an Identity Provider by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/identity-providers/:identityProviderUuid/actions/disable",
+            "params": [
+              {
+                "name": "identityProviderUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Disables an identity provider."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables an Identity Provider by its UUID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/identity-providers/:identityProviderUuid/actions/enable",
+            "params": [
+              {
+                "name": "identityProviderUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables an identity provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

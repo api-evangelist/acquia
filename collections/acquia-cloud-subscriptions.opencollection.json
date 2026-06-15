@@ -1,0 +1,1033 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Subscriptions",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Return a List of Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions",
+            "params": [
+              {
+                "name": "from",
+                "value": "2023-09-01",
+                "type": "query",
+                "description": "Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "to",
+                "value": "2023-09-29",
+                "type": "query",
+                "description": "Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-29`\n* `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Filterable fields:\n* `from`\n* `to`\n* `sort`\n* `filter`\n* `limit`\n* `offset`\n\nSortable fields:\n* `from`\n* `to`\n* `sort`\n* `filter`\n* `limit`\n* `offset`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a specific subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Modifies a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Provides a List of Applications That Are a Part of the Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/applications",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Filterable fields:\n* `from`\n* `to`\n* `sort`\n* `filter`\n* `limit`\n* `offset`\n\nSortable fields:\n* `from`\n* `to`\n* `sort`\n* `filter`\n* `limit`\n* `offset`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Code Studio Metadata for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves Code Studio metadata for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Displays Code Studio Options for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Displays Code Studio options for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables Code Studio for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio/actions/enable",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables and provisions Code Studio at the subscription level."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a List of Code Studio Enabled Applications for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio/applications",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves a list of Code Studio enabled applications for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a List of Users Assigned to Code Studio for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio/users",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves a list of users assigned to Code Studio for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Assigns a User to a Code Studio Seat for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio/users",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Assigns a user to Code Studio seat for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Details About a Specific Code Studio User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio/users/:userUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "userUuid",
+                "value": "f2daa9cc-e5a0-4036-a5c8-f96e336c62b5",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves details about a specific Code Studio user."
+        },
+        {
+          "info": {
+            "name": "Acquia Unassigns a User from a Code Studio Seat.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/code-studio/users/:userUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "userUuid",
+                "value": "f2daa9cc-e5a0-4036-a5c8-f96e336c62b5",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Unassigns a user from a Code Studio seat."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Domains Registered with This Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/domains",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Returns a list of Domains registered with this subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Registers a Domain with This Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/domains",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "domain",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Registers a Domain with this subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a Speicific Domain Registered with This Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/domains/:domainRegistrationUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "domainRegistrationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The Domain Registration universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns a speicific Domain registered with this subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Unregisters a Domain Registered with This Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/domains/:domainRegistrationUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "domainRegistrationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The Domain Registration universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Unregisters a Domain registered with this subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Triggers Re-verification and Update to the Domain Verification Status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/domains/:domainRegistrationUuid/actions/verify",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "domainRegistrationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The Domain Registration universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Triggers re-verification and update to the domain verification status."
+        },
+        {
+          "info": {
+            "name": "Acquia Provides a List of Entitlements That Are a Part of the Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/entitlements",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Provides a list of entitlements that are a part of the subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Cloud IDEs Associated with This Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/ides",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns a list of Cloud IDEs associated with this subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Traversal Links for a Subscription's Usage Data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/metrics/usage",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves traversal links for a subscription's usage data."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Aggregate Usage Data for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/metrics/usage/data",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `metric` - One of: {`views`, `visits`}\n* `application`\n* `from`\n* `to`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Usage Data for a Subscription, Broken Down by Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/metrics/usage/data-by-application",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `metric` - One of: {`views`, `visits`}\n* `application`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Views Data for a Subscription, Broken Down by Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/metrics/usage/views-by-application",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `application`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Visits Data for a Subscription, Broken Down by Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/metrics/usage/visits-by-application",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.\n\nLimits:\n- 3 hour limit for “minute” resolution\n- 1 week limit for “hour” resolution\n- 6 month limit for “day” resolution\n- 1 year limit for \"week\" resolution\n- 3 year limit for “month” resolution\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `application`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Aggregate Usage Metric Data for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/metrics/usage/:usageMetric",
+            "params": [
+              {
+                "name": "usageMetric",
+                "value": "views",
+                "type": "path",
+                "description": "A usage data metric type."
+              },
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nFilter parameters include:\n* `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n* `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nFormatting examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n\nUsage examples:\n* `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)\n* `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Filterable fields:\n* `application`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Provides a List of Shield ACL Rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/shield-acl",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ]
+          },
+          "docs": "Provides a list of Shield ACL rules."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates a Shield ACL Rule.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/shield-acl",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "addresses",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a Shield ACL rule."
+        },
+        {
+          "info": {
+            "name": "Acquia Resets Shield ACL Rules to Default Settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/shield-acl/actions/reset",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Resets the Shield ACL rules for a subscription to the default settings. This action is irreversible and will remove all custom rules.\n\nThis operation can only be performed on subscriptions that have Acquia Shield enabled. If there are ongoing updates to the Shield ACL rules, this operation will fail with a conflict error.\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Specified Shield ACL Rule.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/shield-acl/:shieldAclUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "shieldAclUuid",
+                "value": "a1234567-1234-123a-abc1-12ab345cd678",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the specified Shield access control list (ACL) rule for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Updates a Shield ACL Rule.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/shield-acl/:shieldAclUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "shieldAclUuid",
+                "value": "a1234567-1234-123a-abc1-12ab345cd678",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "addresses",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates a Shield ACL rule."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes a Shield ACL Rule.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/shield-acl/:shieldAclUuid",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "shieldAclUuid",
+                "value": "a1234567-1234-123a-abc1-12ab345cd678",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a Shield ACL rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

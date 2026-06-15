@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Application Performance Monitoring Services",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Performance Monitoring Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Returns a List of Application Performance Monitoring Services Associated with the Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/environments/:environmentId/settings/apm",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ]
+          },
+          "docs": "Returns a list of Application Performance Monitoring services associated with the environment."
+        },
+        {
+          "info": {
+            "name": "Acquia Update Configuration for an Application Performance Monitoring Tool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/environments/:environmentId/settings/apm",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "12-d314739e-296f-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "key",
+                  "value": ""
+                },
+                {
+                  "name": "status",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update configuration for an Application Performance Monitoring tool."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Application Performance Monitoring Services Associated with the Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/apm",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns a list of Application Performance Monitoring services associated with the subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Application Performance Monitoring Service Type Associated with the Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/apm/:apmType",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "apmType",
+                "value": "newrelic",
+                "type": "path",
+                "description": "The APM type."
+              }
+            ]
+          },
+          "docs": "Returns the Application Performance Monitoring service type associated with the subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Enables New Relic Pro APM License for All Applications on a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionUuid/apm/:apmType/actions/opt-in",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              },
+              {
+                "name": "apmType",
+                "value": "newrelic",
+                "type": "path",
+                "description": "The APM type."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables New Relic Pro APM license for all applications on a subscription. This authorizes Acquia to create a new user account on the third-party New Relic platform using the name and e-mail address of the organization owner."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

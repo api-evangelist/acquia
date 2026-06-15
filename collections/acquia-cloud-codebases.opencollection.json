@@ -1,0 +1,341 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Codebases",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Codebases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Retrieves a Codebase Details Linked to the Specified Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:applicationId/codebase",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a codebase details linked to the specified application."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a List of Codebases Accessible by the User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/codebases",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of codebases accessible by the user."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a Codebase Details by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/codebases/:codebaseId",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path",
+                "description": "The codebase entity's unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return details about a specific codebase."
+        },
+        {
+          "info": {
+            "name": "Acquia Update a Codebase Details by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/codebases/:codebaseId",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path",
+                "description": "The codebase entity's unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a codebase details by its ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Delete a Codebase by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/codebases/:codebaseId",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path",
+                "description": "The codebase entity's unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a codebase by its ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a List of Bulk Code Switches Details Performed on a Codebase.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/codebases/:codebaseId/bulk-code-switch",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The collection page number"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of bulk code switches details performed on a codebase."
+        },
+        {
+          "info": {
+            "name": "Acquia Starts a New Bulk Code Switch for a Codebase.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/codebases/:codebaseId/bulk-code-switch",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path",
+                "description": "The codebase entity's unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Starts a new Bulk Code Switch for a codebase."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves Bulk Code Switch Details by Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/codebases/:codebaseId/bulk-code-switch/:bulkCodeSwitchId",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path",
+                "description": "The codebase entity's unique identifier."
+              },
+              {
+                "name": "bulkCodeSwitchId",
+                "value": "",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves bulk code switch details by id."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a List of Git References by Codebase.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/codebases/:codebaseId/references",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path",
+                "description": "The codebase entity's unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of git references by codebase."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a Single Git Reference Data for the Given Codebase.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/codebases/:codebaseId/references/:referenceName",
+            "params": [
+              {
+                "name": "codebaseId",
+                "value": "",
+                "type": "path",
+                "description": "The codebase entity's unique identifier."
+              },
+              {
+                "name": "referenceName",
+                "value": "",
+                "type": "path",
+                "description": "The reference name."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a single git reference data for the given codebase."
+        },
+        {
+          "info": {
+            "name": "Acquia Retrieves a List of Codebases by Subscription ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/codebases",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of codebases by subscription ID."
+        },
+        {
+          "info": {
+            "name": "Acquia Gets Supported Regions for a New Codebase.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/codebases",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets supported regions for a new codebase."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

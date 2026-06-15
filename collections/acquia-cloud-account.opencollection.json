@@ -1,0 +1,819 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Account",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Returns Details About Your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account"
+          },
+          "docs": "Returns details about your account."
+        },
+        {
+          "info": {
+            "name": "Acquia Marks an Application as Recently Viewed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/account/applications/:applicationUuid/actions/mark-recent",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Marks an application as recently viewed. UUIDs and timestamps of recent applications are present in the \"account\" endpoint."
+        },
+        {
+          "info": {
+            "name": "Acquia Stars an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/account/applications/:applicationUuid/actions/star",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Stars an application. UUIDs of starred applications are present in the \"account\" endpoint."
+        },
+        {
+          "info": {
+            "name": "Acquia Removes an Application from the User's Starred List.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/account/applications/:applicationUuid/actions/unstar",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes an application from the user's starred list. UUIDs of starred applications are present in the \"account\" endpoint."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account Has Access to a Specific Application Permission.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/applications/:applicationUuid/has-permission",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "permission",
+                "value": "deploy to prod",
+                "type": "query",
+                "description": "Specifies the permission you wish to check access for."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account has access to a specific application permission."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is an Administrator for an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/applications/:applicationUuid/is-admin",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is an administrator for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is the Owner for an Application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/applications/:applicationUuid/is-owner",
+            "params": [
+              {
+                "name": "applicationUuid",
+                "value": "da1c0a8e-ff69-45db-88fc-acd6d2affbb7",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is the owner for an application."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns the Drush Aliases as a Compressed Archive Download.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/drush-aliases/download",
+            "params": [
+              {
+                "name": "version",
+                "value": "8",
+                "type": "query",
+                "description": "Specifies the drush aliases formatting, either 8 (example.aliases.drushrc.php) or 9 (example.site.yaml)"
+              }
+            ]
+          },
+          "docs": "Returns the drush aliases as a compressed archive download."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Cloud IDEs Associated with the Current User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/ides"
+          },
+          "docs": "Returns a list of Cloud IDEs associated with the current user."
+        },
+        {
+          "info": {
+            "name": "Acquia Gets a List of All Organization Admin and Team Invites That Are Pending for the Current User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/invites",
+            "params": [
+              {
+                "name": "from",
+                "value": "2023-09-01",
+                "type": "query",
+                "description": "Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "to",
+                "value": "2023-09-29",
+                "type": "query",
+                "description": "Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-29`\n* `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a list of all organization admin and team invites that are pending for the current user.\n\nFilterable fields:\n* `mail`\n* `token`\n* `author`\n\nSortable fields:\n* `mail`\n* `token`\n* `author`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Messages Associated with the Current User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/messages",
+            "params": [
+              {
+                "name": "from",
+                "value": "2023-09-01",
+                "type": "query",
+                "description": "Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "to",
+                "value": "2023-09-29",
+                "type": "query",
+                "description": "Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-29`\n* `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of messages associated with the current user.\n\nFilterable fields:\n* `title`\n* `message_type`\n* `display_mode`\n\nSortable fields:\n* `title`\n* `message_type`\n* `display_mode`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is an Administrator for an Organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/organizations/:organizationUuid/is-admin",
+            "params": [
+              {
+                "name": "organizationUuid",
+                "value": "1e7efab9-0fac-4a2c-ad94-61efc78623ba",
+                "type": "path",
+                "description": "The organization entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is an administrator for an organization."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is the Owner for an Organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/organizations/:organizationUuid/is-owner",
+            "params": [
+              {
+                "name": "organizationUuid",
+                "value": "1e7efab9-0fac-4a2c-ad94-61efc78623ba",
+                "type": "path",
+                "description": "The organization entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is the owner for an organization."
+        },
+        {
+          "info": {
+            "name": "Acquia Verifies That the Supplied Password Matches the Current User's Password.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/account/password",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Verifies that the supplied password matches the current user's password."
+        },
+        {
+          "info": {
+            "name": "Acquia Gets a List of SSH Keys Associated with the Current User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/ssh-keys",
+            "params": [
+              {
+                "name": "from",
+                "value": "2023-09-01",
+                "type": "query",
+                "description": "Specifies absolute time period to retrieve results from. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-01`\n* `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "to",
+                "value": "2023-09-29",
+                "type": "query",
+                "description": "Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.\n\nSome examples:\n* `2023-09-29`\n* `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)\n"
+              },
+              {
+                "name": "sort",
+                "value": "field1,-field2",
+                "type": "query",
+                "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of items to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "An integer to signify the offset to paginate from."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets a list of SSH keys associated with the current user.\n\nFilterable fields:\n* `label`\n\nSortable fields:\n* `label`\n"
+        },
+        {
+          "info": {
+            "name": "Acquia Installs a New SSH Key for the Current User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/account/ssh-keys",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Installs a new SSH key for the current user."
+        },
+        {
+          "info": {
+            "name": "Acquia Get an SSH Key Associated with the Currently-logged in User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/ssh-keys/:sshKeyUuid",
+            "params": [
+              {
+                "name": "sshKeyUuid",
+                "value": "981b7910-2fe9-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The SSH key entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get an SSH key associated with the currently-logged in user."
+        },
+        {
+          "info": {
+            "name": "Acquia Deletes an SSH Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/account/ssh-keys/:sshKeyUuid",
+            "params": [
+              {
+                "name": "sshKeyUuid",
+                "value": "981b7910-2fe9-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The SSH key entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an SSH key."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is an Administrator for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/subscriptions/:subscriptionUuid/is-admin",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is an administrator for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is the Owner for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/subscriptions/:subscriptionUuid/is-owner",
+            "params": [
+              {
+                "name": "subscriptionUuid",
+                "value": "0f3ad33e-2fe4-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The subscription entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is the owner for a subscription."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account Has Access to a Specific Team Permission.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/teams/:teamUuid/has-permission",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              },
+              {
+                "name": "permission",
+                "value": "deploy to prod",
+                "type": "query",
+                "description": "Specifies the permission you wish to check access for."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account has access to a specific team permission."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is an Administrator for a Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/teams/:teamUuid/is-admin",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is an administrator for a team."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns Whether Your Account is the Owner for a Team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/teams/:teamUuid/is-owner",
+            "params": [
+              {
+                "name": "teamUuid",
+                "value": "3eef5d81-62f4-429c-aa94-e17d05ab4740",
+                "type": "path",
+                "description": "The entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns whether your account is the owner for a team."
+        },
+        {
+          "info": {
+            "name": "Acquia Returns a List of Metadata for API Access Tokens Tied to Your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/tokens",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of metadata for API access tokens tied to your account."
+        },
+        {
+          "info": {
+            "name": "Acquia Creates an API Access Token Tied to Your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/account/tokens",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates an API access token tied to your account."
+        },
+        {
+          "info": {
+            "name": "Acquia Return Details About a Specific Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/tokens/:tokenUuid",
+            "params": [
+              {
+                "name": "tokenUuid",
+                "value": "882f3258-2fe9-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The token entity's universally unique identifier."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return details about a specific token."
+        },
+        {
+          "info": {
+            "name": "Acquia Revokes an Access Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/account/tokens/:tokenUuid",
+            "params": [
+              {
+                "name": "tokenUuid",
+                "value": "882f3258-2fe9-11e9-b210-d663bd873d93",
+                "type": "path",
+                "description": "The token entity's universally unique identifier."
+              },
+              {
+                "name": "tokenDeleteReason",
+                "value": "The quick brown fox jumped over the lazy dog.",
+                "type": "query",
+                "description": "Specifies the reason for the token revocation for future reference."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://accounts.acquia.com/api/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Revokes an access token. This action will prevent the access token from being able to authorize access to the API in the future."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

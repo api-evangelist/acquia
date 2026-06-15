@@ -1,0 +1,3951 @@
+{
+  "item": [
+    {
+      "id": "2cf995de-a696-4227-a98f-063782747e17",
+      "name": "Teams and Permissions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b28e36a0-42b1-40bc-94c7-f356032113af",
+          "name": "Acquia Return a List of Permissions.",
+          "request": {
+            "name": "Acquia Return a List of Permissions.",
+            "description": {
+              "content": "Displays a list of all available permissions currently in the system. This will include permissions that the user\nmay not have access to.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d8c5cde-57fd-45bb-9302-c645844b8eeb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"description\": \"Grants the ability to enable or disable live development and non-production work.\",\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Pull and deploy code, files, or databases to non-production environments\",\n        \"name\": \"deploy to non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Deploy code, files, or databases to the production environment\",\n        \"name\": \"deploy to prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Pull files or databases from the production environment\",\n        \"name\": \"pull from prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Move files to non-production environments\",\n        \"name\": \"move file to non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Move files to the production environment\",\n        \"name\": \"move file to prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Move files from production environments\",\n        \"name\": \"move file from prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Move files from non-production environments\",\n        \"name\": \"move file from non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": true\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Clear Varnish cache for non-production environments\",\n        \"name\": \"clear varnish on non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": true\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Clear Varnish cache for the production environment\",\n        \"name\": \"clear varnish on prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Configure production environment\",\n        \"name\": \"configure prod env\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Configure non-production environments\",\n        \"name\": \"configure non-prod env\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Add an environment\",\n        \"name\": \"add an environment\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Delete an environment\",\n        \"name\": \"delete an environment\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Domains\",\n        \"label\": \"Add or remove domains for non-production environments\",\n        \"name\": \"administer domain non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Domains\",\n        \"label\": \"Add or remove domains for the production environment\",\n        \"name\": \"administer domain prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Domains\",\n        \"label\": \"Add or remove SSL certificates for the production environment\",\n        \"name\": \"administer ssl prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Domains\",\n        \"label\": \"Add or remove SSL certificates for the non-production environments\",\n        \"name\": \"administer ssl non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Server administration\",\n        \"label\": \"Reboot server\",\n        \"name\": \"reboot server\"\n      },\n      {\n        \"description\": \"Increasing the size of your server costs money.\",\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Server administration\",\n        \"label\": \"Resize server\",\n        \"name\": \"resize server\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Server administration\",\n        \"label\": \"Suspend server\",\n        \"name\": \"suspend server\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Server administration\",\n        \"label\": \"Configure server\",\n        \"name\": \"configure server\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Logs\",\n        \"label\": \"Download logs for non-production environments\",\n        \"name\": \"download logs non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Logs\",\n        \"label\": \"Download logs for the production environment\",\n        \"name\": \"download logs prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Add a database\",\n        \"name\": \"add database\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Remove a database\",\n        \"name\": \"remove database\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"View database connection details (username, password, or hostname)\",\n        \"name\": \"view database connection\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Download database backups for non-production environments\",\n        \"name\": \"download db backup non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Download database backups for the production environment\",\n        \"name\": \"download db backup prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Create database backups for non-production environments\",\n        \"name\": \"create db backup non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Create database backups for the production environment\",\n        \"name\": \"create db backup prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Restore database backups for non-production environments\",\n        \"name\": \"restore db backup non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Databases\",\n        \"label\": \"Restore database backups for the production environment\",\n        \"name\": \"restore db backup prod\"\n      },\n      {\n        \"description\": \"Granting this permission will give any user with this role full permissions on this team.\",\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Administration\",\n        \"label\": \"Add or remove a user of a team\",\n        \"name\": \"administer team\"\n      },\n      {\n        \"description\": \"Grants the ability to use the API and bypass all other permissions via command line tools.\",\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Administration\",\n        \"label\": \"Access the Cloud API\",\n        \"name\": \"access cloud api\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Cron\",\n        \"label\": \"Modify cron tasks for non-production environments\",\n        \"name\": \"administer cron non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Cron\",\n        \"label\": \"Modify cron tasks for the production environment\",\n        \"name\": \"administer cron prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Support\",\n        \"label\": \"Create a support ticket\",\n        \"name\": \"create support ticket\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Support\",\n        \"label\": \"View and edit any support tickets for a subscription\",\n        \"name\": \"edit any support ticket\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Build\",\n        \"label\": \"View Build plans\",\n        \"name\": \"view build plans\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Build\",\n        \"label\": \"Edit Build plans\",\n        \"name\": \"edit build plans\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Build\",\n        \"label\": \"Run Build plans\",\n        \"name\": \"run build plans\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"SSH keys\",\n        \"label\": \"Add SSH key to git repository\",\n        \"name\": \"add ssh key to git\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"SSH keys\",\n        \"label\": \"Add SSH key to non-production environments\",\n        \"name\": \"add ssh key to non-prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"SSH keys\",\n        \"label\": \"Add SSH key to the production environment\",\n        \"name\": \"add ssh key to prod\"\n      },\n      {\n        \"description\": \"This permission is only relevant if your subscription has remote administration.\",\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Administration\",\n        \"label\": \"View Remote Administration\",\n        \"name\": \"view remote administration\"\n      },\n      {\n        \"description\": \"This permission is only relevant if your subscription has remote administration.\",\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Administration\",\n        \"label\": \"Edit Remote Administration\",\n        \"name\": \"edit remote administration\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Clear caches for the production environment\",\n        \"name\": \"clear caches on prod\"\n      },\n      {\n        \"description\": null,\n        \"flags\": {\n          \"deprecated\": false\n        },\n        \"group_label\": \"Workflow\",\n        \"label\": \"Clear caches for non-production environments\",\n        \"name\": \"clear caches on non-prod\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/permissions\"\n    }\n  },\n  \"total\": 49\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4592f2e3-98b7-4b57-ac82-45c3f28406f5",
+          "name": "Acquia Deletes a Specific Role by its UUID.",
+          "request": {
+            "name": "Acquia Deletes a Specific Role by its UUID.",
+            "description": {
+              "content": "Deletes a specific role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles",
+                ":roleUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "578de353-2160-4bc7-98a2-3bba6a8f93aa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":roleUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Deleted role.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db08fbe2-3fd3-46ef-96a0-ba7f11af6f2b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":roleUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The role you are trying to delete does not exist, or you do not have permission to delete it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9414891f-5ef2-4c2c-be41-cc8d8ddb1ddd",
+          "name": "Acquia Return Details About a Specific Role.",
+          "request": {
+            "name": "Acquia Return Details About a Specific Role.",
+            "description": {
+              "content": "Roles may be assigned to team members, and grant various permissions to the applications that the team is assigned\nto. Roles are unique within a organization.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles",
+                ":roleUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "21aa3aa6-1a9a-4209-a690-ad0a1bee94e5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":roleUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"description\": \"Some details about my custom role.\",\n  \"flags\": {\n    \"default\": false\n  },\n  \"last_edited\": {\n    \"edited_at\": \"2011-03-28T13:09:41-04:00\",\n    \"user\": {\n      \"first_name\": \"Jane\",\n      \"last_name\": \"Doe\",\n      \"mail\": \"jane.doe@example.com\",\n      \"picture_url\": \"https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com\",\n      \"username\": \"jane.doe\",\n      \"uuid\": \"590909a0-e819-43e6-a8e3-212dc3e35852\"\n    }\n  },\n  \"name\": \"My Custom Role\",\n  \"organization\": {\n    \"name\": \"My Organization\",\n    \"uuid\": \"d122cc06-35bd-41bf-9baa-5b770c8ca0f1\"\n  },\n  \"permissions\": [\n    {\n      \"description\": \"Grants the ability to enable or disable live development and non-production work.\",\n      \"flags\": {\n        \"deprecated\": false\n      },\n      \"group_label\": \"Workflow\",\n      \"label\": \"Pull and deploy code, files, or databases to non-production environments\",\n      \"name\": \"deploy to non-prod\"\n    },\n    {\n      \"description\": null,\n      \"flags\": {\n        \"deprecated\": false\n      },\n      \"group_label\": \"Workflow\",\n      \"label\": \"Configure non-production environments\",\n      \"name\": \"configure non-prod env\"\n    },\n    {\n      \"description\": null,\n      \"flags\": {\n        \"deprecated\": false\n      },\n      \"group_label\": \"Logs\",\n      \"label\": \"Download logs for non-production environments\",\n      \"name\": \"download logs non-prod\"\n    },\n    {\n      \"description\": null,\n      \"flags\": {\n        \"deprecated\": false\n      },\n      \"group_label\": \"Databases\",\n      \"label\": \"View database connection details (username, password, or hostname)\",\n      \"name\": \"view database connection\"\n    }\n  ],\n  \"uuid\": \"c885728d-cbbe-4e54-bf09-19b751b6d0c7\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d3c0bbf-04d9-42d6-8fc8-fcbcff8b34b3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":roleUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The role you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9ece0c9-3941-44fc-825f-7cded2a4a17a",
+          "name": "Acquia Updates a Role.",
+          "request": {
+            "name": "Acquia Updates a Role.",
+            "description": {
+              "content": "Modifies a role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "roles",
+                ":roleUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "The updated description of the role."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "The updated name of the role."
+                },
+                {
+                  "disabled": false,
+                  "key": "permissions",
+                  "value": "<string>",
+                  "description": "A list of permissions to grant to this role."
+                },
+                {
+                  "disabled": false,
+                  "key": "permissions",
+                  "value": "<string>",
+                  "description": "A list of permissions to grant to this role."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "31065d0f-ba00-45f9-8c36-30672ce5563b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":roleUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The updated name of the role.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "My new application name"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Updating role.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ef6347b-fefa-4fa7-95cd-cb2307fc3025",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "roles",
+                    ":roleUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The updated name of the role.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "My new application name"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The role you are trying to access does not exist, or you do not have permission to edit it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6053faf9-e12c-4394-8d72-b909dd21f64d",
+          "name": "Acquia Return Teams the Current User Has Access To.",
+          "request": {
+            "name": "Acquia Return Teams the Current User Has Access To.",
+            "description": {
+              "content": "Returns a list of teams the current user has access to.\n\nFilterable fields:\n* `name`\n\nSortable fields:\n* `name`\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "An integer to signify the offset to paginate from."
+                },
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<dateTime>",
+                  "description": "ISO-8601 date/time of invite create date/time."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dd8e4c90-3f7f-4d4e-b172-dcd36433121a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "range",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c\"\n          }\n        },\n        \"created_at\": \"2013-10-28T14:16:07-0700\",\n        \"name\": \"Team Name 1\",\n        \"organization\": {\n          \"name\": \"Sample Organization\",\n          \"uuid\": \"2375e327-3fff-11e3-9170-12313920a02c\"\n        },\n        \"updated_at\": \"2015-02-19T08:53:10-0800\",\n        \"uuid\": \"abcd1234-82b5-11e3-9170-12313920a02c\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/teams/9ca6ecc0-e5d0-11e3-9eb3-22000b04072f\"\n          }\n        },\n        \"created_at\": \"2014-05-27T11:55:39-0700\",\n        \"name\": \"Team Name 2\",\n        \"organization\": {\n          \"name\": \"Sample Organization\",\n          \"uuid\": \"2375e327-3fff-11e3-9170-12313920a02c\"\n        },\n        \"updated_at\": \"2015-01-30T05:49:16-0800\",\n        \"uuid\": \"1234abcd-82b5-11e3-9170-12313920a02c\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/teams\"\n    }\n  },\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ba0ba22-75c9-4e61-9820-1b6f142723f0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "range",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to view teams.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb5194b6-0202-4fe6-9488-c2cc7871cd32",
+          "name": "Acquia Deletes a Specific Team by its UUID.",
+          "request": {
+            "name": "Acquia Deletes a Specific Team by its UUID.",
+            "description": {
+              "content": "Deletes a specific team by its UUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e3f3e36-1968-495f-bb1d-3b31dd429e57",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Removed team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b37e96bb-1558-4bb7-8cd9-a6bdf45c2e1b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The team you are trying to access does not exist, or you do not have permission to remove it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6af0e315-8cfa-480e-9950-17fff17d2093",
+          "name": "Acquia Return Details About a Specific Team.",
+          "request": {
+            "name": "Acquia Return Details About a Specific Team.",
+            "description": {
+              "content": "Return details about a specific team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "410e245c-fbfd-4eed-98e5-d1f715dc74c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"organization\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/organizations/2375e327-3fff-11e3-9170-12313920a02c\"\n          }\n        },\n        \"name\": \"Sample Organization\",\n        \"uuid\": \"2375e327-3fff-11e3-9170-12313920a02c\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"applications\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c/applications\"\n    },\n    \"invites\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c/invites\"\n    },\n    \"members\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c/members\"\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/teams\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c\"\n    }\n  },\n  \"created_at\": \"2013-10-28T14:16:07-0700\",\n  \"name\": \"Sample Team\",\n  \"organization\": {\n    \"name\": \"Sample Organization\",\n    \"uuid\": \"2375e327-3fff-11e3-9170-12313920a02c\"\n  },\n  \"updated_at\": \"2015-02-19T08:53:10-0800\",\n  \"uuid\": \"2c9ea556-4016-11e3-9170-12313920a02c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8e90c3e-3ba7-430b-8a0d-59e7056c3106",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The team you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd2ae594-e24d-4dd6-9bc8-039a1beb942c",
+          "name": "Acquia Change the Name of a Team.",
+          "request": {
+            "name": "Acquia Change the Name of a Team.",
+            "description": {
+              "content": "Change the name of a team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "The new name of the team."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "17a45c0f-0555-45a6-98b0-5027e95e6a76",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The new name of the team.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "My new team name"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Team renamed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbadcff4-c728-4e49-bbfa-82fc1b2770ce",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The new name of the team.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "My new team name"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The team you are trying to access does not exist, or you do not have permission to rename it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44e8bfd1-4f53-4e07-913e-67cff3dfc668",
+          "name": "Acquia Removes the Current User from a Team.",
+          "request": {
+            "name": "Acquia Removes the Current User from a Team.",
+            "description": {
+              "content": "Removes the current user from a team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "actions",
+                "leave"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "99dfa913-0c51-48f5-b5d5-6a2855855685",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "actions",
+                    "leave"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"You have left the team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "256a27a9-e479-401d-82bb-f51cb6894e98",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "actions",
+                    "leave"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"Invalid team supplied. No action performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f7eeb8b-39a3-41bc-967f-095a3ab20aa3",
+          "name": "Acquia Returns a List of Applications This Team Has Access To.",
+          "request": {
+            "name": "Acquia Returns a List of Applications This Team Has Access To.",
+            "description": {
+              "content": "Returns a list of applications this team has access to.\n\nFilterable fields:\n* `name`\n\nSortable fields:\n* `name`\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "An integer to signify the offset to paginate from."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8dd6e60b-879c-41cc-be97-ddcd661622e9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/applications/50cf9819-6f99-4ef2-be10-1a85dc354ca1\"\n          }\n        },\n        \"flags\": {\n          \"remote_admin\": true\n        },\n        \"hosting\": {\n          \"id\": \"devcloud:devcloud2\",\n          \"type\": \"acp\"\n        },\n        \"id\": 241643,\n        \"name\": \"Sample application 1\",\n        \"organization\": {\n          \"name\": \"Sample organization\",\n          \"uuid\": \"434aac3d-bb5f-44d1-bea4-398addbf5a04\"\n        },\n        \"status\": \"normal\",\n        \"subscription\": {\n          \"name\": \"Sample subscription\",\n          \"uuid\": \"fc04cc3e-8d91-4fb4-a8dd-15dc81df7458\"\n        },\n        \"type\": \"drupal\",\n        \"uuid\": \"50cf9819-6f99-4ef2-be10-1a85dc354ca1\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/teams/a47ac10b-58cc-4372-a567-0e02b2c3d471/applications\"\n          }\n        },\n        \"flags\": {\n          \"remote_admin\": false\n        },\n        \"hosting\": {\n          \"id\": \"devcloud:devcloud2\",\n          \"type\": \"free\"\n        },\n        \"id\": 954291,\n        \"name\": \"Sample application 2\",\n        \"organization\": {\n          \"name\": \"Sample organization\",\n          \"uuid\": \"434aac3d-bb5f-44d1-bea4-398addbf5a04\"\n        },\n        \"status\": \"provisioning\",\n        \"subscription\": {\n          \"name\": \"Sample subscription\",\n          \"uuid\": \"fc04cc3e-8d91-4fb4-a8dd-15dc81df7458\"\n        },\n        \"type\": \"drupal\",\n        \"uuid\": \"a47ac10b-58cc-4372-a567-0e02b2c3d471\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications{?filter}\",\n      \"templated\": true\n    },\n    \"limit\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications{?limit}\",\n      \"templated\": true\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications\"\n    },\n    \"sort\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications{?sort}\",\n      \"templated\": true\n    }\n  },\n  \"pagination\": {\n    \"limit\": 10,\n    \"offset\": 0,\n    \"total\": 2\n  },\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7e0a67a-1e12-4296-beb3-3f6e4889b2d7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The team you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c3bc465-17a5-4bf6-bce9-d099c0756f97",
+          "name": "Acquia Adds an Application to This Team.",
+          "request": {
+            "name": "Acquia Adds an Application to This Team.",
+            "description": {
+              "content": "Adds an application to this team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<uuid>",
+                  "description": "(Required) The uuid of the application to add to this team."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d0470cd1-876a-41d7-b0c4-47804e68cc52",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The uuid of the application to add to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "uuid",
+                      "value": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Added application to team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89c30a1d-5b08-43b8-950e-bfc1e7fa11d5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The uuid of the application to add to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "uuid",
+                      "value": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"The application you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa2636a5-abd8-4839-8079-c4235a815be0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The uuid of the application to add to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "uuid",
+                      "value": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The application must belong to the same organization as this team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57325363-da3b-4879-9df8-13b4d739794d",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The uuid of the application to add to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "uuid",
+                      "value": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"conflict\",\n  \"message\": \"The application is already on this team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65acea26-4c27-4cbc-be9f-dfceda97c568",
+          "name": "Acquia Removes the Application from This Team.",
+          "request": {
+            "name": "Acquia Removes the Application from This Team.",
+            "description": {
+              "content": "Removes the application from this team. Team members will immediately lose access to this application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "applications",
+                ":applicationUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c83d772a-6057-44ed-b068-d4cbccbed265",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications",
+                    ":applicationUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Removed application from team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e0593e0-a2e7-41b9-900d-202265affacc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications",
+                    ":applicationUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"The application you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6aae28d-4d55-4bd7-a86e-1e4a1bd9b684",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "applications",
+                    ":applicationUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The application is not associated with this team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb08bad7-f7b4-4bd3-b1f3-5e430c3dbb3e",
+          "name": "Acquia Returns a List of Invitations to This Team.",
+          "request": {
+            "name": "Acquia Returns a List of Invitations to This Team.",
+            "description": {
+              "content": "Returns a list of invitations to this team.\n\nFilterable fields:\n* `mail`\n* `token`\n* `author`\n\nSortable fields:\n* `mail`\n* `token`\n* `author`\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "An integer to signify the offset to paginate from."
+                },
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<dateTime>",
+                  "description": "ISO-8601 date/time of invite create date/time."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a507e047-66e2-45f4-b01d-afda8a2dc510",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "range",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/invites/dd9ea69fdcb6bee08b31a858b85535ec\"\n          }\n        },\n        \"applications\": [\n          {\n            \"name\": \"Main Application\",\n            \"uuid\": \"88dc87db-1169-4908-9384-2328a7bd5cc1\"\n          }\n        ],\n        \"author\": {\n          \"first_name\": \"Jane\",\n          \"last_name\": \"Doe\",\n          \"mail\": \"jane.doe@example.com\",\n          \"picture_url\": \"https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com\",\n          \"username\": \"jane.doe\",\n          \"uuid\": \"ff4d12d9-1aba-472a-b0d1-ba19342922fa\"\n        },\n        \"created_at\": \"2012-05-15T12:00:00Z\",\n        \"email\": \"invitee@example.com\",\n        \"flags\": {\n          \"declined\": true\n        },\n        \"organization\": {\n          \"name\": \"Organization Name\",\n          \"uuid\": \"3f3fc2da-bb2b-473c-aa5c-8b9d8fa6c7b8\"\n        },\n        \"roles\": [\n          {\n            \"name\": \"Senior Developer\",\n            \"uuid\": \"aba649d1-795e-4472-87c8-7b32536c71b3\"\n          },\n          {\n            \"name\": \"Team Lead\",\n            \"uuid\": \"a70a0192-c962-421a-b534-393c245ba142\"\n          }\n        ],\n        \"team\": {\n          \"name\": \"Team Name\",\n          \"uuid\": \"9ab05712-29b7-4171-8168-2ed085ea32b2\"\n        },\n        \"token\": \"dd9ea69fdcb6bee08b31a858b85535ec\",\n        \"uuid\": \"f4347e76-bcd7-41f6-91aa-ac6691755f0c\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/invites/dd9ea69fdcb6bee08b31a858b85535ed\"\n          }\n        },\n        \"applications\": [\n          {\n            \"name\": \"Main Application\",\n            \"uuid\": \"88dc87db-1169-4908-9384-2328a7bd5cc1\"\n          },\n          {\n            \"name\": \"Secondary Application\",\n            \"uuid\": \"a2345672-58cc-4372-a567-0e02b2c3d470\"\n          }\n        ],\n        \"author\": {\n          \"first_name\": \"John\",\n          \"last_name\": \"Doe\",\n          \"mail\": \"john.doe@example.com\",\n          \"picture_url\": \"https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=john.doe@example.com\",\n          \"username\": \"john.doe\",\n          \"uuid\": \"80363753-76dc-486c-b942-57ff9fc131ee\"\n        },\n        \"created_at\": \"2012-05-15T12:00:00Z\",\n        \"email\": \"invitee2@example.com\",\n        \"flags\": {\n          \"declined\": false\n        },\n        \"organization\": {\n          \"name\": \"Organization Name\",\n          \"uuid\": \"3f3fc2da-bb2b-473c-aa5c-8b9d8fa6c7b8\"\n        },\n        \"roles\": [\n          {\n            \"name\": \"Senior Developer\",\n            \"uuid\": \"aba649d1-795e-4472-87c8-7b32536c71b3\"\n          }\n        ],\n        \"team\": {\n          \"name\": \"Team Name\",\n          \"uuid\": \"9ab05712-29b7-4171-8168-2ed085ea32b2\"\n        },\n        \"token\": \"dd9ea69fdcb6bee08b31a858b85535ed\",\n        \"uuid\": \"6bf96944-bb9b-4629-b593-d658e44d8054\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites{?filter}\",\n      \"templated\": true\n    },\n    \"limit\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites{?limit}\",\n      \"templated\": true\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites\"\n    },\n    \"sort\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites{?sort}\",\n      \"templated\": true\n    }\n  },\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10a69014-6a19-41dd-b7a2-f7f85aea828d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "range",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to view invites for this team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ef5257c-1b01-4406-8653-fa6c0d033f28",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "range",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The team you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b635e99-fd96-4f32-a9d3-4ceb48375563",
+          "name": "Acquia Invites a User to Join a Team.",
+          "request": {
+            "name": "Acquia Invites a User to Join a Team.",
+            "description": {
+              "content": "Invites a user to join a team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) The email address of the user to invite to this team."
+                },
+                {
+                  "disabled": false,
+                  "key": "roles",
+                  "value": "<uuid>",
+                  "description": "(Required) The role UUIDs to grant to the invitee."
+                },
+                {
+                  "disabled": false,
+                  "key": "roles",
+                  "value": "<uuid>",
+                  "description": "(Required) The role UUIDs to grant to the invitee."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "02f404a9-325d-4729-b4b2-00d235b9a77f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The email address of the user to invite to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invited team member.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7294ec8e-9257-42b8-b817-11deacc72ee6",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The email address of the user to invite to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"359da7ac-300c-e885-78e3-d5e9dbeb9406\",\n  \"email\": \"bbd-yRd@IKlicorMeYpKrjBNRFEkUwtMojbVfhPS.sdtp\",\n  \"created_at\": \"2018-08-20T17:44:14.560Z\",\n  \"token\": \"string\",\n  \"flags\": {\n    \"declined\": false\n  },\n  \"author\": {\n    \"uuid\": \"c398f61c-3c3a-3f4f-e376-58061b37b2b8\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"mail\": \"uCEJ3PQ@WgyfdYJxcxqstfKq.hb\",\n    \"picture_url\": \"http://FkN.xtowOFE09n+nVk\",\n    \"username\": \"string\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"http://xukzCRCdwZJJNEoA.dumiMUh+SpP3lpJoJncu25WaldzeMuhX.Whj1FAWvtOcq\"\n    }\n  },\n  \"applications\": [\n    {\n      \"name\": \"string\",\n      \"uuid\": \"3cfb3959-cfa1-9218-a34a-11d5efbb447e\"\n    },\n    {\n      \"name\": \"string\",\n      \"uuid\": \"79133168-4eeb-cfdb-550c-5af8293737e4\"\n    }\n  ],\n  \"organization\": {\n    \"uuid\": \"dc7f3beb-242b-7697-707e-bb5598392bff\",\n    \"name\": \"string\"\n  },\n  \"roles\": [\n    {\n      \"uuid\": \"2ed59b40-d0b0-0f5c-08e7-7e3074df871c\",\n      \"name\": \"string\"\n    },\n    {\n      \"uuid\": \"691973d6-eb6b-3a0c-6fbc-b6dbce0e042b\",\n      \"name\": \"string\"\n    }\n  ],\n  \"team\": {\n    \"uuid\": \"4104d60c-a1ea-7844-9a3b-aecf26919c95\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aca80030-a6f3-4e40-9574-5d1574df4a72",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The email address of the user to invite to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"validation_failed\",\n  \"message\": {\n    \"name\": \"Invalid values for parameter(s): example_param\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba52dbc7-fe9d-463c-8e79-f526d253ee0d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The email address of the user to invite to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to invite users to this team.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc521320-4cdf-44bb-871e-4901dda3ad2e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The email address of the user to invite to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"One or more of the chosen roles do not belong to this organization.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6035ed0e-78b8-418c-954c-54799ff2e9ad",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The email address of the user to invite to this team.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "person@example.com"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the invitee.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"conflict\",\n  \"message\": \"An invitation to person@example.com has already been sent. It was sent on May 6, 2016 - 7:26pm.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f5d4a2-bae3-4170-9364-f4f4623d41c1",
+          "name": "Acquia Returns a List of Team Members.",
+          "request": {
+            "name": "Acquia Returns a List of Team Members.",
+            "description": {
+              "content": "Returns a list of team members.\n\nFilterable fields:\n* `permission`\n* `first_name`\n* `last_name`\n* `user`\n\nSortable fields:\n* `permission`\n* `first_name`\n* `last_name`\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.\n\nThere are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:\n\n* Equals: `= (%3D)`\n* Does not equal: `!= (!%3D)`\n* Greater than: `> (%3E)`\n* Less than: `< (%3C)`\n* Greater than or equal to: `>= (%3E%3D)`\n* Less than or equal to: `<= (%3C%3D)`\n* Contains substring: `=@ (%3D@)`\n* Does not contain substring: `!@ (!@)`\n\nFilters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).\n\nSome examples:\n* `filter=field%3Dvalue` (`field` equals `'value'`)\n* `filter=field%3D@*partialmatch` (`field` ends with `'partialmatch'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `'partialmatch'` OR `field` equals `'value'`)\n* `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `'partialmatch'` OR `field` equals `'value'` AND `field2` > `5`)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "An integer to signify the offset to paginate from."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40f8c01f-2bef-42b0-a2e2-5093394499ec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"first_name\": \"James\",\n        \"last_login_at\": \"2017-03-28T13:07:54-0500\",\n        \"last_name\": \"Kirk\",\n        \"mail\": \"james.kirk@example.com\",\n        \"picture_url\": \"https://accounts.acquia.com/images/users/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3/style/avatar\",\n        \"roles\": [\n          {\n            \"name\": \"Senior Developer\",\n            \"uuid\": \"2d988ad3-4016-11e3-9170-12313920a02e\"\n          }\n        ],\n        \"username\": \"james.kirk\",\n        \"uuid\": \"5aa902c5-f1c1-6c94-edfa-86bc58d0dce3\"\n      },\n      {\n        \"first_name\": \"Christopher\",\n        \"last_login_at\": \"2016-03-28T13:07:54-0500\",\n        \"last_name\": \"Pike\",\n        \"mail\": \"chris.pike@example.com\",\n        \"picture_url\": \"https://accounts.acquia.com/images/users/30dacb5e-4122-11e1-9eb5-12313928d3c2/style/avatar\",\n        \"roles\": [\n          {\n            \"name\": \"Developer\",\n            \"uuid\": \"3c9a1174-4016-11e3-9170-12313920a02d\"\n          }\n        ],\n        \"username\": \"chris.pike\",\n        \"uuid\": \"30dacb5e-4122-11e1-9eb5-12313928d3c2\"\n      },\n      {\n        \"first_name\": \"Jonathan\",\n        \"last_login_at\": null,\n        \"last_name\": \"Archer\",\n        \"mail\": \"jonathan.archer@example.com\",\n        \"picture_url\": \"https://accounts.acquia.com/images/users/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/style/avatar\",\n        \"roles\": [\n          {\n            \"name\": \"Senior Developer\",\n            \"uuid\": \"2d988ad3-4016-11e3-9170-12313920a02e\"\n          },\n          {\n            \"name\": \"Developer\",\n            \"uuid\": \"3c9a1174-4016-11e3-9170-12313920a02d\"\n          }\n        ],\n        \"username\": \"jonathan.archer\",\n        \"uuid\": \"3bcddc3a-52ba-4cce-aaa3-9adf721c1b52\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/3c9ea553-3216-11e3-9170-12313920a23a\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/teams/3c9ea553-3216-11e3-9170-12313920a23a/members\"\n    }\n  },\n  \"total\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf66e3a5-6658-4595-87c0-ed4bda85621e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "field1,-field2"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The team you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db1fbe6a-df58-4f7b-be64-eaa9a4170c0e",
+          "name": "Acquia Remove a User from a Team.",
+          "request": {
+            "name": "Acquia Remove a User from a Team.",
+            "description": {
+              "content": "Remove a user from a team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "members",
+                ":userUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b02b0a0-e191-478d-9489-7c3dd029f7cd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members",
+                    ":userUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Team member removed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc396465-c203-4dc4-8871-5952eaa8958b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members",
+                    ":userUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to remove team members.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "667ebde7-d423-46cd-8216-b3a069d846ba",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members",
+                    ":userUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"Invalid team supplied. No action performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "457d3ebd-3d62-4f1d-be7e-af0cb9a63e8c",
+          "name": "Acquia Grant Team Roles to a Member.",
+          "request": {
+            "name": "Acquia Grant Team Roles to a Member.",
+            "description": {
+              "content": "Grant team roles to a member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "teams",
+                ":teamUuid",
+                "members",
+                ":userUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "roles",
+                  "value": "<uuid>",
+                  "description": "(Required) The role UUIDs to grant to the user."
+                },
+                {
+                  "disabled": false,
+                  "key": "roles",
+                  "value": "<uuid>",
+                  "description": "(Required) The role UUIDs to grant to the user."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7e0ccef3-d2ef-43db-a2f5-b8f26d5d03a4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members",
+                    ":userUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the user.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the user.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Modified member roles.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c587eab-c304-4b6e-a804-2356730f4c9d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members",
+                    ":userUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the user.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the user.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to modify team member roles.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be6bbbe5-6ede-4d67-91ee-7eb8fc2ff8b3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "teams",
+                    ":teamUuid",
+                    "members",
+                    ":userUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the user.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "489efe35-7bb7-48b7-9aa2-f6f8f457c926"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The role UUIDs to grant to the user.",
+                        "type": "text/plain"
+                      },
+                      "key": "roles",
+                      "value": "8025e9a7-781a-4ad1-b7ea-1f1b732944c2"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The team you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8760f091-d04d-471d-82cf-ea3e2d311bbf",
+    "name": "Acquia Cloud API - Teams and Permissions",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
+      "type": "text/plain"
+    }
+  }
+}

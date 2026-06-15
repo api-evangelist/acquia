@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API - Options",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options"
+          },
+          "docs": "Does not return any data. Allows traversal of options groups endpoints."
+        },
+        {
+          "info": {
+            "name": "Acquia Displays the Various CD Environment Size Options.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/cde-sizes"
+          },
+          "docs": "Displays the various CD Environment size options."
+        },
+        {
+          "info": {
+            "name": "Acquia Displays the Various Color Options.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/colors"
+          },
+          "docs": "Displays the various color options."
+        },
+        {
+          "info": {
+            "name": "Acquia Does Not Return Any Data. Allows Traversal of Options Groups Endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/log-forwarding"
+          },
+          "docs": "Does not return any data. Allows traversal of options groups endpoints."
+        },
+        {
+          "info": {
+            "name": "Acquia Displays Available Log Forwarding Consumers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/log-forwarding/consumers"
+          },
+          "docs": "Displays available log forwarding consumers."
+        },
+        {
+          "info": {
+            "name": "Acquia Displays Available Log Forwarding Sources.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/log-forwarding/sources"
+          },
+          "docs": "Displays available log forwarding sources."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
