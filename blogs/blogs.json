@@ -4,18 +4,18 @@
     {
       "source": "https://www.acquia.com/blog/rss.xml",
       "feed_url": "https://www.acquia.com/blog/rss.xml",
-      "title": "Acquia.com Blog",
-      "saved": 2,
+      "title": "",
+      "saved": 1,
       "method": "feed"
     },
     {
       "source": "https://www.acquia.com/blog",
       "feed_url": "https://www.acquia.com/blog/rss.xml",
-      "title": "Acquia.com Blog",
-      "saved": 2,
+      "title": "",
+      "saved": 0,
       "method": "discovered"
     }
   ],
-  "post_count": 27,
-  "fetched": "2026-06-21T17:00:00Z"
+  "post_count": 28,
+  "fetched": "2026-06-27T12:03:07Z"
 }

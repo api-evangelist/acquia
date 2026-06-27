@@ -126,7 +126,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/vocabulary/acquia-vocabulary.yaml
   - type: TermsOfService
     url: https://www.acquia.com/about-us/legal
-  - type: SignUp
+  - type: Signup
     url: https://accounts.acquia.com/register
   - type: Features
     data:
