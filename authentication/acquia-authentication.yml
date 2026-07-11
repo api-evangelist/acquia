@@ -1,0 +1,77 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/acquia-cloud-account.yml, openapi/acquia-cloud-agreements.yml, openapi/acquia-cloud-application-performance-monitoring-services.yml,
+  openapi/acquia-cloud-applications.yml, openapi/acquia-cloud-cloud-ide.yml, openapi/acquia-cloud-codebases.yml,
+  openapi/acquia-cloud-current-system-health.yml, openapi/acquia-cloud-distributions.yml, openapi/acquia-cloud-email.yml,
+  openapi/acquia-cloud-environments.yml, openapi/acquia-cloud-identity-providers.yml, openapi/acquia-cloud-invite.yml
+  ...
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+    scopes: 0
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page
+  sources:
+  - openapi/acquia-cloud-account.yml
+  - openapi/acquia-cloud-agreements.yml
+  - openapi/acquia-cloud-application-performance-monitoring-services.yml
+  - openapi/acquia-cloud-applications.yml
+  - openapi/acquia-cloud-cloud-ide.yml
+  - openapi/acquia-cloud-codebases.yml
+  - openapi/acquia-cloud-current-system-health.yml
+  - openapi/acquia-cloud-distributions.yml
+  - openapi/acquia-cloud-email.yml
+  - openapi/acquia-cloud-environments.yml
+  - openapi/acquia-cloud-identity-providers.yml
+  - openapi/acquia-cloud-invite.yml
+  - openapi/acquia-cloud-messages.yml
+  - openapi/acquia-cloud-notifications.yml
+  - openapi/acquia-cloud-openapi-full.yml
+  - openapi/acquia-cloud-options.yml
+  - openapi/acquia-cloud-organizations.yml
+  - openapi/acquia-cloud-private-networks.yml
+  - openapi/acquia-cloud-subscriptions.yml
+  - openapi/acquia-cloud-teams-and-permissions.yml
+- name: Codebase_Service_JWT
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Value for the Authorization header parameter.
+  sources:
+  - openapi/acquia-cloud-account.yml
+  - openapi/acquia-cloud-agreements.yml
+  - openapi/acquia-cloud-application-performance-monitoring-services.yml
+  - openapi/acquia-cloud-applications.yml
+  - openapi/acquia-cloud-cloud-ide.yml
+  - openapi/acquia-cloud-codebases.yml
+  - openapi/acquia-cloud-current-system-health.yml
+  - openapi/acquia-cloud-distributions.yml
+  - openapi/acquia-cloud-email.yml
+  - openapi/acquia-cloud-environments.yml
+  - openapi/acquia-cloud-identity-providers.yml
+  - openapi/acquia-cloud-invite.yml
+  - openapi/acquia-cloud-messages.yml
+  - openapi/acquia-cloud-notifications.yml
+  - openapi/acquia-cloud-openapi-full.yml
+  - openapi/acquia-cloud-options.yml
+  - openapi/acquia-cloud-organizations.yml
+  - openapi/acquia-cloud-private-networks.yml
+  - openapi/acquia-cloud-subscriptions.yml
+  - openapi/acquia-cloud-teams-and-permissions.yml
