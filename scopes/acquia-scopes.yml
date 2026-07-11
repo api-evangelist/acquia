@@ -1,0 +1,339 @@
+generated: '2026-07-11'
+method: searched
+docs: https://docs.acquia.com/acquia-cloud-platform/cloud-platform-api-v2-authentication
+note: Acquia Cloud Platform API uses OAuth 2.0 client credentials tied to per-user API tokens, with access governed by Teams and Permissions roles rather than a scope catalog; the only documented scope is organization:{uuid}, required when the organization uses Federated Authentication (https://docs.acquia.com/acquia-cloud-platform/cloud-platform-api-v2-authentication).
+source: openapi/acquia-cloud-account.yml, openapi/acquia-cloud-agreements.yml, openapi/acquia-cloud-application-performance-monitoring-services.yml,
+  openapi/acquia-cloud-applications.yml, openapi/acquia-cloud-cloud-ide.yml, openapi/acquia-cloud-codebases.yml,
+  openapi/acquia-cloud-current-system-health.yml, openapi/acquia-cloud-distributions.yml, openapi/acquia-cloud-email.yml,
+  openapi/acquia-cloud-environments.yml, openapi/acquia-cloud-identity-providers.yml, openapi/acquia-cloud-invite.yml,
+  openapi/acquia-cloud-messages.yml, openapi/acquia-cloud-notifications.yml, openapi/acquia-cloud-openapi-full.yml,
+  openapi/acquia-cloud-options.yml, openapi/acquia-cloud-organizations.yml, openapi/acquia-cloud-private-networks.yml,
+  openapi/acquia-cloud-subscriptions.yml, openapi/acquia-cloud-teams-and-permissions.yml
+schemes:
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-account.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-agreements.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-application-performance-monitoring-services.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-applications.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-cloud-ide.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-codebases.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-current-system-health.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-distributions.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-email.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-environments.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-identity-providers.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-invite.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-messages.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-notifications.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-openapi-full.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-options.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-organizations.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-private-networks.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-subscriptions.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+- name: Acquia_Cloud_API_Documentation_OAuth2
+  source: openapi/acquia-cloud-teams-and-permissions.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://accounts.acquia.com/api/token
+  description: |-
+    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+    ### To generate a token:
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+    2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+    3. On the Profile page, click **API Tokens**.
+    4. Click **Create Token**.
+    5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+    6. Copy your API key and API secret. Click **OK**.
+scopes:
+- scope: organization:{uuid}
+  description: Grants the API token access to the resources of the organization identified
+    by the given UUID; required when generating an API token for an organization that
+    uses Federated Authentication.
+  sources:
+  - https://docs.acquia.com/acquia-cloud-platform/cloud-platform-api-v2-authentication
