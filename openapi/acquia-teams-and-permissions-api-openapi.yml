@@ -1,0 +1,2232 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Teams and Permissions API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Teams and Permissions
+  x-displayName: Teams and Permissions
+paths:
+  /permissions:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Teams and Permissions
+      summary: Return a list of permissions.
+      description: 'Displays a list of all available permissions currently in the system. This will include permissions that the user
+
+        may not have access to.
+
+        '
+      operationId: getPermissions
+      x-cli-name: permissions:list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permissions'
+              example:
+                total: 49
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/permissions
+                _embedded:
+                  items:
+                  - name: deploy to non-prod
+                    label: Pull and deploy code, files, or databases to non-production environments
+                    description: Grants the ability to enable or disable live development and non-production work.
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: deploy to prod
+                    label: Deploy code, files, or databases to the production environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: pull from prod
+                    label: Pull files or databases from the production environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: move file to non-prod
+                    label: Move files to non-production environments
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: move file to prod
+                    label: Move files to the production environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: move file from prod
+                    label: Move files from production environments
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: move file from non-prod
+                    label: Move files from non-production environments
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: clear varnish on non-prod
+                    label: Clear Varnish cache for non-production environments
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: true
+                  - name: clear varnish on prod
+                    label: Clear Varnish cache for the production environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: true
+                  - name: configure prod env
+                    label: Configure production environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: configure non-prod env
+                    label: Configure non-production environments
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: add an environment
+                    label: Add an environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: delete an environment
+                    label: Delete an environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: administer domain non-prod
+                    label: Add or remove domains for non-production environments
+                    description: null
+                    group_label: Domains
+                    flags:
+                      deprecated: false
+                  - name: administer domain prod
+                    label: Add or remove domains for the production environment
+                    description: null
+                    group_label: Domains
+                    flags:
+                      deprecated: false
+                  - name: administer ssl prod
+                    label: Add or remove SSL certificates for the production environment
+                    description: null
+                    group_label: Domains
+                    flags:
+                      deprecated: false
+                  - name: administer ssl non-prod
+                    label: Add or remove SSL certificates for the non-production environments
+                    description: null
+                    group_label: Domains
+                    flags:
+                      deprecated: false
+                  - name: reboot server
+                    label: Reboot server
+                    description: null
+                    group_label: Server administration
+                    flags:
+                      deprecated: false
+                  - name: resize server
+                    label: Resize server
+                    description: Increasing the size of your server costs money.
+                    group_label: Server administration
+                    flags:
+                      deprecated: false
+                  - name: suspend server
+                    label: Suspend server
+                    description: null
+                    group_label: Server administration
+                    flags:
+                      deprecated: false
+                  - name: configure server
+                    label: Configure server
+                    description: null
+                    group_label: Server administration
+                    flags:
+                      deprecated: false
+                  - name: download logs non-prod
+                    label: Download logs for non-production environments
+                    description: null
+                    group_label: Logs
+                    flags:
+                      deprecated: false
+                  - name: download logs prod
+                    label: Download logs for the production environment
+                    description: null
+                    group_label: Logs
+                    flags:
+                      deprecated: false
+                  - name: add database
+                    label: Add a database
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: remove database
+                    label: Remove a database
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: view database connection
+                    label: View database connection details (username, password, or hostname)
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: download db backup non-prod
+                    label: Download database backups for non-production environments
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: download db backup prod
+                    label: Download database backups for the production environment
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: create db backup non-prod
+                    label: Create database backups for non-production environments
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: create db backup prod
+                    label: Create database backups for the production environment
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: restore db backup non-prod
+                    label: Restore database backups for non-production environments
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: restore db backup prod
+                    label: Restore database backups for the production environment
+                    description: null
+                    group_label: Databases
+                    flags:
+                      deprecated: false
+                  - name: administer team
+                    label: Add or remove a user of a team
+                    description: Granting this permission will give any user with this role full permissions on this team.
+                    group_label: Administration
+                    flags:
+                      deprecated: false
+                  - name: access cloud api
+                    label: Access the Cloud API
+                    description: Grants the ability to use the API and bypass all other permissions via command line tools.
+                    group_label: Administration
+                    flags:
+                      deprecated: false
+                  - name: administer cron non-prod
+                    label: Modify cron tasks for non-production environments
+                    description: null
+                    group_label: Cron
+                    flags:
+                      deprecated: false
+                  - name: administer cron prod
+                    label: Modify cron tasks for the production environment
+                    description: null
+                    group_label: Cron
+                    flags:
+                      deprecated: false
+                  - name: create support ticket
+                    label: Create a support ticket
+                    description: null
+                    group_label: Support
+                    flags:
+                      deprecated: false
+                  - name: edit any support ticket
+                    label: View and edit any support tickets for a subscription
+                    description: null
+                    group_label: Support
+                    flags:
+                      deprecated: false
+                  - name: view build plans
+                    label: View Build plans
+                    description: null
+                    group_label: Build
+                    flags:
+                      deprecated: false
+                  - name: edit build plans
+                    label: Edit Build plans
+                    description: null
+                    group_label: Build
+                    flags:
+                      deprecated: false
+                  - name: run build plans
+                    label: Run Build plans
+                    description: null
+                    group_label: Build
+                    flags:
+                      deprecated: false
+                  - name: add ssh key to git
+                    label: Add SSH key to git repository
+                    description: null
+                    group_label: SSH keys
+                    flags:
+                      deprecated: false
+                  - name: add ssh key to non-prod
+                    label: Add SSH key to non-production environments
+                    description: null
+                    group_label: SSH keys
+                    flags:
+                      deprecated: false
+                  - name: add ssh key to prod
+                    label: Add SSH key to the production environment
+                    description: null
+                    group_label: SSH keys
+                    flags:
+                      deprecated: false
+                  - name: view remote administration
+                    label: View Remote Administration
+                    description: This permission is only relevant if your subscription has remote administration.
+                    group_label: Administration
+                    flags:
+                      deprecated: false
+                  - name: edit remote administration
+                    label: Edit Remote Administration
+                    description: This permission is only relevant if your subscription has remote administration.
+                    group_label: Administration
+                    flags:
+                      deprecated: false
+                  - name: clear caches on prod
+                    label: Clear caches for the production environment
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+                  - name: clear caches on non-prod
+                    label: Clear caches for non-production environments
+                    description: null
+                    group_label: Workflow
+                    flags:
+                      deprecated: false
+  /roles/{roleUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Teams and Permissions
+      summary: Return details about a specific role.
+      description: 'Roles may be assigned to team members, and grant various permissions to the applications that the team is assigned
+
+        to. Roles are unique within a organization.
+
+        '
+      operationId: getRole
+      x-cli-name: tps:role-find
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_role-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role'
+              example:
+                uuid: c885728d-cbbe-4e54-bf09-19b751b6d0c7
+                name: My Custom Role
+                description: Some details about my custom role.
+                permissions:
+                - name: deploy to non-prod
+                  label: Pull and deploy code, files, or databases to non-production environments
+                  description: Grants the ability to enable or disable live development and non-production work.
+                  group_label: Workflow
+                  flags:
+                    deprecated: false
+                - name: configure non-prod env
+                  label: Configure non-production environments
+                  description: null
+                  group_label: Workflow
+                  flags:
+                    deprecated: false
+                - name: download logs non-prod
+                  label: Download logs for non-production environments
+                  description: null
+                  group_label: Logs
+                  flags:
+                    deprecated: false
+                - name: view database connection
+                  label: View database connection details (username, password, or hostname)
+                  description: null
+                  group_label: Databases
+                  flags:
+                    deprecated: false
+                organization:
+                  uuid: d122cc06-35bd-41bf-9baa-5b770c8ca0f1
+                  name: My Organization
+                last_edited:
+                  edited_at: '2011-03-28T13:09:41-04:00'
+                  user:
+                    uuid: 590909a0-e819-43e6-a8e3-212dc3e35852
+                    first_name: Jane
+                    last_name: Doe
+                    mail: jane.doe@example.com
+                    picture_url: https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com
+                    username: jane.doe
+                flags:
+                  default: false
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Role not found:
+                  value:
+                    error: not_found
+                    message: The role you are trying to access does not exist, or you do not have permission to access it.
+    delete:
+      tags:
+      - Teams and Permissions
+      summary: Deletes a specific role by its UUID.
+      description: Deletes a specific role.
+      operationId: deleteRole
+      x-cli-name: tps:roles-delete
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_role-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              example:
+                message: Deleted role.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Role not found:
+                  value:
+                    error: not_found
+                    message: The role you are trying to delete does not exist, or you do not have permission to delete it.
+    put:
+      tags:
+      - Teams and Permissions
+      summary: Updates a role.
+      operationId: putRoleByUuid
+      x-cli-name: tps:role-update
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      description: Modifies a role.
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_role-uuid'
+      requestBody:
+        required: true
+        content:
+          application/hal+json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new name of the role.
+                  minLength: 1
+                  maxLength: 255
+                description:
+                  type: string
+                  description: The new description of the role.
+                  minLength: 1
+                  maxLength: 255
+                permissions:
+                  type: array
+                  description: An array of the permissions associated with the role.
+                  items:
+                    type: string
+            example:
+              name: My new role name
+              description: My new role description.
+              permisions:
+              - permission 4
+              - permission 5
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: The updated name of the role.
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                description:
+                  description: The updated description of the role.
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                permissions:
+                  description: A list of permissions to grant to this role.
+                  type: array
+                  items:
+                    type: string
+              example:
+                name: My new role name
+                description: My new role description.
+                status:
+                - permission 4
+                - permission 5
+            example:
+              name: My new application name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              example:
+                message: Updating role.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Role not found:
+                  value:
+                    error: not_found
+                    message: The role you are trying to access does not exist, or you do not have permission to edit it.
+  /teams:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Teams and Permissions
+      summary: Return teams the current user has access to.
+      description: 'Returns a list of teams the current user has access to.
+
+
+        Filterable fields:
+
+        * `name`
+
+
+        Sortable fields:
+
+        * `name`
+
+        '
+      operationId: getTeams
+      x-cli-name: tps:teams-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_range'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_teams'
+              example:
+                total: 2
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/teams
+                _embedded:
+                  items:
+                  - uuid: abcd1234-82b5-11e3-9170-12313920a02c
+                    name: Team Name 1
+                    created_at: 2013-10-28T14:16:07-0700
+                    updated_at: 2015-02-19T08:53:10-0800
+                    organization:
+                      uuid: 2375e327-3fff-11e3-9170-12313920a02c
+                      name: Sample Organization
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c
+                  - uuid: 1234abcd-82b5-11e3-9170-12313920a02c
+                    name: Team Name 2
+                    created_at: 2014-05-27T11:55:39-0700
+                    updated_at: 2015-01-30T05:49:16-0800
+                    organization:
+                      uuid: 2375e327-3fff-11e3-9170-12313920a02c
+                      name: Sample Organization
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/teams/9ca6ecc0-e5d0-11e3-9eb3-22000b04072f
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view teams.
+  /teams/{teamUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Teams and Permissions
+      summary: Return details about a specific team.
+      description: Return details about a specific team.
+      operationId: getTeam
+      x-cli-name: tps:team-find
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team'
+              example:
+                uuid: 2c9ea556-4016-11e3-9170-12313920a02c
+                name: Sample Team
+                created_at: 2013-10-28T14:16:07-0700
+                updated_at: 2015-02-19T08:53:10-0800
+                organization:
+                  uuid: 2375e327-3fff-11e3-9170-12313920a02c
+                  name: Sample Organization
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c
+                  members:
+                    href: https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c/members
+                  applications:
+                    href: https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c/applications
+                  invites:
+                    href: https://cloud.acquia.com/api/teams/2c9ea556-4016-11e3-9170-12313920a02c/invites
+                  parent:
+                    href: https://cloud.acquia.com/api/teams
+                _embedded:
+                  organization:
+                  - uuid: 2375e327-3fff-11e3-9170-12313920a02c
+                    name: Sample Organization
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/organizations/2375e327-3fff-11e3-9170-12313920a02c
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Role not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+    put:
+      tags:
+      - Teams and Permissions
+      summary: Change the name of a team.
+      description: Change the name of a team.
+      operationId: putTeamsName
+      x-cli-name: tps:team-update
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      requestBody:
+        required: true
+        content:
+          application/hal+json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new name of the team.
+                  minLength: 1
+                  maxLength: 255
+            example:
+              name: My new team name
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new name of the team.
+                  minLength: 1
+                  maxLength: 255
+            example:
+              name: My new team name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Team renamed:
+                  value:
+                    message: Team renamed.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Role not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to rename it.
+    delete:
+      tags:
+      - Teams and Permissions
+      summary: Deletes a specific team by its UUID.
+      description: Deletes a specific team by its UUID.
+      operationId: deleteTeam
+      x-cli-name: tps:team-delete
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Removed team:
+                  value:
+                    message: Removed team.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Team not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to remove it.
+  /teams/{teamUuid}/actions/leave:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      tags:
+      - Teams and Permissions
+      summary: Removes the current user from a team.
+      description: Removes the current user from a team.
+      operationId: postLeaveTeam
+      x-cli-name: tps:user-leave
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Left team:
+                  value:
+                    message: You have left the team.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+                Invalid team:
+                  value:
+                    error: not_found
+                    message: Invalid team supplied. No action performed.
+                Invalid user:
+                  value:
+                    error: not_found
+                    message: Invalid user supplied. No action performed.
+                User not on team:
+                  value:
+                    error: not_found
+                    message: The user is not a member of this team.
+  /teams/{teamUuid}/applications:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Teams and Permissions
+      summary: Returns a list of applications this team has access to.
+      description: 'Returns a list of applications this team has access to.
+
+
+        Filterable fields:
+
+        * `name`
+
+
+        Sortable fields:
+
+        * `name`
+
+        '
+      operationId: getTeamApplications
+      x-cli-name: tps:team-application-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-applications'
+              example:
+                total: 2
+                pagination:
+                  total: 2
+                  limit: 10
+                  offset: 0
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications
+                  sort:
+                    href: https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications{?sort}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications{?filter}
+                    templated: true
+                  limit:
+                    href: https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5/applications{?limit}
+                    templated: true
+                  parent:
+                    href: https://cloud.acquia.com/api/teams/f6c5006c-f670-4778-9ae5-49018475ece5
+                _embedded:
+                  items:
+                  - id: 241643
+                    uuid: 50cf9819-6f99-4ef2-be10-1a85dc354ca1
+                    name: Sample application 1
+                    hosting:
+                      type: acp
+                      id: devcloud:devcloud2
+                    subscription:
+                      uuid: fc04cc3e-8d91-4fb4-a8dd-15dc81df7458
+                      name: Sample subscription
+                    organization:
+                      uuid: 434aac3d-bb5f-44d1-bea4-398addbf5a04
+                      name: Sample organization
+                    flags:
+                      remote_admin: true
+                    status: normal
+                    type: drupal
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/50cf9819-6f99-4ef2-be10-1a85dc354ca1
+                  - id: 954291
+                    uuid: a47ac10b-58cc-4372-a567-0e02b2c3d471
+                    name: Sample application 2
+                    hosting:
+                      type: free
+                      id: devcloud:devcloud2
+                    subscription:
+                      uuid: fc04cc3e-8d91-4fb4-a8dd-15dc81df7458
+                      name: Sample subscription
+                    organization:
+                      uuid: 434aac3d-bb5f-44d1-bea4-398addbf5a04
+                      name: Sample organization
+                    flags:
+                      remote_admin: false
+                    status: provisioning
+                    type: drupal
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/teams/a47ac10b-58cc-4372-a567-0e02b2c3d471/applications
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+    post:
+      tags:
+      - Teams and Permissions
+      summary: Adds an application to this team.
+      description: Adds an application to this team.
+      operationId: postTeamAddApplication
+      x-cli-name: tps:team-application-add
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      requestBody:
+        required: true
+        content:
+          application/hal+json:
+            schema:
+              type: object
+              required:
+              - uuid
+              properties:
+                uuid:
+                  type: string
+                  description: The uuid of the application to add to this team.
+                  format: uuid
+                  minLength: 36
+                  maxLength: 36
+            example:
+              uuid: a47ac10b-58cc-4372-a567-0e02b2c3d470
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - uuid
+              properties:
+                uuid:
+                  type: string
+                  description: The uuid of the application to add to this team.
+                  format: uuid
+                  minLength: 36
+                  maxLength: 36
+            example:
+              uuid: a47ac10b-58cc-4372-a567-0e02b2c3d470
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Added application:
+                  value:
+                    message: Added application to team.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: forbidden
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+                Application mismatch:
+                  value:
+                    error: not_found
+                    message: The application must belong to the same organization as this team.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Application already on team:
+                  value:
+                    error: conflict
+                    message: The application is already on this team.
+  /teams/{teamUuid}/applications/{applicationUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    delete:
+      tags:
+      - Teams and Permissions
+      summary: Removes the application from this team.
+      description: Removes the application from this team. Team members will immediately lose access to this application.
+      operationId: deleteTeamsRemoveApplication
+      x-cli-name: tps:team-application-remove
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_application-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Removed application:
+                  value:
+                    message: Removed application from team.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: forbidden
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Team not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+                Application mismatch:
+                  value:
+                    error: not_found
+                    message: The application is not associated with this team.
+  /teams/{teamUuid}/invites:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Teams and Permissions
+      summary: Returns a list of invitations to this team.
+      description: 'Returns a list of invitations to this team.
+
+
+        Filterable fields:
+
+        * `mail`
+
+        * `token`
+
+        * `author`
+
+
+        Sortable fields:
+
+        * `mail`
+
+        * `token`
+
+        * `author`
+
+        '
+      operationId: getTeamInvites
+      x-cli-name: tps:team-invite-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_range'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-invites'
+              example:
+                total: 2
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites
+                  sort:
+                    href: https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites{?sort}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites{?filter}
+                    templated: true
+                  limit:
+                    href: https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625/invites{?limit}
+                    templated: true
+                  parent:
+                    href: https://cloud.acquia.com/api/teams/06adb604-d918-49f0-8ad6-06f037a4c625
+                _embedded:
+                  items:
+                  - applications:
+                    - uuid: 88dc87db-1169-4908-9384-2328a7bd5cc1
+                      name: Main Application
+                    author:
+                      uuid: ff4d12d9-1aba-472a-b0d1-ba19342922fa
+                      username: jane.doe
+                      first_name: Jane
+                      last_name: Doe
+                      mail: jane.doe@example.com
+                      picture_url: https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com
+                    roles:
+                    - uuid: aba649d1-795e-4472-87c8-7b32536c71b3
+                      name: Senior Developer
+                    - uuid: a70a0192-c962-421a-b534-393c245ba142
+                      name: Team Lead
+                    organization:
+                      uuid: 3f3fc2da-bb2b-473c-aa5c-8b9d8fa6c7b8
+                      name: Organization Name
+                    team:
+                      uuid: 9ab05712-29b7-4171-8168-2ed085ea32b2
+                      name: Team Name
+                    uuid: f4347e76-bcd7-41f6-91aa-ac6691755f0c
+                    email: invitee@example.com
+                    created_at: '2012-05-15T12:00:00Z'
+                    token: dd9ea69fdcb6bee08b31a858b85535ec
+                    flags:
+                      declined: true
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/invites/dd9ea69fdcb6bee08b31a858b85535ec
+                  - applications:
+                    - uuid: 88dc87db-1169-4908-9384-2328a7bd5cc1
+                      name: Main Application
+                    - uuid: a2345672-58cc-4372-a567-0e02b2c3d470
+                      name: Secondary Application
+                    author:
+                      uuid: 80363753-76dc-486c-b942-57ff9fc131ee
+                      username: john.doe
+                      first_name: John
+                      last_name: Doe
+                      mail: john.doe@example.com
+                      picture_url: https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=john.doe@example.com
+                    roles:
+                    - uuid: aba649d1-795e-4472-87c8-7b32536c71b3
+                      name: Senior Developer
+                    organization:
+                      uuid: 3f3fc2da-bb2b-473c-aa5c-8b9d8fa6c7b8
+                      name: Organization Name
+                    team:
+                      uuid: 9ab05712-29b7-4171-8168-2ed085ea32b2
+                      name: Team Name
+                    uuid: 6bf96944-bb9b-4629-b593-d658e44d8054
+                    email: invitee2@example.com
+                    created_at: '2012-05-15T12:00:00Z'
+                    token: dd9ea69fdcb6bee08b31a858b85535ed
+                    flags:
+                      declined: false
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/invites/dd9ea69fdcb6bee08b31a858b85535ed
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view invites for this team.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+    post:
+      tags:
+      - Teams and Permissions
+      summary: Invites a user to join a team.
+      description: Invites a user to join a team.
+      operationId: postTeamsInviteUser
+      x-cli-name: tps:team-user-invite
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      requestBody:
+        required: true
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_post-invite'
+            example:
+              email: person@example.com
+              roles:
+              - 489efe35-7bb7-48b7-9aa2-f6f8f457c926
+              - 8025e9a7-781a-4ad1-b7ea-1f1b732944c2
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_post-invite'
+            example:
+              email: person@example.com
+              roles:
+              - 489efe35-7bb7-48b7-9aa2-f6f8f457c926
+              - 8025e9a7-781a-4ad1-b7ea-1f1b732944c2
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Invited:
+                  value:
+                    message: Invited team member.
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+              examples:
+                Missing parameter:
+                  value:
+                    error: validation_failed
+                    message:
+                      name: 'Missing required parameter(s): example_param'
+                Invalid parameter:
+                  value:
+                    error: validation_failed
+                    message:
+                      name: 'Invalid values for parameter(s): example_param'
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to invite users to this team.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Team not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to modify does not exist, or you do not have permission to access it.
+                Role not found:
+                  value:
+                    error: not_found
+                    message: One or more of the chosen roles do not belong to this organization.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Invitation already sent:
+                  value:
+                    error: conflict
+                    message: An invitation to person@example.com has already been sent. It was sent on May 6, 2016 - 7:26pm.
+                User already on team:
+                  value:
+                    error: conflict
+                    message: The user you are trying to invite already belongs to the team.
+                Must have at least one role:
+                  value:
+                    error: conflict
+                    message: A team member must be invited with at least one role.
+  /teams/{teamUuid}/members:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Teams and Permissions
+      summary: Returns a list of team members.
+      description: 'Returns a list of team members.
+
+
+        Filterable fields:
+
+        * `permission`
+
+        * `first_name`
+
+        * `last_name`
+
+        * `user`
+
+
+        Sortable fields:
+
+        * `permission`
+
+        * `first_name`
+
+        * `last_name`
+
+        '
+      operationId: getTeamMembers
+      x-cli-name: tps:team-member-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-members'
+              example:
+                total: 3
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/teams/3c9ea553-3216-11e3-9170-12313920a23a/members
+                  parent:
+                    href: https://cloud.acquia.com/api/teams/3c9ea553-3216-11e3-9170-12313920a23a
+                _embedded:
+                  items:
+                  - uuid: 5aa902c5-f1c1-6c94-edfa-86bc58d0dce3
+                    first_name: James
+                    last_name: Kirk
+                    last_login_at: 2017-03-28T13:07:54-0500
+                    mail: james.kirk@example.com
+                    picture_url: https://accounts.acquia.com/images/users/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3/style/avatar
+                    username: james.kirk
+                    roles:
+                    - uuid: 2d988ad3-4016-11e3-9170-12313920a02e
+                      name: Senior Developer
+                  - uuid: 30dacb5e-4122-11e1-9eb5-12313928d3c2
+                    first_name: Christopher
+                    last_name: Pike
+                    last_login_at: 2016-03-28T13:07:54-0500
+                    mail: chris.pike@example.com
+                    picture_url: https://accounts.acquia.com/images/users/30dacb5e-4122-11e1-9eb5-12313928d3c2/style/avatar
+                    username: chris.pike
+                    roles:
+                    - uuid: 3c9a1174-4016-11e3-9170-12313920a02d
+                      name: Developer
+                  - uuid: 3bcddc3a-52ba-4cce-aaa3-9adf721c1b52
+                    first_name: Jonathan
+                    last_name: Archer
+                    last_login_at: null
+                    mail: jonathan.archer@example.com
+                    picture_url: https://accounts.acquia.com/images/users/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/style/avatar
+                    username: jonathan.archer
+                    roles:
+                    - uuid: 2d988ad3-4016-11e3-9170-12313920a02e
+                      name: Senior Developer
+                    - uuid: 3c9a1174-4016-11e3-9170-12313920a02d
+                      name: Developer
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+  /teams/{teamUuid}/members/{userUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    put:
+      tags:
+      - Teams and Permissions
+      summary: Grant team roles to a member.
+      description: Grant team roles to a member.
+      operationId: putTeamsMember
+      x-cli-name: tps:team-member-add
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_user-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/hal+json:
+            schema:
+              type: object
+              required:
+              - roles
+              properties:
+                roles:
+                  type: array
+                  description: The role UUIDs to grant to the user.
+                  items:
+                    type: string
+                    format: uuid
+                    minLength: 36
+                    maxLength: 36
+            example:
+              roles:
+              - 489efe35-7bb7-48b7-9aa2-f6f8f457c926
+              - 8025e9a7-781a-4ad1-b7ea-1f1b732944c2
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - roles
+              properties:
+                roles:
+                  type: array
+                  description: The role UUIDs to grant to the user.
+                  items:
+                    type: string
+                    format: uuid
+                    minLength: 36
+                    maxLength: 36
+            example:
+              roles:
+              - 489efe35-7bb7-48b7-9aa2-f6f8f457c926
+              - 8025e9a7-781a-4ad1-b7ea-1f1b732944c2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Modified member roles:
+                  value:
+                    message: Modified member roles.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to modify team member roles.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+    delete:
+      tags:
+      - Teams and Permissions
+      summary: Remove a user from a team.
+      description: Remove a user from a team.
+      operationId: deleteTeamsRemoveMember
+      x-cli-name: tps:team-member-remove
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_user-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Team member removed:
+                  value:
+                    message: Team member removed.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to remove team members.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team member you are trying to remove does not exist, or you do not have permission to remove them.
+                Invalid team:
+                  value:
+                    error: not_found
+                    message: Invalid team supplied. No action performed.
+                Invalid user:
+                  value:
+                    error: not_found
+                    message: Invalid user supplied. No action performed.
+                User not team member:
+                  value:
+                    error: not_found
+                    message: The user is not a member of this team.
+components:
+  schemas:
+    Acquia_Cloud_API_Documentation_permission:
+      type: object
+      required:
+      - name
+      - label
+      - description
+      - group_label
+      - flags
+      properties:
+        name:
+          type: string
+          description: The name of the permission.
+        label:
+          type: string
+          description: The human readable label for the permission.
+        description:
+          type: string
+          description: The description of the permission.
+          nullable: true
+        group_label:
+          type: string
+          description: The human readable label for the group.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission-flags'
+    Acquia_Cloud_API_Documentation_permission-flags:
+      type: object
+      description: An array of various flags regarding the status of the permission.
+      properties:
+        deprecated:
+          type: boolean
+          description: Whether the permission is deprecated or not.
+    Acquia_Cloud_API_Documentation_subscription-stub:
+      type: object
+      description: The subscription this application belongs to.
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the subscription.
+        name:
+          type: string
+          description: The name of the subscription.
+    Acquia_Cloud_API_Documentation_invite-flags:
+      type: object
+      description: An array of various flags providing more context for the Invite response object.
+      properties:
+        declined:
+          type: boolean
+    Acquia_Cloud_API_Documentation_application-no-embedded:
+      type: object
+      required:
+      - id
+      - uuid
+      - name
+      - hosting
+      - subscription
+      - organization
+      - flags
+      - type
+      - status
+      - _links
+      properties:
+        id:
+          type: integer
+          description: The unique internal ID of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the application.
+        name:
+          type: string
+          description: The name of the application.
+        hosting:
+          type: object
+          description: Hosting details for this application.
+          properties:
+            type:
+              type: string
+              enum:
+              - ace
+              - acp
+              - acsf
+              - free
+              - network
+              - search
+              - unknown
+              description: The hosting type.
+            id:
+              type: string
+              description: The hosting ID.
+        subscription:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-flags'
+        type:
+          type: string
+          enum:
+          - drupal
+          - node
+          - ssg
+          description: The type of application supported.
+        status:
+          type: string
+          enum:
+          - normal
+          - provisioning
+          description: The current application status.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_validation-error:
+      type: object
+      required:
+      - error
+      - message
+      description: A validation error.
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_role:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The role unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The role name.
+        description:
+          type: string
+          description: A description of the role.
+        permissions:
+          type: array
+          description: A collection of permissions a user with this role is granted.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        last_edited:
+          type: object
+          description: When the role was last edited, and who edited it.
+          properties:
+            edited_at:
+              type: string
+              format: date-time
+              description: The date the role was edited.
+            user:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
+        flags:
+          type: object
+          description: Additional role status information.
+          properties:
+            default:
+              type: boolean
+              description: True if this is a default role, false if it was user created.
+    Acquia_Cloud_API_Documentation_team-applications:
+      type: object
+      description: A collection of applications associated with a team.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of applications.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
+    Acquia_Cloud_API_Documentation_team-user-profile:
+      type: object
+      description: A user profile for a team member.
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      - roles
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type: string
+          format: uri
+          description: The URI for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
+        roles:
+          type: array
+          description: A collection of roles this user has access to on a team.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
+    Acquia_Cloud_API_Documentation_organization-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The organization's UUID.
+        name:
+          type: string
+          description: The human-readable organization name.
+    Acquia_Cloud_API_Documentation_post-invite:
+      type: object
+      required:
+      - email
+      - roles
+      properties:
+        email:
+          type: string
+          description: The email address of the user to invite to this team.
+          format: email
+        roles:
+          type: array
+          description: The role UUIDs to grant to the invitee.
+          items:
+            type: string
+            format: uuid
+    Acquia_Cloud_API_Documentation_user-stub:
+      type: object
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type: string
+          format: uri
+          description: The URI for the user's picture.
+          nullable: true
+        username:
+          type: string
+          description: The user's internal user name.
+    Acquia_Cloud_API_Documentation_permissions:
+      type: object
+      description: A collection of all permissions that may be granted.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of permissions.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission'
+    Acquia_Cloud_API_Documentation_invite:
+      type: object
+      required:
+      - uuid
+      - email
+      - created_at
+      - token
+      - flags
+      - author
+      - _links
+      description: Details an invite.
+      properties:
+        uuid:
+          type: string
+          description: The unique identifier of the Invite.
+          format: uuid
+        email:
+          type: string
+          description: The invitee email address.
+          format: email
+        created_at:
+          type: string
+          description: The invite creation time.
+          format: date-time
+        token:
+          type: string
+          description: The invite token.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite-flags'
+        author:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        team:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-stub'
+        applications:
+          type: array
+          description: List of applications the invite will grant the invitee.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-stub'
+        roles:
+          type: array
+          description: List of roles the invite will grant the invitee.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_team-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          description: The team unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The team name.
+    Acquia_Cloud_API_Documentation_application-flags:
+      type: object
+      description: An array of various flags that indicate functionality associated with applications.
+      properties:
+        remote_admin:
+          type: boolean
+          description: Whether this application has remote administration enabled.
+    Acquia_Cloud_API_Documentation_role-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          description: The role unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The role name.
+    Acquia_Cloud_API_Documentation_team:
+      type: object
+      required:
+      - uuid
+      - name
+      - created_at
+      - updated_at
+      - organization
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the team.
+        name:
+          type: string
+          description: The name of the team.
+        created_at:
+          type: string
+          format: date-time
+          description: The date the team was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date the team was last updated.
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_teams:
+      type: object
+      description: A collection of teams.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of teams matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team'
+    Acquia_Cloud_API_Documentation_team-members:
+      type: object
+      description: A collection of team members.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of team member profiles.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-user-profile'
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_application-stub:
+      type: object
+      required:
+      - name
+      - uuid
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The application UUID.
+    Acquia_Cloud_API_Documentation_team-invites:
+      type: object
+      description: A collection of invites.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of invites matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
+  parameters:
+    Acquia_Cloud_API_Documentation_filter:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
+
+
+        * Equals: `= (%3D)`
+
+        * Does not equal: `!= (!%3D)`
+
+        * Greater than: `> (%3E)`
+
+        * Less than: `< (%3C)`
+
+        * Greater than or equal to: `>= (%3E%3D)`
+
+        * Less than or equal to: `<= (%3C%3D)`
+
+        * Contains substring: `=@ (%3D@)`
+
+        * Does not contain substring: `!@ (!@)`
+
+
+        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
+
+
+        Some examples:
+
+        * `filter=field%3Dvalue` (`field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_user-uuid:
+      name: userUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
+    Acquia_Cloud_API_Documentation_team-uuid:
+      name: teamUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 3eef5d81-62f4-429c-aa94-e17d05ab4740
+    Acquia_Cloud_API_Documentation_range:
+      name: range
+      in: query
+      description: ISO-8601 date/time of invite create date/time.
+      required: false
+      schema:
+        type: string
+        format: date-time
+    Acquia_Cloud_API_Documentation_role-uuid:
+      name: roleUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+    Acquia_Cloud_API_Documentation_application-uuid:
+      name: applicationUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

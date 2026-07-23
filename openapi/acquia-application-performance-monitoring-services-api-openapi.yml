@@ -1,0 +1,582 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Application Performance Monitoring Services API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Application Performance Monitoring Services
+paths:
+  /environments/{environmentId}/settings/apm:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      deprecated: true
+      description: Returns a list of Application Performance Monitoring services associated with the environment.
+      operationId: getEnvironmentsApmSetting
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_environment-id'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  environment:
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/environments/6-252031e4-59f0-7914-95a5-ff83699fdcde
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/environments/6-252031e4-59f0-7914-95a5-ff83699fdcde/settings/apm
+                flags:
+                  enabled: true
+                key: 123456789abcdef037dea2e355bc43987a123456
+                name: TestApplication
+                type: newrelic
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_apm'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Not available:
+                  value:
+                    error: forbidden
+                    message: APM settings are not available for this application.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not available on non-hosted applications:
+                  value:
+                    error: not_found
+                    message: APM settings are not available on non-hosted applications.
+                Not found:
+                  value:
+                    error: not_found
+                    message: The environment you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Returns a List of Application Performance Monitoring Services Associated with the Environment.
+      tags:
+      - Application Performance Monitoring Services
+      x-cli-name: environments:apm-find
+    put:
+      deprecated: true
+      description: Update configuration for an Application Performance Monitoring tool.
+      operationId: putEnvironmentsApmSetting
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_environment-id'
+      requestBody:
+        content:
+          application/hal+json:
+            example:
+              key: Some New Relic key
+              type: newrelic
+            schema:
+              properties:
+                key:
+                  description: The key for the APM tool. Required if installing or updating a configuration. This value should be available from your APM provider.
+                  type: string
+                status:
+                  description: Whether the APM tool should be enabled or disabled. If updating an existing install, this value does not need to be provided.
+                  type: boolean
+                type:
+                  description: The APM tool to install. Required if installing or updating a configuration.
+                  enum:
+                  - newrelic
+                  type: string
+              type: object
+          application/x-www-form-urlencoded:
+            example:
+              key: Some New Relic key
+              type: newrelic
+            schema:
+              properties:
+                key:
+                  description: The key for the APM tool. Required if installing or updating a configuration. This value should be available from your APM provider.
+                  type: string
+                status:
+                  description: Whether the APM tool should be enabled or disabled. If updating an existing install, this value does not need to be provided.
+                  type: boolean
+                type:
+                  description: The APM tool to install. Required if installing or updating a configuration.
+                  enum:
+                  - newrelic
+                  type: string
+              type: object
+        required: true
+      responses:
+        '202':
+          content:
+            application/hal+json:
+              examples:
+                Settings are being updated:
+                  value:
+                    message: APM settings are being updated for this environment.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: Accepted
+        '400':
+          content:
+            application/hal+json:
+              examples:
+                Validation failed:
+                  value:
+                    error: bad_request
+                    message: APM names may only contain alphanumeric, dashes, dots, colons, underscores and space characters.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Bad Request
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Acquia Cloud Free cannot modify:
+                  value:
+                    error: forbidden
+                    message: Acquia Cloud Free accounts are not able to modify APM settings.
+                Hosted on Acquia Cloud Enterprise:
+                  value:
+                    error: forbidden
+                    message: Please contact support to modify APM settings for this environment.
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to adjust APM settings for this environment.
+                Not available on non-hosted applications:
+                  value:
+                    error: forbidden
+                    message: APM settings are not available on non-hosted applications.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The environment you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Update Configuration for an Application Performance Monitoring Tool.
+      tags:
+      - Application Performance Monitoring Services
+      x-cli-name: environments:apm-update
+  /subscriptions/{subscriptionUuid}/apm:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns a list of Application Performance Monitoring services associated with the subscription.
+      operationId: getSubscriptionApmTypes
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - _links:
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm/newrelic
+                    flags:
+                      opted-in: true
+                    key: 2d1dfa83d5e1494793957e7ce572942b
+                    type: newrelic
+                _links:
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm{?filter}
+                    templated: true
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm
+                  sort:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm{?sort}
+                    templated: true
+                total: 1
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_apm-types'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              example:
+                error: forbidden
+                message: You do not have permission to access APM summaries for this subscription.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              example:
+                error: not_found
+                message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Returns a List of Application Performance Monitoring Services Associated with the Subscription.
+      tags:
+      - Application Performance Monitoring Services
+      x-cli-name: subscriptions:apm-list
+  /subscriptions/{subscriptionUuid}/apm/{apmType}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns the Application Performance Monitoring service type associated with the subscription.
+      operationId: getSubscriptionApmType
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_apm-type'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a
+                flags:
+                  opted-in: true
+                key: 2d1dfa83d5e1494793957e7ce572942b
+                type: newrelic
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_apm-type'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              example:
+                error: forbidden
+                message: You do not have permission to access this APM summary type.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              example:
+                error: not_found
+                message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Returns the Application Performance Monitoring Service Type Associated with the Subscription.
+      tags:
+      - Application Performance Monitoring Services
+      x-cli-name: subscriptions:apm-list
+  /subscriptions/{subscriptionUuid}/apm/{apmType}/actions/opt-in:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Enables New Relic Pro APM license for all applications on a subscription. This authorizes Acquia to create a new user account on the third-party New Relic platform using the name and e-mail address of the organization owner.
+      operationId: postSubscriptionApmOptIn
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_apm-type'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                APM Type Enabled:
+                  value:
+                    _links:
+                      notification:
+                        href: https://cloud.acquia.com/api/notifications/7b37b885-8ae4-454b-b8fa-ffaeff54f6a4
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm/newrelic/actions
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/apm/newrelic/actions/opt-in
+                    message: APM type newrelic has been enabled on the example subscription.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+          description: OK
+        '400':
+          content:
+            application/hal+json:
+              examples:
+                APM type unavailable:
+                  value:
+                    error: validation_failed
+                    message:
+                      name: New Relic is not available for this subscription.
+                Must be organization owner:
+                  value:
+                    error: validation_failed
+                    message:
+                      name: Only the organization owner may opt into data sharing.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+          description: Bad Request
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to opt-in to APM settings for this subscription.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Enables New Relic Pro APM License for All Applications on a Subscription.
+      tags:
+      - Application Performance Monitoring Services
+      x-cli-name: subscriptions:apm-opt-in
+components:
+  schemas:
+    Acquia_Cloud_API_Documentation_apm-types:
+      properties:
+        _embedded:
+          description: A collection of APM types matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_apm-type'
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_validation-error:
+      description: A validation error.
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          additionalProperties:
+            type: string
+          description: The validation error message keyed by its field or group name.
+          type: object
+      required:
+      - error
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_message:
+      properties:
+        message:
+          description: A simple message returned from the response.
+          type: string
+      required:
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_apm-type:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        flags:
+          description: Additional APM information.
+          properties:
+            opted-in:
+              description: Whether the organization owner has opted into the APM type.
+              type: boolean
+          type: object
+        key:
+          description: The APM license key.
+          type: string
+        type:
+          description: The APM type.
+          enum:
+          - newrelic
+          type: string
+      required:
+      - type
+      - flags
+      - key
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_error:
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          description: The long description for the returned error.
+          type: string
+      required:
+      - error
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_apm:
+      description: Details application performance monitor settings.
+      properties:
+        _embedded:
+          description: Entities related to the APM settings.
+          properties:
+            environment:
+              description: An array of links to related environments.
+              items:
+                properties:
+                  _links:
+                    $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+                type: object
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        flags:
+          description: An array of flags for an APM.
+          properties:
+            enabled:
+              description: Whether or not the APM is enabled.
+              type: boolean
+          type: object
+        key:
+          description: The APM license key.
+          type: string
+        name:
+          description: The APM application name. New Relic only.
+          type: string
+        type:
+          description: Indicates the APM type.
+          type: string
+      required:
+      - type
+      - key
+      - name
+      - flags
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_links:
+      description: HAL links about the current resource.
+      properties:
+        self:
+          description: A link to this page.
+          properties:
+            href:
+              description: The URI for this page.
+              format: uri
+              type: string
+          required:
+          - href
+          type: object
+      required:
+      - self
+      type: object
+    Acquia_Cloud_API_Documentation_message-with-links:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        message:
+          description: The human-friendly confirmation of the creation of the resource.
+          type: string
+      required:
+      - message
+      - _links
+      type: object
+  parameters:
+    Acquia_Cloud_API_Documentation_subscription-uuid:
+      description: The subscription entity's universally unique identifier.
+      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
+      in: path
+      name: subscriptionUuid
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_apm-type:
+      description: The APM type.
+      example: newrelic
+      in: path
+      name: apmType
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_environment-id:
+      description: The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID.
+      example: 12-d314739e-296f-11e9-b210-d663bd873d93
+      in: path
+      name: environmentId
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

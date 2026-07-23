@@ -1,0 +1,2906 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Account
+paths:
+  /account:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns details about your account.
+      operationId: getAccount
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  invites:
+                    href: https://cloud.acquia.com/api/account/invites
+                  messages:
+                    href: https://cloud.acquia.com/api/account/messages
+                  parent:
+                    href: https://cloud.acquia.com/api/
+                  self:
+                    href: https://cloud.acquia.com/api/account
+                  tokens:
+                    href: https://cloud.acquia.com/api/account/tokens
+                company: Acquia, Inc.
+                country: United States
+                created_at: '2016-07-17T20:35:25+00:00'
+                features:
+                - ci-pipelines
+                - on-demand-environments
+                first_name: Jane
+                flags:
+                  active: true
+                  support: false
+                  tfa: true
+                id: 1234567
+                job_function: IT Executive
+                job_title: ''
+                last_login_at: 2017-03-28T13:07:54-0500
+                last_name: Doe
+                mail: jane.doe@example.com
+                metadata:
+                  applications:
+                    recent:
+                    - recent_at: 2016-03-04T13:07:54-0500
+                      uuid: 8b83a104-2f09-11e9-b210-d663bd873d93
+                    - recent_at: 2016-03-04T12:01:07-0500
+                      uuid: 8b83a104-2f09-11e9-b210-d663bd873d93
+                    - recent_at: 2016-03-04T12:01:05-0500
+                      uuid: 8b83a104-2f09-11e9-b210-d663bd873d93
+                    starred:
+                    - 987c5c48-2f09-11e9-b210-d663bd873d93
+                    - 9b684e30-2f09-11e9-b210-d663bd873d93
+                name: jane.doe
+                phone:
+                  mobile: '5555555555'
+                  office: null
+                  tfa: '5555555555'
+                picture_url: https://accounts.acquia.com/images/users/82cff7ec-2f09-11e9-b210-d663bd873d93/style/avatar
+                state: Massachusetts
+                timezone: America/New_York
+                uuid: 82cff7ec-2f09-11e9-b210-d663bd873d93
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Does not exist:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Returns Details About Your Account.
+      tags:
+      - Account
+      x-cli-name: accounts:find
+  /account/applications/{applicationUuid}/actions/mark-recent:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Marks an application as recently viewed. UUIDs and timestamps of recent applications are present in the "account" endpoint.
+      operationId: postAccountApplicationMarkRecent
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_application-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                Marked as recently viewed:
+                  value:
+                    message: The application has been marked as recently viewed.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Does not exist:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Already on the recently viewed list:
+                  value:
+                    error: conflict
+                    message: Unable to add an application to the recently viewed list.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Marks an Application as Recently Viewed.
+      tags:
+      - Account
+      x-cli-name: accounts:application-mark-recent
+  /account/applications/{applicationUuid}/actions/star:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Stars an application. UUIDs of starred applications are present in the "account" endpoint.
+      operationId: postAccountApplicationStar
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_application-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                Starred:
+                  value:
+                    message: The application has been starred.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Does not exist:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+                User does not have access:
+                  value:
+                    error: not_found
+                    message: The user does not have access to this application.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Unable to add:
+                  value:
+                    error: conflict
+                    message: The application has already been starred by this user.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Stars an Application.
+      tags:
+      - Account
+      x-cli-name: accounts:application-star
+  /account/applications/{applicationUuid}/actions/unstar:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Removes an application from the user's starred list. UUIDs of starred applications are present in the "account" endpoint.
+      operationId: postAccountApplicationUnstar
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_application-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                Starred:
+                  value:
+                    message: The application has been unstarred.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Does not exist:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+                User does not have access:
+                  value:
+                    error: not_found
+                    message: The user does not have access to this application.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Unable to add:
+                  value:
+                    error: conflict
+                    message: The application is not currently starred by this user.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Removes an Application from the User's Starred List.
+      tags:
+      - Account
+      x-cli-name: accounts:application-unstar
+  /account/applications/{applicationUuid}/has-permission:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account has access to a specific application permission.
+      operationId: getAccountApplicationHasPermission
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_application-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_permission'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  application:
+                    href: https://cloud.acquia.com/api/applications/27a861f0-2fdc-11e9-b210-d663bd873d93
+                  self:
+                    href: https://cloud.acquia.com/api/account/applications/27a861f0-2fdc-11e9-b210-d663bd873d93/has-permission?permission=deploy%20to%20prod
+                access: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_has-permission'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Do not have permission:
+                  value:
+                    error: forbidden
+                    message: You do not have the 'example permission' permission for this application.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Application not found:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+                Permission not found:
+                  value:
+                    error: not_found
+                    message: The permission you are trying to look up does not exist.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account Has Access to a Specific Application Permission.
+      tags:
+      - Account
+      x-cli-name: accounts:application-has-permission
+  /account/applications/{applicationUuid}/is-admin:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is an administrator for an application.
+      operationId: getAccountApplicationIsAdministrator
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_application-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  application:
+                    href: https://cloud.acquia.com/api/applications/27a861f0-2fdc-11e9-b210-d663bd873d93
+                  self:
+                    href: https://cloud.acquia.com/api/account/applications/27a861f0-2fdc-11e9-b210-d663bd873d93/is-admin
+                admin: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-administrator'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Do not have permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to administer this application.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is an Administrator for an Application.
+      tags:
+      - Account
+      x-cli-name: accounts:is-application-admin
+  /account/applications/{applicationUuid}/is-owner:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is the owner for an application.
+      operationId: getAccountApplicationIsOwner
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_application-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  application:
+                    href: https://cloud.acquia.com/api/applications/27a861f0-2fdc-11e9-b210-d663bd873d93
+                  self:
+                    href: https://cloud.acquia.com/api/account/applications/27a861f0-2fdc-11e9-b210-d663bd873d93/is-owner
+                owner: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-owner'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is the Owner for an Application.
+      tags:
+      - Account
+      x-cli-name: accounts:is-application-owner
+  /account/drush-aliases/download:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns the drush aliases as a compressed archive download.
+      operationId: getAccountDrushAliasesDownload
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_drush-version'
+      responses:
+        '200':
+          content:
+            application/gzip:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_file'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Version not supported:
+                  value:
+                    error: forbidden
+                    message: Only Drush 8 and 9 are supported.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                No Cloud API key found:
+                  value:
+                    error: not_found
+                    message: No Cloud API key found for user with email address test@example.com.
+                No aliases found:
+                  value:
+                    error: not_found
+                    message: No Drush aliases found for user with email address test@example.com.
+                No applications found:
+                  value:
+                    error: not_found
+                    message: No hosted applications found for user with email address test@example.com.
+                User not found:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Returns the Drush Aliases as a Compressed Archive Download.
+      tags:
+      - Account
+      x-cli-name: accounts:drush-aliases
+  /account/ides:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns a list of Cloud IDEs associated with the current user.
+      operationId: getAccountIdes
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - _links:
+                      application:
+                        href: https://cloud.acquia.com/api/applications/461fe350-7988-42b3-a73e-cffcdbb94199
+                      ide:
+                        href: https://9a83c081-ef78-4dbd-8852-11cc3eb248f7.ide.ahdev.cloud
+                      self:
+                        href: https://cloud.acquia.com/api/ides/9a83c081-ef78-4dbd-8852-11cc3eb248f7
+                      web:
+                        href: https://9a83c081-ef78-4dbd-8852-11cc3eb248f7.web.ahdev.cloud
+                    label: IDE Label 1
+                    status: active
+                    uuid: 9a83c081-ef78-4dbd-8852-11cc3eb248f7
+                  - _links:
+                      application:
+                        href: https://cloud.acquia.com/api/applications/cc26f963-6e9e-49df-a159-230f75e455aa
+                      ide:
+                        href: https://feea197a-9503-4441-9f49-b4d420b0ecf8.ide.ahdev.cloud
+                      self:
+                        href: https://cloud.acquia.com/api/ides/feea197a-9503-4441-9f49-b4d420b0ecf8
+                      web:
+                        href: https://feea197a-9503-4441-9f49-b4d420b0ecf8.web.ahdev.cloud
+                    label: IDE Label 2
+                    status: active
+                    uuid: feea197a-9503-4441-9f49-b4d420b0ecf8
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/account
+                  self:
+                    href: https://cloud.acquia.com/api/account/ides
+                total: 2
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ides'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                User not found:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Returns a List of Cloud IDEs Associated with the Current User.
+      tags:
+      - Account
+      x-cli-name: accounts:ide-list
+  /account/invites:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: 'Gets a list of all organization admin and team invites that are pending for the current user.
+
+
+        Filterable fields:
+
+        * `mail`
+
+        * `token`
+
+        * `author`
+
+
+        Sortable fields:
+
+        * `mail`
+
+        * `token`
+
+        * `author`
+
+        '
+      operationId: getAccountInvites
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_from'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_to'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - _links:
+                      organization:
+                        href: https://cloud.acquia.com/api/organizations/e83c3532-2fe0-11e9-b210-d663bd873d93
+                      self:
+                        href: https://cloud.acquia.com/api/invites/eb947b2c-2fe0-11e9-b210-d663bd873d93
+                    applications:
+                    - name: Example application
+                      uuid: a6a494aa-1316-4867-b681-95e3d77a6b34
+                    author:
+                      first_name: Jane
+                      last_name: Doe
+                      mail: jane.doe@example.com
+                      picture_url: https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com
+                      username: jane.doe
+                      uuid: 0f1915e8-cd84-4386-94b8-21926fc376f5
+                    created_at: '2012-05-15T12:00:00Z'
+                    email: invitee@example.com
+                    flags:
+                      declined: false
+                    organization:
+                      name: Organization Name
+                      uuid: e83c3532-2fe0-11e9-b210-d663bd873d93
+                    roles:
+                    - name: Senior Developer
+                      uuid: fe79cb7a-2fe0-11e9-b210-d663bd873d93
+                    team:
+                      name: Team Name
+                      uuid: 01d73cf8-2fe1-11e9-b210-d663bd873d93
+                    token: dd9ea69fdcb6bee08b31a858b85535ec
+                    uuid: eb947b2c-2fe0-11e9-b210-d663bd873d93
+                  - _links:
+                      organization:
+                        href: https://cloud.acquia.com/api/organizations/e83c3532-2fe0-11e9-b210-d663bd873d93
+                      self:
+                        href: https://cloud.acquia.com/api/invites/0540f4ba-2fe1-11e9-b210-d663bd873d93
+                    author:
+                      first_name: Jane
+                      last_name: Doe
+                      mail: jane.doe@example.com
+                      picture_url: https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com
+                      username: jane.doe
+                      uuid: 0f1915e8-cd84-4386-94b8-21926fc376f5
+                    created_at: '2012-05-15T12:00:00Z'
+                    email: invitee@example.com
+                    flags:
+                      declined: false
+                    organization:
+                      name: Organization Name
+                      uuid: e83c3532-2fe0-11e9-b210-d663bd873d93
+                    token: dd9ea69fdcb6bee08b31a858b85535ec
+                    uuid: 0540f4ba-2fe1-11e9-b210-d663bd873d93
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/account
+                  self:
+                    href: https://cloud.acquia.com/api/account/invites
+                total: 2
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_account-invites'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                User not found:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Gets a List of All Organization Admin and Team Invites That Are Pending for the Current User.
+      tags:
+      - Account
+      x-cli-name: accounts:invites-list
+  /account/messages:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: 'Returns a list of messages associated with the current user.
+
+
+        Filterable fields:
+
+        * `title`
+
+        * `message_type`
+
+        * `display_mode`
+
+
+        Sortable fields:
+
+        * `title`
+
+        * `message_type`
+
+        * `display_mode`
+
+        '
+      operationId: getAccountMessages
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_from'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_to'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - _links:
+                      dismiss:
+                        href: https://cloud.acquia.com/api/messages/17ff551f-a037-4c0a-a0cb-ad6616ab3aa2/actions/dismiss
+                      follow:
+                        href: https://cloud.acquia.com/api/messages/17ff551f-a037-4c0a-a0cb-ad6616ab3aa2/actions/follow
+                      self:
+                        href: https://cloud.acquia.com/api/messages/17ff551f-a037-4c0a-a0cb-ad6616ab3aa2
+                    body: null
+                    expire_at: '2019-07-15T09:45:00-04:00'
+                    filters:
+                      display_mode: bar
+                      paths: []
+                      type: alert
+                    flags:
+                      active: true
+                      dismissed: false
+                      dismissible: true
+                    id: 883581
+                    start_at: '2019-07-07T09:45:00-04:00'
+                    title: Example title
+                    url: null
+                    uuid: 17ff551f-a037-4c0a-a0cb-ad6616ab3aa3
+                    weight: -1
+                  - _links:
+                      dismiss:
+                        href: https://cloud.acquia.com/api/messages/17ff551f-a037-4c0a-a0cb-ad6616ab3aa2/actions/dismiss
+                      follow:
+                        href: https://cloud.acquia.com/api/messages/17ff551f-a037-4c0a-a0cb-ad6616ab3aa2/actions/follow
+                      self:
+                        href: https://cloud.acquia.com/api/messages/17ff551f-a037-4c0a-a0cb-ad6616ab3aa2
+                    body: null
+                    expire_at: '2019-07-15T09:45:00-04:00'
+                    filters:
+                      display_mode: bar
+                      paths: []
+                      type: alert
+                    flags:
+                      active: true
+                      dismissed: false
+                      dismissible: true
+                    id: 883581
+                    start_at: '2019-07-07T09:45:00-04:00'
+                    title: Another example title
+                    url: null
+                    uuid: 17ff551f-a037-4c0a-a0cb-ad6616ab3aa3
+                    weight: -1
+                _links:
+                  filter:
+                    href: https://cloud.acquia.com/api/messages{?filter}
+                    templated: true
+                  limit:
+                    href: https://cloud.acquia.com/api/messages{?limit}
+                    templated: true
+                  offset:
+                    href: https://cloud.acquia.com/api/messages{?offset}
+                    templated: true
+                  parent:
+                    href: https://cloud.acquia.com/api/
+                  self:
+                    href: https://cloud.acquia.com/api/messages
+                  sort:
+                    href: https://cloud.acquia.com/api/messages{?sort}
+                    templated: true
+                pagination:
+                  limit: 2
+                  offset: 0
+                  total: 2
+                total: 2
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-messages'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Messages not found:
+                  value:
+                    error: not_found
+                    message: The messages you are trying to view do not exist, or you do not have permission to access them.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns a List of Messages Associated with the Current User.
+      tags:
+      - Account
+      x-cli-name: accounts:messages-list
+  /account/organizations/{organizationUuid}/is-admin:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is an administrator for an organization.
+      operationId: getAccountOrganizationIsAdministrator
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_organization-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  organization:
+                    href: https://cloud.acquia.com/api/organizations/2026962e-2fe4-11e9-b210-d663bd873d93
+                  self:
+                    href: https://cloud.acquia.com/api/account/organizations/2026962e-2fe4-11e9-b210-d663bd873d93/is-admin
+                admin: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-administrator'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Do not have permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to administer this organization.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The organization you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is an Administrator for an Organization.
+      tags:
+      - Account
+      x-cli-name: accounts:is-organization-admin
+  /account/organizations/{organizationUuid}/is-owner:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is the owner for an organization.
+      operationId: getAccountOrganizationIsOwner
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_organization-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  organization:
+                    href: https://cloud.acquia.com/api/organizations/2026962e-2fe4-11e9-b210-d663bd873d93
+                  self:
+                    href: https://cloud.acquia.com/api/account/organizations/2026962e-2fe4-11e9-b210-d663bd873d93/is-owner
+                owner: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-owner'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The organization you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is the Owner for an Organization.
+      tags:
+      - Account
+      x-cli-name: accounts:is-organization-owner
+  /account/password:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Verifies that the supplied password matches the current user's password.
+      operationId: postAccountPassword
+      requestBody:
+        content:
+          application/hal+json:
+            example:
+              password: mysupersecretpassword
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_password'
+          application/x-www-form-urlencoded:
+            example:
+              password: mysupersecretpassword
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_password'
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                valid: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_password-validation'
+          description: OK
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Verifies That the Supplied Password Matches the Current User's Password.
+      tags:
+      - Account
+      x-cli-name: accounts:password-check
+  /account/ssh-keys:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: 'Gets a list of SSH keys associated with the current user.
+
+
+        Filterable fields:
+
+        * `label`
+
+
+        Sortable fields:
+
+        * `label`
+
+        '
+      operationId: getAccountSshKeys
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_from'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_to'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/account/ssh-keys/02905393-65d7-4bef-873b-24593f73d273
+                    created_at: '2017-05-09T20:30:35+00:00'
+                    fingerprint: 5d:23:fb:45:70:df:ef:ad:ca:bf:81:93:cd:50:26:28
+                    label: PC Home
+                    public_key: ssh-rsa AAAAB3NzaC1yc2EADHrfHY17SbrmAAABIwAAAQEAklOUpkTIpNLTGK9Tjom/BWDSUGPl+nafzlZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5HDTYW7hdI4yQVkbPppSwg0cda3Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XAt3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/EnmZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbxNrRFi9wrf+M7Q== example@example.com
+                    uuid: 02905393-65d7-4bef-873b-24593f73d273
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/account/ssh-keys/d40833b3-6ea4-4339-9e2c-4b78e700258b
+                    created_at: '2017-05-09T20:30:35+00:00'
+                    fingerprint: 5b:18:fb:50:55:df:cf:d5:bf:ea:81:23:ef:55:22:29
+                    label: Laptop Work
+                    public_key: ssh-rsa 1yc2EAAAABIwbrmTIpNLTGK9Tjom/BWDSUGPl+nafzlHDAAAQEAklOUpkDHrfHY17STYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4pSwg0cda3PbAAAAB3NzaCv7kOdJ/MTyBlWXFCRh9lFX5QVkbPp+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XAt3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/EnmZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbxNrRFi9wrf+M7Q== example@example.com
+                    uuid: d40833b3-6ea4-4339-9e2c-4b78e700258b
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/account/ssh-keys/c40ee264-0023-4f60-815b-d20b44740746
+                    created_at: '2017-05-09T20:30:35+00:00'
+                    fingerprint: 7c:s3:ab:30:40:da:cf:c5:bf:ca:31:33:ed:58:23:21
+                    label: PC Work
+                    public_key: ssh-rsa A1yc2EAAAlOUpkDHrfHY17SbrmTIAAAB3NzaCom/BWDSUGPl+nafzlHDTYW7hdI4yQVkbPppSwg0cda3ABIwAAAQEAkPZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5bv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XAt3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/EnmZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbxNrRFi9wrf+M7Q== example@example.com
+                    uuid: c40ee264-0023-4f60-815b-d20b44740746
+                _links:
+                  filter:
+                    href: https://cloud.acquia.com/api/account/ssh-keys{?filter}
+                    templated: true
+                  limit:
+                    href: https://cloud.acquia.com/api/account/ssh-keys{?limit}
+                    templated: true
+                  parent:
+                    href: https://cloud.acquia.com/api/account
+                  self:
+                    href: https://cloud.acquia.com/api/account/ssh-keys
+                  sort:
+                    href: https://cloud.acquia.com/api/account/ssh-keys{?sort}
+                    templated: true
+                total: 3
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ssh-keys'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                User not found:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Gets a List of SSH Keys Associated with the Current User.
+      tags:
+      - Account
+      x-cli-name: accounts:ssh-keys-list
+    post:
+      description: Installs a new SSH key for the current user.
+      operationId: postAccountSshKeys
+      requestBody:
+        content:
+          application/hal+json:
+            example:
+              label: mykey
+              public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChwPHzTTDKDpSbpa2+d22LcbQmsw92eLsUK3Fmei1fiGDkd34NsYCN8m7lsi3NbvdMS83CtPQPWiCveYPzFs1/hHc4PYj8opD2CNnr5iWVVbyaulCYHCgVv4aB/ojcexg8q483A4xJeF15TiCr/gu34rK6ucTvC/tn/rCwJBudczvEwt0klqYwv8Cl/ytaQboSuem5KgSjO3lMrb6CWtfSNhE43ZOw+UBFBqxIninN868vGMkIv9VY34Pwj54rPn/ItQd6Ef4B0KHHaGmzK0vfP+AK7FxNMoHnj3iYT33KZNqtDozdn5tYyH/bThPebEtgqUn+/w5l6wZIC/8zzvls/127ngHk+jNa0PlNyS2TxhPUK4NaPHIEnnrlp07JEYC4ImcBjaYCWAdcTcUkcJjwZQkN4bGmyO9cjICH98SdLD/HxqzTHeaYDbAX/Hu9HfaBb5dXLWsjw3Xc6hoVnUUZbMQyfgb0KgxDLh92eNGxJkpZiL0VDNOWCxDWsNpzwhLNkLqCvI6lyxiLaUzvJAk6dPaRhExmCbU1lDO2eR0FdSwC1TEhJOT9eDIK1r2hztZKs2oa5FNFfB/IFHVWasVFC9N2h/r/egB5zsRxC9MqBLRBq95NBxaRSFng6ML5WZSw41Qi4C/JWVm89rdj2WqScDHYyAdwyyppWU4T5c9Fmw== example@example.com
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ssh-key-request'
+          application/x-www-form-urlencoded:
+            example:
+              label: mykey
+              public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChwPHzTTDKDpSbpa2+d22LcbQmsw92eLsUK3Fmei1fiGDkd34NsYCN8m7lsi3NbvdMS83CtPQPWiCveYPzFs1/hHc4PYj8opD2CNnr5iWVVbyaulCYHCgVv4aB/ojcexg8q483A4xJeF15TiCr/gu34rK6ucTvC/tn/rCwJBudczvEwt0klqYwv8Cl/ytaQboSuem5KgSjO3lMrb6CWtfSNhE43ZOw+UBFBqxIninN868vGMkIv9VY34Pwj54rPn/ItQd6Ef4B0KHHaGmzK0vfP+AK7FxNMoHnj3iYT33KZNqtDozdn5tYyH/bThPebEtgqUn+/w5l6wZIC/8zzvls/127ngHk+jNa0PlNyS2TxhPUK4NaPHIEnnrlp07JEYC4ImcBjaYCWAdcTcUkcJjwZQkN4bGmyO9cjICH98SdLD/HxqzTHeaYDbAX/Hu9HfaBb5dXLWsjw3Xc6hoVnUUZbMQyfgb0KgxDLh92eNGxJkpZiL0VDNOWCxDWsNpzwhLNkLqCvI6lyxiLaUzvJAk6dPaRhExmCbU1lDO2eR0FdSwC1TEhJOT9eDIK1r2hztZKs2oa5FNFfB/IFHVWasVFC9N2h/r/egB5zsRxC9MqBLRBq95NBxaRSFng6ML5WZSw41Qi4C/JWVm89rdj2WqScDHYyAdwyyppWU4T5c9Fmw== example@example.com
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ssh-key-request'
+        required: true
+      responses:
+        '202':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/5fef247f-3c99-42a2-bb3c-69b32a06e7e9
+                  parent:
+                    href: https://cloud.acquia.com/api/account
+                  self:
+                    href: https://cloud.acquia.com/api/account/ssh-keys
+                message: Adding SSH key.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+          description: Accepted
+        '400':
+          content:
+            application/hal+json:
+              examples:
+                Label is invalid:
+                  value:
+                    error: validation_failed
+                    message:
+                      public_key: 'The supplied label is invalid: it may only contain letters, numbers and underscores.'
+                Public key is invalid:
+                  value:
+                    error: validation_failed
+                    message:
+                      public_key: The supplied public key is invalid.
+                Public key must be RSA:
+                  value:
+                    error: validation_failed
+                    message:
+                      public_key: 'The supplied public key type is unsupported: it must be RSA (ssh-rsa).'
+                Public key too short:
+                  value:
+                    error: validation_failed
+                    message:
+                      public_key: 'The supplied public key type is too short: it must be at least 4096 bits long.'
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+          description: Bad Request
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Key with label already exists:
+                  value:
+                    error: conflict
+                    message: An SSH key with this label already exists for this user.
+                Key with public key already exists:
+                  value:
+                    error: conflict
+                    message: An SSH key with this public key already exists for this user.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Installs a New SSH Key for the Current User.
+      tags:
+      - Account
+      x-cli-name: accounts:ssh-key-create
+  /account/ssh-keys/{sshKeyUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    delete:
+      description: Deletes an SSH key.
+      operationId: deleteAccountSshKey
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_ssh-key-uuid'
+      responses:
+        '202':
+          content:
+            application/hal+json:
+              examples:
+                Removed key:
+                  value:
+                    _links:
+                      notification:
+                        href: https://cloud.acquia.com/api/notifications/519caf5f-007a-4562-a726-37624cff7fd8
+                      parent:
+                        href: https://cloud.acquia.com/api/account/ssh-keys
+                      self:
+                        href: https://cloud.acquia.com/api/account/ssh-keys/1acbb1a5-e864-4b8e-a3f9-b1ed462afd25
+                    message: Removed SSH key.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+          description: Accepted
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                SSH key does not exist:
+                  value:
+                    error: not_found
+                    message: An SSH key with UUID 1df4cb00-2fe9-11e9-b210-d663bd873d93 does not exist.
+                SSH key missing:
+                  value:
+                    error: not_found
+                    message: The SSH key does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Deletes an SSH Key.
+      tags:
+      - Account
+      x-cli-name: accounts:ssh-key-delete
+    get:
+      description: Get an SSH key associated with the currently-logged in user.
+      operationId: getAccountSshKey
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_ssh-key-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/account/ssh-keys
+                  self:
+                    href: https://cloud.acquia.com/api/account/ssh-keys/b2a53dfb-f4e2-4543-814d-7a9aa3793746
+                created_at: '2017-05-09T20:30:35+00:00'
+                fingerprint: 8d:13:fb:50:50:da:cf:c5:bf:ca:31:33:ed:51:27:24
+                label: PC Home
+                public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChwPHzTTDKDpSbpa2+d22LcbQmsw92eLsUK3Fmei1fiGDkd34NsYCN8m7lsi3NbvdMS83CtPQPWiCveYPzFs1/hHc4PYj8opD2CNnr5iWVVbyaulCYHCgVv4aB/ojcexg8q483A4xJeF15TiCr/gu34rK6ucTvC/tn/rCwJBudczvEwt0klqYwv8Cl/ytaQboSuem5KgSjO3lMrb6CWtfSNhE43ZOw+UBFBqxIninN868vGMkIv9VY34Pwj54rPn/ItQd6Ef4B0KHHaGmzK0vfP+AK7FxNMoHnj3iYT33KZNqtDozdn5tYyH/bThPebEtgqUn+/w5l6wZIC/8zzvls/127ngHk+jNa0PlNyS2TxhPUK4NaPHIEnnrlp07JEYC4ImcBjaYCWAdcTcUkcJjwZQkN4bGmyO9cjICH98SdLD/HxqzTHeaYDbAX/Hu9HfaBb5dXLWsjw3Xc6hoVnUUZbMQyfgb0KgxDLh92eNGxJkpZiL0VDNOWCxDWsNpzwhLNkLqCvI6lyxiLaUzvJAk6dPaRhExmCbU1lDO2eR0FdSwC1TEhJOT9eDIK1r2hztZKs2oa5FNFfB/IFHVWasVFC9N2h/r/egB5zsRxC9MqBLRBq95NBxaRSFng6ML5WZSw41Qi4C/JWVm89rdj2WqScDHYyAdwyyppWU4T5c9Fmw== example@example.com
+                uuid: b2a53dfb-f4e2-4543-814d-7a9aa3793746
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ssh-key'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                SSH key missing:
+                  value:
+                    error: not_found
+                    message: The SSH key does not exist, or you do not have permission to access it.
+                SSH key not found:
+                  value:
+                    error: not_found
+                    message: The SSH key you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Get an SSH Key Associated with the Currently-logged in User.
+      tags:
+      - Account
+      x-cli-name: accounts:ssh-key-find
+  /account/subscriptions/{subscriptionUuid}/is-admin:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is an administrator for a subscription.
+      operationId: getAccountSubscriptionIsAdministrator
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/account/subscriptions/b7ff7510-2fe4-11e9-b210-d663bd873d93/is-admin
+                  subscription:
+                    href: https://cloud.acquia.com/api/subscriptions/b7ff7510-2fe4-11e9-b210-d663bd873d93
+                admin: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-administrator'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Do not have permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to administer this subscription.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is an Administrator for a Subscription.
+      tags:
+      - Account
+      x-cli-name: accounts:is-subscription-admin
+  /account/subscriptions/{subscriptionUuid}/is-owner:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is the owner for a subscription.
+      operationId: getAccountSubscriptionIsOwner
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/account/subscriptions/b7ff7510-2fe4-11e9-b210-d663bd873d93/is-owner
+                  subscription:
+                    href: https://cloud.acquia.com/api/subscriptions/b7ff7510-2fe4-11e9-b210-d663bd873d93
+                owner: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-owner'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is the Owner for a Subscription.
+      tags:
+      - Account
+      x-cli-name: accounts:is-subscription-owner
+  /account/teams/{teamUuid}/has-permission:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account has access to a specific team permission.
+      operationId: getAccountTeamHasPermission
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_permission'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/account/teams/e5b32204-2fe4-11e9-b210-d663bd873d93/has-permission?permission=deploy%20to%20prod
+                  team:
+                    href: https://cloud.acquia.com/api/teams/e5b32204-2fe4-11e9-b210-d663bd873d93
+                access: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_has-permission'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Do not have permission:
+                  value:
+                    error: forbidden
+                    message: You do not have the 'example permission' permission for this team.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Permission not found:
+                  value:
+                    error: not_found
+                    message: The permission you are trying to look up does not exist.
+                Team not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account Has Access to a Specific Team Permission.
+      tags:
+      - Account
+      x-cli-name: accounts:has-team-permission
+  /account/teams/{teamUuid}/is-admin:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is an administrator for a team.
+      operationId: getAccountTeamIsAdministrator
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/account/teams/e5b32204-2fe4-11e9-b210-d663bd873d93/is-admin
+                  team:
+                    href: https://cloud.acquia.com/api/teams/e5b32204-2fe4-11e9-b210-d663bd873d93
+                admin: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-administrator'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                Do not have permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to administer this team.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is an Administrator for a Team.
+      tags:
+      - Account
+      x-cli-name: accounts:is-team-admin
+  /account/teams/{teamUuid}/is-owner:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns whether your account is the owner for a team.
+      operationId: getAccountTeamIsOwner
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_team-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/account/teams/e5b32204-2fe4-11e9-b210-d663bd873d93/is-owner
+                  team:
+                    href: https://cloud.acquia.com/api/teams/e5b32204-2fe4-11e9-b210-d663bd873d93
+                owner: true
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_is-owner'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The team you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Whether Your Account is the Owner for a Team.
+      tags:
+      - Account
+      x-cli-name: accounts:is-team-owner
+  /account/tokens:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns a list of metadata for API access tokens tied to your account.
+      operationId: getAccountTokens
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/account/tokens/17feaf34-5d04-402b-9a67-15d5161d24e1
+                    active: true
+                    created_at: 2016-01-22T17:41:57-0500
+                    flags:
+                      active: true
+                    label: My First App
+                    revocation: null
+                    uuid: 17feaf34-5d04-402b-9a67-15d5161d24e1
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/account/tokens/81e8965d-0af0-460d-9e46-977dfcc38c29
+                    active: true
+                    created_at: 2016-01-22T17:55:15-0500
+                    flags:
+                      active: true
+                    label: My Second App
+                    revocation: null
+                    uuid: 81e8965d-0af0-460d-9e46-977dfcc38c29
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/account
+                  self:
+                    href: https://cloud.acquia.com/api/account/tokens
+                total: 2
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_tokens'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                User not found:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns a List of Metadata for API Access Tokens Tied to Your Account.
+      tags:
+      - Account
+      x-cli-name: accounts:tokens-list
+    post:
+      description: Creates an API access token tied to your account.
+      operationId: postAccountTokens
+      requestBody:
+        content:
+          application/hal+json:
+            example:
+              label: API token for My App
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_token-request'
+          application/x-www-form-urlencoded:
+            example:
+              label: API token for My App
+            schema:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_token-request'
+        required: true
+      responses:
+        '201':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/ab142771-826e-42b0-a53c-e112b70448d2
+                  parent:
+                    href: https://cloud.acquia.com/api/account
+                  self:
+                    href: https://cloud.acquia.com/api/account/tokens
+                api_key: 137bd484-dcc8-4950-a784-1f01de7f6378
+                api_secret: 4DmbUmGiUkafdjcZk2yV6u17jPmmunwt8/47mKdAQIc=
+                client_id: 137bd484-dcc8-4950-a784-1f01de7f6378
+                client_secret: 4DmbUmGiUkafdjcZk2yV6u17jPmmunwt8/47mKdAQIc=
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_token-creation'
+          description: Created
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The user does not exist, or you do not have access to it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Creates an API Access Token Tied to Your Account.
+      tags:
+      - Account
+      x-cli-name: accounts:token-create
+  /account/tokens/{tokenUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    delete:
+      description: Revokes an access token. This action will prevent the access token from being able to authorize access to the API in the future.
+      operationId: deleteAccountToken
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token-delete-reason'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/7815f68b-fc52-4dc8-bdde-04d0960943e9
+                  parent:
+                    href: https://cloud.acquia.com/api/account/tokens
+                  self:
+                    href: https://cloud.acquia.com/api/account/tokens/03c86402-5e3b-4212-b6fd-009d271da1d0
+                message: The access token has been revoked.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The access token does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Already revoked:
+                  value:
+                    error: conflict
+                    message: The access token has already been revoked.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Revokes an Access Token.
+      tags:
+      - Account
+      x-cli-name: accounts:token-delete
+    get:
+      description: Return details about a specific token.
+      operationId: getAccountToken
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/account/tokens
+                  self:
+                    href: https://cloud.acquia.com/api/account/tokens/17feaf34-5d04-402b-9a67-15d5161d24e1
+                active: true
+                created_at: 2016-01-22T17:41:57-0500
+                flags:
+                  active: true
+                label: My App v1.0
+                revocation: null
+                uuid: 17feaf34-5d04-402b-9a67-15d5161d24e1
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_token'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Token not found:
+                  value:
+                    error: not_found
+                    message: The access token does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Return Details About a Specific Token.
+      tags:
+      - Account
+      x-cli-name: accounts:token-list
+components:
+  parameters:
+    Acquia_Cloud_API_Documentation_token-uuid:
+      description: The token entity's universally unique identifier.
+      example: 882f3258-2fe9-11e9-b210-d663bd873d93
+      in: path
+      name: tokenUuid
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_filter:
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
+
+
+        * Equals: `= (%3D)`
+
+        * Does not equal: `!= (!%3D)`
+
+        * Greater than: `> (%3E)`
+
+        * Less than: `< (%3C)`
+
+        * Greater than or equal to: `>= (%3E%3D)`
+
+        * Less than or equal to: `<= (%3C%3D)`
+
+        * Contains substring: `=@ (%3D@)`
+
+        * Does not contain substring: `!@ (!@)`
+
+
+        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
+
+
+        Some examples:
+
+        * `filter=field%3Dvalue` (`field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
+
+        '
+      in: query
+      name: filter
+      required: false
+      schema:
+        minimum: 1
+        type: string
+    Acquia_Cloud_API_Documentation_offset:
+      description: An integer to signify the offset to paginate from.
+      example: 10
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+    Acquia_Cloud_API_Documentation_sort:
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      example: field1,-field2
+      in: query
+      name: sort
+      required: false
+      schema:
+        minimum: 1
+        type: string
+    Acquia_Cloud_API_Documentation_limit:
+      description: The maximum number of items to return.
+      example: 10
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+    Acquia_Cloud_API_Documentation_organization-uuid:
+      description: The organization entity's universally unique identifier.
+      example: 1e7efab9-0fac-4a2c-ad94-61efc78623ba
+      in: path
+      name: organizationUuid
+      required: true
+      schema:
+        format: uuid
+        maxLength: 36
+        minLength: 36
+        type: string
+    Acquia_Cloud_API_Documentation_subscription-uuid:
+      description: The subscription entity's universally unique identifier.
+      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
+      in: path
+      name: subscriptionUuid
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_from:
+      description: 'Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
+
+
+        Some examples:
+
+        * `2023-09-01`
+
+        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
+
+        '
+      example: '2023-09-01'
+      in: query
+      name: from
+      required: false
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_team-uuid:
+      description: The entity's universally unique identifier.
+      example: 3eef5d81-62f4-429c-aa94-e17d05ab4740
+      in: path
+      name: teamUuid
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_to:
+      description: 'Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.
+
+
+        Some examples:
+
+        * `2023-09-29`
+
+        * `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)
+
+        '
+      example: '2023-09-29'
+      in: query
+      name: to
+      required: false
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_application-uuid:
+      description: The entity's universally unique identifier.
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+      in: path
+      name: applicationUuid
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_ssh-key-uuid:
+      description: The SSH key entity's universally unique identifier.
+      example: 981b7910-2fe9-11e9-b210-d663bd873d93
+      in: path
+      name: sshKeyUuid
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_permission:
+      description: Specifies the permission you wish to check access for.
+      example: deploy to prod
+      in: query
+      name: permission
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_drush-version:
+      description: Specifies the drush aliases formatting, either 8 (example.aliases.drushrc.php) or 9 (example.site.yaml)
+      example: 8
+      in: query
+      name: version
+      required: true
+      schema:
+        enum:
+        - 8
+        - 9
+        type: integer
+    Acquia_Cloud_API_Documentation_token-delete-reason:
+      description: Specifies the reason for the token revocation for future reference.
+      example: The quick brown fox jumped over the lazy dog.
+      in: query
+      name: tokenDeleteReason
+      schema:
+        type: string
+  schemas:
+    Acquia_Cloud_API_Documentation_has-permission:
+      description: Determines if a user account has a specific permission.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        access:
+          description: Whether or not the user account has the specific permission.
+          type: boolean
+      required:
+      - access
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_token-request:
+      description: Describes the request body for a token.
+      properties:
+        label:
+          description: The label to give to the token for future reference.
+          minLength: 1
+          type: string
+      required:
+      - label
+      type: object
+    Acquia_Cloud_API_Documentation_user-profile:
+      description: A user profile.
+      properties:
+        created_at:
+          description: The date the user was created.
+          format: date-time
+          type: string
+        email:
+          description: The user's email address.
+          format: email
+          type: string
+        first_name:
+          description: The user's first name.
+          type: string
+        last_login_at:
+          deprecated: true
+          description: The date/time of the last login for the user.
+          format: date-time
+          nullable: true
+          type: string
+        last_name:
+          description: The user's last name.
+          type: string
+        picture_url:
+          description: The URL for the user's picture.
+          format: uri
+          nullable: true
+          type: string
+        username:
+          description: The user's internal user name.
+          type: string
+        uuid:
+          description: The user's UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - last_login_at
+      - created_at
+      - email
+      - picture_url
+      - username
+      type: object
+    Acquia_Cloud_API_Documentation_ux-message:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        body:
+          description: The message body.
+          nullable: true
+          type: string
+        expire_at:
+          description: The UTC timestamp of when the message expires.
+          format: date-time
+          type: string
+        filters:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-filters'
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-flags'
+        id:
+          description: The message identifier.
+          type: integer
+        start_at:
+          description: The UTC timestamp of when the message started.
+          format: date-time
+          type: string
+        title:
+          description: The message title.
+          type: string
+        url:
+          description: The message url.
+          format: uri
+          nullable: true
+          type: string
+        uuid:
+          description: The message unique identifier.
+          format: uuid
+          type: string
+        weight:
+          description: The message priority weight.
+          type: integer
+      required:
+      - id
+      - uuid
+      - title
+      - body
+      - url
+      - filters
+      - flags
+      - weight
+      - start_at
+      - expire_at
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_ssh-key-request:
+      description: Describes the request body for an SSH key.
+      properties:
+        label:
+          description: The SSH key label.
+          type: string
+        public_key:
+          description: The public key.
+          type: string
+      required:
+      - label
+      - public_key
+      type: object
+    Acquia_Cloud_API_Documentation_invite-flags:
+      description: An array of various flags providing more context for the Invite response object.
+      properties:
+        declined:
+          type: boolean
+      type: object
+    Acquia_Cloud_API_Documentation_validation-error:
+      description: A validation error.
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          additionalProperties:
+            type: string
+          description: The validation error message keyed by its field or group name.
+          type: object
+      required:
+      - error
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_user:
+      description: The response for a user object.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        company:
+          description: The company of the user.
+          type: string
+        country:
+          description: The country of the user.
+          enum:
+          - --
+          - United States
+          - Afghanistan
+          - Albania
+          - Algeria
+          - American Samoa
+          - Andorra
+          - Angola
+          - Anguilla
+          - Antigua and Barbuda
+          - Argentina
+          - Armenia
+          - Ascension Island
+          - Australia
+          - Austria
+          - Azerbaijan
+          - Bahamas
+          - Bahrain
+          - Bangladesh
+          - Barbados
+          - Belarus
+          - Belgium
+          - Belize
+          - Benin
+          - Bermuda
+          - Bhutan
+          - Bolivia
+          - Bosnia and Herzegovina
+          - Botswana
+          - Brazil
+          - British Indian Ocean Territory
+          - Brunei Darussalam
+          - Bulgaria
+          - Burkina Faso
+          - Burundi
+          - Cambodia
+          - Cameroon
+          - Canada
+          - Cape Verde
+          - Cayman Islands
+          - Central African Republic
+          - Chad
+          - Chile
+          - China
+          - Colombia
+          - Comoros
+          - Congo
+          - Cook Islands
+          - Costa Rica
+          - Cote D Ivoire
+          - Croatia
+          - Cuba
+          - Cyprus
+          - Czech Republic
+          - Denmark
+          - Djibouti
+          - Dominica
+          - Dominican Republic
+          - Ecuador
+          - Egypt
+          - El Salvador
+          - Equatorial Guinea
+          - Eritrea
+          - Estonia
+          - Ethiopia
+          - Falkland Islands
+          - Faroe Islands
+          - Federated States of Micronesia
+          - Fiji
+          - Finland
+          - France
+          - French Guiana
+          - French Polynesia
+          - Gabon
+          - Georgia
+          - Germany
+          - Ghana
+          - Greece
+          - Greenland
+          - Grenada
+          - Guadeloupe
+          - Guatemala
+          - Guam
+          - Guinea
+          - Guinea Bissau
+          - Guyana
+          - Haiti
+          - Holy See (Vatican City)
+          - Honduras
+          - Hong Kong
+          - Hungary
+          - Iceland
+          - India
+          - Indonesia
+          - Iran
+          - Ireland
+          - Isle of Man
+          - Israel
+          - Italy
+          - Jamaica
+          - Japan
+          - Jordan
+          - Kazakhstan
+          - Kenya
+          - Kiribati
+          - Korea
+          - Kuwait
+          - Kyrgyzstan
+          - Laos
+          - Latvia
+          - Lebanon
+          - Lesotho
+          - Liberia
+          - Libya
+          - Liechtenstein
+          - Lithuania
+          - Luxembourg
+          - Macau
+          - Macedonia
+          - Madagascar
+          - Malawi
+          - Malaysia
+          - Maldives
+          - Mali
+          - Malta
+          - Marshall Islands
+          - Martinique
+          - Mauritius
+          - Mayotte
+          - Mexico
+          - Moldova
+          - Monaco
+          - Mongolia
+          - Montenegro
+          - Montserrat
+          - Morocco
+          - Mozambique
+          - Myanmar
+          - Namibia
+          - Nauru
+          - Nepal
+          - Netherlands
+          - Netherlands Antilles
+          - New Caledonia
+          - New Zealand
+          - Nicaragua
+          - Niger
+          - Nigeria
+          - Niue
+          - Norfolk Island
+          - Northern Mariana Islands
+          - Norway
+          - Oman
+          - Pakistan
+          - Palau
+          - Palestine
+          - Panama
+          - Papua New Guinea
+          - Paraguay
+          - Peru
+          - Philippines
+          - Pitcairn
+          - Poland
+          - Portugal
+          - Puerto Rico
+          - Qatar
+          - Reunion
+          - Romania
+          - Russian Federation
+          - Rwanda
+          - Saint Vincent and the Grenadines
+          - San Marino
+          - Sao Tome and Principe
+          - Saudi Arabia
+          - Senegal
+          - Serbia
+          - Seychelles
+          - Sierra Leone
+          - Singapore
+          - Slovakia
+          - Slovenia
+          - Solomon Islands
+          - Somalia
+          - South Africa
+          - South Georgia
+          - Spain
+          - Sri Lanka
+          - St. Kitts and Nevis
+          - St. Lucia
+          - St. Pierre and Miquelon
+          - Sudan
+          - Suriname
+          - Swaziland
+          - Sweden
+          - Switzerland
+          - Syrian Arab Republic
+          - Taiwan
+          - Tajikistan
+          - Tanzania
+          - Thailand
+          - The Gambia
+          - Togo
+          - Tokelau
+          - Tonga
+          - Trinidad and Tobago
+          - Tunisia
+          - Turkey
+          - Turkmenistan
+          - Turks and Caicos Islands
+          - Tuvalu
+          - Uganda
+          - Ukraine
+          - United Arab Emirates
+          - United Kingdom
+          - Uruguay
+          - Uzbekistan
+          - Vanuatu
+          - Venezuela
+          - Viet Nam
+          - Virgin Islands
+          - Western Samoa
+          - Yemen
+          - Yugoslavia
+          - Zaire
+          - Zambia
+          - Zimbabwe
+          type: string
+        created_at:
+          description: The date/time when the user was created.
+          format: date-time
+          type: string
+        features:
+          deprecated: true
+          description: The various feature flags for the user.
+          items:
+            enum:
+            - ci-pipelines
+            - n3-disabled
+            - n3-hybrid-mode
+            - on-demand-environments
+            - php7
+            - php71
+            - platform
+            type: string
+          type: array
+        first_name:
+          description: The first name of the user.
+          type: string
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-flags'
+        id:
+          deprecated: true
+          description: The internal database ID (uid) of the user.
+          type: integer
+        job_function:
+          description: The job function of the user.
+          enum:
+          - --
+          - Business Executive
+          - IT Executive
+          - IT Architect or IT Operations
+          - Product or Digital Marketing
+          - Website Design or Development
+          type: string
+        job_title:
+          description: The job title of the user.
+          type: string
+        last_login_at:
+          description: The date/time of the last login for the user.
+          format: date-time
+          nullable: true
+          type: string
+        last_name:
+          description: The last name of the user.
+          type: string
+        mail:
+          description: The e-mail address of the user.
+          format: email
+          type: string
+        metadata:
+          deprecated: true
+          description: Metadata related to the user.
+          properties:
+            applications:
+              description: An array of application metadata for the user.
+              properties:
+                recent:
+                  description: An array containing recent visited application information.
+                  items:
+                    properties:
+                      recent_at:
+                        description: The date-time when the application was accessed.
+                        format: date-time
+                        type: string
+                      uuid:
+                        description: The application UUID.
+                        format: uuid
+                        type: string
+                    type: object
+                  type: array
+                starred:
+                  description: An array containing starred application UUIDs.
+                  items:
+                    format: uuid
+                    type: string
+                  type: array
+              type: object
+          type: object
+        name:
+          description: The user name.
+          type: string
+        phone:
+          description: The telephone numbers for the user.
+          properties:
+            office:
+              description: The office telephone number for the user.
+              nullable: true
+              type: string
+            tfa:
+              description: The tfa backup telephone number for the user.
+              nullable: true
+              type: string
+          type: object
+        picture_url:
+          description: The user's picture url.
+          format: uri
+          type: string
+        state:
+          description: The state of the user, if in the United States.
+          enum:
+          - Alabama
+          - Alaska
+          - American Samoa
+          - Arizona
+          - Arkansas
+          - California
+          - Colorado
+          - Connecticut
+          - Delaware
+          - District of Columbia
+          - Florida
+          - Georgia
+          - Hawaii
+          - Idaho
+          - Illinois
+          - Indiana
+          - Iowa
+          - Kansas
+          - Kentucky
+          - Louisiana
+          - Maine
+          - Maryland
+          - Massachusetts
+          - Michigan
+          - Minnesota
+          - Mississippi
+          - Missouri
+          - Montana
+          - Nebraska
+          - Nevada
+          - New Hampshire
+          - New Jersey
+          - New Mexico
+          - New York
+          - North Carolina
+          - North Dakota
+          - Northern Mariana Islands
+          - Ohio
+          - Oklahoma
+          - Oregon
+          - Pennsylvania
+          - Rhode Island
+          - South Carolina
+          - South Dakota
+          - Tennessee
+          - Texas
+          - U.S. Virgin Islands
+          - Utah
+          - Vermont
+          - Virginia
+          - Washington
+          - West Virginia
+          - Wisconsin
+          - Wyoming
+          type: string
+        timezone:
+          description: The timezone of the user.
+          type: string
+        uuid:
+          description: The UUID for the user.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - name
+      - first_name
+      - last_name
+      - last_login_at
+      - created_at
+      - mail
+      - phone
+      - job_title
+      - job_function
+      - company
+      - country
+      - timezone
+      - picture_url
+      - flags
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_message:
+      properties:
+        message:
+          description: A simple message returned from the response.
+          type: string
+      required:
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_ux-messages:
+      properties:
+        _embedded:
+          description: A collection of application messages matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message'
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_ides:
+      properties:
+        _embedded:
+          description: A collection of Cloud IDEs matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ide'
+              type: array
+          required:
+          - items
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_token:
+      description: Details a token.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        active:
+          description: Whether or not this token is active.
+          type: boolean
+        created_at:
+          description: The creation date and time.
+          format: date-time
+          type: string
+        flags:
+          description: Flags detailing the token's status.
+          properties:
+            active:
+              description: Whether or not this token is active.
+              type: boolean
+          type: object
+        label:
+          description: The human-readable name for this token.
+          type: string
+        revocation:
+          description: If set, the reason why this token was revoked.
+          nullable: true
+          type: string
+        uuid:
+          description: The token UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - active
+      - label
+      - revocation
+      - flags
+      - created_at
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_message-with-links:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        message:
+          description: The human-friendly confirmation of the creation of the resource.
+          type: string
+      required:
+      - message
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_token-creation:
+      description: Details about a created user access token.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        api_key:
+          deprecated: true
+          description: The API key.
+          type: string
+        api_secret:
+          deprecated: true
+          description: The API key secret.
+          type: string
+        client_id:
+          description: The API client id.
+          type: string
+        client_secret:
+          description: The API client secret.
+          type: string
+      required:
+      - client_id
+      - client_secret
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_ux-message-flags:
+      description: An array of various flags associated with a message.
+      properties:
+        active:
+          type: boolean
+        dismissed:
+          type: boolean
+        dismissible:
+          type: boolean
+      type: object
+    Acquia_Cloud_API_Documentation_organization-stub:
+      properties:
+        name:
+          description: The human-readable organization name.
+          type: string
+        uuid:
+          description: The organization's UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - name
+      type: object
+    Acquia_Cloud_API_Documentation_ide:
+      properties:
+        _embedded:
+          properties:
+            owner:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        label:
+          description: The human-friendly label of the Cloud IDE.
+          type: string
+        status:
+          description: The current provisioning status of the Cloud IDE.
+          enum:
+          - active
+          - provisioning
+          - deleting
+          - updating
+          - provision-failed
+          - update-failed
+          - delete-failed
+          type: string
+        uuid:
+          description: The unique identifier of the Cloud IDE.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - label
+      - status
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_file:
+      description: A binary file response.
+      format: binary
+      type: string
+    Acquia_Cloud_API_Documentation_user-stub:
+      properties:
+        first_name:
+          description: The user's first name.
+          type: string
+        last_name:
+          description: The user's last name.
+          type: string
+        mail:
+          description: The user's email address.
+          format: email
+          type: string
+        picture_url:
+          description: The URI for the user's picture.
+          format: uri
+          nullable: true
+          type: string
+        username:
+          description: The user's internal user name.
+          type: string
+        uuid:
+          description: The user's UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      type: object
+    Acquia_Cloud_API_Documentation_password:
+      description: Describes the request body for a password.
+      properties:
+        password:
+          description: The password to verify.
+          type: string
+      required:
+      - password
+      type: object
+    Acquia_Cloud_API_Documentation_password-validation:
+      description: The password validation response.
+      properties:
+        valid:
+          description: Whether or not the password is valid.
+          type: boolean
+      type: object
+    Acquia_Cloud_API_Documentation_invite:
+      description: Details an invite.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        applications:
+          description: List of applications the invite will grant the invitee.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-stub'
+          type: array
+        author:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
+        created_at:
+          description: The invite creation time.
+          format: date-time
+          type: string
+        email:
+          description: The invitee email address.
+          format: email
+          type: string
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite-flags'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        roles:
+          description: List of roles the invite will grant the invitee.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
+          type: array
+        team:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-stub'
+        token:
+          description: The invite token.
+          type: string
+        uuid:
+          description: The unique identifier of the Invite.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - email
+      - created_at
+      - token
+      - flags
+      - author
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_user-flags:
+      description: The various flags for the user.
+      properties:
+        active:
+          description: Whether or not this user is active.
+          type: boolean
+        support:
+          description: Whether or not this user is a member of Acquia support.
+          type: boolean
+        tfa:
+          description: Whether or not this user has TFA enabled.
+          type: boolean
+      type: object
+    Acquia_Cloud_API_Documentation_team-stub:
+      properties:
+        name:
+          description: The team name.
+          type: string
+        uuid:
+          description: The team unique identifier.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - name
+      type: object
+    Acquia_Cloud_API_Documentation_is-owner:
+      description: Determines if a user account is an owner.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        owner:
+          description: Whether or not the user account is an owner.
+          type: boolean
+      required:
+      - owner
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_is-administrator:
+      description: Determines if a user account is an administrator.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        admin:
+          description: Whether or not the user account is an administrator.
+          type: boolean
+      required:
+      - admin
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_role-stub:
+      properties:
+        name:
+          description: The role name.
+          type: string
+        uuid:
+          description: The role unique identifier.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - name
+      type: object
+    Acquia_Cloud_API_Documentation_ux-message-filters:
+      description: Defines where a message should appear.
+      properties:
+        display_mode:
+          description: How the message should be displayed.
+          enum:
+          - bar
+          - list
+          type: string
+        paths:
+          description: Collection of paths.
+          items:
+            description: Paths where a message should appear.
+            type: string
+          type: array
+        type:
+          description: The message type.
+          enum:
+          - alert
+          - general
+          - new
+          - warning
+          type: string
+      type: object
+    Acquia_Cloud_API_Documentation_ssh-key:
+      description: Details an SSH key.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        created_at:
+          description: The key creation date.
+          format: date-time
+          type: string
+        fingerprint:
+          description: The public key fingerprint.
+          type: string
+        label:
+          description: The human-readable key label.
+          type: string
+        public_key:
+          description: The public key.
+          minLength: 64
+          type: string
+        uuid:
+          description: The unique identifier of the SSH key.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - label
+      - public_key
+      - fingerprint
+      - created_at
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_error:
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          description: The long description for the returned error.
+          type: string
+      required:
+      - error
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_ssh-keys:
+      description: A collection of SSH keys.
+      properties:
+        _embedded:
+          description: A collection of SSH keys matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ssh-key'
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_account-invites:
+      description: A collection of invites.
+      properties:
+        _embedded:
+          description: A collection of invites matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_application-stub:
+      properties:
+        name:
+          description: The name of the application.
+          type: string
+        uuid:
+          description: The application UUID.
+          format: uuid
+          type: string
+      required:
+      - name
+      - uuid
+      type: object
+    Acquia_Cloud_API_Documentation_links:
+      description: HAL links about the current resource.
+      properties:
+        self:
+          description: A link to this page.
+          properties:
+            href:
+              description: The URI for this page.
+              format: uri
+              type: string
+          required:
+          - href
+          type: object
+      required:
+      - self
+      type: object
+    Acquia_Cloud_API_Documentation_tokens:
+      description: A collection of tokens.
+      properties:
+        _embedded:
+          description: A collection of tokens matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_token'
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

@@ -1,0 +1,565 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Agreements API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Agreements
+paths:
+  /agreements:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns a list of agreements you have been invited to accept or decline.
+      operationId: getAgreements
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab
+                    actioned_by:
+                      first_name: James
+                      last_name: Kirk
+                      mail: james.kirk@example.com
+                      picture_url: https://accounts.acquia.com/sites/default/avatars/456def?mail=james.kirk@example.com
+                      username: james.kirk
+                      uuid: 5aa902c5-f1c1-6c94-edfa-86bc58d0dce3
+                    body: <p>Agreement body and text.</p>
+                    created_at: '2017-01-23T12:00:00Z'
+                    document_uuid: f25d0284-f25f-4e59-9c48-7c39ae57b400
+                    reference:
+                      name: Acquia Subscription
+                      type: subscription
+                      uuid: 9ab09eba-290d-4ed9-be4d-fa194ab92f39
+                    status: accepted
+                    title: Agreement Title
+                    updated_at: '2017-01-27T12:00:00Z'
+                    uuid: efc62c93-8203-4e8b-a8ff-4d18b780d4ab
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/agreements/b63fff64-6c18-4899-acba-00ec6c8930e9
+                    actioned_by:
+                      first_name: Jane
+                      last_name: Doe
+                      mail: jane.doe@example.com
+                      picture_url: https://accounts.acquia.com/sites/default/avatars/123abc?mail=jane.doe@example.com
+                      username: jane.doe
+                      uuid: 550e8400-e29b-41d4-a716-446655440000
+                    body: <p>This is the body and text of another agreement.</p>
+                    created_at: '2017-02-23T12:00:00Z'
+                    document_uuid: 20370a6e-9b82-4580-8769-886f5f6c8693
+                    reference:
+                      name: Acquia Subscription
+                      type: subscription
+                      uuid: 9ab09eba-290d-4ed9-be4d-fa194ab92f39
+                    status: declined
+                    title: Another Agreement
+                    updated_at: '2017-02-27T12:00:00Z'
+                    uuid: b63fff64-6c18-4899-acba-00ec6c8930e9
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/agreements/a8777880-8924-494a-abe2-62cc092df269
+                    actioned_by: null
+                    body: <p>This is the body and text of one more agreement.</p>
+                    created_at: '2017-02-23T12:00:00Z'
+                    document_uuid: 466c62ef-5ced-400d-b328-d47e745b50a8
+                    reference:
+                      name: Acquia Subscription
+                      type: subscription
+                      uuid: 9ab09eba-290d-4ed9-be4d-fa194ab92f39
+                    status: pending
+                    title: A Third Agreement
+                    updated_at: null
+                    uuid: a8777880-8924-494a-abe2-62cc092df269
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/
+                  self:
+                    href: https://cloud.acquia.com/api/agreements
+                total: 3
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_agreements'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              example:
+                error: not_found
+                message: The agreement you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      summary: Acquia Return a List of Agreements.
+      tags:
+      - Agreements
+      x-cli-name: agreements:list
+  /agreements/{agreementUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Return a specific agreement.
+      operationId: getAgreement
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_agreement-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  actioned_by:
+                    href: https://cloud.acquia.com/api/users/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3
+                  invitees:
+                    href: https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab/invitees
+                  parent:
+                    href: https://cloud.acquia.com/api/agreements
+                  self:
+                    href: https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab
+                  subscription:
+                    href: https://cloud.acquia.com/api/subscriptions/9ab09eba-290d-4ed9-be4d-fa194ab92f39
+                actioned_by:
+                  first_name: James
+                  last_name: Kirk
+                  mail: james.kirk@example.com
+                  picture_url: https://accounts.acquia.com/sites/default/avatars/456def?mail=james.kirk@example.com
+                  username: james.kirk
+                  uuid: 5aa902c5-f1c1-6c94-edfa-86bc58d0dce3
+                body: <p>Agreement body and text.</p>
+                created_at: '2017-01-23T12:00:00Z'
+                document_uuid: f25d0284-f25f-4e59-9c48-7c39ae57b400
+                reference:
+                  name: Acquia Subscription
+                  type: subscription
+                  uuid: 9ab09eba-290d-4ed9-be4d-fa194ab92f39
+                status: accepted
+                title: Agreement Title
+                updated_at: '2017-01-27T12:00:00Z'
+                uuid: efc62c93-8203-4e8b-a8ff-4d18b780d4ab
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_agreement'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              example:
+                error: not_found
+                message: The agreement you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Return a Specific Agreement by a Provided UUID.
+      tags:
+      - Agreements
+      x-cli-name: agreements:find
+  /agreements/{agreementUuid}/actions/accept:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Accepts a legal agreement.
+      operationId: postAcceptAgreement
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_agreement-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                message: The agreement has been accepted.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              example:
+                error: not_found
+                message: The agreement you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Already acted upon:
+                  value:
+                    error: conflict
+                    message: This agreement has already been acted upon.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Accepts a Legal Agreement by UUID.
+      tags:
+      - Agreements
+      x-cli-name: agreements:accept
+  /agreements/{agreementUuid}/actions/decline:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Declines a legal agreement.
+      operationId: postDeclineAgreement
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_agreement-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                message: The agreement has been declined.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              example:
+                error: not_found
+                message: The agreement you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Already acted upon:
+                  value:
+                    error: conflict
+                    message: This agreement has already been acted upon.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Declines a Legal Agreement by UUID.
+      tags:
+      - Agreements
+      x-cli-name: agreements:decline
+  /agreements/{agreementUuid}/invitees:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns a list of users invited to action this agreement by UUID.
+      operationId: getInvitees
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_agreement-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _embedded:
+                  items:
+                  - first_name: User
+                    last_name: One
+                    mail: user1@example.com
+                    picture_url: https://accounts.acquia.com/path/to/image.png
+                    username: user.one
+                    uuid: 6188cbcf-b176-4554-b17e-fbd8119ef46d
+                  - first_name: User
+                    last_name: Two
+                    mail: user2@example.com
+                    picture_url: https://accounts.acquia.com/path/to/image.png
+                    username: user.two
+                    uuid: 099a8a59-88d6-48c2-a121-ef29431f4aba
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab
+                  self:
+                    href: https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab/invitees
+                total: 2
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invitees'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              example:
+                error: not_found
+                message: The agreement you are trying to access does not exist, or you do not have permission to access it.a
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns a List of Users Invited to Action This Agreement.
+      tags:
+      - Agreements
+      x-cli-name: agreements:invitees-list
+components:
+  schemas:
+    Acquia_Cloud_API_Documentation_message:
+      properties:
+        message:
+          description: A simple message returned from the response.
+          type: string
+      required:
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_user-stub:
+      properties:
+        first_name:
+          description: The user's first name.
+          type: string
+        last_name:
+          description: The user's last name.
+          type: string
+        mail:
+          description: The user's email address.
+          format: email
+          type: string
+        picture_url:
+          description: The URI for the user's picture.
+          format: uri
+          nullable: true
+          type: string
+        username:
+          description: The user's internal user name.
+          type: string
+        uuid:
+          description: The user's UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      type: object
+    Acquia_Cloud_API_Documentation_error:
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          description: The long description for the returned error.
+          type: string
+      required:
+      - error
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_user-stub-nullable:
+      nullable: true
+      properties:
+        first_name:
+          description: The user's first name.
+          type: string
+        last_name:
+          description: The user's last name.
+          type: string
+        mail:
+          description: The user's email address.
+          format: email
+          type: string
+        picture_url:
+          description: The URI for the user's picture.
+          format: uri
+          nullable: true
+          type: string
+        username:
+          description: The user's internal user name.
+          type: string
+        uuid:
+          description: The user's UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      type: object
+    Acquia_Cloud_API_Documentation_agreements:
+      properties:
+        _embedded:
+          description: A collection of agreements matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_agreement'
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_links:
+      description: HAL links about the current resource.
+      properties:
+        self:
+          description: A link to this page.
+          properties:
+            href:
+              description: The URI for this page.
+              format: uri
+              type: string
+          required:
+          - href
+          type: object
+      required:
+      - self
+      type: object
+    Acquia_Cloud_API_Documentation_invitees:
+      properties:
+        _embedded:
+          description: A collection of invitees matching the request parameters.
+          properties:
+            items:
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
+              type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        total:
+          description: The number of items returned in the collection.
+          type: integer
+      required:
+      - total
+      - _links
+      - _embedded
+      type: object
+    Acquia_Cloud_API_Documentation_agreement:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        actioned_by:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub-nullable'
+        body:
+          description: The formatted agreement content.
+          type: string
+        created_at:
+          description: The date the agreement was created.
+          format: date-time
+          type: string
+        document_uuid:
+          description: The agreement document UUID.
+          format: uuid
+          type: string
+        reference:
+          description: A reference to the entity for this agreement.
+          properties:
+            name:
+              description: The entity name.
+              type: string
+            type:
+              description: The entity type.
+              type: string
+            uuid:
+              description: The entity UUID.
+              format: uuid
+              type: string
+          type: object
+        status:
+          description: The status of the agreement.
+          enum:
+          - pending
+          - accepted
+          - declined
+          type: string
+        title:
+          description: The name of the agreement.
+          type: string
+        updated_at:
+          description: The date the agreement was last updated.
+          format: date-time
+          nullable: true
+          type: string
+        uuid:
+          description: The agreement UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - document_uuid
+      - title
+      - body
+      - status
+      - created_at
+      - updated_at
+      - actioned_by
+      - reference
+      - _links
+      type: object
+  parameters:
+    Acquia_Cloud_API_Documentation_agreement-uuid:
+      description: The entity's universally unique identifier.
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+      in: path
+      name: agreementUuid
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

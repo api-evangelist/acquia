@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Notifications API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Notifications
+paths:
+  /notifications/{notificationUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      description: Returns a single notification.
+      operationId: getNotificationByUuid
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_notification-uuid'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/notifications
+                  self:
+                    href: https://cloud.acquia.com/api/notifications/1bd3487e-71d1-4fca-a2d9-5f969b3d35c1
+                completed_at: '2019-07-29T20:47:13+00:00'
+                context:
+                  author:
+                    actual_uuid: 5391a8a9-d273-4f88-8114-7f884bbfe08b
+                    uuid: 5391a8a9-d273-4f88-8114-7f884bbfe08b
+                  user:
+                    uuids:
+                    - 5391a8a9-d273-4f88-8114-7f884bbfe08b
+                created_at: '2019-07-29T20:47:13+00:00'
+                description: '"Canary QA 11 - ACE" was added to your recent applications list.'
+                event: ApplicationAddedToRecents
+                label: Application added to recents list
+                progress: 100
+                status: completed
+                uuid: 1bd3487e-71d1-4fca-a2d9-5f969b3d35c1
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_notification-stub'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                No data or permission:
+                  value:
+                    error: not_found
+                    message: The data you are trying to access does not exist, or you do not have permission to access it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns a Single Notification.
+      tags:
+      - Notifications
+      x-cli-name: notifications:find
+components:
+  parameters:
+    Acquia_Cloud_API_Documentation_notification-uuid:
+      description: The entity's universally unique identifier.
+      example: 2343b683-b194-4217-982a-6a95c72ad9a8
+      in: path
+      name: notificationUuid
+      required: true
+      schema:
+        format: uuid
+        type: string
+  schemas:
+    Acquia_Cloud_API_Documentation_notification-stub:
+      description: A notification about an event or a task.
+      properties:
+        _embedded:
+          description: Data related to the notification, such as the author.
+          type: object
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        completed_at:
+          description: The time that the task or event this notification is tracking was completed at.
+          format: date-time
+          type: string
+        context:
+          description: Contextual data related to the notification.
+          type: object
+        created_at:
+          description: The time that this notification was created.
+          format: date-time
+          type: string
+        description:
+          description: The notification description.
+          type: string
+        event:
+          description: The notification event.
+          type: string
+        label:
+          description: The human readable notification label.
+          type: string
+        progress:
+          description: The notification progress.
+          maximum: 100
+          minimum: 0
+          type: integer
+        status:
+          description: The status of the notification.
+          enum:
+          - completed
+          - in-progress
+          - failed
+          type: string
+        uuid:
+          description: The notification unique identifier.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - event
+      - label
+      - description
+      - created_at
+      - completed_at
+      - status
+      - progress
+      - context
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_links:
+      description: HAL links about the current resource.
+      properties:
+        self:
+          description: A link to this page.
+          properties:
+            href:
+              description: The URI for this page.
+              format: uri
+              type: string
+          required:
+          - href
+          type: object
+      required:
+      - self
+      type: object
+    Acquia_Cloud_API_Documentation_error:
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          description: The long description for the returned error.
+          type: string
+      required:
+      - error
+      - message
+      type: object
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

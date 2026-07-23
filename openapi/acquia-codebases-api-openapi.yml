@@ -1,0 +1,1810 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Codebases API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Codebases
+paths:
+  /applications/{applicationId}/codebase:
+    servers:
+    - url: /
+      description: ''
+    get:
+      deprecated: false
+      description: Retrieves a codebase details linked to the specified application.
+      operationId: api_applications_applicationIdcodebase_get
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The entity's universally unique identifier.
+        explode: false
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _embedded:
+                    properties:
+                      subscription:
+                        properties:
+                          _links:
+                            properties:
+                              self:
+                                properties:
+                                  href:
+                                    example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                    format: uri
+                                    type: string
+                                type: object
+                            type: object
+                          id:
+                            example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                            format: uuid
+                            type: string
+                        type: object
+                    type: object
+                  _links:
+                    properties:
+                      applications:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/applications
+                            format: uri
+                            type: string
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8
+                            format: uri
+                            type: string
+                        type: object
+                      subscription:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  applications_total:
+                    example: 2
+                    type: integer
+                  created_at:
+                    example: '2024-12-11T04:25:47+00:00'
+                    format: date-time
+                    type: string
+                  description:
+                    example: ''
+                    type: string
+                  flags:
+                    properties:
+                      active:
+                        example: true
+                        type: boolean
+                    type: object
+                  hash:
+                    example: pte116m
+                    type: string
+                  id:
+                    example: 11111111-041c-44c7-a486-7972ed2cafc8
+                    format: uuid
+                    type: string
+                  label:
+                    example: Test codebase with attached applications
+                    type: string
+                  region:
+                    example: us-east-1
+                    type: string
+                  repository_id:
+                    example: f03e15f9-0d97-498d-ba7d-99bd87b1417f
+                    format: uuid
+                    type: string
+                  updated_at:
+                    example: '2024-12-11T04:25:47+00:00'
+                    format: date-time
+                    type: string
+                  vcs_url:
+                    example: ssh://us-east-1.dev.vcs.acquia.io/11111111-041c-44c7-a486-7972ed2cafc8
+                    format: uri
+                    type: string
+                type: object
+          description: Codebase details
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves a Codebase Details Linked to the Specified Application.
+      tags:
+      - Codebases
+      x-cli-name: codebases:get-by-application
+  /codebases:
+    servers:
+    - url: /
+      description: ''
+    get:
+      deprecated: false
+      description: Retrieves a list of codebases accessible by the user.
+      operationId: api_codebases_get_collection
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _embedded:
+                    properties:
+                      items:
+                        items:
+                          properties:
+                            _embedded:
+                              properties:
+                                subscription:
+                                  properties:
+                                    _links:
+                                      properties:
+                                        self:
+                                          properties:
+                                            href:
+                                              example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                              format: uri
+                                              type: string
+                                          type: object
+                                      type: object
+                                    id:
+                                      example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                      format: uuid
+                                      type: string
+                                  type: object
+                              type: object
+                            _links:
+                              properties:
+                                applications:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/applications
+                                      format: uri
+                                      type: string
+                                  type: object
+                                self:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases
+                                      format: uri
+                                      type: string
+                                  type: object
+                                subscription:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                      format: uri
+                                      type: string
+                                  type: object
+                              type: object
+                            applications_total:
+                              example: 0
+                              type: integer
+                            created_at:
+                              example: '2024-12-20T06:39:50+00:00'
+                              format: date-time
+                              type: string
+                            description:
+                              example: ''
+                              type: string
+                            flags:
+                              properties:
+                                active:
+                                  example: true
+                                  type: boolean
+                              type: object
+                            hash:
+                              example: ryh4smn
+                              type: string
+                            id:
+                              example: 0975a7a1-746f-4096-9c22-383f001797b5
+                              format: uuid
+                              type: string
+                            label:
+                              example: test
+                              type: string
+                            region:
+                              example: us-east-1
+                              type: string
+                            repository_id:
+                              example: a5ef0a9d-44ce-4f06-8d4f-15f24f941a74
+                              format: uuid
+                              type: string
+                            updated_at:
+                              example: '2024-12-20T06:39:50+00:00'
+                              format: date-time
+                              type: string
+                            vcs_url:
+                              example: ssh://us-east-1.dev.vcs.acquia.io/0975a7a1-746f-4096-9c22-383f001797b5
+                              format: uri
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  _links:
+                    properties:
+                      filter:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?filter}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      limit:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?limit}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      next:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases?offset=25
+                            format: uri
+                            type: string
+                        type: object
+                      offset:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?offset}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases
+                            format: uri
+                            type: string
+                        type: object
+                      sort:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?sort}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                    type: object
+                  count:
+                    example: 1
+                    type: integer
+                  pagination:
+                    properties:
+                      limit:
+                        example: 25
+                        type: integer
+                      offset:
+                        example: 0
+                        type: integer
+                      total:
+                        example: 1
+                        type: integer
+                    type: object
+                  total:
+                    example: 1
+                    type: integer
+                type: object
+          description: List of codebases.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves a List of Codebases Accessible by the User.
+      tags:
+      - Codebases
+      x-cli-name: codebases:get-all
+  /codebases/{codebaseId}:
+    servers:
+    - url: /
+      description: ''
+    delete:
+      deprecated: false
+      description: Delete a codebase by its ID.
+      operationId: api_codebases_codebaseId_delete
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The codebase entity's unique identifier.
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '202':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    properties:
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  message:
+                    example: Codebase deletion started.
+                    type: string
+                type: object
+          description: Deletes a codebase.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Delete a Codebase by its ID.
+      tags:
+      - Codebases
+      x-cli-name: codebases:delete
+    get:
+      deprecated: false
+      description: Return details about a specific codebase.
+      operationId: get_codebase_by_id
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The codebase entity's unique identifier.
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _embedded:
+                    properties:
+                      subscription:
+                        properties:
+                          _links:
+                            properties:
+                              self:
+                                properties:
+                                  href:
+                                    example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                    format: uri
+                                    type: string
+                                type: object
+                            type: object
+                          id:
+                            example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                            format: uuid
+                            type: string
+                        type: object
+                    type: object
+                  _links:
+                    properties:
+                      applications:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/applications
+                            format: uri
+                            type: string
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8
+                            format: uri
+                            type: string
+                        type: object
+                      subscription:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  applications_total:
+                    example: 2
+                    type: integer
+                  created_at:
+                    example: '2024-12-11T04:25:47+00:00'
+                    format: date-time
+                    type: string
+                  description:
+                    example: ''
+                    type: string
+                  flags:
+                    properties:
+                      active:
+                        example: true
+                        type: boolean
+                    type: object
+                  hash:
+                    example: pte116m
+                    type: string
+                  id:
+                    example: 11111111-041c-44c7-a486-7972ed2cafc8
+                    format: uuid
+                    type: string
+                  label:
+                    example: Test codebase with attached applications
+                    type: string
+                  region:
+                    example: us-east-1
+                    type: string
+                  repository_id:
+                    example: f03e15f9-0d97-498d-ba7d-99bd87b1417f
+                    format: uuid
+                    type: string
+                  updated_at:
+                    example: '2024-12-11T04:25:47+00:00'
+                    format: date-time
+                    type: string
+                  vcs_url:
+                    example: ssh://us-east-1.dev.vcs.acquia.io/11111111-041c-44c7-a486-7972ed2cafc8
+                    format: uri
+                    type: string
+                type: object
+          description: Codebase details
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves a Codebase Details by its ID.
+      tags:
+      - Codebases
+      x-cli-name: codebases:get
+    put:
+      deprecated: false
+      description: Update a codebase details by its ID.
+      operationId: api_codebases_codebaseId_put
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The codebase entity's unique identifier.
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              minProperties: 1
+              properties:
+                description:
+                  example: codebase-description
+                  type: string
+                label:
+                  example: test-codebase
+                  type: string
+              type: object
+        description: The updated Codebase resource
+        required: false
+      responses:
+        '202':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    properties:
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  message:
+                    example: Codebase update started.
+                    type: string
+                type: object
+          description: Update a codebase details by its ID.
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 400
+                    type: integer
+                  error:
+                    example: validation_failed
+                    type: string
+                  message:
+                    example: Invalid request body.
+                    type: string
+                type: object
+          description: Validation Error in request body.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Update a Codebase Details by its ID.
+      tags:
+      - Codebases
+      x-cli-name: codebases:update
+  /codebases/{codebaseId}/bulk-code-switch:
+    servers:
+    - url: /
+      description: ''
+    get:
+      deprecated: false
+      description: Retrieves a list of bulk code switches details performed on a codebase.
+      operationId: api_codebases_codebaseIdbulk-code-switch_get_collection
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: ''
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: The collection page number
+        explode: false
+        in: query
+        name: offset
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: The number of items per page
+        explode: false
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _embedded:
+                    properties:
+                      items:
+                        items:
+                          properties:
+                            _links:
+                              properties:
+                                parent:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5
+                                      format: uri
+                                      type: string
+                                  type: object
+                                self:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705
+                                      format: uri
+                                      type: string
+                                  type: object
+                              type: object
+                            codebase_id:
+                              example: 0975a7a1-746f-4096-9c22-383f001797b5
+                              format: uuid
+                              type: string
+                            created_at:
+                              example: '2024-12-20T06:39:57+00:00'
+                              format: date-time
+                              type: string
+                            id:
+                              example: 1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705
+                              format: uuid
+                              type: string
+                            reference:
+                              example: v.1.1.1
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  _links:
+                    properties:
+                      filter:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?limit=25&offset=0{&filter}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      limit:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?offset=0{&limit}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      offset:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?limit=25{&offset}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      parent:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5
+                            format: uri
+                            type: string
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?limit=25&offset=0
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  count:
+                    example: 1
+                    type: integer
+                  pagination:
+                    properties:
+                      limit:
+                        example: 25
+                        type: integer
+                      offset:
+                        example: 0
+                        type: integer
+                      total:
+                        example: 1
+                        type: integer
+                    type: object
+                  total:
+                    example: 1
+                    type: integer
+                type: object
+          description: Retrieves a list of bulk code switches details performed on a codebase.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves a List of Bulk Code Switches Details Performed on a Codebase.
+      tags:
+      - Codebases
+      x-cli-name: codebases:bulk-code-switch:list
+    post:
+      deprecated: false
+      description: Starts a new Bulk Code Switch for a codebase.
+      operationId: create_bulk_code_switch_resource
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The codebase entity's unique identifier.
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                cloud_actions:
+                  items:
+                    example: some-cloud-action
+                    type: string
+                  type: array
+                reference:
+                  example: test-branch-ref
+                  type: string
+                targets:
+                  items:
+                    properties:
+                      cloud_actions:
+                        items:
+                          example: some-cloud-action
+                          type: string
+                        type: array
+                      environment_id:
+                        example: 2345-a0c9dff7-56b6-4c0d-bad0-0e6593f66cd4
+                        format: string
+                        type: string
+                    required:
+                    - environment_id
+                    type: object
+                  minItems: 1
+                  type: array
+              required:
+              - reference
+              - targets
+              type: object
+        description: The new BulkCodeSwitch resource
+        required: false
+      responses:
+        '202':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    properties:
+                      get:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/867c8d79-9751-4169-8799-18c8d211aec4
+                            format: uri
+                            type: string
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch
+                            format: uri
+                            type: string
+                        type: object
+                      status:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/867c8d79-9751-4169-8799-18c8d211aec4/status
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  message:
+                    example: Bulk code switch started.
+                    type: string
+                type: object
+          description: Created a new Bulk Code Switch on a codebase.
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 400
+                    type: integer
+                  error:
+                    example: validation_failed
+                    type: string
+                  message:
+                    example: Provide at least one valid target for bulk code switch.
+                    type: string
+                type: object
+          description: Codebase not found.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Starts a New Bulk Code Switch for a Codebase.
+      tags:
+      - Codebases
+      x-cli-name: codebases:bulk-code-switch:start
+  /codebases/{codebaseId}/bulk-code-switch/{bulkCodeSwitchId}:
+    servers:
+    - url: /
+      description: ''
+    get:
+      deprecated: false
+      description: Retrieves bulk code switch details by id.
+      operationId: get_bulk_code_switch_resource
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The codebase entity's unique identifier.
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The entity's universally unique identifier.
+        explode: false
+        in: path
+        name: bulkCodeSwitchId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    properties:
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705
+                            format: uri
+                            type: string
+                        type: object
+                      status:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705/status
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  codebase_id:
+                    example: 0975a7a1-746f-4096-9c22-383f001797b5
+                    format: uuid
+                    type: string
+                  created_at:
+                    example: '2024-12-20T06:39:57+00:00'
+                    format: date-time
+                    type: string
+                  id:
+                    example: 1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705
+                    format: uuid
+                    type: string
+                  reference:
+                    example: v.1.1.1
+                    type: string
+                type: object
+          description: Bulk code switch details
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The Bulk Code Switch details you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Bulk Code Switch resource not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves Bulk Code Switch Details by Id.
+      tags:
+      - Codebases
+      x-cli-name: codebases:bulk-code-switch:get
+  /codebases/{codebaseId}/references:
+    servers:
+    - url: /
+      description: ''
+    get:
+      deprecated: false
+      description: Retrieves a list of git references by codebase.
+      operationId: get_references_by_codebase
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The codebase entity's unique identifier.
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _embedded:
+                    properties:
+                      items:
+                        items:
+                          properties:
+                            _links:
+                              properties:
+                                parent:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687
+                                      format: uri
+                                      type: string
+                                  type: object
+                                self:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references
+                                      format: uri
+                                      type: string
+                                  type: object
+                              type: object
+                            codebase_id:
+                              example: 47de85b1-14bb-4074-8c1d-f0a2d63db687
+                              format: uuid
+                              type: string
+                            id:
+                              example: '1234567'
+                              type: string
+                            name:
+                              example: main
+                              type: string
+                            type:
+                              example: BRANCH
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  _links:
+                    properties:
+                      filter:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?filter}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      limit:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?limit}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      offset:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?offset}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references
+                            format: uri
+                            type: string
+                        type: object
+                      sort:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?sort}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                    type: object
+                  count:
+                    example: 1
+                    type: integer
+                  pagination:
+                    properties:
+                      limit:
+                        example: 25
+                        type: integer
+                      offset:
+                        example: 0
+                        type: integer
+                      total:
+                        example: 1
+                        type: integer
+                    type: object
+                  total:
+                    example: 1
+                    type: integer
+                type: object
+          description: Retrieves a list of git references by codebase.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves a List of Git References by Codebase.
+      tags:
+      - Codebases
+      x-cli-name: codebases:references:list
+  /codebases/{codebaseId}/references/{referenceName}:
+    servers:
+    - url: /
+      description: ''
+    get:
+      deprecated: false
+      description: Retrieves a single git reference data for the given codebase.
+      operationId: get_single_reference
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The codebase entity's unique identifier.
+        explode: false
+        in: path
+        name: codebaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The reference name.
+        explode: false
+        in: path
+        name: referenceName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    properties:
+                      parent:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687
+                            format: uri
+                            type: string
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references/main
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  codebase_id:
+                    example: 47de85b1-14bb-4074-8c1d-f0a2d63db687
+                    format: uuid
+                    type: string
+                  id:
+                    example: RefId99
+                    type: string
+                  name:
+                    example: main
+                    type: string
+                  type:
+                    example: BRANCH
+                    type: string
+                type: object
+          description: Retrieves a single git reference data for the given codebase.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves a Single Git Reference Data for the Given Codebase.
+      tags:
+      - Codebases
+      x-cli-name: codebases:references:get
+  /subscriptions/{subscriptionId}/codebases:
+    servers:
+    - url: /
+      description: ''
+    get:
+      deprecated: false
+      description: Retrieves a list of codebases by subscription ID.
+      operationId: subscription_codebases
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The entity's universally unique identifier.
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _embedded:
+                    properties:
+                      items:
+                        items:
+                          properties:
+                            _embedded:
+                              properties:
+                                subscription:
+                                  properties:
+                                    _links:
+                                      properties:
+                                        self:
+                                          properties:
+                                            href:
+                                              example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                              format: uri
+                                              type: string
+                                          type: object
+                                      type: object
+                                    id:
+                                      example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                      format: uuid
+                                      type: string
+                                  type: object
+                              type: object
+                            _links:
+                              properties:
+                                applications:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/applications
+                                      format: uri
+                                      type: string
+                                  type: object
+                                self:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/codebases
+                                      format: uri
+                                      type: string
+                                  type: object
+                                subscription:
+                                  properties:
+                                    href:
+                                      example: https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479
+                                      format: uri
+                                      type: string
+                                  type: object
+                              type: object
+                            applications_total:
+                              example: 0
+                              type: integer
+                            created_at:
+                              example: '2024-12-20T06:39:50+00:00'
+                              format: date-time
+                              type: string
+                            description:
+                              example: ''
+                              type: string
+                            flags:
+                              properties:
+                                active:
+                                  example: true
+                                  type: boolean
+                              type: object
+                            hash:
+                              example: ryh4smn
+                              type: string
+                            id:
+                              example: 0975a7a1-746f-4096-9c22-383f001797b5
+                              format: uuid
+                              type: string
+                            label:
+                              example: test
+                              type: string
+                            region:
+                              example: us-east-1
+                              type: string
+                            repository_id:
+                              example: a5ef0a9d-44ce-4f06-8d4f-15f24f941a74
+                              format: uuid
+                              type: string
+                            updated_at:
+                              example: '2024-12-20T06:39:50+00:00'
+                              format: date-time
+                              type: string
+                            vcs_url:
+                              example: ssh://us-east-1.dev.vcs.acquia.io/0975a7a1-746f-4096-9c22-383f001797b5
+                              format: uri
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  _links:
+                    properties:
+                      filter:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?filter}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      limit:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?limit}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      next:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases?offset=25
+                            format: uri
+                            type: string
+                        type: object
+                      offset:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?offset}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases
+                            format: uri
+                            type: string
+                        type: object
+                      sort:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/codebases{?sort}
+                            format: uri-template
+                            type: string
+                          templated:
+                            example: true
+                            type: boolean
+                        type: object
+                    type: object
+                  count:
+                    example: 1
+                    type: integer
+                  pagination:
+                    properties:
+                      limit:
+                        example: 25
+                        type: integer
+                      offset:
+                        example: 0
+                        type: integer
+                      total:
+                        example: 1
+                        type: integer
+                    type: object
+                  total:
+                    example: 1
+                    type: integer
+                type: object
+          description: List of codebases.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Retrieves a List of Codebases by Subscription ID.
+      tags:
+      - Codebases
+      x-cli-name: codebases:get-by-subscription
+    options:
+      deprecated: false
+      description: Gets supported regions for a new codebase.
+      operationId: api_subscriptions_subscriptionIdcodebases_options
+      parameters:
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: The entity's universally unique identifier.
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    properties:
+                      parent:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/subscriptions/123
+                            format: uri
+                            type: string
+                        type: object
+                      self:
+                        properties:
+                          href:
+                            example: https://cloud.acquia.com/api/subscriptions/123/codebases
+                            format: uri
+                            type: string
+                        type: object
+                    type: object
+                  regions:
+                    items:
+                      enum:
+                      - us-east-1
+                      - eu-west-1
+                      - us-west-2
+                      type: string
+                    type: array
+                type: object
+          description: Gets supported regions for a new codebase.
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 403
+                    type: integer
+                  error:
+                    example: forbidden
+                    type: string
+                  message:
+                    example: Access Denied.
+                    type: string
+                type: object
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    example: 404
+                    type: integer
+                  error:
+                    example: not_found
+                    type: string
+                  message:
+                    example: The codebase you are trying to access does not exist, or you do not have permission to access it.
+                    type: string
+                type: object
+          description: Codebase not found.
+      security:
+      - Codebase_Service_JWT: []
+      summary: Acquia Gets Supported Regions for a New Codebase.
+      tags:
+      - Codebases
+      x-cli-name: codebases:get-regions
+components:
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

@@ -1,0 +1,449 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Options API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Options
+  x-displayName: Options
+paths:
+  /options:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Options
+      summary: Does not return any data. Allows traversal of options groups endpoints.
+      description: Does not return any data. Allows traversal of options groups endpoints.
+      operationId: getOptions
+      x-cli-name: options:list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/options
+                  cde-sizes:
+                    href: https://cloud.acquia.com/api/options/cde-sizes
+                  log-forwarding:
+                    href: https://cloud.acquia.com/api/options/log-forwarding
+  /options/cde-sizes:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Options
+      summary: Displays the various CD Environment size options.
+      description: Displays the various CD Environment size options.
+      operationId: getCdeSizes
+      x-cli-name: options:cde-sizes-list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cde-sizes'
+              example:
+                total: 5
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/options/cde-sizes
+                  parent:
+                    href: https://cloud.acquia.com/api/options
+                _embedded:
+                  items:
+                  - name: 1X
+                    size: 1x
+                    memory: 256
+                    storage: 5
+                    databases: 3
+                    slots: 1
+                  - name: 2X
+                    size: 2x
+                    memory: 512
+                    storage: 10
+                    databases: 6
+                    slots: 2
+                  - name: 3X
+                    size: 3x
+                    memory: 768
+                    storage: 15
+                    databases: 9
+                    slots: 3
+                  - name: 4X
+                    size: 4x
+                    memory: 1024
+                    storage: 20
+                    databases: 12
+                    slots: 4
+                  - name: 8X
+                    size: 8x
+                    memory: 2048
+                    storage: 40
+                    databases: 24
+                    slots: 8
+  /options/log-forwarding:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Options
+      summary: Does not return any data. Allows traversal of options groups endpoints.
+      description: Does not return any data. Allows traversal of options groups endpoints.
+      operationId: getLogForwarding
+      x-cli-name: options:log-forwarding
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                properties:
+                  _links:
+                    $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/options/log-forwarding
+                  sources:
+                    href: https://cloud.acquia.com/api/options/log-forwarding/sources
+                  consumers:
+                    href: https://cloud.acquia.com/api/options/log-forwarding/consumers
+  /options/log-forwarding/sources:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Options
+      summary: Displays available log forwarding sources.
+      description: Displays available log forwarding sources.
+      operationId: getLogForwardingSources
+      x-cli-name: options:log-forwarding-source-list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-sources'
+              example:
+                total: 1
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/log-forwarding/sources
+                  parent:
+                    href: https://cloud.acquia.com/api/log-forwarding
+                _embedded:
+                  items:
+                  - name: apache-access
+                    label: Apache access
+                    platforms:
+                    - drupal
+  /options/log-forwarding/consumers:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Options
+      summary: Displays available log forwarding consumers.
+      description: Displays available log forwarding consumers.
+      operationId: getLogForwardingConsumers
+      x-cli-name: options:log-forwarding-consumer-list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-consumers'
+              example:
+                total: 1
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/log-forwarding/consumers
+                  parent:
+                    href: https://cloud.acquia.com/api/log-forwarding
+                _embedded:
+                  items:
+                  - name: sumologic
+                    label: Sumologic
+  /options/colors:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Options
+      summary: Displays the various color options.
+      description: Displays the various color options.
+      operationId: getColors
+      x-cli-name: colors:list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_colors'
+              example:
+                total: 10
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/options/colors
+                  parent:
+                    href: https://cloud.acquia.com/api/options
+                  limit:
+                    href: https://cloud.acquia.com/api/options/colors{?limit}
+                    templated: true
+                  offset:
+                    href: https://cloud.acquia.com/api/options/colors{?offset}
+                    templated: true
+                  sort:
+                    href: https://cloud.acquia.com/api/options/colors{?sort}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/options/colors{?filter}
+                    templated: true
+                _embedded:
+                  items:
+                  - color: blue
+                  - color: blush
+                  - color: gray
+                  - color: green
+                  - color: light-blue
+                  - color: orange
+                  - color: pink
+                  - color: purple
+                  - color: teal
+                  - color: yellow
+components:
+  schemas:
+    Acquia_Cloud_API_Documentation_log-forwarding-source:
+      type: object
+      description: Response schema for a Log forwarding source.
+      required:
+      - name
+      - label
+      - platforms
+      properties:
+        name:
+          type: string
+          description: The source name.
+        label:
+          type: string
+          description: The source label.
+        platforms:
+          type: array
+          description: List of platforms for which the source is available.
+          items:
+            type: string
+            description: The platform name.
+    Acquia_Cloud_API_Documentation_log-forwarding-consumers:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: The collection of Log forwarding consumers.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-consumer'
+    Acquia_Cloud_API_Documentation_log-forwarding-consumer:
+      type: object
+      description: Response schema for a Log forwarding consumer.
+      required:
+      - name
+      - label
+      properties:
+        name:
+          type: string
+          description: The consumer name.
+        label:
+          type: string
+          description: The consumer label.
+    Acquia_Cloud_API_Documentation_cde-sizes:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: The collection of CDE sizes.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cde-size'
+    Acquia_Cloud_API_Documentation_colors:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: The collection of colors.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_color'
+    Acquia_Cloud_API_Documentation_cde-size:
+      type: object
+      description: Response schema for a CDE size.
+      required:
+      - name
+      - size
+      - memory
+      - storage
+      - databases
+      - slots
+      properties:
+        name:
+          type: string
+          description: The CDE size name.
+        size:
+          type: string
+          description: The CDE size.
+        memory:
+          type: integer
+          description: The CDE memory in MB.
+        storage:
+          type: integer
+          description: The CDE storage in GB.
+        databases:
+          type: integer
+          description: Number of databases available.
+        slots:
+          type: integer
+          description: Number of slots available.
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
+    Acquia_Cloud_API_Documentation_color:
+      type: object
+      description: Response schema for a color.
+      required:
+      - color
+      properties:
+        color:
+          type: string
+          description: The color name.
+    Acquia_Cloud_API_Documentation_log-forwarding-sources:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: The collection of Log forwarding sources.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-source'
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

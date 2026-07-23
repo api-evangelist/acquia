@@ -1,0 +1,3997 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Subscriptions API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Subscriptions
+  x-displayName: Subscriptions
+paths:
+  /subscriptions:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Return a list of subscription.
+      description: 'Filterable fields:
+
+        * `from`
+
+        * `to`
+
+        * `sort`
+
+        * `filter`
+
+        * `limit`
+
+        * `offset`
+
+
+        Sortable fields:
+
+        * `from`
+
+        * `to`
+
+        * `sort`
+
+        * `filter`
+
+        * `limit`
+
+        * `offset`
+
+        '
+      operationId: getSubscriptions
+      x-cli-name: subscriptions:list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_from'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_to'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscriptions'
+              example:
+                total: 3
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions
+                  sort:
+                    href: https://cloud.acquia.com/api/subscriptions{?sort}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions{?filter}
+                    templated: true
+                  limit:
+                    href: https://cloud.acquia.com/api/subscriptions{?limit}
+                    templated: true
+                  parent:
+                    href: https://cloud.acquia.com/api/
+                _embedded:
+                  items:
+                  - id: 123
+                    uuid: faa297f3-f59a-4abc-8d71-904f51bcb1c5
+                    name: Acquia Cloud Free Subscription
+                    start_at: '2011-03-28T00:00:00'
+                    expire_at: '2015-11-11T00:00:00'
+                    product:
+                      id: 1890149
+                      name: Acquia Cloud Free
+                      type: free
+                    applications_total: 3
+                    applications_used: 1
+                    organization:
+                      uuid: 39f38840-c494-4622-80a5-fc40269cb42d
+                      name: Acquia Inc.
+                    flags:
+                      active: true
+                      expired: true
+                      zuora: false
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/faa297f3-f59a-4abc-8d71-904f51bcb1c5
+                    _embedded:
+                      organization:
+                        uuid: 39f38840-c494-4622-80a5-fc40269cb42d
+                        name: Acquia Inc.
+                        _links:
+                          self:
+                            href: https://cloud.acquia.com/api/organizations/39f38840-c494-4622-80a5-fc40269cb42d
+                          parent:
+                            href: https://cloud.acquia.com/api/organizations
+                  - id: 222
+                    uuid: 36496037-6eb5-482d-8549-e45e1718f2b7
+                    name: My Acquia Subscription
+                    start_at: '2012-05-15T12:00:00Z'
+                    expire_at: '2015-05-15T12:00:00Z'
+                    product:
+                      id: 8999
+                      name: Enterprise
+                      type: enterprise
+                    applications_total: 5
+                    applications_used: 2
+                    organization:
+                      uuid: 93c97126-2870-47f0-9ffd-9a92033c443e
+                      name: My Organization
+                    flags:
+                      active: true
+                      expired: true
+                      zuora: false
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/36496037-6eb5-482d-8549-e45e1718f2b7
+                    _embedded:
+                      organization:
+                        uuid: 93c97126-2870-47f0-9ffd-9a92033c443e
+                        name: My Organization
+                        _links:
+                          self:
+                            href: https://cloud.acquia.com/api/organizations/93c97126-2870-47f0-9ffd-9a92033c443e
+                          parent:
+                            href: https://cloud.acquia.com/api/organizations
+                  - id: 333
+                    uuid: 2d92f652-882c-458a-8183-4d9cef7c2fde
+                    name: My Acquia Subscription 2
+                    start_at: '2012-05-15T12:00:00Z'
+                    expire_at: '2015-05-15T12:00:00Z'
+                    product:
+                      id: 8999
+                      name: Enterprise
+                      type: enterprise
+                    applications_total: 5
+                    applications_used: 2
+                    organization:
+                      uuid: 93c97126-2870-47f0-9ffd-9a92033c443e
+                      name: My Organization
+                    flags:
+                      active: true
+                      expired: true
+                      zuora: false
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/2d92f652-882c-458a-8183-4d9cef7c2fde
+                    _embedded:
+                      organization:
+                        uuid: 93c97126-2870-47f0-9ffd-9a92033c443e
+                        name: My Organization
+                        _links:
+                          self:
+                            href: https://cloud.acquia.com/api/organizations/93c97126-2870-47f0-9ffd-9a92033c443e
+                          parent:
+                            href: https://cloud.acquia.com/api/organizations
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: You do not have permission to view subscriptions.
+  /subscriptions/{subscriptionUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Return details about a specific subscription.
+      description: Return details about a specific subscription.
+      operationId: getSubscription
+      x-cli-name: subscriptions:find
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription'
+              example:
+                id: 329876
+                uuid: 8533debb-ae4e-427b-aa34-731719b4201a
+                name: My Subscription
+                start_at: '2015-05-13T00:00:00'
+                expire_at: '2018-05-12T00:00:00'
+                product:
+                  id: 8999
+                  name: Enterprise
+                  type: enterprise
+                applications_total: 10
+                applications_used: 0
+                organization:
+                  uuid: 93c97126-2870-47f0-9ffd-9a92033c443e
+                  name: My Organization
+                flags:
+                  active: true
+                  expired: true
+                  zuora: false
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a
+                  applications:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/applications
+                  entitlements:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/entitlements
+                  ides:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/ides
+                  shield-acl:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/shield-acl
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions
+                _embedded:
+                  organization:
+                    uuid: 93c97126-2870-47f0-9ffd-9a92033c443e
+                    name: My Organization
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/organizations/93c97126-2870-47f0-9ffd-9a92033c443e
+                      parent:
+                        href: https://cloud.acquia.com/api/organizations
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+    put:
+      tags:
+      - Subscriptions
+      summary: Modifies a subscription.
+      description: Modifies a subscription.
+      operationId: putSubscription
+      x-cli-name: subscriptions:update
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new subscription name.
+                  maxLength: 255
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+              examples:
+                Subscription updated:
+                  value:
+                    message: Subscription updated.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Validation failed:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/applications:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Provides a list of applications that are a part of the subscription.
+      description: 'Filterable fields:
+
+        * `from`
+
+        * `to`
+
+        * `sort`
+
+        * `filter`
+
+        * `limit`
+
+        * `offset`
+
+
+        Sortable fields:
+
+        * `from`
+
+        * `to`
+
+        * `sort`
+
+        * `filter`
+
+        * `limit`
+
+        * `offset`
+
+        '
+      operationId: getSubscriptionApplications
+      x-cli-name: subscriptions:application-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-applications'
+              example:
+                total: 2
+                pagination:
+                  total: 2
+                  limit: 10
+                  offset: 0
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/applications
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a
+                  sort:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/applications{?sort}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/applications{?filter}
+                    templated: true
+                  limit:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/applications{?limit}
+                    templated: true
+                _embedded:
+                  items:
+                  - id: 241643
+                    uuid: a47ac10b-58cc-4372-a567-0e02b2c3d470
+                    name: Sample application 1
+                    hosting:
+                      type: acp
+                      id: devcloud:devcloud2
+                    subscription:
+                      uuid: f47ac10b-58cc-4372-a567-0e02b2c3d470
+                      name: Sample subscription
+                    organization:
+                      uuid: 6a907396-abfd-4d01-9da6-64c8efc04519
+                      name: Sample organization
+                    flags:
+                      remote_admin: true
+                    status: normal
+                    type: drupal
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470
+                  - id: 954291
+                    uuid: a47ac10b-58cc-4372-a567-0e02b2c3d471
+                    name: Sample application 2
+                    hosting:
+                      type: free
+                      id: devcloud:devcloud2
+                    subscription:
+                      uuid: f47ac10b-58cc-4372-a567-0e02b2c3d470
+                      name: Sample subscription
+                    organization:
+                      uuid: 6a907396-abfd-4d01-9da6-64c8efc04519
+                      name: Sample organization
+                    flags:
+                      remote_admin: false
+                    status: provisioning
+                    type: drupal
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/a47ac10b-58cc-4372-a567-0e02b2c3d471
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              example:
+                error: not_found
+                message: You do not have permission to view applications.
+  /subscriptions/{subscriptionUuid}/code-studio:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves Code Studio metadata for a subscription.
+      description: Retrieves Code Studio metadata for a subscription.
+      operationId: getCodeStudioSubscriptionMetadata
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-subscription-metadata'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio
+                  subscription:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342
+                  users:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users
+                  applications:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/applications
+                  code-studio:
+                    href: https://code.acquia.com
+                  code-studio-api:
+                    href: https://code.acquia.com/api/v4
+                _embedded:
+                  subscription:
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342
+                    uuid: e5bfb18f-2c6c-4534-bb9b-15ba73e17342
+                    name: My Subscription
+                status: active
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: forbidden
+                    message: Code Studio is not available for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+    options:
+      tags:
+      - Subscriptions
+      summary: Displays Code Studio options for a subscription.
+      description: Displays Code Studio options for a subscription.
+      operationId: optionsCodeStudio
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-options'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342
+                roles:
+                  a9bdb481-63f4-4770-93ee-bf6c630238cf: Guest
+                  c6c76597-dd30-4149-8a76-3c58d764bc66: Reporter
+                  4a996644-5a6e-4403-9306-6c08cb212ee1: Developer
+                  90abb6cc-f609-41db-a92d-1900b1c7d93f: Maintainer
+                  e62722c0-64dc-4d87-88ac-9f7bef645572: Owner
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: forbidden
+                    message: Code Studio is not available for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/code-studio/actions/enable:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      tags:
+      - Subscriptions
+      summary: Enables Code Studio for a subscription.
+      description: Enables and provisions Code Studio at the subscription level.
+      operationId: postEnableCodeStudio
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/actions/enable
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/34c7ed7e-2db8-433f-b6a8-96bc1080e3c9
+                notification_id: 34c7ed7e-2db8-433f-b6a8-96bc1080e3c9
+                message: Code Studio has been enabled for the Subscription.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to enable Code Studio for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/code-studio/applications:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves a list of Code Studio enabled applications for a subscription.
+      description: Retrieves a list of Code Studio enabled applications for a subscription.
+      operationId: getCodeStudioApplications
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-applications'
+              example:
+                total: 1
+                pagination:
+                  limit: 10
+                  total: 1
+                  offset: 0
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342
+                  code-studio:
+                    href: https://code.acquia.com
+                  code-studio-api:
+                    href: https://code.acquia.com/api/v4
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/applications?offset=1
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/applications?offset=1{&filter}
+                    templated: true
+                  sort:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/applications?offset=1{&sort}
+                    templated: true
+                _embedded:
+                  items:
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/b91be25b-8eba-4ff7-94c8-d51637da2343
+                      project:
+                        href: https://cloud.acquia.com/api/applications/b91be25b-8eba-4ff7-94c8-d51637da2343/code-studio
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342
+                    _embedded:
+                      project:
+                        _links:
+                          self:
+                            href: https://cloud.acquia.com/api/applications/b91be25b-8eba-4ff7-94c8-d51637da2343/code-studio
+                          parent:
+                            href: https://cloud.acquia.com/api/applications/b91be25b-8eba-4ff7-94c8-d51637da2343
+                          code-studio:
+                            href: https://code.acquia.com/path/to/project
+                          code-studio-api:
+                            href: https://code.acquia.com/api/v4/path/to/project
+                        application_id: b91be25b-8eba-4ff7-94c8-d51637da2343
+                        status: active
+                    uuid: b91be25b-8eba-4ff7-94c8-d51637da2343
+                    name: My Application
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: forbidden
+                    message: Code Studio is not available for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/code-studio/users:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves a list of users assigned to Code Studio for a subscription.
+      description: Retrieves a list of users assigned to Code Studio for a subscription.
+      operationId: getCodeStudioUsers
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-users'
+              example:
+                total: 1
+                pagination:
+                  limit: 10
+                  total: 1
+                  offset: 0
+                _links:
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users
+                  code-studio:
+                    href: https://code.acquia.com
+                  code-studio-api:
+                    href: https://code.acquia.com/api/v4
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users{?filter}
+                    templated: true
+                  sort:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users{?sort}
+                    templated: true
+                _embedded:
+                  items:
+                  - _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users/cc27c5b6-d641-4e72-8897-75874ecf82e6
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users
+                      code-studio:
+                        href: https://code.acquia.com
+                      code-studio-api:
+                        href: https://code.acquia.com/api/v4
+                    uuid: cc27c5b6-d641-4e72-8897-75874ecf82e6
+                    first_name: Jane
+                    last_name: Doe
+                    mail: jane.doe@test.com
+                    role: b3d8e9f1-8cb6-43c0-b579-0c465f5fdf49
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: forbidden
+                    message: Code Studio is not available for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+    post:
+      tags:
+      - Subscriptions
+      summary: Assigns a user to a Code Studio seat for a subscription.
+      description: Assigns a user to Code Studio seat for a subscription.
+      operationId: postCodeStudioUsers
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      requestBody:
+        required: true
+        content:
+          application/hal+json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: The ID of the user to assign.
+                role:
+                  type: string
+                  description: The ID of the Code Studio role to assign to the user.
+            example:
+              user_id: 0b9bea4e-f469-44dd-a4b6-965aad734198
+              role: ba8e9a8b-5e98-43b0-a0ec-40b2a813879a
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/4e3cae56-5547-4ac7-b552-5dc87b50a8d3
+                message: A Code Studio user has been added to the Subscription.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to add a Code Studio user to this Subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/code-studio/users/{userUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves details about a specific Code Studio user.
+      description: Retrieves details about a specific Code Studio user.
+      operationId: getCodeStudioUser
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_user-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-user'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users/bd06a2fe-a103-400e-b397-b4d27538e1b3
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users
+                  code-studio:
+                    href: https://code.acquia.com
+                  code-studio-api:
+                    href: https://code.acquia.com/api/v4
+                uuid: bd06a2fe-a103-400e-b397-b4d27538e1b3
+                first_name: Jane
+                last_name: Doe
+                mail: jane.doe@test.com
+                role: 90ad1576-84d9-43e5-b9db-0aad54dd5ade
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: forbidden
+                    message: Code Studio is not available for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+                Code Studio user not found:
+                  value:
+                    error: not_found
+                    message: The Code Studio user you are trying to access does not exist, or you do not have permission to access it.
+    delete:
+      tags:
+      - Subscriptions
+      summary: Unassigns a user from a Code Studio seat.
+      description: Unassigns a user from a Code Studio seat.
+      operationId: deleteCodeStudioUser
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_user-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/e5bfb18f-2c6c-4534-bb9b-15ba73e17342/code-studio/users
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/4e3cae56-5547-4ac7-b552-5dc87b50a8d3
+                message: The Code Studio user is being removed from the Subscription.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to remove the Code Studio user from this Subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/domains:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Returns a list of Domains registered with this subscription.
+      description: Returns a list of Domains registered with this subscription.
+      operationId: getSubscriptionDomainRegistrations
+      x-cli-name: subscriptions:domain-registrations-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registrations'
+              example:
+                total: 2
+                pagination:
+                  total: 2
+                  limit: 2
+                  offset: 0
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000
+                  limit:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains{?limit}
+                    templated: true
+                  offset:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains{?offset}
+                    templated: true
+                  sort:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains{?sort}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains{?filter}
+                    templated: true
+                _embedded:
+                  items:
+                  - uuid: 123e4567-e89b-12d3-a456-426614174000
+                    domain_name: example.com
+                    health:
+                      code: '404'
+                      details: Acquia could not verify the presence of the required DKIM/SPF/TXT DNS record.
+                      summary: Missing DNS record
+                    dns_records:
+                    - type: TXT
+                      name: _amazonses.example.com
+                      value: AB/CD4Hef1+c0D7+wYS2xQ+EBr3HZiXRWDJHrjEWOhs=
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required TXT DNS record
+                        summary: Missing DNS record
+                    - type: TXT
+                      name: _acquiaplatform.example.com
+                      value: aGh54oW35sd5LMGhas1fWrnRrticnsdndf,43=
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required TXT DNS record
+                        summary: Missing DNS record
+                    - type: MX
+                      name: mail.example.com
+                      value: 10 feedback-smtp.us-east-1.amazonses.com
+                      health:
+                        code: '202'
+                        details: Acquia is in the process of verifying SPF DNS records.
+                        summary: Verification pending
+                    - type: TXT
+                      name: mail.example.com
+                      value: v=spf1 include:amazonses.com ~all
+                      health:
+                        code: '202'
+                        details: Acquia is in the process of verifying SPF DNS records.
+                        summary: Verification pending
+                    - type: CNAME
+                      name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example.com
+                      value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required DKIM DNS record
+                        summary: Missing DNS record
+                    - type: CNAME
+                      name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example.com
+                      value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required DKIM DNS record
+                        summary: Missing DNS record
+                    - type: CNAME
+                      name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example.com
+                      value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required DKIM DNS record
+                        summary: Missing DNS record
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains/123e4567-e89b-12d3-a456-426614174000
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains
+                  - uuid: 123e4567-e89b-12d3-a456-426614174000
+                    domain_name: example2.com
+                    health:
+                      code: '404'
+                      details: Acquia could not verify the presence of the required DKIM/SPF/TXT DNS record.
+                      summary: Missing DNS record
+                    dns_records:
+                    - type: TXT
+                      name: _amazonses.example2.com
+                      value: AB/CD4Hef1+c0D7+wYS2xQ+EBr3HZiXRWDJHrjEWOhs=
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required TXT DNS record
+                        summary: Missing DNS record
+                    - type: TXT
+                      name: _acquiaplatform.example2.com
+                      value: aGh54oW35sd5LMGhas1fWrnRrticnsdndf,43=
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required TXT DNS record
+                        summary: Missing DNS record
+                    - type: MX
+                      name: mail.example2.com
+                      value: 10 feedback-smtp.us-east-1.amazonses.com
+                      health:
+                        code: '202'
+                        details: Acquia is in the process of verifying SPF DNS records.
+                        summary: Verification pending
+                    - type: TXT
+                      name: mail.example2.com
+                      value: v=spf1 include:amazonses.com ~all
+                      health:
+                        code: '202'
+                        details: Acquia is in the process of verifying SPF DNS records.
+                        summary: Verification pending
+                    - type: CNAME
+                      name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example2.com
+                      value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required DKIM DNS record
+                        summary: Missing DNS record
+                    - type: CNAME
+                      name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example2.com
+                      value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required DKIM DNS record
+                        summary: Missing DNS record
+                    - type: CNAME
+                      name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example2.com
+                      value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                      health:
+                        code: '404'
+                        details: Acquia could not verify the presence of the required DKIM DNS record
+                        summary: Missing DNS record
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains/123e4567-e89b-12d3-a456-426614174000
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to manage domain registrations for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+    post:
+      tags:
+      - Subscriptions
+      summary: Registers a Domain with this subscription.
+      description: Registers a Domain with this subscription.
+      operationId: postSubscriptionDomainRegistration
+      x-cli-name: subscriptions:post-domain-registration
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      requestBody:
+        required: true
+        content:
+          application/hal+json:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+                  format: hostname
+                  description: The domain name to add.
+                  minLength: 3
+                  maxLength: 253
+            example:
+              domain: example.com
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+                  description: The domain name to add.
+                  minLength: 3
+                  maxLength: 253
+            example:
+              domain: example.com
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: The domain has been registered.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains/123e4567-e89b-12d3-a456-426614174000
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/123e4567-e89b-12d3-a456-426614174000
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to manage domain registrations for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+                No domain or permission:
+                  value:
+                    error: not_found
+                    message: The domain registration you are trying to access does not exist, or you do not have permission to access it.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: conflict
+                    message: Platform Email is not available for this subscription.
+                Domain limit:
+                  value:
+                    error: conflict
+                    message: The maximum number of domains for Platform Email have been registered.
+  /subscriptions/{subscriptionUuid}/domains/{domainRegistrationUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Returns a speicific Domain registered with this subscription.
+      description: Returns a speicific Domain registered with this subscription.
+      operationId: getSubscriptionDomainRegistration
+      x-cli-name: subscriptions:get-domain-registration
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_domain-registration-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration'
+              example:
+                uuid: 123e4567-e89b-12d3-a456-426614174000
+                domain_name: example.com
+                health:
+                  code: '404'
+                  details: Acquia could not verify the presence of the required DKIM/SPF/TXT DNS record.
+                  summary: Missing DNS record
+                dns_records:
+                - type: TXT
+                  name: _amazonses.example.com
+                  value: AB/CD4Hef1+c0D7+wYS2xQ+EBr3HZiXRWDJHrjEWOhs=
+                  health:
+                    code: '404'
+                    details: Acquia could not verify the presence of the required TXT DNS record
+                    summary: Missing DNS record
+                - type: TXT
+                  name: _acquiaplatform.example.com
+                  value: aGh54oW35sd5LMGhas1fWrnRrticnsdndf,43=
+                  health:
+                    code: '404'
+                    details: Acquia could not verify the presence of the required TXT DNS record
+                    summary: Missing DNS record
+                - type: MX
+                  name: mail.example.com
+                  value: 10 feedback-smtp.us-east-1.amazonses.com
+                  health:
+                    code: '202'
+                    details: Acquia is in the process of verifying SPF DNS records.
+                    summary: Verification pending
+                - type: TXT
+                  name: mail.example.com
+                  value: v=spf1 include:amazonses.com ~all
+                  health:
+                    code: '202'
+                    details: Acquia is in the process of verifying SPF DNS records.
+                    summary: Verification pending
+                - type: CNAME
+                  name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example.com
+                  value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                  health:
+                    code: '404'
+                    details: Acquia could not verify the presence of the required DKIM DNS record
+                    summary: Missing DNS record
+                - type: CNAME
+                  name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example.com
+                  value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                  health:
+                    code: '404'
+                    details: Acquia could not verify the presence of the required DKIM DNS record
+                    summary: Missing DNS record
+                - type: CNAME
+                  name: abcdefgh1ijkl2mnopq34rstuvwxyz._domainkey.example.com
+                  value: abcdefgh1ijkl2mnopq34rstuvwxyz.dkim.amazonses.com
+                  health:
+                    code: '404'
+                    details: Acquia could not verify the presence of the required DKIM DNS record
+                    summary: Missing DNS record
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains/123e4567-e89b-12d3-a456-426614174000
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+                No domain or permission:
+                  value:
+                    error: not_found
+                    message: The domain registration you are trying to access does not exist, or you do not have permission to access it.
+    delete:
+      tags:
+      - Subscriptions
+      summary: Unregisters a Domain registered with this subscription.
+      description: Unregisters a Domain registered with this subscription.
+      operationId: deleteSubscriptionDomainRegistration
+      x-cli-name: subscriptions:delete-domain-registration
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_domain-registration-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: The domain has been unregistered from the subscription.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains/123e4567-e89b-12d3-a456-426614174000
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/123e4567-e89b-12d3-a456-426614174000
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to remove domains from this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+                No domain or permission:
+                  value:
+                    error: not_found
+                    message: The domain you are trying to access does not exist, or you do not have permission to access it.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: conflict
+                    message: Platform Email is not available for this subscription.
+                Domain not registered:
+                  value:
+                    error: conflict
+                    message: example.com is not registered with this subscription.
+  /subscriptions/{subscriptionUuid}/domains/{domainRegistrationUuid}/actions/verify:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      tags:
+      - Subscriptions
+      summary: Triggers re-verification and update to the domain verification status.
+      description: Triggers re-verification and update to the domain verification status.
+      operationId: postSubscriptionVerifyDomainRegistration
+      x-cli-name: subscriptions:post-verify-domain-registration
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_domain-registration-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: The domain status is being verified.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains/123e4567-e89b-12d3-a456-426614174000/actions/verify
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/123e4567-e89b-12d3-a456-426614174000/domains/123e4567-e89b-12d3-a456-426614174000
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/123e4567-e89b-12d3-a456-426614174000
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No domain or permission:
+                  value:
+                    error: not_found
+                    message: The domain registration you are trying to access does not exist, or you do not have permission to access it.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription with UUID 123e4567-e89b-12d3-a456-426614174000 does not exist.
+                No domain or permission:
+                  value:
+                    error: not_found
+                    message: The domain registration you are trying to access does not exist, or you do not have permission to access it.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No entitlement:
+                  value:
+                    error: conflict
+                    message: Platform Email is not available for this subscription.
+                Verification already pending:
+                  value:
+                    error: conflict
+                    message: This domain cannot be reverified at this time.
+  /subscriptions/{subscriptionUuid}/entitlements:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Provides a list of entitlements that are a part of the subscription.
+      description: Provides a list of entitlements that are a part of the subscription.
+      operationId: getSubscriptionEntitlements
+      x-cli-name: subscriptions:entitlements-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlements'
+              example:
+                _embedded:
+                  items:
+                  - name: cde
+                    offering_ids:
+                    - b2a188df-00b7-47bf-a664-66835cde53b0
+                    expires_at: '2023-05-16T11:15:05+00:00'
+                    flags:
+                      trial: true
+                    properties:
+                      databases_total: 3
+                      total: 10
+                      used: 1
+                  - name: pipelines
+                    offering_ids:
+                    - b2a188df-00b7-47bf-a664-66835cde53b0
+                    expires_at: '2023-05-16T11:15:05+00:00'
+                    flags:
+                      trial: true
+                    properties: []
+                  - name: newrelic
+                    offering_ids:
+                    - b2a188df-00b7-47bf-a664-66835cde53b0
+                    expires_at: '2023-05-16T11:15:05+00:00'
+                    flags:
+                      trial: true
+                    properties:
+                      id: 03816870a4724c900292bc9f0955a315
+                      level: pro
+                  - name: log-forwarding
+                    offering_ids:
+                    - b2a188df-00b7-47bf-a664-66835cde53b0
+                    expires_at: '2023-05-16T11:15:05+00:00'
+                    flags:
+                      trial: true
+                    properties: []
+                  - name: shield
+                    offering_ids:
+                    - b2a188df-00b7-47bf-a664-66835cde53b0
+                    expires_at: '2023-05-16T11:15:05+00:00'
+                    flags:
+                      trial: true
+                    properties: []
+                  - name: consumption-based-pricing
+                    offering_ids:
+                    - b2a188df-00b7-47bf-a664-66835cde53b0
+                    expires_at: '2023-05-16T11:15:05+00:00'
+                    flags:
+                      trial: true
+                    properties:
+                      visits: 10000000
+                      views: 500000000
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a/entitlements
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/8533debb-ae4e-427b-aa34-731719b4201a
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/ides:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Returns a list of Cloud IDEs associated with this subscription.
+      description: Returns a list of Cloud IDEs associated with this subscription.
+      operationId: getSubscriptionIdes
+      x-cli-name: subscriptions:ide-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ides'
+              example:
+                total: 2
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/5d278c52-4876-4c70-a666-d671f77a602d/ides
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/5d278c52-4876-4c70-a666-d671f77a602d
+                _embedded:
+                  items:
+                  - uuid: 9a83c081-ef78-4dbd-8852-11cc3eb248f7
+                    label: IDE Label 1
+                    status: active
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/ides/9a83c081-ef78-4dbd-8852-11cc3eb248f7
+                      web:
+                        href: https://9a83c081-ef78-4dbd-8852-11cc3eb248f7.web.ahdev.cloud
+                      ide:
+                        href: https://9a83c081-ef78-4dbd-8852-11cc3eb248f7.ides.acquia.com
+                      application:
+                        href: https://cloud.acquia.com/api/applications/461fe350-7988-42b3-a73e-cffcdbb94199
+                    _embedded:
+                      owner:
+                        uuid: 10be1d3e-f2b4-4d34-855d-321df3938ffd
+                        first_name: First
+                        last_name: Last
+                        last_login_at: '2019-01-31T10:53:11-05:00'
+                        created_at: '2016-08-14T17:38:59-04:00'
+                        email: user.name@example.com
+                        picture_url: https://accounts.acquia.com/path/to/image.png
+                        username: user.name
+                  - uuid: feea197a-9503-4441-9f49-b4d420b0ecf8
+                    label: IDE Label 2
+                    status: active
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/ides/feea197a-9503-4441-9f49-b4d420b0ecf8
+                      web:
+                        href: https://feea197a-9503-4441-9f49-b4d420b0ecf8.web.ahdev.cloud
+                      ide:
+                        href: https://feea197a-9503-4441-9f49-b4d420b0ecf8.ides.acquia.com
+                      application:
+                        href: https://cloud.acquia.com/api/applications/461fe350-7988-42b3-a73e-cffcdbb94199
+                    _embedded:
+                      owner:
+                        uuid: 10be1d3e-f2b4-4d34-855d-321df3938ffd
+                        first_name: First
+                        last_name: Last
+                        last_login_at: '2019-01-31T10:53:11-05:00'
+                        created_at: '2016-08-14T17:38:59-04:00'
+                        email: user.name@example.com
+                        picture_url: https://accounts.acquia.com/path/to/image.png
+                        username: user.name
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/metrics/usage:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves traversal links for a subscription's usage data.
+      description: Retrieves traversal links for a subscription's usage data.
+      operationId: getSubscriptionsUsageLinks
+      x-cli-name: subscriptions:usage-links
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_usage'
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics
+                  data:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data
+                  data-by-application:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data-by-application
+                  views:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views
+                  views-by-application:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views-by-application
+                  visits:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/visits
+                  visits-by-application:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/visits-by-application
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view usage metrics for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Subscription not found:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/metrics/usage/data:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves aggregate usage data for a subscription.
+      description: 'Filterable fields:
+
+        * `metric` - One of: {`views`, `visits`}
+
+        * `application`
+
+        * `from`
+
+        * `to`
+
+        '
+      operationId: getSubscriptionsUsageData
+      x-cli-name: subscriptions:usage-data
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter-usage-metrics'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_resolution'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metrics'
+              example:
+                total: 2
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data{?filter}
+                    templated: true
+                _embedded:
+                  items:
+                  - metric: views
+                    datapoints:
+                    - - '2019-03-13T00:00:00+00:00'
+                      - '9'
+                    - - '2019-03-14T00:00:00+00:00'
+                      - '1'
+                    last_data_at: '2019-03-14T00:00:00+00:00'
+                    metadata:
+                      subscription:
+                        uuids:
+                        - 9567a611-4cdd-4586-8b3f-f3980a87e471
+                      application:
+                        uuids:
+                        - 1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+                  - metric: visits
+                    datapoints:
+                    - - '2019-03-13T00:00:00+00:00'
+                      - '3'
+                    - - '2019-03-14T00:00:00+00:00'
+                      - '1'
+                    last_data_at: '2019-03-14T00:00:00+00:00'
+                    metadata:
+                      subscription:
+                        uuids:
+                        - 9567a611-4cdd-4586-8b3f-f3980a87e471
+                      application:
+                        uuids:
+                        - 1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/visits
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view usage metrics for this subscription.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Application not found:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/metrics/usage/data-by-application:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves usage data for a subscription, broken down by application.
+      description: 'Filterable fields:
+
+        * `metric` - One of: {`views`, `visits`}
+
+        * `application`
+
+        '
+      operationId: getSubscriptionsUsageDataByApplication
+      x-cli-name: subscriptions:usage-data-by-application
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter-usage-metrics'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_resolution'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metrics'
+              example:
+                total: 2
+                pagination:
+                  total: 2
+                  limit: 2
+                  offset: 0
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data-by-application
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+                  limit:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data-by-application{?limit}
+                    templated: true
+                  offset:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data-by-application{?offset}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/data-by-application{?filter}
+                    templated: true
+                _embedded:
+                  items:
+                  - metric: views
+                    datapoints:
+                    - - '2019-03-13T00:00:00+00:00'
+                      - '9'
+                    - - '2019-03-14T00:00:00+00:00'
+                      - '1'
+                    last_data_at: '2019-03-14T00:00:00+00:00'
+                    metadata:
+                      subscription:
+                        uuids:
+                        - 9567a611-4cdd-4586-8b3f-f3980a87e471
+                      application:
+                        uuids:
+                        - 1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                      environment:
+                        ids:
+                        - 123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/views
+                      parent:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
+                  - metric: visits
+                    datapoints:
+                    - - '2019-03-13T00:00:00+00:00'
+                      - '3'
+                    - - '2019-03-14T00:00:00+00:00'
+                      - '1'
+                    last_data_at: '2019-03-14T00:00:00+00:00'
+                    metadata:
+                      subscription:
+                        uuids:
+                        - 9567a611-4cdd-4586-8b3f-f3980a87e471
+                      application:
+                        uuids:
+                        - 1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                      environment:
+                        ids:
+                        - 123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits
+                      parent:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view usage metrics for this application.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Application not found:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/metrics/usage/{usageMetric}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves aggregate usage metric data for a subscription.
+      description: 'Filterable fields:
+
+        * `application`
+
+        '
+      operationId: getSubscriptionsUsageMetricData
+      x-cli-name: subscriptions:usage-metric-data
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_usage-metric'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter-usage-metrics'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metric'
+              example:
+                metric: views
+                datapoints:
+                - - '2019-03-13T00:00:00+00:00'
+                  - '9'
+                - - '2019-03-14T00:00:00+00:00'
+                  - '1'
+                last_data_at: '2019-03-14T00:00:00+00:00'
+                metadata:
+                  subscription:
+                    uuids:
+                    - 9567a611-4cdd-4586-8b3f-f3980a87e471
+                  application:
+                    uuids:
+                    - 1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view usage metrics for this application.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Application not found:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/metrics/usage/views-by-application:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves views data for a subscription, broken down by application.
+      description: 'Filterable fields:
+
+        * `application`
+
+        '
+      operationId: getSubscriptionsUsageViewsDataByApplication
+      x-cli-name: subscriptions:usage-views-data-by-application
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter-usage-metrics'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_resolution'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metrics'
+              example:
+                total: 2
+                pagination:
+                  total: 2
+                  limit: 2
+                  offset: 0
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views-by-application
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+                  limit:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views-by-application{?limit}
+                    templated: true
+                  offset:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views-by-application{?offset}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/views-by-application{?filter}
+                    templated: true
+                _embedded:
+                  items:
+                  - metric: views
+                    datapoints:
+                    - - '2019-03-13T00:00:00+00:00'
+                      - '9'
+                    - - '2019-03-14T00:00:00+00:00'
+                      - '1'
+                    last_data_at: '2019-03-14T00:00:00+00:00'
+                    metadata:
+                      subscription:
+                        uuids:
+                        - 9567a611-4cdd-4586-8b3f-f3980a87e471
+                      application:
+                        uuids:
+                        - 1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                      environment:
+                        ids:
+                        - 123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/views
+                      parent:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view usage metrics for this application.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Application not found:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/metrics/usage/visits-by-application:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieves visits data for a subscription, broken down by application.
+      description: 'Filterable fields:
+
+        * `application`
+
+        '
+      operationId: getSubscriptionsUsageVisitsDataByApplication
+      x-cli-name: subscriptions:usage-visits-data-by-application
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter-usage-metrics'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_resolution'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metrics'
+              example:
+                total: 2
+                pagination:
+                  total: 2
+                  limit: 2
+                  offset: 0
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/visits-by-application
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage
+                  limit:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/visits-by-application{?limit}
+                    templated: true
+                  offset:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/visits-by-application{?offset}
+                    templated: true
+                  filter:
+                    href: https://cloud.acquia.com/api/subscriptions/9567a611-4cdd-4586-8b3f-f3980a87e471/metrics/usage/visits-by-application{?filter}
+                    templated: true
+                _embedded:
+                  items:
+                  - metric: visits
+                    datapoints:
+                    - - '2019-03-13T00:00:00+00:00'
+                      - '3'
+                    - - '2019-03-14T00:00:00+00:00'
+                      - '1'
+                    last_data_at: '2019-03-14T00:00:00+00:00'
+                    metadata:
+                      subscription:
+                        uuids:
+                        - 9567a611-4cdd-4586-8b3f-f3980a87e471
+                      application:
+                        uuids:
+                        - 1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                      environment:
+                        ids:
+                        - 123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                        - 125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits
+                      parent:
+                        href: https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Insufficient permissions:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view usage metrics for this application.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Application not found:
+                  value:
+                    error: not_found
+                    message: The application you are trying to access does not exist, or you do not have permission to access it.
+  /subscriptions/{subscriptionUuid}/shield-acl:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Provides a list of Shield ACL rules.
+      description: Provides a list of Shield ACL rules.
+      operationId: getShieldAcl
+      x-cli-name: subscriptions:shield-acl-list
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_shield-acl-collection'
+              example:
+                total: 3
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/abcd1234-58cc-4372-a567-0e02b2c3d470/shield-acl
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/abcd1234-58cc-4372-a567-0e02b2c3d470
+                _embedded:
+                  items:
+                  - uuid: d5afa695-92a0-401b-b973-1f09992d6ba2
+                    subscription:
+                      uuid: 720d4df4-7469-47f2-9e42-a6a5152761bf
+                      name: Example Subscription
+                    description: My rule 1
+                    service: ssh
+                    addresses:
+                    - 127.0.0.82/32
+                    - 127.0.0.83/32
+                    action: allow
+                    status: active
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl/d5afa695-92a0-401b-b973-1f09992d6ba2
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl
+                  - uuid: d5afa695-92a0-401b-b973-1f09992d6ba3
+                    subscription:
+                      uuid: 720d4df4-7469-47f2-9e42-a6a5152761bf
+                      name: Example Subscription
+                    description: My rule 2
+                    service: ssh
+                    addresses:
+                    - 192.168.2.2/24
+                    action: allow
+                    status: active
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl/d5afa695-92a0-401b-b973-1f09992d6ba3
+                      parent:
+                        href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl
+        '403':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: not_found
+                    message: You do not have permission to view the Shield ACL rules for subscription d17b25bb-28dd-4a24-8f89-bfe8b1e151e9.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+    post:
+      tags:
+      - Subscriptions
+      summary: Creates a Shield ACL rule.
+      description: Creates a Shield ACL rule.
+      operationId: postShieldAcl
+      x-cli-name: subscriptions:shield-acl-create
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: The description of the new Shield ACL rule.
+                  minLength: 1
+                  maxLength: 255
+                addresses:
+                  type: array
+                  description: A list of IP addresses and/or CIDRs for this Shield ACL rule.
+                  items:
+                    type: string
+                    description: An IP address and/or CIDRs for this Shield ACL rule.
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: Shield ACL rule for subscription has been created.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/94afc849-3b5a-49cd-bcae-464333994019/shield-acl/bf8b6858-1e36-4b8e-bb05-35bdd986f5d2
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/94afc849-3b5a-49cd-bcae-464333994019/shield-acl
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/fbd0581d-7606-43d0-9d2e-4d9fa6570a0d
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+              examples:
+                Acquia Shield not available:
+                  value:
+                    error: validation_failed
+                    message:
+                      general: Shield rules can only be added to subscriptions that have Acquia Shield.
+                Maximum Shield ACL rules:
+                  value:
+                    error: validation_failed
+                    message:
+                      general: You have already used the maximum number of Shield rules for this subscription.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: You do not have permission to create a new Shield ACL rule.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+              examples:
+                Shield ACL updates in progress:
+                  value:
+                    error: conflict
+                    message:
+                      general: Shield ACL rules cannot be created while ACL rule updates are in progress.
+  /subscriptions/{subscriptionUuid}/shield-acl/{shieldAclUuid}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    get:
+      tags:
+      - Subscriptions
+      summary: Returns the specified Shield ACL rule.
+      description: Returns the specified Shield access control list (ACL) rule for a subscription.
+      operationId: getShieldAclRuleByUuid
+      x-cli-name: subscriptions:shield-acl-find
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_shield-acl-uuid'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_shield-acl'
+              example:
+                uuid: d5afa695-92a0-401b-b973-1f09992d6ba2
+                subscription:
+                  uuid: 720d4df4-7469-47f2-9e42-a6a5152761bf
+                  name: Example Subscription
+                description: My rule 1
+                service: ssh
+                addresses:
+                - 127.0.0.82/32
+                - 127.0.0.83/32
+                action: allow
+                status: active
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl/d5afa695-92a0-401b-b973-1f09992d6ba2
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to view the Shield ACL rules for subscription 720d4df4-7469-47f2-9e42-a6a5152761bf
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No Shield Acl:
+                  value:
+                    error: not_found
+                    message: The Shield ACL rule you are trying to access does not exist, or you do not have permission to access it.
+                No subscription:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+    put:
+      tags:
+      - Subscriptions
+      summary: Updates a Shield ACL rule.
+      description: Updates a Shield ACL rule.
+      operationId: putShieldAcl
+      x-cli-name: subscriptions:shield-acl-update
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_shield-acl-uuid'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: The description of the new Shield ACL rule.
+                  minLength: 1
+                  maxLength: 255
+                addresses:
+                  type: array
+                  description: A list of IP addresses and/or CIDRs for this Shield ACL rule.
+                  items:
+                    type: string
+                    description: An IP address and/or CIDRs for this Shield ACL rule.
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: Updated ACL rule for subscription.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/94afc849-3b5a-49cd-bcae-464333994019/shield-acl/b23588f8-dbfa-4fb8-92a1-60e0dd08eee9
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/94afc849-3b5a-49cd-bcae-464333994019/shield-acl
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/87ae4d57-24d6-4b4b-8552-d9658b4e2dea
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to edit a Shield ACL rule.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Validation failed:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Validation failed:
+                  value:
+                    error: conflict
+                    message: The Shield ACL rule is not active.
+                Same values:
+                  value:
+                    error: conflict
+                    message: The Shield ACL rule already contains the same values.
+    delete:
+      tags:
+      - Subscriptions
+      summary: Deletes a Shield ACL rule.
+      description: Deletes a Shield ACL rule.
+      operationId: deleteShieldAcl
+      x-cli-name: subscriptions:shield-acl-delete
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_shield-acl-uuid'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: 'Deleted ACL rule (UUID: 93136254-7d65-465c-82e9-5e92d74ae6b4) for subscription (UUID: 720d4df4-7469-47f2-9e42-a6a5152761bf).'
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl/93136254-7d65-465c-82e9-5e92d74ae6b4
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/720d4df4-7469-47f2-9e42-a6a5152761bf/shield-acl
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/98c1c68d-d33d-4340-8cd2-f32bdbf035f3
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+              examples:
+                Acquia Shield not available:
+                  value:
+                    error: validation_failed
+                    message:
+                      general: Shield rules can only be deleted from subscriptions that have Acquia Shield.
+                Shield ACL rule not associated:
+                  value:
+                    error: validation_failed
+                    message:
+                      general: The Shield ACL Rule with UUID 638c13e7-0455-45de-ab63-def9d348d50f does not belong to the subscription with UUID e3959c8a-f53d-49a1-adb7-acdc8e717940.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: unauthorized
+                    message: You do not have permission to delete a Shield ACL rule.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+                No subscription:
+                  value:
+                    error: not_found
+                    message: The subscription with UUID 720d4df4-7469-47f2-9e42-a6a5152761bf does not exist.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+              examples:
+                Shield ACL updates in progress:
+                  value:
+                    error: conflict
+                    message:
+                      general: Shield ACL rules cannot be deleted while ACL rule updates are in progress.
+  /subscriptions/{subscriptionUuid}/shield-acl/actions/reset:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      tags:
+      - Subscriptions
+      summary: Resets Shield ACL rules to default settings.
+      description: 'Resets the Shield ACL rules for a subscription to the default settings. This action is irreversible and will remove all custom rules.
+
+
+        This operation can only be performed on subscriptions that have Acquia Shield enabled. If there are ongoing updates to the Shield ACL rules, this operation will fail with a conflict error.
+
+        '
+      operationId: postResetShieldAcl
+      x-cli-name: subscriptions:shield-acl-reset
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_subscription-uuid'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: Shield ACL rules reset for subscription with UUID 94afc849-3b5a-49cd-bcae-464333994019.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/subscriptions/94afc849-3b5a-49cd-bcae-464333994019/shield-acl
+                  parent:
+                    href: https://cloud.acquia.com/api/subscriptions/94afc849-3b5a-49cd-bcae-464333994019
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/a894467e-8ea2-4b0d-9b03-27909098ee3a
+        '400':
+          description: Bad Request
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+              examples:
+                Acquia Shield not available:
+                  value:
+                    error: validation_failed
+                    message:
+                      general: Shield rules can only be reset on subscriptions that have Acquia Shield.
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No permission:
+                  value:
+                    error: forbidden
+                    message: You do not have permission to reset Shield ACL rules.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                No subscription or permission:
+                  value:
+                    error: not_found
+                    message: The subscription you are trying to access does not exist, or you do not have permission to access it.
+                No subscription:
+                  value:
+                    error: not_found
+                    message: A subscription with UUID 720d4df4-7469-47f2-9e42-a6a5152761bf cannot be found.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
+              examples:
+                Shield ACL updates in progress:
+                  value:
+                    error: conflict
+                    message:
+                      general: Shield ACL rules cannot be reset while ACL rule updates are in progress.
+components:
+  schemas:
+    Acquia_Cloud_API_Documentation_subscription-flags:
+      type: object
+      description: An array of various flags that indicate functionality associated with subscription.
+      properties:
+        active:
+          type: boolean
+          description: If the subscription is active.
+        expired:
+          type: boolean
+          description: If the subscription is expired.
+        zuora:
+          type: boolean
+          description: If the subscription is online paid.
+    Acquia_Cloud_API_Documentation_subscription-usage-metrics:
+      type: object
+      description: A collection of usage metrics for a subscription.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of subscription metric items matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metric'
+    Acquia_Cloud_API_Documentation_pagination:
+      type: object
+      description: A collection of pagination properties.
+      properties:
+        total:
+          type: integer
+          description: The total number of objects in the collection.
+        limit:
+          type: integer
+          description: The limit on the number of objects in the collection.
+        offset:
+          type: integer
+          description: The offset on the retrieved objects in the collection.
+    Acquia_Cloud_API_Documentation_user-profile:
+      type: object
+      description: A user profile.
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - last_login_at
+      - created_at
+      - email
+      - picture_url
+      - username
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        last_login_at:
+          deprecated: true
+          type: string
+          format: date-time
+          description: The date/time of the last login for the user.
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          description: The date the user was created.
+        email:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type: string
+          format: uri
+          description: The URL for the user's picture.
+          nullable: true
+        username:
+          type: string
+          description: The user's internal user name.
+    Acquia_Cloud_API_Documentation_subscription-applications:
+      type: object
+      description: A collection of applications associated with a subscription.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of applications.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
+    Acquia_Cloud_API_Documentation_subscription-stub:
+      type: object
+      description: The subscription this application belongs to.
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the subscription.
+        name:
+          type: string
+          description: The name of the subscription.
+    Acquia_Cloud_API_Documentation_usage:
+      type: object
+      description: A collection of traversal links for an entity.
+      required:
+      - _links
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_application-no-embedded:
+      type: object
+      required:
+      - id
+      - uuid
+      - name
+      - hosting
+      - subscription
+      - organization
+      - flags
+      - type
+      - status
+      - _links
+      properties:
+        id:
+          type: integer
+          description: The unique internal ID of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the application.
+        name:
+          type: string
+          description: The name of the application.
+        hosting:
+          type: object
+          description: Hosting details for this application.
+          properties:
+            type:
+              type: string
+              enum:
+              - ace
+              - acp
+              - acsf
+              - free
+              - network
+              - search
+              - unknown
+              description: The hosting type.
+            id:
+              type: string
+              description: The hosting ID.
+        subscription:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-flags'
+        type:
+          type: string
+          enum:
+          - drupal
+          - node
+          - ssg
+          description: The type of application supported.
+        status:
+          type: string
+          enum:
+          - normal
+          - provisioning
+          description: The current application status.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_domain-registration-dns-records:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of DNS records
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration-dns-record'
+    Acquia_Cloud_API_Documentation_validation-error:
+      type: object
+      required:
+      - error
+      - message
+      description: A validation error.
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_code-studio-applications:
+      type: object
+      description: A collection of applications with associated Code Studio projects for a subscription.
+      required:
+      - total
+      - pagination
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        pagination:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Code Studio enabled applications.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-application'
+    Acquia_Cloud_API_Documentation_environment-metadata:
+      type: object
+      description: Environment metadata.
+      properties:
+        ids:
+          type: array
+          description: An array of environment identifiers.
+          items:
+            type: string
+    Acquia_Cloud_API_Documentation_code-studio-options:
+      type: object
+      description: Code Studio options.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        roles:
+          type: object
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_entitlements:
+      type: object
+      description: Entitlements collection.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of entitlements.
+          properties:
+            items:
+              type: array
+              items:
+                anyOf:
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-pipelines'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-cde'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-consumption-based-pricing'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-log-forwarding'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-shield'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-default-newrelic'
+    Acquia_Cloud_API_Documentation_domain-registration-dns-record:
+      type: object
+      description: A DNS record.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: The type of DNS record.
+          enum:
+          - TXT
+          - MX
+          - CNAME
+        name:
+          type: string
+          description: The name of the DNS record
+        value:
+          type: string
+          description: The DNS record value.
+        health:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
+    Acquia_Cloud_API_Documentation_code-studio-users:
+      type: object
+      description: A collection of users for a subscription with assigned seats for Code Studio.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        pagination:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Code Studio enabled users.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-user'
+    Acquia_Cloud_API_Documentation_subscription:
+      type: object
+      description: 'A subscription is the product that allows for applications to be hosted with Acquia.
+
+        In addition, a subscription grants access to various additional services.
+
+        '
+      required:
+      - id
+      - uuid
+      - name
+      - start_at
+      - expire_at
+      - product
+      - applications_total
+      - applications_used
+      - organization
+      - flags
+      - _links
+      - _embedded
+      properties:
+        id:
+          type: integer
+          description: The subscription ID.
+        uuid:
+          type: string
+          description: The subscription UUID.
+          format: uuid
+        name:
+          type: string
+          description: The subscription name.
+        start_at:
+          type: string
+          description: The time when the service defined by the subscription becomes available.
+        expire_at:
+          type: string
+          description: The time when the service expires.
+        product:
+          type: object
+          description: Defines the type of service this subscription is entitled to.
+          properties:
+            id:
+              type: integer
+              description: The product ID.
+            name:
+              type: string
+              description: The product name.
+            type:
+              type: string
+              description: The product type.
+        applications_total:
+          type: integer
+          description: The number of applications this subscription is entitled to.
+        applications_used:
+          type: integer
+          description: The number of applications used.
+        organization:
+          type: object
+          deprecated: true
+          required:
+          - uuid
+          - name
+          properties:
+            uuid:
+              type: string
+              format: uuid
+              description: The organization's UUID.
+            name:
+              type: string
+              description: The human-readable organization name.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-flags'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of resources related to the subscription.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+    Acquia_Cloud_API_Documentation_ides:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Cloud IDEs matching the request parameters.
+          required:
+          - items
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ide'
+    Acquia_Cloud_API_Documentation_shield-acl:
+      type: object
+      description: Shield ACL rule.
+      required:
+      - uuid
+      - subscription
+      - description
+      - service
+      - addresses
+      - action
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          description: The unique identifier of the rule.
+          format: uuid
+        subscription:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub'
+        description:
+          type: string
+          description: The rule description.
+        service:
+          type: string
+          description: The service associated with the rule.
+          enum:
+          - ssh
+        addresses:
+          type: array
+          description: The cidrs of the rule.
+          items:
+            type: string
+            format: cidr | ipv4
+            description: The address in cidr or ipv4 format.
+        action:
+          type: string
+          description: The action of the rule.
+          enum:
+          - allow
+          - deny
+        status:
+          type: string
+          description: The status of the rule.
+          enum:
+          - active
+          - inactive
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_health:
+      type: object
+      description: The current health for this resource.
+      properties:
+        code:
+          type: string
+          description: The status code for the current health.
+        details:
+          type: string
+          description: Full details about the current health code.
+        summary:
+          type: string
+          description: A brief summary that explains why the health code is present.
+    Acquia_Cloud_API_Documentation_domain-registrations:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        pagination:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of domain registrations.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration'
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_entitlement-consumption-based-pricing:
+      type: object
+      description: Consumption based pricing entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      - properties
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+        properties:
+          type: object
+          description: Entitlement data.
+          properties:
+            visits:
+              type: integer
+              description: The maximum number of allowed unique visits.
+            views:
+              type: integer
+              description: The maximum number of allowed views.
+    Acquia_Cloud_API_Documentation_organization-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The organization's UUID.
+        name:
+          type: string
+          description: The human-readable organization name.
+    Acquia_Cloud_API_Documentation_ide:
+      type: object
+      required:
+      - uuid
+      - label
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the Cloud IDE.
+        label:
+          type: string
+          description: The human-friendly label of the Cloud IDE.
+        status:
+          type: string
+          description: The current provisioning status of the Cloud IDE.
+          enum:
+          - active
+          - provisioning
+          - deleting
+          - updating
+          - provision-failed
+          - update-failed
+          - delete-failed
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          properties:
+            owner:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
+    Acquia_Cloud_API_Documentation_entitlement-cde:
+      type: object
+      description: Continuous delivery environment entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      - properties
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+        properties:
+          type: object
+          description: Entitlement data.
+          properties:
+            databases_total:
+              type: integer
+              description: The number of on-demand environment databases granted.
+            total:
+              type: integer
+              description: The number of on-demand environments granted.
+            used:
+              type: integer
+              description: The number of on-demand environments used.
+    Acquia_Cloud_API_Documentation_entitlement-pipelines:
+      type: object
+      description: Pipelines entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+    Acquia_Cloud_API_Documentation_entitlement-shield:
+      type: object
+      description: Shield entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+    Acquia_Cloud_API_Documentation_code-studio-subscription-metadata:
+      type: object
+      description: The Code Studio status for a subscription.
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          description: A status indicating whether Code Studio has been enabled for the subscription.
+          enum:
+          - active
+          - installing
+          - install-failed
+          - deleted
+          - deleting
+          - delete-failed
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_application-flags:
+      type: object
+      description: An array of various flags that indicate functionality associated with applications.
+      properties:
+        remote_admin:
+          type: boolean
+          description: Whether this application has remote administration enabled.
+    Acquia_Cloud_API_Documentation_entitlement-default-newrelic:
+      type: object
+      description: Represents the default New Relic account. The default New Relic account is created when a subscription is provisioned.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      - properties
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+        properties:
+          type: object
+          description: Entitlement data.
+          properties:
+            id:
+              type: string
+              description: The New Relic account identifier.
+            level:
+              type: string
+              description: The New Relic account level.
+              enum:
+              - pro
+    Acquia_Cloud_API_Documentation_subscription-metadata:
+      type: object
+      description: Subscription metadata.
+      properties:
+        uuids:
+          type: array
+          description: An array of subscription unique identifiers.
+          items:
+            type: string
+            format: uuid
+    Acquia_Cloud_API_Documentation_code-studio-application:
+      type: object
+      description: The model for a Code Studio application.
+      required:
+      - uuid
+      - name
+      - _links
+      - _embedded
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the application.
+        name:
+          type: string
+          description: The application name.
+        _links:
+          type: object
+          description: Links to Code Studio project and API.
+          properties:
+            self:
+              type: object
+              description: A link to this page.
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  description: The URI for this page.
+            project:
+              type: object
+              description: A link to code studio project.
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  description: The URI for the code studio project.
+            parent:
+              type: object
+              description: A link to the parent page.
+              required:
+              - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  description: The URI for the parent page.
+        _embedded:
+          type: object
+          description: An associated code studio project.
+          properties:
+            project:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-project-no-embedded'
+    Acquia_Cloud_API_Documentation_code-studio-user:
+      type: object
+      description: The model for a Code Studio user.
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - role
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The Acquia Cloud user UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        role:
+          type: string
+          format: uuid
+          description: The GitLab role for the user.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_subscription-usage-metric:
+      type: object
+      description: Provides details about views and visits for a subscription.
+      required:
+      - metric
+      - datapoints
+      - metadata
+      - last_data_at
+      properties:
+        metric:
+          type: string
+          description: The type of metric requested.
+          enum:
+          - views
+          - visits
+        datapoints:
+          type: array
+          description: The data points for the pricing metrics request.
+          items:
+            type: array
+            description: Each element includes the value for the requested metric and the sampling time.
+            items:
+              type: string
+              description: The first element is the metric value and the second is the sampling time.
+        metadata:
+          type: object
+          description: The metadata for the data points being returned.
+          properties:
+            environment:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-metadata'
+            application:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-metadata'
+            subscription:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-metadata'
+        last_data_at:
+          type: string
+          description: The last time data was polled for the requested metric.
+          format: date-time
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_shield-acl-collection:
+      type: object
+      description: Collection of Shield ACL rules.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Shield ACL rules.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_shield-acl'
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_code-studio-project-no-embedded:
+      type: object
+      description: The model for a Code Studio project.
+      required:
+      - application_id
+      - status
+      - _links
+      properties:
+        application_id:
+          type: string
+          format: uuid
+          description: The associated application id.
+        status:
+          type: string
+          description: The status of the GitLab project
+          enum:
+          - active
+          - inactive
+          - installing
+          - install-failed
+          - deleted
+          - deleting
+          - delete-failed
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_entitlement-log-forwarding:
+      type: object
+      description: Log forwarding entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+    Acquia_Cloud_API_Documentation_application-metadata:
+      type: object
+      description: Application metadata.
+      properties:
+        uuids:
+          type: array
+          description: Collection of application UUIDs.
+          items:
+            type: string
+            format: uuid
+            description: The application UUID.
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
+    Acquia_Cloud_API_Documentation_domain-registration:
+      type: object
+      required:
+      - uuid
+      - domain_name
+      - health
+      - dns_records
+      - _links
+      description: The Domain Registration.
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the domain registration.
+        domain_name:
+          type: string
+          format: hostname
+          description: The domain name.
+        health:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
+        dns_records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration-dns-records'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_subscriptions:
+      type: object
+      description: Collection of subscriptions.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of subscriptions.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription'
+  parameters:
+    Acquia_Cloud_API_Documentation_filter:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
+
+
+        * Equals: `= (%3D)`
+
+        * Does not equal: `!= (!%3D)`
+
+        * Greater than: `> (%3E)`
+
+        * Less than: `< (%3C)`
+
+        * Greater than or equal to: `>= (%3E%3D)`
+
+        * Less than or equal to: `<= (%3C%3D)`
+
+        * Contains substring: `=@ (%3D@)`
+
+        * Does not contain substring: `!@ (!@)`
+
+
+        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
+
+
+        Some examples:
+
+        * `filter=field%3Dvalue` (`field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_usage-metric:
+      name: usageMetric
+      in: path
+      description: A usage data metric type.
+      required: true
+      schema:
+        type: string
+      example: views
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_filter-usage-metrics:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        Filter parameters include:
+
+        * `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
+
+        * `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.
+
+
+        Formatting examples:
+
+        * `2023-09-01`
+
+        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
+
+
+        Usage examples:
+
+        * `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)
+
+        * `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_user-uuid:
+      name: userUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
+    Acquia_Cloud_API_Documentation_subscription-uuid:
+      name: subscriptionUuid
+      in: path
+      description: The subscription entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
+    Acquia_Cloud_API_Documentation_from:
+      name: from
+      in: query
+      description: 'Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
+
+
+        Some examples:
+
+        * `2023-09-01`
+
+        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
+
+        '
+      required: false
+      schema:
+        type: string
+      example: '2023-09-01'
+    Acquia_Cloud_API_Documentation_to:
+      name: to
+      in: query
+      description: 'Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.
+
+
+        Some examples:
+
+        * `2023-09-29`
+
+        * `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)
+
+        '
+      required: false
+      schema:
+        type: string
+      example: '2023-09-29'
+    Acquia_Cloud_API_Documentation_resolution:
+      name: resolution
+      in: query
+      description: 'Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.
+
+
+        Limits:
+
+        - 3 hour limit for “minute” resolution
+
+        - 1 week limit for “hour” resolution
+
+        - 6 month limit for “day” resolution
+
+        - 1 year limit for "week" resolution
+
+        - 3 year limit for “month” resolution
+
+        '
+      required: false
+      schema:
+        type: string
+        enum:
+        - minute
+        - hour
+        - day
+        - week
+        - month
+    Acquia_Cloud_API_Documentation_domain-registration-uuid:
+      name: domainRegistrationUuid
+      in: path
+      description: The Domain Registration universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+    Acquia_Cloud_API_Documentation_shield-acl-uuid:
+      name: shieldAclUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: a1234567-1234-123a-abc1-12ab345cd678
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey

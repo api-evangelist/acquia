@@ -1,0 +1,494 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: Customer Experience Engineering (CXE)
+    url: https://www.acquia.com
+  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
+  title: Acquia Cloud API Account Invite API
+  version: 2.0.0
+  x-logo:
+    altText: Acquia Cloud
+    backgroundColor: '#FFFFFF'
+    url: assets/cloud-platform.svg
+servers: []
+tags:
+- name: Invite
+paths:
+  /invites/{token}:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    delete:
+      description: Cancels an invitation.
+      operationId: postInviteCancel
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                Cancelled invite:
+                  value:
+                    message: Cancelled invite.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                No invite or permission:
+                  value:
+                    error: unauthorized
+                    message: You do not have permission to access this resource.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                No invite or permission:
+                  value:
+                    error: not_found
+                    message: The invite you are trying to view does not exist, or you do not have permission to view it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Cancels an Invitation.
+      tags:
+      - Invite
+      x-cli-name: invites:cancel
+    get:
+      description: Returns details about an invitation.
+      operationId: getInviteByToken
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              example:
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/invites/189d2089-c7f1-418c-a437-9676f4edb1b3
+                applications:
+                - name: App 1
+                  uuid: 7659fe2a-7322-4132-a4b7-0795f1246a54
+                - name: App 2
+                  uuid: 23a99f37-0eb8-450e-a5bf-e69c48e25e86
+                author:
+                  created_at: '2015-08-14T17:37:23-04:00'
+                  first_name: Joe
+                  last_login_at: '2019-01-30T08:58:07-05:00'
+                  last_name: Smith
+                  mail: joe.smith@example.com
+                  picture_url: https://accounts.acquia.com/images/users/2429bf71-9145-4266-b532-1f4e3beaed55/style/avatar
+                  username: joe.smith
+                  uuid: 2429bf71-9145-4266-b532-1f4e3beaed55
+                created_at: '2019-01-30T09:12:15-05:00'
+                email: joe.smith@example.com
+                flags:
+                  declined: false
+                organization:
+                  name: My Organization
+                  uuid: d258dc23-90c5-447c-b550-981b469796d9
+                roles:
+                - name: My Role
+                  uuid: d258dc23-90c5-447c-b550-981b469796d9
+                team:
+                  name: My Team
+                  uuid: d258dc23-90c5-447c-b550-981b469796d9
+                token: 189d2089-c7f1-418c-a437-9676f4edb1b3
+                uuid: d258dc23-90c5-447c-b550-981b469796d9
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
+          description: OK
+        '403':
+          content:
+            application/hal+json:
+              examples:
+                No invite or permission:
+                  value:
+                    error: unauthorized
+                    message: You do not have permission to access this resource.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Forbidden
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                No invite or permission:
+                  value:
+                    error: not_found
+                    message: The invite you are trying to view does not exist, or you do not have permission to view it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Returns Details About an Invitation.
+      tags:
+      - Invite
+      x-cli-name: invites:find
+  /invites/{token}/actions/accept:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Accepts an invite.
+      operationId: postInviteAcceptByToken
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                Accepted invite:
+                  value:
+                    message: The invite has been accepted.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Validation failed:
+                  value:
+                    error: not_found
+                    message: The invite you are trying to accept does not exist, or you do not have permission to accept it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Already accepted:
+                  value:
+                    error: conflict
+                    message: This invite has already been accepted.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Accepts an Invite.
+      tags:
+      - Invite
+      x-cli-name: invites:accept
+  /invites/{token}/actions/decline:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Declines an invite.
+      operationId: postInviteDecline
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                Declined invite:
+                  value:
+                    message: The invite has been declined.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Validation failed:
+                  value:
+                    error: not_found
+                    message: The invite you are trying to decline does not exist, or you do not have permission to decline it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+        '409':
+          content:
+            application/hal+json:
+              examples:
+                Already declined:
+                  value:
+                    error: conflict
+                    message: This invite has already been declined.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Conflict
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Declines an Invite.
+      tags:
+      - Invite
+      x-cli-name: invites:decline
+  /invites/{token}/actions/resend:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
+      description: Resend an invite.
+      operationId: postInviteResend
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_token'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              examples:
+                Declined invite:
+                  value:
+                    message: Resent invitation.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
+          description: OK
+        '404':
+          content:
+            application/hal+json:
+              examples:
+                Validation failed:
+                  value:
+                    error: not_found
+                    message: The invite you are trying to resent does not exist, or you do not have permission to resent it.
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+          description: Not Found
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      summary: Acquia Resend an Invite.
+      tags:
+      - Invite
+      x-cli-name: invites:resend
+components:
+  schemas:
+    Acquia_Cloud_API_Documentation_role-stub:
+      properties:
+        name:
+          description: The role name.
+          type: string
+        uuid:
+          description: The role unique identifier.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - name
+      type: object
+    Acquia_Cloud_API_Documentation_organization-stub:
+      properties:
+        name:
+          description: The human-readable organization name.
+          type: string
+        uuid:
+          description: The organization's UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - name
+      type: object
+    Acquia_Cloud_API_Documentation_message:
+      properties:
+        message:
+          description: A simple message returned from the response.
+          type: string
+      required:
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_user-stub:
+      properties:
+        first_name:
+          description: The user's first name.
+          type: string
+        last_name:
+          description: The user's last name.
+          type: string
+        mail:
+          description: The user's email address.
+          format: email
+          type: string
+        picture_url:
+          description: The URI for the user's picture.
+          format: uri
+          nullable: true
+          type: string
+        username:
+          description: The user's internal user name.
+          type: string
+        uuid:
+          description: The user's UUID.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      type: object
+    Acquia_Cloud_API_Documentation_invite:
+      description: Details an invite.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        applications:
+          description: List of applications the invite will grant the invitee.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-stub'
+          type: array
+        author:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
+        created_at:
+          description: The invite creation time.
+          format: date-time
+          type: string
+        email:
+          description: The invitee email address.
+          format: email
+          type: string
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite-flags'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        roles:
+          description: List of roles the invite will grant the invitee.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
+          type: array
+        team:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-stub'
+        token:
+          description: The invite token.
+          type: string
+        uuid:
+          description: The unique identifier of the Invite.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - email
+      - created_at
+      - token
+      - flags
+      - author
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_error:
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          description: The long description for the returned error.
+          type: string
+      required:
+      - error
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_team-stub:
+      properties:
+        name:
+          description: The team name.
+          type: string
+        uuid:
+          description: The team unique identifier.
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - name
+      type: object
+    Acquia_Cloud_API_Documentation_application-stub:
+      properties:
+        name:
+          description: The name of the application.
+          type: string
+        uuid:
+          description: The application UUID.
+          format: uuid
+          type: string
+      required:
+      - name
+      - uuid
+      type: object
+    Acquia_Cloud_API_Documentation_links:
+      description: HAL links about the current resource.
+      properties:
+        self:
+          description: A link to this page.
+          properties:
+            href:
+              description: The URI for this page.
+              format: uri
+              type: string
+          required:
+          - href
+          type: object
+      required:
+      - self
+      type: object
+    Acquia_Cloud_API_Documentation_invite-flags:
+      description: An array of various flags providing more context for the Invite response object.
+      properties:
+        declined:
+          type: boolean
+      type: object
+  parameters:
+    Acquia_Cloud_API_Documentation_token:
+      description: The token identifier.
+      in: path
+      name: token
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    Acquia_Cloud_API_Documentation_OAuth2:
+      description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+
+
+        ### To generate a token:
+
+
+        1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+        2. Click your user avatar in the upper right corner, and then click **Account Settings**.
+
+        3. On the Profile page, click **API Tokens**.
+
+        4. Click **Create Token**.
+
+        5. In the pop-up that appears, give your token a label so that you can easily find it later. Then click **Create Token**.
+
+        6. Copy your API key and API secret. Click **OK**.
+
+        '
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://accounts.acquia.com/api/token
+      type: oauth2
+    Codebase_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    MEO_Environment_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
+    Site_Service_JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
