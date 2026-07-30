@@ -1,84 +1,270 @@
 aid: acquia
 url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/apis.yml
 apis:
-  - aid: acquia:acquia-cloud-api
-    name: Acquia Cloud API
-    tags:
-      - Applications
-      - Cloud
-      - Drupal
-      - Environments
-      - Hosting
-    humanURL: https://cloudapi-docs.acquia.com/
-    properties:
-      - type: Documentation
-        url: https://cloudapi-docs.acquia.com/
-      - type: OpenAPI
-        url: openapi/acquia-cloud-openapi.yml
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/openapi/acquia-cloud-applications.yml
-        title: Acquia Applications API
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/openapi/acquia-cloud-environments.yml
-        title: Acquia Environments API
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/openapi/acquia-cloud-organizations.yml
-        title: Acquia Organizations API
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/openapi/acquia-cloud-account.yml
-        title: Acquia Account API
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/openapi/acquia-cloud-subscriptions.yml
-        title: Acquia Subscriptions API
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/openapi/acquia-cloud-teams-and-permissions.yml
-        title: Acquia Teams And Permissions API
-    description: >-
-      The Acquia Cloud API is a powerful tool that allows developers to programmatically interact with Acquia's cloud
-      hosting platform. This API enables users to automate tasks, manage infrastructure, and deploy applications with
-      ease. With the Acquia Cloud API, developers can create custom scripts and applications to streamline workflows,
-      monitor performance, and scale resources as needed.
-  - aid: acquia:acquia-cloud-site-factory-api
-    name: Acquia Cloud Site Factory API
-    tags:
-      - Cloud
-      - Drupal
-      - Multisite
-      - Site Factory
-    humanURL: https://dev.acquia.com/api-documentation/acquia-cloud-site-factory-api
-    properties:
-      - type: Documentation
-        url: https://docs.acquia.com/site-factory/extend/api
-    description: >-
-      Acquia Cloud Site Factory API is a powerful tool that allows developers to manage, customize, and automate various
-      aspects of their websites and digital experiences. With this API, users can programmatically create and modify
-      websites, manage content, and streamline deployment processes. By providing a flexible and scalable interface,
-      Acquia Cloud Site Factory API enables developers to efficiently build and maintain multiple websites in a
-      centralized platform.
-  - aid: acquia:acquia-content-hub-api
-    name: Acquia Content Hub API
-    tags:
-      - Content
-      - Content Hub
-      - Drupal
-      - Syndication
-    humanURL: https://dev.acquia.com/api-documentation/acquia-content-hub-api
-    properties:
-      - type: Documentation
-        url: https://docs.acquia.com/drupal-starter-kits/add-ons/content-hub/api
-    description: >-
-      The Acquia Content Hub API is a powerful tool that allows users to easily distribute and share content across
-      multiple websites and digital channels. By leveraging this API, content managers can automate the process of
-      importing, exporting, and synchronizing content between various platforms, saving time and effort. Additionally,
-      the API enables users to gain valuable insights into content performance and engagement metrics, helping to
-      optimize content strategy and drive better results.
+- aid: acquia:acquia-cloud-site-factory-api
+  name: Acquia Cloud Site Factory API
+  tags:
+  - Cloud
+  - Drupal
+  - Multisite
+  - Site Factory
+  humanURL: https://dev.acquia.com/api-documentation/acquia-cloud-site-factory-api
+  properties:
+  - type: Documentation
+    url: https://docs.acquia.com/site-factory/extend/api
+  description: >-
+    Acquia Cloud Site Factory API is a powerful tool that allows developers to manage, customize, and
+    automate various aspects of their websites and digital experiences. With this API, users can programmatically
+    create and modify websites, manage content, and streamline deployment processes. By providing a flexible
+    and scalable interface, Acquia Cloud Site Factory API enables developers to efficiently build and
+    maintain multiple websites in a centralized platform.
+- aid: acquia:acquia-content-hub-api
+  name: Acquia Content Hub API
+  tags:
+  - Content
+  - Content Hub
+  - Drupal
+  - Syndication
+  humanURL: https://dev.acquia.com/api-documentation/acquia-content-hub-api
+  properties:
+  - type: Documentation
+    url: https://docs.acquia.com/drupal-starter-kits/add-ons/content-hub/api
+  description: >-
+    The Acquia Content Hub API is a powerful tool that allows users to easily distribute and share content
+    across multiple websites and digital channels. By leveraging this API, content managers can automate
+    the process of importing, exporting, and synchronizing content between various platforms, saving time
+    and effort. Additionally, the API enables users to gain valuable insights into content performance
+    and engagement metrics, helping to optimize content strategy and drive better results.
+- aid: acquia:acquia-account-api
+  name: Acquia Account API
+  description: The Account API from Acquia — 23 operation(s) for account.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-account-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-agreements-api
+  name: Acquia Agreements API
+  description: The Agreements API from Acquia — 5 operation(s) for agreements.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Agreements
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-agreements-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-application-performance-monitoring-services-api
+  name: Acquia Application Performance Monitoring Services API
+  description: >-
+    The Application Performance Monitoring Services API from Acquia — 4 operation(s) for application performance
+    monitoring services.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Application Performance Monitoring Services
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-application-performance-monitoring-services-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-applications-api
+  name: Acquia Applications API
+  description: The Applications API from Acquia — 36 operation(s) for applications.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-applications-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-cloud-ide-api
+  name: Acquia Cloud IDE API
+  description: The Cloud IDE API from Acquia — 1 operation(s) for cloud ide.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Cloud IDE
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-cloud-ide-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-codebases-api
+  name: Acquia Codebases API
+  description: The Codebases API from Acquia — 8 operation(s) for codebases.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Codebases
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-codebases-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-current-system-health-api
+  name: Acquia Current system health API
+  description: The Current system health API from Acquia — 1 operation(s) for current system health.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Current system health
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-current-system-health-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-distributions-api
+  name: Acquia Distributions API
+  description: The Distributions API from Acquia — 2 operation(s) for distributions.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Distributions
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-distributions-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-email-api
+  name: Acquia Email API
+  description: The Email API from Acquia — 1 operation(s) for email.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Email
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-email-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-environments-api
+  name: Acquia Environments API
+  description: The Environments API from Acquia — 73 operation(s) for environments.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Environments
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-environments-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-identity-providers-api
+  name: Acquia Identity Providers API
+  description: The Identity Providers API from Acquia — 4 operation(s) for identity providers.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Identity Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-identity-providers-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-invite-api
+  name: Acquia Invite API
+  description: The Invite API from Acquia — 4 operation(s) for invite.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Invite
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-invite-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-messages-api
+  name: Acquia Messages API
+  description: The Messages API from Acquia — 2 operation(s) for messages.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-messages-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-notifications-api
+  name: Acquia Notifications API
+  description: The Notifications API from Acquia — 1 operation(s) for notifications.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-options-api
+  name: Acquia Options API
+  description: The Options API from Acquia — 6 operation(s) for options.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Options
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-options-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-organizations-api
+  name: Acquia Organizations API
+  description: The Organizations API from Acquia — 18 operation(s) for organizations.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-private-networks-api
+  name: Acquia Private Networks API
+  description: Private Network Service API
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Private Networks
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-private-networks-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-subscriptions-api
+  name: Acquia Subscriptions API
+  description: The Subscriptions API from Acquia — 22 operation(s) for subscriptions.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-teams-and-permissions-api
+  name: Acquia Teams and Permissions API
+  description: The Teams and Permissions API from Acquia — 10 operation(s) for teams and permissions.
+  humanURL: https://cloudapi-docs.acquia.com/
+  tags:
+  - Teams and Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-teams-and-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://cloudapi-docs.acquia.com/
 name: Acquia
 tags:
   - Content
   - Experience
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/acquia.png
 access: 3rd-Party
 common:
   - type: AgenticAccess
