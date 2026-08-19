@@ -1,0 +1,2959 @@
+{
+  "item": [
+    {
+      "id": "b2559dd7-b40d-4165-b326-986f72a1672b",
+      "name": "Codebases",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bdb0970c-4e4b-4ad5-a0ce-4e8c8adf98a6",
+          "name": "Acquia Retrieves a Codebase Details Linked to the Specified Application.",
+          "request": {
+            "name": "Acquia Retrieves a Codebase Details Linked to the Specified Application.",
+            "description": {
+              "content": "Retrieves a codebase details linked to the specified application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "applications",
+                ":applicationId",
+                "codebase"
+              ],
+              "host": [
+                "{{applications-applicationId-codebase-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "635ae62e-8d44-4f8f-af98-8103580586cc",
+              "name": "Codebase details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "codebase"
+                  ],
+                  "host": [
+                    "{{applications-applicationId-codebase-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"subscription\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n        }\n      },\n      \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n    }\n  },\n  \"_links\": {\n    \"applications\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/applications\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8\"\n    },\n    \"subscription\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n    }\n  },\n  \"applications_total\": 2,\n  \"created_at\": \"2024-12-11T04:25:47+00:00\",\n  \"description\": \"\",\n  \"flags\": {\n    \"active\": true\n  },\n  \"hash\": \"pte116m\",\n  \"id\": \"11111111-041c-44c7-a486-7972ed2cafc8\",\n  \"label\": \"Test codebase with attached applications\",\n  \"region\": \"us-east-1\",\n  \"repository_id\": \"f03e15f9-0d97-498d-ba7d-99bd87b1417f\",\n  \"updated_at\": \"2024-12-11T04:25:47+00:00\",\n  \"vcs_url\": \"ssh://us-east-1.dev.vcs.acquia.io/11111111-041c-44c7-a486-7972ed2cafc8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65a7cd8e-4d66-41c1-8611-e3118b0ae943",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "codebase"
+                  ],
+                  "host": [
+                    "{{applications-applicationId-codebase-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf7b6b68-3cce-4367-b13e-7c39367fdd44",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":applicationId",
+                    "codebase"
+                  ],
+                  "host": [
+                    "{{applications-applicationId-codebase-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "469a53e8-e865-4722-b681-d2f23209c43d",
+          "name": "Acquia Retrieves a List of Codebases Accessible by the User.",
+          "request": {
+            "name": "Acquia Retrieves a List of Codebases Accessible by the User.",
+            "description": {
+              "content": "Retrieves a list of codebases accessible by the user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases"
+              ],
+              "host": [
+                "{{codebases-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "caddffff-06dc-4b83-9344-e1ea867afc6d",
+              "name": "List of codebases.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_embedded\": {\n          \"subscription\": {\n            \"_links\": {\n              \"self\": {\n                \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n              }\n            },\n            \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"_links\": {\n          \"applications\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/applications\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases\"\n          },\n          \"subscription\": {\n            \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"applications_total\": 0,\n        \"created_at\": \"2024-12-20T06:39:50+00:00\",\n        \"description\": \"\",\n        \"flags\": {\n          \"active\": true\n        },\n        \"hash\": \"ryh4smn\",\n        \"id\": \"0975a7a1-746f-4096-9c22-383f001797b5\",\n        \"label\": \"test\",\n        \"region\": \"us-east-1\",\n        \"repository_id\": \"a5ef0a9d-44ce-4f06-8d4f-15f24f941a74\",\n        \"updated_at\": \"2024-12-20T06:39:50+00:00\",\n        \"vcs_url\": \"ssh://us-east-1.dev.vcs.acquia.io/0975a7a1-746f-4096-9c22-383f001797b5\"\n      },\n      {\n        \"_embedded\": {\n          \"subscription\": {\n            \"_links\": {\n              \"self\": {\n                \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n              }\n            },\n            \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"_links\": {\n          \"applications\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/applications\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases\"\n          },\n          \"subscription\": {\n            \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"applications_total\": 0,\n        \"created_at\": \"2024-12-20T06:39:50+00:00\",\n        \"description\": \"\",\n        \"flags\": {\n          \"active\": true\n        },\n        \"hash\": \"ryh4smn\",\n        \"id\": \"0975a7a1-746f-4096-9c22-383f001797b5\",\n        \"label\": \"test\",\n        \"region\": \"us-east-1\",\n        \"repository_id\": \"a5ef0a9d-44ce-4f06-8d4f-15f24f941a74\",\n        \"updated_at\": \"2024-12-20T06:39:50+00:00\",\n        \"vcs_url\": \"ssh://us-east-1.dev.vcs.acquia.io/0975a7a1-746f-4096-9c22-383f001797b5\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?filter}\",\n      \"templated\": true\n    },\n    \"limit\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?limit}\",\n      \"templated\": true\n    },\n    \"next\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases?offset=25\"\n    },\n    \"offset\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?offset}\",\n      \"templated\": true\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases\"\n    },\n    \"sort\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?sort}\",\n      \"templated\": true\n    }\n  },\n  \"count\": 1,\n  \"pagination\": {\n    \"limit\": 25,\n    \"offset\": 0,\n    \"total\": 1\n  },\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49d034d3-31d9-4236-b8f7-545338161427",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b23e1a12-7971-45a1-b2c9-c16f9b0e0193",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "706a57da-658e-4949-a0cb-98e4ce93d996",
+          "name": "Acquia Delete a Codebase by its ID.",
+          "request": {
+            "name": "Acquia Delete a Codebase by its ID.",
+            "description": {
+              "content": "Delete a codebase by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId"
+              ],
+              "host": [
+                "{{codebases-codebaseId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) The codebase entity's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe8df76d-9bae-46c5-8076-7a1f1fa9e7c6",
+              "name": "Deletes a codebase.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3\"\n    }\n  },\n  \"message\": \"Codebase deletion started.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03f88755-d0fb-40d9-8f0e-ded9fbff4106",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bdeba6a-7d87-4f9d-a13c-32284b5cc833",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0fa9135-549a-49f5-ad68-d829cf35546a",
+          "name": "Acquia Retrieves a Codebase Details by its ID.",
+          "request": {
+            "name": "Acquia Retrieves a Codebase Details by its ID.",
+            "description": {
+              "content": "Return details about a specific codebase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId"
+              ],
+              "host": [
+                "{{codebases-codebaseId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) The codebase entity's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4592ccf6-026f-4a00-b0ba-1ba231ab6d2b",
+              "name": "Codebase details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"subscription\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n        }\n      },\n      \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n    }\n  },\n  \"_links\": {\n    \"applications\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/applications\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8\"\n    },\n    \"subscription\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n    }\n  },\n  \"applications_total\": 2,\n  \"created_at\": \"2024-12-11T04:25:47+00:00\",\n  \"description\": \"\",\n  \"flags\": {\n    \"active\": true\n  },\n  \"hash\": \"pte116m\",\n  \"id\": \"11111111-041c-44c7-a486-7972ed2cafc8\",\n  \"label\": \"Test codebase with attached applications\",\n  \"region\": \"us-east-1\",\n  \"repository_id\": \"f03e15f9-0d97-498d-ba7d-99bd87b1417f\",\n  \"updated_at\": \"2024-12-11T04:25:47+00:00\",\n  \"vcs_url\": \"ssh://us-east-1.dev.vcs.acquia.io/11111111-041c-44c7-a486-7972ed2cafc8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8d7edb5-2139-4907-b178-56a826fe4d57",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b980a5d-0d63-494b-8b85-8940ec7002ce",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e540d5c4-5055-40cb-9535-a9683e7b17b6",
+          "name": "Acquia Update a Codebase Details by its ID.",
+          "request": {
+            "name": "Acquia Update a Codebase Details by its ID.",
+            "description": {
+              "content": "Update a codebase details by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId"
+              ],
+              "host": [
+                "{{codebases-codebaseId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) The codebase entity's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60a97e7c-927d-4632-acca-926fa84e7611",
+              "name": "Update a codebase details by its ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"codebase-description\",\n  \"label\": \"test-codebase\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3\"\n    }\n  },\n  \"message\": \"Codebase update started.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e50c7c4e-2941-47ce-a414-a3aea4e9c586",
+              "name": "Validation Error in request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"codebase-description\",\n  \"label\": \"test-codebase\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"error\": \"validation_failed\",\n  \"message\": \"Invalid request body.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c1a1f85-417b-421b-a088-f449c8ee1d32",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"codebase-description\",\n  \"label\": \"test-codebase\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05dadfd8-7690-46e4-bfdf-f05eed58bff3",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"codebase-description\",\n  \"label\": \"test-codebase\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eb75a38-67c1-47ae-b28a-55ad15fdf64c",
+          "name": "Acquia Retrieves a List of Bulk Code Switches Details Performed on a Codebase.",
+          "request": {
+            "name": "Acquia Retrieves a List of Bulk Code Switches Details Performed on a Codebase.",
+            "description": {
+              "content": "Retrieves a list of bulk code switches details performed on a codebase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId",
+                "bulk-code-switch"
+              ],
+              "host": [
+                "{{codebases-codebaseId-bulk-code-switch-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "1",
+                  "description": "The collection page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The number of items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2c0a83b6-933f-45b8-b8f9-c99ee65d7f6e",
+              "name": "Retrieves a list of bulk code switches details performed on a codebase.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"parent\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705\"\n          }\n        },\n        \"codebase_id\": \"0975a7a1-746f-4096-9c22-383f001797b5\",\n        \"created_at\": \"2024-12-20T06:39:57+00:00\",\n        \"id\": \"1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705\",\n        \"reference\": \"v.1.1.1\"\n      },\n      {\n        \"_links\": {\n          \"parent\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705\"\n          }\n        },\n        \"codebase_id\": \"0975a7a1-746f-4096-9c22-383f001797b5\",\n        \"created_at\": \"2024-12-20T06:39:57+00:00\",\n        \"id\": \"1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705\",\n        \"reference\": \"v.1.1.1\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?limit=25&offset=0{&filter}\",\n      \"templated\": true\n    },\n    \"limit\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?offset=0{&limit}\",\n      \"templated\": true\n    },\n    \"offset\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?limit=25{&offset}\",\n      \"templated\": true\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch?limit=25&offset=0\"\n    }\n  },\n  \"count\": 1,\n  \"pagination\": {\n    \"limit\": 25,\n    \"offset\": 0,\n    \"total\": 1\n  },\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fd102bc-bf8e-4496-8098-32b8194d3d3a",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55bdd1b6-af70-4ef7-bbb0-97f041aaa4b0",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1d19e56-20bf-43fd-8e44-34ee02a4a7de",
+          "name": "Acquia Starts a New Bulk Code Switch for a Codebase.",
+          "request": {
+            "name": "Acquia Starts a New Bulk Code Switch for a Codebase.",
+            "description": {
+              "content": "Starts a new Bulk Code Switch for a codebase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId",
+                "bulk-code-switch"
+              ],
+              "host": [
+                "{{codebases-codebaseId-bulk-code-switch-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) The codebase entity's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reference\": \"<string>\",\n  \"targets\": [\n    {\n      \"environment_id\": \"<string>\",\n      \"cloud_actions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"cloud_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f721221f-8441-41ac-88c7-d22b041a6e95",
+              "name": "Created a new Bulk Code Switch on a codebase.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference\": \"test-branch-ref\",\n  \"targets\": [\n    {\n      \"environment_id\": \"2345-a0c9dff7-56b6-4c0d-bad0-0e6593f66cd4\",\n      \"cloud_actions\": [\n        \"some-cloud-action\",\n        \"some-cloud-action\"\n      ]\n    }\n  ],\n  \"cloud_actions\": [\n    \"some-cloud-action\",\n    \"some-cloud-action\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"get\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/867c8d79-9751-4169-8799-18c8d211aec4\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch\"\n    },\n    \"status\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/867c8d79-9751-4169-8799-18c8d211aec4/status\"\n    }\n  },\n  \"message\": \"Bulk code switch started.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5b16ed5-1b80-4219-a284-5b204357363d",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference\": \"test-branch-ref\",\n  \"targets\": [\n    {\n      \"environment_id\": \"2345-a0c9dff7-56b6-4c0d-bad0-0e6593f66cd4\",\n      \"cloud_actions\": [\n        \"some-cloud-action\",\n        \"some-cloud-action\"\n      ]\n    }\n  ],\n  \"cloud_actions\": [\n    \"some-cloud-action\",\n    \"some-cloud-action\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"error\": \"validation_failed\",\n  \"message\": \"Provide at least one valid target for bulk code switch.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2446534-6d0f-450e-8ddd-0240b602fe81",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference\": \"test-branch-ref\",\n  \"targets\": [\n    {\n      \"environment_id\": \"2345-a0c9dff7-56b6-4c0d-bad0-0e6593f66cd4\",\n      \"cloud_actions\": [\n        \"some-cloud-action\",\n        \"some-cloud-action\"\n      ]\n    }\n  ],\n  \"cloud_actions\": [\n    \"some-cloud-action\",\n    \"some-cloud-action\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d700383d-5404-4bd5-a8d3-63b17350877d",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference\": \"test-branch-ref\",\n  \"targets\": [\n    {\n      \"environment_id\": \"2345-a0c9dff7-56b6-4c0d-bad0-0e6593f66cd4\",\n      \"cloud_actions\": [\n        \"some-cloud-action\",\n        \"some-cloud-action\"\n      ]\n    }\n  ],\n  \"cloud_actions\": [\n    \"some-cloud-action\",\n    \"some-cloud-action\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3319ff6-43ee-4f30-93da-906387549e50",
+          "name": "Acquia Retrieves Bulk Code Switch Details by Id.",
+          "request": {
+            "name": "Acquia Retrieves Bulk Code Switch Details by Id.",
+            "description": {
+              "content": "Retrieves bulk code switch details by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId",
+                "bulk-code-switch",
+                ":bulkCodeSwitchId"
+              ],
+              "host": [
+                "{{codebases-codebaseId-bulk-code-switch-bulkCodeSwitchId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) The codebase entity's unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bulkCodeSwitchId",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "aa879c2c-8695-4be1-87cc-41abd2e39d5a",
+              "name": "Bulk code switch details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch",
+                    ":bulkCodeSwitchId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-bulkCodeSwitchId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bulkCodeSwitchId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705\"\n    },\n    \"status\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/bulk-code-switch/1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705/status\"\n    }\n  },\n  \"codebase_id\": \"0975a7a1-746f-4096-9c22-383f001797b5\",\n  \"created_at\": \"2024-12-20T06:39:57+00:00\",\n  \"id\": \"1e6d0ff7-aec7-4ba8-8f67-d0bcdc945705\",\n  \"reference\": \"v.1.1.1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "057a3660-e1a5-4029-8c1c-19e9a1e7a7b0",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch",
+                    ":bulkCodeSwitchId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-bulkCodeSwitchId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bulkCodeSwitchId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5a7f8a0-3add-449d-8ca9-ad646ca6257c",
+              "name": "Bulk Code Switch resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "bulk-code-switch",
+                    ":bulkCodeSwitchId"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-bulk-code-switch-bulkCodeSwitchId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bulkCodeSwitchId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The Bulk Code Switch details you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2fd6a2c-1409-4927-bca4-9851a2b6481f",
+          "name": "Acquia Retrieves a List of Git References by Codebase.",
+          "request": {
+            "name": "Acquia Retrieves a List of Git References by Codebase.",
+            "description": {
+              "content": "Retrieves a list of git references by codebase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId",
+                "references"
+              ],
+              "host": [
+                "{{codebases-codebaseId-references-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) The codebase entity's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2efce180-90c7-47ad-96c5-361ed009a8aa",
+              "name": "Retrieves a list of git references by codebase.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "references"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-references-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"parent\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references\"\n          }\n        },\n        \"codebase_id\": \"47de85b1-14bb-4074-8c1d-f0a2d63db687\",\n        \"id\": \"1234567\",\n        \"name\": \"main\",\n        \"type\": \"BRANCH\"\n      },\n      {\n        \"_links\": {\n          \"parent\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references\"\n          }\n        },\n        \"codebase_id\": \"47de85b1-14bb-4074-8c1d-f0a2d63db687\",\n        \"id\": \"1234567\",\n        \"name\": \"main\",\n        \"type\": \"BRANCH\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?filter}\",\n      \"templated\": true\n    },\n    \"limit\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?limit}\",\n      \"templated\": true\n    },\n    \"offset\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?offset}\",\n      \"templated\": true\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references\"\n    },\n    \"sort\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references{?sort}\",\n      \"templated\": true\n    }\n  },\n  \"count\": 1,\n  \"pagination\": {\n    \"limit\": 25,\n    \"offset\": 0,\n    \"total\": 1\n  },\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e083dd5-6d50-428b-8205-386f083c5139",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "references"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-references-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcd8c8a6-249b-4784-ab39-484fa26a361d",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "references"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-references-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cad69a3-70c7-41b1-9b13-b8bd67d93504",
+          "name": "Acquia Retrieves a Single Git Reference Data for the Given Codebase.",
+          "request": {
+            "name": "Acquia Retrieves a Single Git Reference Data for the Given Codebase.",
+            "description": {
+              "content": "Retrieves a single git reference data for the given codebase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "codebases",
+                ":codebaseId",
+                "references",
+                ":referenceName"
+              ],
+              "host": [
+                "{{codebases-codebaseId-references-referenceName-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "codebaseId",
+                  "description": "(Required) The codebase entity's unique identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "referenceName",
+                  "description": "(Required) The reference name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "452d3589-80f7-4de5-91b6-ff3dfa15d9d2",
+              "name": "Retrieves a single git reference data for the given codebase.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "references",
+                    ":referenceName"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-references-referenceName-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceName",
+                      "description": "(Required) The reference name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases/47de85b1-14bb-4074-8c1d-f0a2d63db687/references/main\"\n    }\n  },\n  \"codebase_id\": \"47de85b1-14bb-4074-8c1d-f0a2d63db687\",\n  \"id\": \"RefId99\",\n  \"name\": \"main\",\n  \"type\": \"BRANCH\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5ee389f-558f-4620-b449-46d378dd02ec",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "references",
+                    ":referenceName"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-references-referenceName-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceName",
+                      "description": "(Required) The reference name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "338841fc-ed12-4419-b0bb-1779ac39d641",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codebases",
+                    ":codebaseId",
+                    "references",
+                    ":referenceName"
+                  ],
+                  "host": [
+                    "{{codebases-codebaseId-references-referenceName-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "codebaseId",
+                      "description": "(Required) The codebase entity's unique identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceName",
+                      "description": "(Required) The reference name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4167a5c-ecd8-4574-af5d-534de9fa3003",
+          "name": "Acquia Retrieves a List of Codebases by Subscription ID.",
+          "request": {
+            "name": "Acquia Retrieves a List of Codebases by Subscription ID.",
+            "description": {
+              "content": "Retrieves a list of codebases by subscription ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "codebases"
+              ],
+              "host": [
+                "{{subscriptions-subscriptionId-codebases-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ce29c11-7305-4006-97cb-76aa7ada7ce7",
+              "name": "List of codebases.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{subscriptions-subscriptionId-codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_embedded\": {\n          \"subscription\": {\n            \"_links\": {\n              \"self\": {\n                \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n              }\n            },\n            \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"_links\": {\n          \"applications\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/applications\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases\"\n          },\n          \"subscription\": {\n            \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"applications_total\": 0,\n        \"created_at\": \"2024-12-20T06:39:50+00:00\",\n        \"description\": \"\",\n        \"flags\": {\n          \"active\": true\n        },\n        \"hash\": \"ryh4smn\",\n        \"id\": \"0975a7a1-746f-4096-9c22-383f001797b5\",\n        \"label\": \"test\",\n        \"region\": \"us-east-1\",\n        \"repository_id\": \"a5ef0a9d-44ce-4f06-8d4f-15f24f941a74\",\n        \"updated_at\": \"2024-12-20T06:39:50+00:00\",\n        \"vcs_url\": \"ssh://us-east-1.dev.vcs.acquia.io/0975a7a1-746f-4096-9c22-383f001797b5\"\n      },\n      {\n        \"_embedded\": {\n          \"subscription\": {\n            \"_links\": {\n              \"self\": {\n                \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n              }\n            },\n            \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"_links\": {\n          \"applications\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/applications\"\n          },\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/codebases\"\n          },\n          \"subscription\": {\n            \"href\": \"https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479\"\n          }\n        },\n        \"applications_total\": 0,\n        \"created_at\": \"2024-12-20T06:39:50+00:00\",\n        \"description\": \"\",\n        \"flags\": {\n          \"active\": true\n        },\n        \"hash\": \"ryh4smn\",\n        \"id\": \"0975a7a1-746f-4096-9c22-383f001797b5\",\n        \"label\": \"test\",\n        \"region\": \"us-east-1\",\n        \"repository_id\": \"a5ef0a9d-44ce-4f06-8d4f-15f24f941a74\",\n        \"updated_at\": \"2024-12-20T06:39:50+00:00\",\n        \"vcs_url\": \"ssh://us-east-1.dev.vcs.acquia.io/0975a7a1-746f-4096-9c22-383f001797b5\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"filter\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?filter}\",\n      \"templated\": true\n    },\n    \"limit\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?limit}\",\n      \"templated\": true\n    },\n    \"next\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases?offset=25\"\n    },\n    \"offset\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?offset}\",\n      \"templated\": true\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases\"\n    },\n    \"sort\": {\n      \"href\": \"https://cloud.acquia.com/api/codebases{?sort}\",\n      \"templated\": true\n    }\n  },\n  \"count\": 1,\n  \"pagination\": {\n    \"limit\": 25,\n    \"offset\": 0,\n    \"total\": 1\n  },\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "954e6736-80e7-4e88-bd1b-a0c87b397e2f",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{subscriptions-subscriptionId-codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5e38b94-0eb2-4d8a-ad7d-7d3c7c9e55be",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{subscriptions-subscriptionId-codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75b36764-f8ed-4dd5-b813-908d263f876f",
+          "name": "Acquia Gets Supported Regions for a New Codebase.",
+          "request": {
+            "name": "Acquia Gets Supported Regions for a New Codebase.",
+            "description": {
+              "content": "Gets supported regions for a new codebase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "codebases"
+              ],
+              "host": [
+                "{{subscriptions-subscriptionId-codebases-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "OPTIONS",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1ba9ad1e-1f05-4fa8-800c-348f9cace38b",
+              "name": "Gets supported regions for a new codebase.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{subscriptions-subscriptionId-codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/123\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/123/codebases\"\n    }\n  },\n  \"regions\": [\n    \"us-east-1\",\n    \"us-west-2\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcabfa43-7915-45eb-a913-2f01f4d0c237",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{subscriptions-subscriptionId-codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"error\": \"forbidden\",\n  \"message\": \"Access Denied.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad99047d-3183-40dc-b17a-438cf1f0355b",
+              "name": "Codebase not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "codebases"
+                  ],
+                  "host": [
+                    "{{subscriptions-subscriptionId-codebases-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"error\": \"not_found\",\n  \"message\": \"The codebase you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "applications-applicationId-codebase-Url"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "codebases-Url"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "codebases-codebaseId-Url"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "codebases-codebaseId-bulk-code-switch-Url"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "codebases-codebaseId-bulk-code-switch-bulkCodeSwitchId-Url"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "codebases-codebaseId-references-Url"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "codebases-codebaseId-references-referenceName-Url"
+    },
+    {
+      "type": "string",
+      "value": "/",
+      "key": "subscriptions-subscriptionId-codebases-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "41f3f7ac-c016-421d-a689-ba930cd01e97",
+    "name": "Acquia Cloud API Account Codebases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
+      "type": "text/plain"
+    }
+  }
+}

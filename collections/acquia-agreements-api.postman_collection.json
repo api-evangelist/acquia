@@ -1,0 +1,925 @@
+{
+  "item": [
+    {
+      "id": "cd551729-3fcb-4f25-98f4-71c7999bf299",
+      "name": "Agreements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "734e4e82-833b-4f23-b21e-808b6cd191f8",
+          "name": "Acquia Return a List of Agreements.",
+          "request": {
+            "name": "Acquia Return a List of Agreements.",
+            "description": {
+              "content": "Returns a list of agreements you have been invited to accept or decline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agreements"
+              ],
+              "host": [
+                "{{agreements-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b901977e-0ea3-4078-8263-f0a0d420ce44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{agreements-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab\"\n          }\n        },\n        \"actioned_by\": {\n          \"first_name\": \"James\",\n          \"last_name\": \"Kirk\",\n          \"mail\": \"james.kirk@example.com\",\n          \"picture_url\": \"https://accounts.acquia.com/sites/default/avatars/456def?mail=james.kirk@example.com\",\n          \"username\": \"james.kirk\",\n          \"uuid\": \"5aa902c5-f1c1-6c94-edfa-86bc58d0dce3\"\n        },\n        \"body\": \"<p>Agreement body and text.</p>\",\n        \"created_at\": \"2017-01-23T12:00:00Z\",\n        \"document_uuid\": \"f25d0284-f25f-4e59-9c48-7c39ae57b400\",\n        \"reference\": {\n          \"name\": \"Acquia Subscription\",\n          \"type\": \"subscription\",\n          \"uuid\": \"9ab09eba-290d-4ed9-be4d-fa194ab92f39\"\n        },\n        \"status\": \"accepted\",\n        \"title\": \"Agreement Title\",\n        \"updated_at\": \"2017-01-27T12:00:00Z\",\n        \"uuid\": \"efc62c93-8203-4e8b-a8ff-4d18b780d4ab\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/agreements/b63fff64-6c18-4899-acba-00ec6c8930e9\"\n          }\n        },\n        \"actioned_by\": {\n          \"first_name\": \"Jane\",\n          \"last_name\": \"Doe\",\n          \"mail\": \"jane.doe@example.com\",\n          \"picture_url\": \"https://accounts.acquia.com/sites/default/avatars/123abc?mail=jane.doe@example.com\",\n          \"username\": \"jane.doe\",\n          \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\"\n        },\n        \"body\": \"<p>This is the body and text of another agreement.</p>\",\n        \"created_at\": \"2017-02-23T12:00:00Z\",\n        \"document_uuid\": \"20370a6e-9b82-4580-8769-886f5f6c8693\",\n        \"reference\": {\n          \"name\": \"Acquia Subscription\",\n          \"type\": \"subscription\",\n          \"uuid\": \"9ab09eba-290d-4ed9-be4d-fa194ab92f39\"\n        },\n        \"status\": \"declined\",\n        \"title\": \"Another Agreement\",\n        \"updated_at\": \"2017-02-27T12:00:00Z\",\n        \"uuid\": \"b63fff64-6c18-4899-acba-00ec6c8930e9\"\n      },\n      {\n        \"_links\": {\n          \"self\": {\n            \"href\": \"https://cloud.acquia.com/api/agreements/a8777880-8924-494a-abe2-62cc092df269\"\n          }\n        },\n        \"actioned_by\": null,\n        \"body\": \"<p>This is the body and text of one more agreement.</p>\",\n        \"created_at\": \"2017-02-23T12:00:00Z\",\n        \"document_uuid\": \"466c62ef-5ced-400d-b328-d47e745b50a8\",\n        \"reference\": {\n          \"name\": \"Acquia Subscription\",\n          \"type\": \"subscription\",\n          \"uuid\": \"9ab09eba-290d-4ed9-be4d-fa194ab92f39\"\n        },\n        \"status\": \"pending\",\n        \"title\": \"A Third Agreement\",\n        \"updated_at\": null,\n        \"uuid\": \"a8777880-8924-494a-abe2-62cc092df269\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/agreements\"\n    }\n  },\n  \"total\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "594f6ac3-28b9-47cb-8ace-aabfaf681407",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{agreements-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The agreement you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f67be629-41b6-4272-b44c-33a2f94e99f9",
+          "name": "Acquia Return a Specific Agreement by a Provided UUID.",
+          "request": {
+            "name": "Acquia Return a Specific Agreement by a Provided UUID.",
+            "description": {
+              "content": "Return a specific agreement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agreements",
+                ":agreementUuid"
+              ],
+              "host": [
+                "{{agreements-agreementUuid-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agreementUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9bcf1646-59d3-42d9-b79c-0b40c56c9e69",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"actioned_by\": {\n      \"href\": \"https://cloud.acquia.com/api/users/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3\"\n    },\n    \"invitees\": {\n      \"href\": \"https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab/invitees\"\n    },\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/agreements\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab\"\n    },\n    \"subscription\": {\n      \"href\": \"https://cloud.acquia.com/api/subscriptions/9ab09eba-290d-4ed9-be4d-fa194ab92f39\"\n    }\n  },\n  \"actioned_by\": {\n    \"first_name\": \"James\",\n    \"last_name\": \"Kirk\",\n    \"mail\": \"james.kirk@example.com\",\n    \"picture_url\": \"https://accounts.acquia.com/sites/default/avatars/456def?mail=james.kirk@example.com\",\n    \"username\": \"james.kirk\",\n    \"uuid\": \"5aa902c5-f1c1-6c94-edfa-86bc58d0dce3\"\n  },\n  \"body\": \"<p>Agreement body and text.</p>\",\n  \"created_at\": \"2017-01-23T12:00:00Z\",\n  \"document_uuid\": \"f25d0284-f25f-4e59-9c48-7c39ae57b400\",\n  \"reference\": {\n    \"name\": \"Acquia Subscription\",\n    \"type\": \"subscription\",\n    \"uuid\": \"9ab09eba-290d-4ed9-be4d-fa194ab92f39\"\n  },\n  \"status\": \"accepted\",\n  \"title\": \"Agreement Title\",\n  \"updated_at\": \"2017-01-27T12:00:00Z\",\n  \"uuid\": \"efc62c93-8203-4e8b-a8ff-4d18b780d4ab\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8219032e-7838-4aa0-81dc-ffa4c3c7f5b5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The agreement you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b612091b-6354-44f3-bb19-a3c9d5dbca3a",
+          "name": "Acquia Accepts a Legal Agreement by UUID.",
+          "request": {
+            "name": "Acquia Accepts a Legal Agreement by UUID.",
+            "description": {
+              "content": "Accepts a legal agreement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agreements",
+                ":agreementUuid",
+                "actions",
+                "accept"
+              ],
+              "host": [
+                "{{agreements-agreementUuid-actions-accept-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agreementUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6cc94c5a-9846-42f7-9173-c1fae6c1a6e4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "actions",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-actions-accept-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The agreement has been accepted.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "572043e5-d9db-41c1-9d0a-6741bde27b3a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "actions",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-actions-accept-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The agreement you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b36e4d0-3671-4f9c-b319-ceb499b689f3",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "actions",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-actions-accept-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"conflict\",\n  \"message\": \"This agreement has already been acted upon.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3aadb4d-e73e-494a-b3f6-b4d80c34cfa6",
+          "name": "Acquia Declines a Legal Agreement by UUID.",
+          "request": {
+            "name": "Acquia Declines a Legal Agreement by UUID.",
+            "description": {
+              "content": "Declines a legal agreement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agreements",
+                ":agreementUuid",
+                "actions",
+                "decline"
+              ],
+              "host": [
+                "{{agreements-agreementUuid-actions-decline-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agreementUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cf895c81-e40d-436f-9eb6-1097b98fb638",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "actions",
+                    "decline"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-actions-decline-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The agreement has been declined.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc201172-045b-4490-bf2d-c0428d3a6960",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "actions",
+                    "decline"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-actions-decline-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The agreement you are trying to access does not exist, or you do not have permission to access it.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e231a32-37b9-4d51-b482-0c236f198c60",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "actions",
+                    "decline"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-actions-decline-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"conflict\",\n  \"message\": \"This agreement has already been acted upon.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d17902a8-e7b0-4934-997c-c8313a8c3791",
+          "name": "Acquia Returns a List of Users Invited to Action This Agreement.",
+          "request": {
+            "name": "Acquia Returns a List of Users Invited to Action This Agreement.",
+            "description": {
+              "content": "Returns a list of users invited to action this agreement by UUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agreements",
+                ":agreementUuid",
+                "invitees"
+              ],
+              "host": [
+                "{{agreements-agreementUuid-invitees-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agreementUuid",
+                  "description": "(Required) The entity's universally unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://accounts.acquia.com/api/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6684b1a5-1287-41b9-9a8f-d5438c43b251",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "invitees"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-invitees-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"items\": [\n      {\n        \"first_name\": \"User\",\n        \"last_name\": \"One\",\n        \"mail\": \"user1@example.com\",\n        \"picture_url\": \"https://accounts.acquia.com/path/to/image.png\",\n        \"username\": \"user.one\",\n        \"uuid\": \"6188cbcf-b176-4554-b17e-fbd8119ef46d\"\n      },\n      {\n        \"first_name\": \"User\",\n        \"last_name\": \"Two\",\n        \"mail\": \"user2@example.com\",\n        \"picture_url\": \"https://accounts.acquia.com/path/to/image.png\",\n        \"username\": \"user.two\",\n        \"uuid\": \"099a8a59-88d6-48c2-a121-ef29431f4aba\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"parent\": {\n      \"href\": \"https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab\"\n    },\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/agreements/efc62c93-8203-4e8b-a8ff-4d18b780d4ab/invitees\"\n    }\n  },\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaad6e17-e83f-46df-a9c6-2979959bca30",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agreements",
+                    ":agreementUuid",
+                    "invitees"
+                  ],
+                  "host": [
+                    "{{agreements-agreementUuid-invitees-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementUuid",
+                      "description": "(Required) The entity's universally unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The agreement you are trying to access does not exist, or you do not have permission to access it.a\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://cloud.acquia.com/api",
+      "key": "agreements-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://cloud.acquia.com/api",
+      "key": "agreements-agreementUuid-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://cloud.acquia.com/api",
+      "key": "agreements-agreementUuid-actions-accept-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://cloud.acquia.com/api",
+      "key": "agreements-agreementUuid-actions-decline-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://cloud.acquia.com/api",
+      "key": "agreements-agreementUuid-invitees-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a0ddc88-2f56-4033-8820-3fa475ec94a1",
+    "name": "Acquia Cloud API Account Agreements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
+      "type": "text/plain"
+    }
+  }
+}

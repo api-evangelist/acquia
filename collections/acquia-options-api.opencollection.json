@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acquia Cloud API Account Options API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Does not return any data. Allows traversal of options groups endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options"
+          },
+          "docs": "Does not return any data. Allows traversal of options groups endpoints."
+        },
+        {
+          "info": {
+            "name": "Displays the various CD Environment size options.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/cde-sizes"
+          },
+          "docs": "Displays the various CD Environment size options."
+        },
+        {
+          "info": {
+            "name": "Does not return any data. Allows traversal of options groups endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/log-forwarding"
+          },
+          "docs": "Does not return any data. Allows traversal of options groups endpoints."
+        },
+        {
+          "info": {
+            "name": "Displays available log forwarding sources.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/log-forwarding/sources"
+          },
+          "docs": "Displays available log forwarding sources."
+        },
+        {
+          "info": {
+            "name": "Displays available log forwarding consumers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/log-forwarding/consumers"
+          },
+          "docs": "Displays available log forwarding consumers."
+        },
+        {
+          "info": {
+            "name": "Displays the various color options.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/options/colors"
+          },
+          "docs": "Displays the various color options."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
