@@ -6,6 +6,11 @@ apis:
   tags:
   - Cloud
   - Drupal
+  - Multi-Site
+  - Site Factory
+  tags_raw:
+  - Cloud
+  - Drupal
   - Multisite
   - Site Factory
   humanURL: https://dev.acquia.com/api-documentation/acquia-cloud-site-factory-api
@@ -75,6 +80,8 @@ apis:
   description: The Applications API from Acquia — 36 operation(s) for applications.
   humanURL: https://cloudapi-docs.acquia.com/
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -163,6 +170,8 @@ apis:
   description: The Invite API from Acquia — 4 operation(s) for invite.
   humanURL: https://cloudapi-docs.acquia.com/
   tags:
+  - invite
+  tags_raw:
   - Invite
   properties:
   - type: OpenAPI
@@ -174,6 +183,8 @@ apis:
   description: The Messages API from Acquia — 2 operation(s) for messages.
   humanURL: https://cloudapi-docs.acquia.com/
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -185,6 +196,8 @@ apis:
   description: The Notifications API from Acquia — 1 operation(s) for notifications.
   humanURL: https://cloudapi-docs.acquia.com/
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -207,6 +220,8 @@ apis:
   description: The Organizations API from Acquia — 18 operation(s) for organizations.
   humanURL: https://cloudapi-docs.acquia.com/
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -229,6 +244,8 @@ apis:
   description: The Subscriptions API from Acquia — 22 operation(s) for subscriptions.
   humanURL: https://cloudapi-docs.acquia.com/
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
