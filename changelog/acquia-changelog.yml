@@ -1,0 +1,80 @@
+generated: '2026-08-30'
+method: searched
+source: https://docs.acquia.com/acquia-cloud-platform/release-notes (HTTP 200, fetched 2026-08-30)
+provider: Acquia
+providerId: acquia
+description: >-
+  Acquia publishes a dated, typed release-notes feed for Cloud Platform, each entry carrying a change
+  type (Fix / Change / New), an internal ticket id, and the affected platform generation (Cloud
+  Classic or Cloud Next). Entries that touch the API itself are flagged below. The Source CMS
+  developer portal publishes no changelog — dev.acquia.com/changelog returns 404.
+scheme: date-based, per-release, typed with related ticket ids
+current_version: n/a (continuously released; the Cloud Platform API itself is versioned per resource)
+versioning_detail: lifecycle/acquia-lifecycle.yml
+feeds:
+  - name: Cloud Platform releases
+    url: https://docs.acquia.com/acquia-cloud-platform/release-notes
+    status: 200
+  - name: Developer portal changelog
+    url: https://dev.acquia.com/changelog
+    status: 404
+    note: No changelog is published on the Source CMS developer portal.
+window: recent entries captured 2026-08-30; the feed extends further back on the source page
+entries:
+  - date: '2026-08-17'
+    product: Cloud Platform
+    changes:
+      - type: Fix
+        ticket: NW-16652
+        platform: Cloud Next
+        summary: >-
+          Crons with a schedule of less than 5 minutes — cron-worker pods could not connect to
+          Memcache.
+      - type: Fix
+        ticket: NW-16652
+        platform: Cloud Next
+        summary: Added AH_GIT_REF and AH_GIT_SHA environment variables on SSH pods.
+  - date: '2026-08-07'
+    product: Cloud Platform
+    changes:
+      - type: Change
+        ticket: FR-3218
+        api_affecting: true
+        summary: >-
+          Cloud API is updated to validate SSH keys for uniqueness, to prevent duplicate
+          registrations in the system.
+        breaking: false
+        note: >-
+          A behavior change on an existing endpoint: a previously-accepted duplicate SSH key
+          registration now conflicts. Relevant to errors/acquia-problem-types.yml (409 Conflict).
+      - type: Fix
+        ticket: SUB-9806
+        summary: Overage limit progress bar did not display in the UI of storage metrics.
+  - date: '2026-08-05'
+    product: Cloud Platform
+    changes:
+      - type: Change
+        ticket: NW-16524
+        platform: Cloud Next
+        summary: >-
+          File copy tasks updated to treat rsync exit code 24 as successful completion when source
+          files are temporarily missing.
+  - date: '2026-07-27'
+    product: Cloud Platform
+    changes:
+      - type: Change
+        ticket: NW-16444
+        summary: Brotli PHP extension 0.20.0 introduced to enable data compression.
+      - type: Change
+        ticket: NW-16444
+        summary: >-
+          gRPC PHP extension introduced for PHP 8.5 on Ubuntu Jammy and Noble; updated to version
+          1.82.0.
+      - type: Change
+        ticket: NW-16444
+        summary: Protocol Buffers (protobuf) PHP extension updated to version 4.33.6.
+breaking_changes_recent: 0
+notes: >-
+  Across the captured window, one entry (2026-08-07, FR-3218) changes Cloud API behavior and none is
+  breaking. The feed's typing and ticket references make it unusually machine-readable for a hosting
+  changelog, but it is HTML only — Acquia publishes no RSS/Atom or JSON feed for it.

@@ -1,0 +1,91 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  info.description of the Cloud Platform OpenAPI files in openapi/ (the stability/deprecation/
+  versioning contract is stated there verbatim), https://docs.acquia.com/acquia-cloud-platform/release-notes,
+  https://dev.acquia.com/source-cms/reference/content-api.md, https://status.acquia.com/
+provider: Acquia
+providerId: acquia
+description: >-
+  Acquia publishes an unusually explicit lifecycle contract for the Cloud Platform API — a three-tier
+  stability ladder carried in a response header, with a different notice period per tier — and
+  essentially none for the Source CMS Content API, which is unversioned by design.
+versioning:
+  cloud_platform:
+    scheme: header-negotiated resource version
+    mechanism: 'Accept: application/hal+json, version=2'
+    current: '2'
+    default_behavior: If no version is specified, the latest version of the endpoint is used.
+    support_window: >-
+      From version 3 onward Acquia supports the current version of an endpoint and the previous
+      version. Version 1 of the API is served separately at https://cloudapi.acquia.com/.
+    guarantee: >-
+      Endpoints that have reached production will not introduce breaking changes between versions.
+      Non-production endpoints do not version for changes.
+    source: info.description, openapi/acquia-account-api-openapi.yml (and every Cloud API spec)
+  content_api:
+    scheme: none
+    mechanism: >-
+      No version segment in the path. The surface follows JSON:API 1.1 and every response's
+      jsonapi.version member reports 1.1.
+    note: >-
+      The per-site endpoint list is generated per site and served from the site itself
+      (API > OpenAPI documentation), so any static copy goes stale. Acquia says so explicitly.
+    source: https://dev.acquia.com/source-cms/reference/content-api.md
+stability_tiers:
+  header: X-CloudAPI-Stability
+  note: >-
+    Every Cloud Platform resource endpoint returns this header. It is the contract that says how much
+    notice a change gets — a genuinely agent-useful signal, and rare in the catalog.
+  tiers:
+    - name: prototype
+      meaning: Experimental; major changes likely; may not reach production.
+      compatible_and_emergency_changes: no advance notice
+      disruptive_changes: one week notice
+      post_deprecation_availability: at least one month
+    - name: development
+      meaning: Unlikely to change but still being worked on; very likely to reach production.
+      compatible_and_emergency_changes: no advance notice
+      disruptive_changes: one month notice
+      post_deprecation_availability: at least six months
+    - name: production
+      meaning: >-
+        No breaking changes within a version; breaking changes between versions are communicated
+        ahead of time.
+deprecation:
+  policy_published: true
+  header: X-CloudAPI-Deprecated
+  header_contents: the version in which the endpoint was deprecated, and the reason for deprecation
+  removal_rule: Deprecated endpoints may be removed in the next version of the resource.
+  rfc8594_sunset_header: false
+  rfc8594_note: >-
+    Acquia signals deprecation with a proprietary header rather than the RFC 8594 Sunset/Deprecation
+    headers. The policy is real, published and per-tier; the header names are not the standard ones,
+    so a generic RFC 8594-aware client will not see it.
+  deprecated_operations_in_spec: 0
+  deprecated_operations_note: >-
+    No operation in the 20 Cloud Platform OpenAPI files carries deprecated: true. Deprecation is
+    signalled at runtime in the response header, not statically in the contract — which means an
+    agent reading only the spec cannot tell which endpoints are on the way out.
+status_page:
+  url: https://status.acquia.com/
+  status: 200
+  verified: '2026-08-30'
+release_notes:
+  url: https://docs.acquia.com/acquia-cloud-platform/release-notes
+  status: 200
+  cadence: continuous, dated per release, typed (Fix / Change / New) with a related ticket id
+  note: See changelog/acquia-changelog.yml for captured recent entries.
+sla:
+  published_uptime: 99.95%
+  scope: Fully managed Drupal hosting (Cloud Platform)
+  source: https://www.acquia.com/ (product positioning); contractual SLA terms are per subscription.
+  note: >-
+    The 99.95% figure is published marketing copy for the hosting product, not an API availability
+    SLA. Acquia does not publish an availability target for the Cloud Platform API itself.
+experimental_features:
+  - name: Source CMS MCP Server
+    status: experimental
+    default: off
+    enablement: per site, under Configurations > Experimental features
+    source: https://dev.acquia.com/source-cms/reference/mcp-server.md

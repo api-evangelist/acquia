@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     name: Customer Experience Engineering (CXE)
@@ -10,7 +10,10 @@ info:
     altText: Acquia Cloud
     backgroundColor: '#FFFFFF'
     url: assets/cloud-platform.svg
-servers: []
+servers:
+- url: https://cloud.acquia.com/api
+  description: Promoted from the path-level servers[] already present in this document
+    (API Evangelist 2026-08-30); the top-level block was empty.
 tags:
 - name: Subscriptions
   x-displayName: Subscriptions
@@ -2680,6 +2683,36 @@ paths:
                       general: Shield ACL rules cannot be reset while ACL rule updates are in progress.
 components:
   schemas:
+    Acquia_Cloud_API_Documentation_code-studio-users:
+      type: object
+      description: A collection of users for a subscription with assigned seats for Code Studio.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        pagination:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Code Studio enabled users.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-user'
+    Acquia_Cloud_API_Documentation_application-metadata:
+      type: object
+      description: Application metadata.
+      properties:
+        uuids:
+          type: array
+          description: Collection of application UUIDs.
+          items:
+            type: string
+            format: uuid
+            description: The application UUID.
     Acquia_Cloud_API_Documentation_subscription-flags:
       type: object
       description: An array of various flags that indicate functionality associated with subscription.
@@ -2693,27 +2726,72 @@ components:
         zuora:
           type: boolean
           description: If the subscription is online paid.
-    Acquia_Cloud_API_Documentation_subscription-usage-metrics:
+    Acquia_Cloud_API_Documentation_subscription-usage-metric:
       type: object
-      description: A collection of usage metrics for a subscription.
+      description: Provides details about views and visits for a subscription.
       required:
-      - total
-      - _links
-      - _embedded
+      - metric
+      - datapoints
+      - metadata
+      - last_data_at
       properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
+        metric:
+          type: string
+          description: The type of metric requested.
+          enum:
+          - views
+          - visits
+        datapoints:
+          type: array
+          description: The data points for the pricing metrics request.
+          items:
+            type: array
+            description: Each element includes the value for the requested metric and the sampling time.
+            items:
+              type: string
+              description: The first element is the metric value and the second is the sampling time.
+        metadata:
+          type: object
+          description: The metadata for the data points being returned.
+          properties:
+            environment:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-metadata'
+            application:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-metadata'
+            subscription:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-metadata'
+        last_data_at:
+          type: string
+          description: The last time data was polled for the requested metric.
+          format: date-time
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of subscription metric items matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metric'
+    Acquia_Cloud_API_Documentation_domain-registration:
+      type: object
+      required:
+      - uuid
+      - domain_name
+      - health
+      - dns_records
+      - _links
+      description: The Domain Registration.
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the domain registration.
+        domain_name:
+          type: string
+          format: hostname
+          description: The domain name.
+        health:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
+        dns_records:
+          type: array
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration-dns-records'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
     Acquia_Cloud_API_Documentation_pagination:
       type: object
       description: A collection of pagination properties.
@@ -2727,6 +2805,160 @@ components:
         offset:
           type: integer
           description: The offset on the retrieved objects in the collection.
+    Acquia_Cloud_API_Documentation_domain-registration-dns-record:
+      type: object
+      description: A DNS record.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: The type of DNS record.
+          enum:
+          - TXT
+          - MX
+          - CNAME
+        name:
+          type: string
+          description: The name of the DNS record
+        value:
+          type: string
+          description: The DNS record value.
+        health:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
+    Acquia_Cloud_API_Documentation_code-studio-project-no-embedded:
+      type: object
+      description: The model for a Code Studio project.
+      required:
+      - application_id
+      - status
+      - _links
+      properties:
+        application_id:
+          type: string
+          format: uuid
+          description: The associated application id.
+        status:
+          type: string
+          description: The status of the GitLab project
+          enum:
+          - active
+          - inactive
+          - installing
+          - install-failed
+          - deleted
+          - deleting
+          - delete-failed
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_environment-metadata:
+      type: object
+      description: Environment metadata.
+      properties:
+        ids:
+          type: array
+          description: An array of environment identifiers.
+          items:
+            type: string
+    Acquia_Cloud_API_Documentation_shield-acl-collection:
+      type: object
+      description: Collection of Shield ACL rules.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Shield ACL rules.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_shield-acl'
+    Acquia_Cloud_API_Documentation_entitlement-pipelines:
+      type: object
+      description: Pipelines entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+    Acquia_Cloud_API_Documentation_code-studio-options:
+      type: object
+      description: Code Studio options.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        roles:
+          type: object
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_ide:
+      type: object
+      required:
+      - uuid
+      - label
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the Cloud IDE.
+        label:
+          type: string
+          description: The human-friendly label of the Cloud IDE.
+        status:
+          type: string
+          description: The current provisioning status of the Cloud IDE.
+          enum:
+          - active
+          - provisioning
+          - deleting
+          - updating
+          - provision-failed
+          - update-failed
+          - delete-failed
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          properties:
+            owner:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
+    Acquia_Cloud_API_Documentation_application-flags:
+      type: object
+      description: An array of various flags that indicate functionality associated with applications.
+      properties:
+        remote_admin:
+          type: boolean
+          description: Whether this application has remote administration enabled.
     Acquia_Cloud_API_Documentation_user-profile:
       type: object
       description: A user profile.
@@ -2752,10 +2984,11 @@ components:
           description: The user's last name.
         last_login_at:
           deprecated: true
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           description: The date/time of the last login for the user.
-          nullable: true
         created_at:
           type: string
           format: date-time
@@ -2765,150 +2998,54 @@ components:
           format: email
           description: The user's email address.
         picture_url:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
           description: The URL for the user's picture.
-          nullable: true
         username:
           type: string
           description: The user's internal user name.
-    Acquia_Cloud_API_Documentation_subscription-applications:
+    Acquia_Cloud_API_Documentation_entitlement-default-newrelic:
       type: object
-      description: A collection of applications associated with a subscription.
+      description: Represents the default New Relic account. The default New Relic account is created when a subscription is provisioned.
       required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of applications.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
-    Acquia_Cloud_API_Documentation_subscription-stub:
-      type: object
-      description: The subscription this application belongs to.
-      required:
-      - uuid
       - name
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The UUID of the subscription.
-        name:
-          type: string
-          description: The name of the subscription.
-    Acquia_Cloud_API_Documentation_usage:
-      type: object
-      description: A collection of traversal links for an entity.
-      required:
-      - _links
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_application-no-embedded:
-      type: object
-      required:
-      - id
-      - uuid
-      - name
-      - hosting
-      - subscription
-      - organization
+      - offering_ids
+      - expires_at
       - flags
-      - type
-      - status
-      - _links
+      - properties
       properties:
-        id:
-          type: integer
-          description: The unique internal ID of the application.
-        uuid:
-          type: string
-          format: uuid
-          description: The UUID of the application.
         name:
           type: string
-          description: The name of the application.
-        hosting:
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
           type: object
-          description: Hosting details for this application.
+          description: The flags associated with the entitlement.
           properties:
-            type:
-              type: string
-              enum:
-              - ace
-              - acp
-              - acsf
-              - free
-              - network
-              - search
-              - unknown
-              description: The hosting type.
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+        properties:
+          type: object
+          description: Entitlement data.
+          properties:
             id:
               type: string
-              description: The hosting ID.
-        subscription:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub'
-        organization:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-flags'
-        type:
-          type: string
-          enum:
-          - drupal
-          - node
-          - ssg
-          description: The type of application supported.
-        status:
-          type: string
-          enum:
-          - normal
-          - provisioning
-          description: The current application status.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_domain-registration-dns-records:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of DNS records
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration-dns-record'
-    Acquia_Cloud_API_Documentation_validation-error:
-      type: object
-      required:
-      - error
-      - message
-      description: A validation error.
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: object
-          description: The validation error message keyed by its field or group name.
-          additionalProperties:
-            type: string
+              description: The New Relic account identifier.
+            level:
+              type: string
+              description: The New Relic account level.
+              enum:
+              - pro
     Acquia_Cloud_API_Documentation_code-studio-applications:
       type: object
       description: A collection of applications with associated Code Studio projects for a subscription.
@@ -2933,86 +3070,132 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-application'
-    Acquia_Cloud_API_Documentation_environment-metadata:
+    Acquia_Cloud_API_Documentation_links:
       type: object
-      description: Environment metadata.
-      properties:
-        ids:
-          type: array
-          description: An array of environment identifiers.
-          items:
-            type: string
-    Acquia_Cloud_API_Documentation_code-studio-options:
-      type: object
-      description: Code Studio options.
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        roles:
-          type: object
-          additionalProperties:
-            type: string
-    Acquia_Cloud_API_Documentation_entitlements:
-      type: object
-      description: Entitlements collection.
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of entitlements.
-          properties:
-            items:
-              type: array
-              items:
-                anyOf:
-                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-pipelines'
-                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-cde'
-                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-consumption-based-pricing'
-                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-log-forwarding'
-                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-shield'
-                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-default-newrelic'
-    Acquia_Cloud_API_Documentation_domain-registration-dns-record:
-      type: object
-      description: A DNS record.
       required:
-      - type
-      - value
+      - self
+      description: HAL links about the current resource.
       properties:
-        type:
-          type: string
-          description: The type of DNS record.
-          enum:
-          - TXT
-          - MX
-          - CNAME
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
+    Acquia_Cloud_API_Documentation_entitlement-shield:
+      type: object
+      description: Shield entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      properties:
         name:
           type: string
-          description: The name of the DNS record
-        value:
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
           type: string
-          description: The DNS record value.
-        health:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
-    Acquia_Cloud_API_Documentation_code-studio-users:
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+    Acquia_Cloud_API_Documentation_organization-stub:
       type: object
-      description: A collection of users for a subscription with assigned seats for Code Studio.
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The organization's UUID.
+        name:
+          type: string
+          description: The human-readable organization name.
+    Acquia_Cloud_API_Documentation_health:
+      type: object
+      description: The current health for this resource.
+      properties:
+        code:
+          type: string
+          description: The status code for the current health.
+        details:
+          type: string
+          description: Full details about the current health code.
+        summary:
+          type: string
+          description: A brief summary that explains why the health code is present.
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_domain-registration-dns-records:
+      type: object
       properties:
         total:
           type: integer
           description: The number of items returned in the collection.
-        pagination:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of Code Studio enabled users.
+          description: A collection of DNS records
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-user'
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration-dns-record'
+    Acquia_Cloud_API_Documentation_code-studio-subscription-metadata:
+      type: object
+      description: The Code Studio status for a subscription.
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          description: A status indicating whether Code Studio has been enabled for the subscription.
+          enum:
+          - active
+          - installing
+          - install-failed
+          - deleted
+          - deleting
+          - delete-failed
+    Acquia_Cloud_API_Documentation_subscription-stub:
+      type: object
+      description: The subscription this application belongs to.
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the subscription.
+        name:
+          type: string
+          description: The name of the subscription.
     Acquia_Cloud_API_Documentation_subscription:
       type: object
       description: 'A subscription is the product that allows for applications to be hosted with Acquia.
@@ -3095,6 +3278,80 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_entitlement-cde:
+      type: object
+      description: Continuous delivery environment entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      - properties
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+        properties:
+          type: object
+          description: Entitlement data.
+          properties:
+            databases_total:
+              type: integer
+              description: The number of on-demand environment databases granted.
+            total:
+              type: integer
+              description: The number of on-demand environments granted.
+            used:
+              type: integer
+              description: The number of on-demand environments used.
+    Acquia_Cloud_API_Documentation_subscription-usage-metrics:
+      type: object
+      description: A collection of usage metrics for a subscription.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of subscription metric items matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-usage-metric'
     Acquia_Cloud_API_Documentation_ides:
       type: object
       required:
@@ -3117,6 +3374,78 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ide'
+    Acquia_Cloud_API_Documentation_subscriptions:
+      type: object
+      description: Collection of subscriptions.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of subscriptions.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription'
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_entitlement-log-forwarding:
+      type: object
+      description: Log forwarding entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+    Acquia_Cloud_API_Documentation_entitlements:
+      type: object
+      description: Entitlements collection.
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of entitlements.
+          properties:
+            items:
+              type: array
+              items:
+                anyOf:
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-pipelines'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-cde'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-consumption-based-pricing'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-log-forwarding'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-shield'
+                - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_entitlement-default-newrelic'
     Acquia_Cloud_API_Documentation_shield-acl:
       type: object
       description: Shield ACL rule.
@@ -3165,308 +3494,105 @@ components:
           - inactive
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_health:
+    Acquia_Cloud_API_Documentation_application-no-embedded:
       type: object
-      description: The current health for this resource.
+      required:
+      - id
+      - uuid
+      - name
+      - hosting
+      - subscription
+      - organization
+      - flags
+      - type
+      - status
+      - _links
       properties:
-        code:
+        id:
+          type: integer
+          description: The unique internal ID of the application.
+        uuid:
           type: string
-          description: The status code for the current health.
-        details:
+          format: uuid
+          description: The UUID of the application.
+        name:
           type: string
-          description: Full details about the current health code.
-        summary:
+          description: The name of the application.
+        hosting:
+          type: object
+          description: Hosting details for this application.
+          properties:
+            type:
+              type: string
+              enum:
+              - ace
+              - acp
+              - acsf
+              - free
+              - network
+              - search
+              - unknown
+              description: The hosting type.
+            id:
+              type: string
+              description: The hosting ID.
+        subscription:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-flags'
+        type:
           type: string
-          description: A brief summary that explains why the health code is present.
-    Acquia_Cloud_API_Documentation_domain-registrations:
+          enum:
+          - drupal
+          - node
+          - ssg
+          description: The type of application supported.
+        status:
+          type: string
+          enum:
+          - normal
+          - provisioning
+          description: The current application status.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_subscription-applications:
       type: object
+      description: A collection of applications associated with a subscription.
+      required:
+      - total
+      - _links
+      - _embedded
       properties:
         total:
           type: integer
           description: The number of items returned in the collection.
-        pagination:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of domain registrations.
+          description: A collection of applications.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration'
-    Acquia_Cloud_API_Documentation_message-with-links:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
+    Acquia_Cloud_API_Documentation_validation-error:
       type: object
       required:
+      - error
       - message
-      - _links
+      description: A validation error.
       properties:
+        error:
+          type: string
+          description: The error summary.
         message:
-          type: string
-          description: The human-friendly confirmation of the creation of the resource.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_entitlement-consumption-based-pricing:
-      type: object
-      description: Consumption based pricing entitlement.
-      required:
-      - name
-      - offering_ids
-      - expires_at
-      - flags
-      - properties
-      properties:
-        name:
-          type: string
-          description: The name of the entitlement.
-        offering_ids:
-          type: array
-          description: The offering IDs associated with the entitlement.
-          items:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
             type: string
-        expires_at:
-          type: string
-          description: The furthest expiration date.
-        flags:
-          type: object
-          description: The flags associated with the entitlement.
-          properties:
-            trial:
-              type: boolean
-              description: Determines if the entitlement is a trial.
-        properties:
-          type: object
-          description: Entitlement data.
-          properties:
-            visits:
-              type: integer
-              description: The maximum number of allowed unique visits.
-            views:
-              type: integer
-              description: The maximum number of allowed views.
-    Acquia_Cloud_API_Documentation_organization-stub:
-      type: object
-      required:
-      - uuid
-      - name
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The organization's UUID.
-        name:
-          type: string
-          description: The human-readable organization name.
-    Acquia_Cloud_API_Documentation_ide:
-      type: object
-      required:
-      - uuid
-      - label
-      - status
-      - _links
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The unique identifier of the Cloud IDE.
-        label:
-          type: string
-          description: The human-friendly label of the Cloud IDE.
-        status:
-          type: string
-          description: The current provisioning status of the Cloud IDE.
-          enum:
-          - active
-          - provisioning
-          - deleting
-          - updating
-          - provision-failed
-          - update-failed
-          - delete-failed
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          properties:
-            owner:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
-    Acquia_Cloud_API_Documentation_entitlement-cde:
-      type: object
-      description: Continuous delivery environment entitlement.
-      required:
-      - name
-      - offering_ids
-      - expires_at
-      - flags
-      - properties
-      properties:
-        name:
-          type: string
-          description: The name of the entitlement.
-        offering_ids:
-          type: array
-          description: The offering IDs associated with the entitlement.
-          items:
-            type: string
-        expires_at:
-          type: string
-          description: The furthest expiration date.
-        flags:
-          type: object
-          description: The flags associated with the entitlement.
-          properties:
-            trial:
-              type: boolean
-              description: Determines if the entitlement is a trial.
-        properties:
-          type: object
-          description: Entitlement data.
-          properties:
-            databases_total:
-              type: integer
-              description: The number of on-demand environment databases granted.
-            total:
-              type: integer
-              description: The number of on-demand environments granted.
-            used:
-              type: integer
-              description: The number of on-demand environments used.
-    Acquia_Cloud_API_Documentation_entitlement-pipelines:
-      type: object
-      description: Pipelines entitlement.
-      required:
-      - name
-      - offering_ids
-      - expires_at
-      - flags
-      properties:
-        name:
-          type: string
-          description: The name of the entitlement.
-        offering_ids:
-          type: array
-          description: The offering IDs associated with the entitlement.
-          items:
-            type: string
-        expires_at:
-          type: string
-          description: The furthest expiration date.
-        flags:
-          type: object
-          description: The flags associated with the entitlement.
-          properties:
-            trial:
-              type: boolean
-              description: Determines if the entitlement is a trial.
-    Acquia_Cloud_API_Documentation_entitlement-shield:
-      type: object
-      description: Shield entitlement.
-      required:
-      - name
-      - offering_ids
-      - expires_at
-      - flags
-      properties:
-        name:
-          type: string
-          description: The name of the entitlement.
-        offering_ids:
-          type: array
-          description: The offering IDs associated with the entitlement.
-          items:
-            type: string
-        expires_at:
-          type: string
-          description: The furthest expiration date.
-        flags:
-          type: object
-          description: The flags associated with the entitlement.
-          properties:
-            trial:
-              type: boolean
-              description: Determines if the entitlement is a trial.
-    Acquia_Cloud_API_Documentation_code-studio-subscription-metadata:
-      type: object
-      description: The Code Studio status for a subscription.
-      required:
-      - status
-      properties:
-        status:
-          type: string
-          description: A status indicating whether Code Studio has been enabled for the subscription.
-          enum:
-          - active
-          - installing
-          - install-failed
-          - deleted
-          - deleting
-          - delete-failed
-    Acquia_Cloud_API_Documentation_message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_application-flags:
-      type: object
-      description: An array of various flags that indicate functionality associated with applications.
-      properties:
-        remote_admin:
-          type: boolean
-          description: Whether this application has remote administration enabled.
-    Acquia_Cloud_API_Documentation_entitlement-default-newrelic:
-      type: object
-      description: Represents the default New Relic account. The default New Relic account is created when a subscription is provisioned.
-      required:
-      - name
-      - offering_ids
-      - expires_at
-      - flags
-      - properties
-      properties:
-        name:
-          type: string
-          description: The name of the entitlement.
-        offering_ids:
-          type: array
-          description: The offering IDs associated with the entitlement.
-          items:
-            type: string
-        expires_at:
-          type: string
-          description: The furthest expiration date.
-        flags:
-          type: object
-          description: The flags associated with the entitlement.
-          properties:
-            trial:
-              type: boolean
-              description: Determines if the entitlement is a trial.
-        properties:
-          type: object
-          description: Entitlement data.
-          properties:
-            id:
-              type: string
-              description: The New Relic account identifier.
-            level:
-              type: string
-              description: The New Relic account level.
-              enum:
-              - pro
-    Acquia_Cloud_API_Documentation_subscription-metadata:
-      type: object
-      description: Subscription metadata.
-      properties:
-        uuids:
-          type: array
-          description: An array of subscription unique identifiers.
-          items:
-            type: string
-            format: uuid
     Acquia_Cloud_API_Documentation_code-studio-application:
       type: object
       description: The model for a Code Studio application.
@@ -3523,6 +3649,62 @@ components:
           properties:
             project:
               $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_code-studio-project-no-embedded'
+    Acquia_Cloud_API_Documentation_entitlement-consumption-based-pricing:
+      type: object
+      description: Consumption based pricing entitlement.
+      required:
+      - name
+      - offering_ids
+      - expires_at
+      - flags
+      - properties
+      properties:
+        name:
+          type: string
+          description: The name of the entitlement.
+        offering_ids:
+          type: array
+          description: The offering IDs associated with the entitlement.
+          items:
+            type: string
+        expires_at:
+          type: string
+          description: The furthest expiration date.
+        flags:
+          type: object
+          description: The flags associated with the entitlement.
+          properties:
+            trial:
+              type: boolean
+              description: Determines if the entitlement is a trial.
+        properties:
+          type: object
+          description: Entitlement data.
+          properties:
+            visits:
+              type: integer
+              description: The maximum number of allowed unique visits.
+            views:
+              type: integer
+              description: The maximum number of allowed views.
+    Acquia_Cloud_API_Documentation_usage:
+      type: object
+      description: A collection of traversal links for an entity.
+      required:
+      - _links
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_subscription-metadata:
+      type: object
+      description: Subscription metadata.
+      properties:
+        uuids:
+          type: array
+          description: An array of subscription unique identifiers.
+          items:
+            type: string
+            format: uuid
     Acquia_Cloud_API_Documentation_code-studio-user:
       type: object
       description: The model for a Code Studio user.
@@ -3554,202 +3736,135 @@ components:
           description: The GitLab role for the user.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_subscription-usage-metric:
+    Acquia_Cloud_API_Documentation_domain-registrations:
       type: object
-      description: Provides details about views and visits for a subscription.
-      required:
-      - metric
-      - datapoints
-      - metadata
-      - last_data_at
-      properties:
-        metric:
-          type: string
-          description: The type of metric requested.
-          enum:
-          - views
-          - visits
-        datapoints:
-          type: array
-          description: The data points for the pricing metrics request.
-          items:
-            type: array
-            description: Each element includes the value for the requested metric and the sampling time.
-            items:
-              type: string
-              description: The first element is the metric value and the second is the sampling time.
-        metadata:
-          type: object
-          description: The metadata for the data points being returned.
-          properties:
-            environment:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-metadata'
-            application:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-metadata'
-            subscription:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-metadata'
-        last_data_at:
-          type: string
-          description: The last time data was polled for the requested metric.
-          format: date-time
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_shield-acl-collection:
-      type: object
-      description: Collection of Shield ACL rules.
-      required:
-      - total
-      - _links
-      - _embedded
       properties:
         total:
           type: integer
           description: The number of items returned in the collection.
+        pagination:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of Shield ACL rules.
+          description: A collection of domain registrations.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_shield-acl'
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
-    Acquia_Cloud_API_Documentation_code-studio-project-no-embedded:
-      type: object
-      description: The model for a Code Studio project.
-      required:
-      - application_id
-      - status
-      - _links
-      properties:
-        application_id:
-          type: string
-          format: uuid
-          description: The associated application id.
-        status:
-          type: string
-          description: The status of the GitLab project
-          enum:
-          - active
-          - inactive
-          - installing
-          - install-failed
-          - deleted
-          - deleting
-          - delete-failed
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_entitlement-log-forwarding:
-      type: object
-      description: Log forwarding entitlement.
-      required:
-      - name
-      - offering_ids
-      - expires_at
-      - flags
-      properties:
-        name:
-          type: string
-          description: The name of the entitlement.
-        offering_ids:
-          type: array
-          description: The offering IDs associated with the entitlement.
-          items:
-            type: string
-        expires_at:
-          type: string
-          description: The furthest expiration date.
-        flags:
-          type: object
-          description: The flags associated with the entitlement.
-          properties:
-            trial:
-              type: boolean
-              description: Determines if the entitlement is a trial.
-    Acquia_Cloud_API_Documentation_application-metadata:
-      type: object
-      description: Application metadata.
-      properties:
-        uuids:
-          type: array
-          description: Collection of application UUIDs.
-          items:
-            type: string
-            format: uuid
-            description: The application UUID.
-    Acquia_Cloud_API_Documentation_links:
-      type: object
-      required:
-      - self
-      description: HAL links about the current resource.
-      properties:
-        self:
-          type: object
-          description: A link to this page.
-          required:
-          - href
-          properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
-    Acquia_Cloud_API_Documentation_domain-registration:
-      type: object
-      required:
-      - uuid
-      - domain_name
-      - health
-      - dns_records
-      - _links
-      description: The Domain Registration.
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The UUID of the domain registration.
-        domain_name:
-          type: string
-          format: hostname
-          description: The domain name.
-        health:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
-        dns_records:
-          type: array
-          items:
-            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration-dns-records'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_subscriptions:
-      type: object
-      description: Collection of subscriptions.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of subscriptions.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription'
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-registration'
   parameters:
+    Acquia_Cloud_API_Documentation_shield-acl-uuid:
+      name: shieldAclUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: a1234567-1234-123a-abc1-12ab345cd678
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_usage-metric:
+      name: usageMetric
+      in: path
+      description: A usage data metric type.
+      required: true
+      schema:
+        type: string
+      example: views
+    Acquia_Cloud_API_Documentation_resolution:
+      name: resolution
+      in: query
+      description: 'Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.
+
+
+        Limits:
+
+        - 3 hour limit for “minute” resolution
+
+        - 1 week limit for “hour” resolution
+
+        - 6 month limit for “day” resolution
+
+        - 1 year limit for "week" resolution
+
+        - 3 year limit for “month” resolution
+
+        '
+      required: false
+      schema:
+        type: string
+        enum:
+        - minute
+        - hour
+        - day
+        - week
+        - month
+    Acquia_Cloud_API_Documentation_subscription-uuid:
+      name: subscriptionUuid
+      in: path
+      description: The subscription entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_filter-usage-metrics:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        Filter parameters include:
+
+        * `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
+
+        * `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.
+
+
+        Formatting examples:
+
+        * `2023-09-01`
+
+        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
+
+
+        Usage examples:
+
+        * `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)
+
+        * `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
     Acquia_Cloud_API_Documentation_filter:
       name: filter
       in: query
@@ -3794,88 +3909,6 @@ components:
       schema:
         type: string
         minimum: 1
-    Acquia_Cloud_API_Documentation_usage-metric:
-      name: usageMetric
-      in: path
-      description: A usage data metric type.
-      required: true
-      schema:
-        type: string
-      example: views
-    Acquia_Cloud_API_Documentation_offset:
-      name: offset
-      in: query
-      description: An integer to signify the offset to paginate from.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_sort:
-      name: sort
-      in: query
-      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-      example: field1,-field2
-    Acquia_Cloud_API_Documentation_filter-usage-metrics:
-      name: filter
-      in: query
-      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
-
-
-        Filter parameters include:
-
-        * `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
-
-        * `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.
-
-
-        Formatting examples:
-
-        * `2023-09-01`
-
-        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
-
-
-        Usage examples:
-
-        * `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)
-
-        * `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-    Acquia_Cloud_API_Documentation_limit:
-      name: limit
-      in: query
-      description: The maximum number of items to return.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_user-uuid:
-      name: userUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
-    Acquia_Cloud_API_Documentation_subscription-uuid:
-      name: subscriptionUuid
-      in: path
-      description: The subscription entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
     Acquia_Cloud_API_Documentation_from:
       name: from
       in: query
@@ -3910,34 +3943,6 @@ components:
       schema:
         type: string
       example: '2023-09-29'
-    Acquia_Cloud_API_Documentation_resolution:
-      name: resolution
-      in: query
-      description: 'Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.
-
-
-        Limits:
-
-        - 3 hour limit for “minute” resolution
-
-        - 1 week limit for “hour” resolution
-
-        - 6 month limit for “day” resolution
-
-        - 1 year limit for "week" resolution
-
-        - 3 year limit for “month” resolution
-
-        '
-      required: false
-      schema:
-        type: string
-        enum:
-        - minute
-        - hour
-        - day
-        - week
-        - month
     Acquia_Cloud_API_Documentation_domain-registration-uuid:
       name: domainRegistrationUuid
       in: path
@@ -3946,14 +3951,14 @@ components:
       schema:
         type: string
       example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
-    Acquia_Cloud_API_Documentation_shield-acl-uuid:
-      name: shieldAclUuid
+    Acquia_Cloud_API_Documentation_user-uuid:
+      name: userUuid
       in: path
       description: The entity's universally unique identifier.
       required: true
       schema:
         type: string
-      example: a1234567-1234-123a-abc1-12ab345cd678
+      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.

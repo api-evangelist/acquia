@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     name: Customer Experience Engineering (CXE)
@@ -10,7 +10,10 @@ info:
     altText: Acquia Cloud
     backgroundColor: '#FFFFFF'
     url: assets/cloud-platform.svg
-servers: []
+servers:
+- url: https://cloud.acquia.com/api
+  description: Promoted from the path-level servers[] already present in this document
+    (API Evangelist 2026-08-30); the top-level block was empty.
 tags:
 - name: Teams and Permissions
   x-displayName: Teams and Permissions
@@ -1553,143 +1556,56 @@ paths:
                     message: The user is not a member of this team.
 components:
   schemas:
-    Acquia_Cloud_API_Documentation_permission:
+    Acquia_Cloud_API_Documentation_team:
       type: object
-      required:
-      - name
-      - label
-      - description
-      - group_label
-      - flags
-      properties:
-        name:
-          type: string
-          description: The name of the permission.
-        label:
-          type: string
-          description: The human readable label for the permission.
-        description:
-          type: string
-          description: The description of the permission.
-          nullable: true
-        group_label:
-          type: string
-          description: The human readable label for the group.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission-flags'
-    Acquia_Cloud_API_Documentation_permission-flags:
-      type: object
-      description: An array of various flags regarding the status of the permission.
-      properties:
-        deprecated:
-          type: boolean
-          description: Whether the permission is deprecated or not.
-    Acquia_Cloud_API_Documentation_subscription-stub:
-      type: object
-      description: The subscription this application belongs to.
       required:
       - uuid
       - name
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The UUID of the subscription.
-        name:
-          type: string
-          description: The name of the subscription.
-    Acquia_Cloud_API_Documentation_invite-flags:
-      type: object
-      description: An array of various flags providing more context for the Invite response object.
-      properties:
-        declined:
-          type: boolean
-    Acquia_Cloud_API_Documentation_application-no-embedded:
-      type: object
-      required:
-      - id
-      - uuid
-      - name
-      - hosting
-      - subscription
+      - created_at
+      - updated_at
       - organization
-      - flags
-      - type
-      - status
       - _links
       properties:
-        id:
-          type: integer
-          description: The unique internal ID of the application.
         uuid:
           type: string
           format: uuid
-          description: The UUID of the application.
+          description: The UUID of the team.
         name:
           type: string
-          description: The name of the application.
-        hosting:
-          type: object
-          description: Hosting details for this application.
-          properties:
-            type:
-              type: string
-              enum:
-              - ace
-              - acp
-              - acsf
-              - free
-              - network
-              - search
-              - unknown
-              description: The hosting type.
-            id:
-              type: string
-              description: The hosting ID.
-        subscription:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub'
+          description: The name of the team.
+        created_at:
+          type: string
+          format: date-time
+          description: The date the team was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date the team was last updated.
         organization:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-flags'
-        type:
-          type: string
-          enum:
-          - drupal
-          - node
-          - ssg
-          description: The type of application supported.
-        status:
-          type: string
-          enum:
-          - normal
-          - provisioning
-          description: The current application status.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_validation-error:
+    Acquia_Cloud_API_Documentation_team-invites:
       type: object
+      description: A collection of invites.
       required:
-      - error
-      - message
-      description: A validation error.
+      - total
+      - _links
+      - _embedded
       properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
           type: object
-          description: The validation error message keyed by its field or group name.
-          additionalProperties:
-            type: string
-    Acquia_Cloud_API_Documentation_message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
+          description: A collection of invites matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
     Acquia_Cloud_API_Documentation_role:
       type: object
       properties:
@@ -1727,27 +1643,42 @@ components:
             default:
               type: boolean
               description: True if this is a default role, false if it was user created.
-    Acquia_Cloud_API_Documentation_team-applications:
+    Acquia_Cloud_API_Documentation_application-flags:
       type: object
-      description: A collection of applications associated with a team.
-      required:
-      - total
-      - _links
-      - _embedded
+      description: An array of various flags that indicate functionality associated with applications.
       properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
+        remote_admin:
+          type: boolean
+          description: Whether this application has remote administration enabled.
+    Acquia_Cloud_API_Documentation_team-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          description: The team unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The team name.
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
           type: object
-          description: A collection of applications.
+          description: A link to this page.
+          required:
+          - href
           properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
     Acquia_Cloud_API_Documentation_team-user-profile:
       type: object
       description: A user profile for a team member.
@@ -1786,6 +1717,12 @@ components:
           description: A collection of roles this user has access to on a team.
           items:
             $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
+    Acquia_Cloud_API_Documentation_invite-flags:
+      type: object
+      description: An array of various flags providing more context for the Invite response object.
+      properties:
+        declined:
+          type: boolean
     Acquia_Cloud_API_Documentation_organization-stub:
       type: object
       required:
@@ -1799,6 +1736,32 @@ components:
         name:
           type: string
           description: The human-readable organization name.
+    Acquia_Cloud_API_Documentation_subscription-stub:
+      type: object
+      description: The subscription this application belongs to.
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the subscription.
+        name:
+          type: string
+          description: The name of the subscription.
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_post-invite:
       type: object
       required:
@@ -1815,38 +1778,48 @@ components:
           items:
             type: string
             format: uuid
-    Acquia_Cloud_API_Documentation_user-stub:
+    Acquia_Cloud_API_Documentation_team-applications:
       type: object
+      description: A collection of applications associated with a team.
       required:
-      - uuid
-      - first_name
-      - last_name
-      - mail
-      - picture_url
-      - username
+      - total
+      - _links
+      - _embedded
       properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The user's UUID.
-        first_name:
-          type: string
-          description: The user's first name.
-        last_name:
-          type: string
-          description: The user's last name.
-        mail:
-          type: string
-          format: email
-          description: The user's email address.
-        picture_url:
-          type: string
-          format: uri
-          description: The URI for the user's picture.
-          nullable: true
-        username:
-          type: string
-          description: The user's internal user name.
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of applications.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
+    Acquia_Cloud_API_Documentation_teams:
+      type: object
+      description: A collection of teams.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of teams matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team'
     Acquia_Cloud_API_Documentation_permissions:
       type: object
       description: A collection of all permissions that may be granted.
@@ -1911,89 +1884,137 @@ components:
             $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_team-stub:
+    Acquia_Cloud_API_Documentation_permission-flags:
       type: object
-      required:
-      - uuid
-      - name
+      description: An array of various flags regarding the status of the permission.
       properties:
-        uuid:
-          type: string
-          description: The team unique identifier.
-          format: uuid
-        name:
-          type: string
-          description: The team name.
-    Acquia_Cloud_API_Documentation_application-flags:
-      type: object
-      description: An array of various flags that indicate functionality associated with applications.
-      properties:
-        remote_admin:
+        deprecated:
           type: boolean
-          description: Whether this application has remote administration enabled.
-    Acquia_Cloud_API_Documentation_role-stub:
+          description: Whether the permission is deprecated or not.
+    Acquia_Cloud_API_Documentation_message:
       type: object
       required:
-      - uuid
-      - name
+      - message
       properties:
-        uuid:
+        message:
           type: string
-          description: The role unique identifier.
-          format: uuid
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_permission:
+      type: object
+      required:
+      - name
+      - label
+      - description
+      - group_label
+      - flags
+      properties:
         name:
           type: string
-          description: The role name.
-    Acquia_Cloud_API_Documentation_team:
+          description: The name of the permission.
+        label:
+          type: string
+          description: The human readable label for the permission.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the permission.
+        group_label:
+          type: string
+          description: The human readable label for the group.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission-flags'
+    Acquia_Cloud_API_Documentation_validation-error:
       type: object
       required:
+      - error
+      - message
+      description: A validation error.
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_application-no-embedded:
+      type: object
+      required:
+      - id
       - uuid
       - name
-      - created_at
-      - updated_at
+      - hosting
+      - subscription
       - organization
+      - flags
+      - type
+      - status
       - _links
       properties:
+        id:
+          type: integer
+          description: The unique internal ID of the application.
         uuid:
           type: string
           format: uuid
-          description: The UUID of the team.
+          description: The UUID of the application.
         name:
           type: string
-          description: The name of the team.
-        created_at:
-          type: string
-          format: date-time
-          description: The date the team was created.
-        updated_at:
-          type: string
-          format: date-time
-          description: The date the team was last updated.
+          description: The name of the application.
+        hosting:
+          type: object
+          description: Hosting details for this application.
+          properties:
+            type:
+              type: string
+              enum:
+              - ace
+              - acp
+              - acsf
+              - free
+              - network
+              - search
+              - unknown
+              description: The hosting type.
+            id:
+              type: string
+              description: The hosting ID.
+        subscription:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-stub'
         organization:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-flags'
+        type:
+          type: string
+          enum:
+          - drupal
+          - node
+          - ssg
+          description: The type of application supported.
+        status:
+          type: string
+          enum:
+          - normal
+          - provisioning
+          description: The current application status.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_teams:
+    Acquia_Cloud_API_Documentation_application-stub:
       type: object
-      description: A collection of teams.
       required:
-      - total
-      - _links
-      - _embedded
+      - name
+      - uuid
       properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of teams matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team'
+        name:
+          type: string
+          description: The name of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The application UUID.
     Acquia_Cloud_API_Documentation_team-members:
       type: object
       description: A collection of team members.
@@ -2015,69 +2036,104 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team-user-profile'
-    Acquia_Cloud_API_Documentation_error:
+    Acquia_Cloud_API_Documentation_role-stub:
       type: object
       required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
-    Acquia_Cloud_API_Documentation_application-stub:
-      type: object
-      required:
-      - name
       - uuid
+      - name
       properties:
+        uuid:
+          type: string
+          description: The role unique identifier.
+          format: uuid
         name:
           type: string
-          description: The name of the application.
+          description: The role name.
+    Acquia_Cloud_API_Documentation_user-stub:
+      type: object
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      properties:
         uuid:
           type: string
           format: uuid
-          description: The application UUID.
-    Acquia_Cloud_API_Documentation_team-invites:
-      type: object
-      description: A collection of invites.
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of invites matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
-    Acquia_Cloud_API_Documentation_links:
-      type: object
-      required:
-      - self
-      description: HAL links about the current resource.
-      properties:
-        self:
-          type: object
-          description: A link to this page.
-          required:
-          - href
-          properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URI for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
   parameters:
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_range:
+      name: range
+      in: query
+      description: ISO-8601 date/time of invite create date/time.
+      required: false
+      schema:
+        type: string
+        format: date-time
+    Acquia_Cloud_API_Documentation_application-uuid:
+      name: applicationUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_team-uuid:
+      name: teamUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 3eef5d81-62f4-429c-aa94-e17d05ab4740
     Acquia_Cloud_API_Documentation_filter:
       name: filter
       in: query
@@ -2122,57 +2178,6 @@ components:
       schema:
         type: string
         minimum: 1
-    Acquia_Cloud_API_Documentation_offset:
-      name: offset
-      in: query
-      description: An integer to signify the offset to paginate from.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_sort:
-      name: sort
-      in: query
-      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-      example: field1,-field2
-    Acquia_Cloud_API_Documentation_limit:
-      name: limit
-      in: query
-      description: The maximum number of items to return.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_user-uuid:
-      name: userUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
-    Acquia_Cloud_API_Documentation_team-uuid:
-      name: teamUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: 3eef5d81-62f4-429c-aa94-e17d05ab4740
-    Acquia_Cloud_API_Documentation_range:
-      name: range
-      in: query
-      description: ISO-8601 date/time of invite create date/time.
-      required: false
-      schema:
-        type: string
-        format: date-time
     Acquia_Cloud_API_Documentation_role-uuid:
       name: roleUuid
       in: path
@@ -2181,14 +2186,14 @@ components:
       schema:
         type: string
       example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
-    Acquia_Cloud_API_Documentation_application-uuid:
-      name: applicationUuid
+    Acquia_Cloud_API_Documentation_user-uuid:
+      name: userUuid
       in: path
       description: The entity's universally unique identifier.
       required: true
       schema:
         type: string
-      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.

@@ -1,0 +1,57 @@
+# Acquia
+> Acquia is the leading digital experience platform (DXP) built on Drupal, providing open-source solutions for content management, marketing automation, and customer data orchestration.
+
+## Main Content
+[Product Overview](https://www.acquia.com/products): Get to know the full extent of Acquia products including CMS, DAM, and CDP.
+
+[Drupal](https://www.acquia.com/products/drupal-cloud): Resources and tools for building, managing, and optimizing Drupal at scale.
+
+[Integrations](https://www.acquia.com/integrations): Explore the Acquia Exchange for native and partner integrations.
+
+[Free Clickable Demos](https://www.acquia.com/resources/guided-demos): Interactive, hands-on guided tours of the Acquia DXP suite.
+
+[Product Accessibility](https://www.acquia.com/solutions/digital-experience-optimization): Information on building inclusive and accessible digital experiences.
+
+[Product Roadmap](https://www.acquia.com/product/roadmap): The latest updates and upcoming features for the Acquia platform.
+
+[Drupal Hosting](https://www.acquia.com/products/acquia-cloud-platform): Host and manage your digital presence, optimized for Drupal.
+
+[Content Management](https://www.acquia.com/products/drupal-cloud/acquia-cms): Build content workflows that shape outstanding digital experiences.
+
+[Digital Experience Optimization](https://www.acquia.com/solutions/digital-experience-optimization): (New) Optimizing content for enhanced digital customer journeys.
+
+[Product Experience Management](https://www.acquia.com/solutions/product-experience-management): (New) Manage product listings and configure distribution channels.
+
+[AI Experiences](https://www.acquia.com/solutions/ai): (Featured) Deliver engaging experiences to broader audiences at the perfect time.
+
+[Customer Data Management](https://www.acquia.com/solutions/customer-data-management): Corral customer data and inform campaign decisions.
+
+[Brand Management](https://www.acquia.com/solutions/brand-management): Promote brand awareness and control digital assets.
+
+[Commerce](https://www.acquia.com/solutions/commerce): Engage shoppers using first-party data.
+
+## Insights & Support 
+[Acquia Blog](https://www.acquia.com/blog): Expert commentary on Drupal, AI in marketing, and digital transformation. 
+
+[Case Studies](https://www.acquia.com/customer-success): Real-world examples of enterprise digital experiences built on Acquia.
+
+[Support Center](https://support.acquia.com/): Knowledge base and technical assistance for Acquia customers.
+
+## Optional Content
+[Acquia TV](https://www.acquia.com/tv): The premier streaming spot for DXP insights, product explainers, and customer spotlights.
+
+[Acquia Academy](https://academy.acquia.com/): Technical training and certification paths for developers and marketing professionals.
+
+[Developer Portal](https://dev.acquia.com/): Technical documentation, API references, and community forums for Drupal developers.
+
+[Careers](https://www.acquia.com/careers): Information about working at Acquia and current global job openings.
+
+## Contact
+[Contact Us](https://www.acquia.com/contact): General inquiries and office locations worldwide.
+
+[Support](https://support.acquia.com/): Technical support portal for existing customers and documentation access.
+
+[Email](mailto:info@acquia.com): For general information, contact info@acquia.com
+
+## AI discovery 
+Sitemap: https://www.acquia.com/sitemap.xml 

@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     name: Customer Experience Engineering (CXE)
@@ -10,7 +10,10 @@ info:
     altText: Acquia Cloud
     backgroundColor: '#FFFFFF'
     url: assets/cloud-platform.svg
-servers: []
+servers:
+- url: https://cloud.acquia.com/api
+  description: Promoted from the path-level servers[] already present in this document
+    (API Evangelist 2026-08-30); the top-level block was empty.
 tags:
 - name: Options
   x-displayName: Options
@@ -239,6 +242,51 @@ paths:
                   - color: yellow
 components:
   schemas:
+    Acquia_Cloud_API_Documentation_color:
+      type: object
+      description: Response schema for a color.
+      required:
+      - color
+      properties:
+        color:
+          type: string
+          description: The color name.
+    Acquia_Cloud_API_Documentation_log-forwarding-sources:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: The collection of Log forwarding sources.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-source'
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
     Acquia_Cloud_API_Documentation_log-forwarding-source:
       type: object
       description: Response schema for a Log forwarding source.
@@ -259,26 +307,6 @@ components:
           items:
             type: string
             description: The platform name.
-    Acquia_Cloud_API_Documentation_log-forwarding-consumers:
-      type: object
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: The collection of Log forwarding consumers.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-consumer'
     Acquia_Cloud_API_Documentation_log-forwarding-consumer:
       type: object
       description: Response schema for a Log forwarding consumer.
@@ -361,32 +389,7 @@ components:
         slots:
           type: integer
           description: Number of slots available.
-    Acquia_Cloud_API_Documentation_links:
-      type: object
-      required:
-      - self
-      description: HAL links about the current resource.
-      properties:
-        self:
-          type: object
-          description: A link to this page.
-          required:
-          - href
-          properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
-    Acquia_Cloud_API_Documentation_color:
-      type: object
-      description: Response schema for a color.
-      required:
-      - color
-      properties:
-        color:
-          type: string
-          description: The color name.
-    Acquia_Cloud_API_Documentation_log-forwarding-sources:
+    Acquia_Cloud_API_Documentation_log-forwarding-consumers:
       type: object
       required:
       - total
@@ -400,12 +403,12 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: The collection of Log forwarding sources.
+          description: The collection of Log forwarding consumers.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-source'
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-consumer'
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.

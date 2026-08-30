@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     name: Customer Experience Engineering (CXE)
@@ -10,7 +10,10 @@ info:
     altText: Acquia Cloud
     backgroundColor: '#FFFFFF'
     url: assets/cloud-platform.svg
-servers: []
+servers:
+- url: https://cloud.acquia.com/api
+  description: Promoted from the path-level servers[] already present in this document
+    (API Evangelist 2026-08-30); the top-level block was empty.
 tags:
 - name: Application Performance Monitoring Services
 paths:
@@ -365,7 +368,63 @@ paths:
       - Application Performance Monitoring Services
       x-cli-name: subscriptions:apm-opt-in
 components:
+  parameters:
+    Acquia_Cloud_API_Documentation_subscription-uuid:
+      description: The subscription entity's universally unique identifier.
+      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
+      in: path
+      name: subscriptionUuid
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_environment-id:
+      description: The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID.
+      example: 12-d314739e-296f-11e9-b210-d663bd873d93
+      in: path
+      name: environmentId
+      required: true
+      schema:
+        type: string
+    Acquia_Cloud_API_Documentation_apm-type:
+      description: The APM type.
+      example: newrelic
+      in: path
+      name: apmType
+      required: true
+      schema:
+        type: string
   schemas:
+    Acquia_Cloud_API_Documentation_validation-error:
+      description: A validation error.
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          additionalProperties:
+            type: string
+          description: The validation error message keyed by its field or group name.
+          type: object
+      required:
+      - error
+      - message
+      type: object
+    Acquia_Cloud_API_Documentation_links:
+      description: HAL links about the current resource.
+      properties:
+        self:
+          description: A link to this page.
+          properties:
+            href:
+              description: The URI for this page.
+              format: uri
+              type: string
+          required:
+          - href
+          type: object
+      required:
+      - self
+      type: object
     Acquia_Cloud_API_Documentation_apm-types:
       properties:
         _embedded:
@@ -386,17 +445,25 @@ components:
       - _links
       - _embedded
       type: object
-    Acquia_Cloud_API_Documentation_validation-error:
-      description: A validation error.
+    Acquia_Cloud_API_Documentation_message-with-links:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        message:
+          description: The human-friendly confirmation of the creation of the resource.
+          type: string
+      required:
+      - message
+      - _links
+      type: object
+    Acquia_Cloud_API_Documentation_error:
       properties:
         error:
           description: The error summary.
           type: string
         message:
-          additionalProperties:
-            type: string
-          description: The validation error message keyed by its field or group name.
-          type: object
+          description: The long description for the returned error.
+          type: string
       required:
       - error
       - message
@@ -433,18 +500,6 @@ components:
       - flags
       - key
       - _links
-      type: object
-    Acquia_Cloud_API_Documentation_error:
-      properties:
-        error:
-          description: The error summary.
-          type: string
-        message:
-          description: The long description for the returned error.
-          type: string
-      required:
-      - error
-      - message
       type: object
     Acquia_Cloud_API_Documentation_apm:
       description: Details application performance monitor settings.
@@ -487,58 +542,6 @@ components:
       - _links
       - _embedded
       type: object
-    Acquia_Cloud_API_Documentation_links:
-      description: HAL links about the current resource.
-      properties:
-        self:
-          description: A link to this page.
-          properties:
-            href:
-              description: The URI for this page.
-              format: uri
-              type: string
-          required:
-          - href
-          type: object
-      required:
-      - self
-      type: object
-    Acquia_Cloud_API_Documentation_message-with-links:
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        message:
-          description: The human-friendly confirmation of the creation of the resource.
-          type: string
-      required:
-      - message
-      - _links
-      type: object
-  parameters:
-    Acquia_Cloud_API_Documentation_subscription-uuid:
-      description: The subscription entity's universally unique identifier.
-      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
-      in: path
-      name: subscriptionUuid
-      required: true
-      schema:
-        type: string
-    Acquia_Cloud_API_Documentation_apm-type:
-      description: The APM type.
-      example: newrelic
-      in: path
-      name: apmType
-      required: true
-      schema:
-        type: string
-    Acquia_Cloud_API_Documentation_environment-id:
-      description: The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID.
-      example: 12-d314739e-296f-11e9-b210-d663bd873d93
-      in: path
-      name: environmentId
-      required: true
-      schema:
-        type: string
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.

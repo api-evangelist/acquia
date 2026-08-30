@@ -1,0 +1,196 @@
+generated: '2026-08-30'
+method: derived
+source: >-
+  mcp/acquia-mcp.yml (38 tools, from https://dev.acquia.com/source-cms/reference/mcp-server.md) bound
+  against openapi/acquia-content-api-openapi.yaml (Acquia Content API 1.1, 10 operations, fetched
+  from https://dev.acquia.com/openapi/acquia-content-api.yaml)
+provider: Acquia
+providerId: acquia
+description: >-
+  Binds every Acquia Source MCP tool to the Content API operation that backs it. The two surfaces sit
+  on the same Source CMS site and share one OAuth server, but they are not mirrors of each other: the
+  published REST contract is a generic JSON:API surface of 10 operations parameterised by entity type
+  and bundle, while the MCP catalog is 38 task-shaped tools, most of which have no distinct REST
+  operationId because they are the same JSON:API verbs pointed at a different entity type. Confidence
+  is medium wherever the binding is a parameterisation rather than a distinct operation, and the
+  Canvas, modeling and auto-save tools are mcp_only because Acquia publishes no REST equivalent.
+surfaces:
+  openapi:
+    file: openapi/acquia-content-api-openapi.yaml
+    source: https://dev.acquia.com/openapi/acquia-content-api.yaml
+    operations: 10
+    gated: false
+    note: >-
+      Published at a stable public URL, but its server is templated ({siteUrl}) — calling it needs a
+      customer site and an OAuth token.
+  mcp:
+    url: '{DRUPAL_SITE_URL}/mcp'
+    tools: 38
+    gated: true
+    note: >-
+      Per-tenant endpoint behind OAuth; the live inputSchemas could not be introspected, so tools are
+      mapped by Acquia's own published names and descriptions.
+  graphql:
+    present: false
+    note: Acquia publishes no GraphQL surface for Source CMS; the content API is JSON:API 1.1.
+crosswalk:
+  - tool: create_node
+    category: Content management
+    rest: [createEntry]
+    binding: POST /api/{entityType}/{bundle} with entityType=node
+    confidence: high
+  - tool: update_node
+    category: Content management
+    rest: [updateEntry]
+    binding: PATCH /api/{entityType}/{bundle}/{uuid} with entityType=node
+    confidence: high
+  - tool: batch_create_nodes
+    category: Content management
+    rest: [createEntry]
+    binding: repeated POST /api/{entityType}/{bundle}; the batching is an MCP-side convenience
+    confidence: medium
+    note: JSON:API has no batch endpoint here; the tool fans out to the same single-entry operation.
+  - tool: list_entities
+    category: Content management
+    rest: [listEntries]
+    binding: >-
+      GET /api/{entityType}/{bundle} with filter/page/sort query parameters; the tool's entity_type
+      argument selects node, taxonomy_term, media, user or canvas_page
+    confidence: high
+  - tool: get_or_create_term
+    category: Taxonomy and menus
+    rest: [listEntries, createEntry]
+    binding: >-
+      GET /api/taxonomy_term/{bundle} filtered by name, then POST /api/taxonomy_term/{bundle} when
+      absent; the idempotency is implemented in the tool, not in the REST contract
+    confidence: medium
+  - tool: create_media
+    category: Media
+    rest: [createEntry]
+    binding: POST /api/media/{bundle} with entityType=media
+    confidence: medium
+    note: >-
+      The signed upload URL the tool returns has no counterpart in the published OpenAPI; only the
+      entity creation half maps.
+  - tool: create_remote_video
+    category: Media
+    rest: [createEntry]
+    binding: POST /api/media/remote_video
+    confidence: medium
+  - tool: create_dam_media
+    category: Media
+    rest: [createEntry]
+    binding: POST /api/media/{dam_bundle} referencing an Acquia DAM asset_id
+    confidence: medium
+  - tool: create_menu_item
+    category: Taxonomy and menus
+    rest: [createEntry]
+    binding: POST /api/menu_link_content/{bundle}
+    confidence: low
+    note: >-
+      Bound by JSON:API entity semantics, not by anything Acquia states. The MCP tool writes an
+      auto-save draft; the REST operation writes the canonical entity directly.
+  - tool: update_menu_item
+    category: Taxonomy and menus
+    rest: [updateEntry]
+    binding: PATCH /api/menu_link_content/{bundle}/{uuid}
+    confidence: low
+  - tool: delete_menu_item
+    category: Taxonomy and menus
+    rest: [deleteEntry]
+    binding: DELETE /api/menu_link_content/{bundle}/{uuid}
+    confidence: low
+mcp_only:
+  - tool: create_content_type
+    reason: Content modeling. JSON:API exposes content, not the config entities that define bundles.
+  - tool: add_field_to_content_type
+    reason: Content modeling; no published REST operation creates field storage or field config.
+  - tool: batch_add_fields_to_content_type
+    reason: Content modeling; no REST equivalent.
+  - tool: update_field_config
+    reason: Content modeling; no REST equivalent.
+  - tool: create_vocabulary
+    reason: Config entity (taxonomy vocabulary), outside the published JSON:API content surface.
+  - tool: create_menu
+    reason: Config entity (menu), outside the published JSON:API content surface.
+  - tool: update_menu
+    reason: Config entity (menu), outside the published JSON:API content surface.
+  - tool: update_site_settings
+    reason: Site configuration; no published REST operation.
+  - tool: update_site_logo
+    reason: Theme configuration plus signed upload; no published REST operation.
+  - tool: set_homepage
+    reason: Site configuration; no published REST operation.
+  - tool: create_canvas_page
+    reason: Drupal Canvas page draft channel; Canvas has no operation in the published Content API.
+  - tool: update_canvas_page
+    reason: Drupal Canvas draft channel; no published REST operation.
+  - tool: delete_canvas_page
+    reason: Drupal Canvas; no published REST operation.
+  - tool: get_page_layout
+    reason: Canvas layout/model payload; no published REST operation.
+  - tool: set_page_layout
+    reason: Canvas layout/model payload; no published REST operation.
+  - tool: add_component_to_page
+    reason: Canvas component instance in a draft layout; no published REST operation.
+  - tool: batch_add_components_to_page
+    reason: Canvas; no published REST operation.
+  - tool: move_component
+    reason: Canvas; no published REST operation.
+  - tool: remove_component
+    reason: Canvas; no published REST operation.
+  - tool: update_component_props
+    reason: Canvas; no published REST operation.
+  - tool: get_page_region_layout
+    reason: Canvas global regions; no published REST operation.
+  - tool: set_page_region_layout
+    reason: Canvas global regions; no published REST operation.
+  - tool: add_component_to_page_region
+    reason: Canvas global regions; no published REST operation.
+  - tool: publish_canvas_page
+    reason: Draft/publish workflow; JSON:API writes the canonical entity with no draft channel.
+  - tool: publish_auto_saves
+    reason: Auto-save channel is an MCP/Canvas concept with no REST counterpart.
+  - tool: discard_auto_saves
+    reason: Auto-save channel is an MCP/Canvas concept with no REST counterpart.
+  - tool: get_canvas_preview_signed_url
+    reason: Signed preview URLs are not part of the published Content API.
+rest_only:
+  - operationId: issueToken
+    reason: >-
+      OAuth token issuance. The MCP client performs this outside the tool catalog, as part of
+      connecting.
+  - operationId: authorize
+    reason: OAuth authorization-code redirect; a browser flow, not a tool.
+  - operationId: apiRoot
+    reason: >-
+      GET /api resource-type index. The MCP equivalent is the drupal://content-types resource, not a
+      tool.
+  - operationId: getEntry
+    reason: >-
+      Single-entry read by UUID. MCP exposes reads through the drupal://entity/{entity_type_id}/{id}
+      resource template rather than a tool.
+  - operationId: deleteEntry
+    reason: >-
+      DELETE exists over REST for any bundle, but MCP ships only two delete tools (delete_menu_item,
+      delete_canvas_page). Nodes, media and terms have no MCP delete — an agent-safety asymmetry
+      worth noting.
+  - operationId: getRelated
+    reason: JSON:API relationship traversal; no MCP tool.
+  - operationId: getRelationship
+    reason: JSON:API relationship identifiers; no MCP tool.
+coverage:
+  mcp_tools: 38
+  rest_operations: 10
+  tools_bound_to_rest: 11
+  tools_mcp_only: 27
+  rest_unbound: 7
+  bound_high_confidence: 3
+  bound_medium_confidence: 5
+  bound_low_confidence: 3
+notes: >-
+  The headline finding is the shape mismatch: 27 of 38 tools (71%) address surfaces — content
+  modeling, Drupal Canvas, site configuration, the auto-save draft channel — that Acquia's published
+  REST contract does not cover at all. An agent driving Acquia through MCP can do materially more
+  than one driving it through the published Content API, and the MCP catalog is the only machine
+  contract for those capabilities.

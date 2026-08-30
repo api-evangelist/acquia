@@ -1,0 +1,46 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Acquia Cloud API Account Codebases API
+  version: 1.0.0
+extends: acquia-codebases-api-openapi.yml
+x-generated: '2026-08-30'
+x-method: generated
+x-source: 'Generated from the accompanying OpenAPI document plus the artifacts in this repository. Additive
+  only: this overlay never alters an existing operation, schema or server value, and the original OpenAPI
+  in openapi/ is left untouched.'
+actions:
+- target: $.info
+  description: Record API Evangelist provenance and the catalog identifiers for this API.
+  update:
+    x-apievangelist-provider: acquia
+    x-apievangelist-repository: https://github.com/api-evangelist/acquia
+    x-apievangelist-artifacts:
+      conventions: conventions/acquia-conventions.yml
+      errors: errors/acquia-problem-types.yml
+      lifecycle: lifecycle/acquia-lifecycle.yml
+      authentication: authentication/acquia-authentication.yml
+      rate-limits: rate-limits/acquia-rate-limits.yml
+- target: $
+  description: 'This document declares an EMPTY top-level servers[] and carries the real base URL only
+    on individual path items. Promote it so a generator or agent reading the document root finds a callable
+    host. Value taken verbatim from the path-level servers already in the spec: /'
+  update:
+    servers:
+    - url: /
+      description: Promoted from path-level servers[] by API Evangelist.
+- target: $.info
+  description: Surface the resource this single-tag document covers, for catalog faceting.
+  update:
+    x-apievangelist-tags:
+    - Codebases
+    x-apievangelist-operation-count: 11
+- target: $
+  description: 'FINDING, not an enhancement. This document declares an empty top-level servers[] AND its
+    path items declare servers: [{url: "/"}] - a relative root, not a host. That defect is present in
+    Acquia''s own master spec at https://cloudapi-docs.acquia.com/acquia-spec.yaml, where 223 path items
+    declare https://cloud.acquia.com/api and the 8 codebases path items declare "/". No server value was
+    invented here: the codebases operations are documented as part of the Cloud Platform API at https://cloudapi-docs.acquia.com/,
+    whose base is https://cloud.acquia.com/api, and that is what apis.yml records - but the CONTRACT does
+    not say so, so a code generator reading this document alone produces a client with no host.'
+  update:
+    x-apievangelist-contract-defect: servers-relative-root

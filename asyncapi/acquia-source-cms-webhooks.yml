@@ -1,0 +1,81 @@
+generated: '2026-08-30'
+method: searched
+source: https://dev.acquia.com/source-cms/reference/webhooks.md (HTTP 200, fetched 2026-08-30)
+provider: Acquia
+providerId: acquia
+type: Webhooks
+description: >-
+  Source CMS sites emit outgoing webhooks on content change. Acquia publishes no AsyncAPI document
+  for them — this is the webhook catalog read from Acquia's own reference page. Webhooks are
+  outgoing only; there is no inbound webhook mechanism, and inbound integration is the JSON:API
+  Content API.
+asyncapi_published: false
+asyncapi_note: >-
+  Neither dev.acquia.com nor the acquia GitHub org publishes an AsyncAPI document. A GitHub org
+  search for asyncapi returned 0 repositories. Nothing was fabricated to fill the slot.
+direction: outgoing
+event_count: 12
+entity_kinds:
+  - kind: node
+    label: CMS content (entries of a content type)
+    events: [Node creation, Node update, Node deletion]
+  - kind: media
+    label: Media entities
+    events: [Media creation, Media update, Media deletion]
+  - kind: taxonomy_term
+    label: Taxonomy terms
+    events: [Taxonomy term creation, Taxonomy term update, Taxonomy term deletion]
+  - kind: canvas_page
+    label: Pages built with Drupal Canvas
+    events: [Page creation, Page update, Page deletion]
+delivery:
+  method: POST
+  target: the webhook's configured URL (customer-supplied)
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Idempotency-Key
+      value: >-
+        SHA-1 of the payload. Retries of the same delivery carry the same key; deduplicate on it. It
+        is a hash, not a keyed signature, so it does NOT authenticate the sender.
+    - name: User-Agent
+      value: Acquia CMS
+  signature: none
+  signature_note: >-
+    Acquia states plainly that there is no signature or shared-secret header. The receiver
+    authenticates deliveries by a secret embedded in the registered URL, and anything load-bearing
+    should be re-fetched over JSON:API rather than trusted from the payload.
+  success_condition: any 2xx response after redirects
+  failure_condition: 4xx/5xx status or connection failure
+  retries: 5
+  retry_interval_seconds: 30
+  retry_window_note: >-
+    A delivery that never succeeds stops roughly two and a half minutes after the event. There are no
+    further attempts and no manual redelivery; recovery is re-fetching state over JSON:API.
+  delivery_history: >-
+    Every triggered delivery is recorded on the Webhooks History page in the site admin UI, with
+    status, payload, and retry attempts.
+payload:
+  format: JSON:API document (JSON:API 1.1)
+  shape: >-
+    The changed entity's own JSON:API document, exactly as GET /api/{entity_type}/{bundle}/{uuid}
+    would return it, plus three members under data.meta and a top-level timestamp. The shape is
+    identical for create, update and delete; data.meta.operation tells them apart, and a delete
+    payload carries the entity's last state captured just before deletion.
+  added_members:
+    - path: data.meta.operation
+      values: [create, update, delete]
+    - path: data.meta.user
+      description: account name that triggered the event
+    - path: data.meta.edit_url
+      description: admin edit URL for the entity
+    - path: timestamp
+      description: delivery time, UNIX seconds
+  caveat: >-
+    The entity is normalized with the TRIGGERING user's permissions. If that user cannot view the
+    entity (a workflow moved it unpublished, say), the payload carries a JSON:API errors document in
+    place of the entity data and data contains only the meta block. Handle payloads without
+    data.attributes by re-fetching over JSON:API with your own credentials.
+docs:
+  - https://dev.acquia.com/source-cms/reference/webhooks.md
+  - https://dev.acquia.com/source-cms/content-api/webhooks/

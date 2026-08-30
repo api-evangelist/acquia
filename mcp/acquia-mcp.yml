@@ -1,0 +1,238 @@
+generated: '2026-08-30'
+method: searched
+source: https://dev.acquia.com/source-cms/reference/mcp-server.md (HTTP 200, fetched 2026-08-30)
+provider: Acquia
+providerId: acquia
+name: Acquia Source MCP
+server_version: 1.0.0
+protocol_version: '2025-11-25'
+status: published
+availability: >-
+  Experimental. Off by default; enabled per site under Configurations > Experimental features > MCP
+  Server. Acquia's own reference marks the feature experimental.
+description: >-
+  Acquia ships a first-party MCP server with Source CMS. Every Source CMS site exposes it at its own
+  `/mcp` path, so the endpoint is per-tenant rather than a single shared Acquia-hosted URL. The
+  catalog covers content management, content modeling, taxonomy and menus, media, site settings,
+  Drupal Canvas pages and components, and drafts/publishing.
+deployment:
+  mode: remote
+  endpoint: '{DRUPAL_SITE_URL}/mcp'
+  endpoint_is_templated: true
+  endpoint_note: >-
+    Per-tenant. The server URL is the customer's own Source CMS site URL plus /mcp — Acquia publishes
+    no single shared hosted endpoint, and the site admin UI shows the concrete URL under
+    Configurations > Experimental features > MCP Server > Configure > MCP client configuration.
+    No endpoint was invented and none was probed, because a live URL requires a customer site.
+  install: ''
+  package: ''
+  auth: oauth
+  verified: searched
+transport:
+  type: streamable-http
+  response_encoding: 'text/event-stream (single data: event per response)'
+  session_header: Mcp-Session-Id (echoed from the mcp-session-id response header)
+capabilities:
+  - logging
+  - completions
+  - prompts (listChanged)
+  - resources (subscribe + listChanged)
+  - tools (listChanged)
+authentication:
+  scheme: OAuth 2.0 Bearer
+  grants:
+    - client_credentials against {DRUPAL_SITE_URL}/oauth/token (no scope parameter needed)
+    - dynamic client registration + browser flow for interactive clients
+  token_lifetime_seconds: 300
+  well_known:
+    - '{DRUPAL_SITE_URL}/.well-known/oauth-protected-resource'
+    - '{DRUPAL_SITE_URL}/.well-known/oauth-protected-resource/mcp'
+    - '{DRUPAL_SITE_URL}/.well-known/oauth-authorization-server'
+    - '{DRUPAL_SITE_URL}/.well-known/jwks.json'
+  dynamic_client_registration: '{DRUPAL_SITE_URL}/oauth/register'
+  scopes_supported: 16
+  probe_note: >-
+    The anonymous OAuth discovery documents could not be probed: they live on a customer site, not on
+    an acquia.com host. A tools/list POST was likewise not attempted for the same reason — there is no
+    Acquia-operated URL to POST to. Every value here is read from Acquia's own published reference.
+  challenge_behavior: >-
+    An unauthenticated or expired request returns 401 whose WWW-Authenticate header is only
+    Bearer realm="mcp_server" — it does not point at the resource metadata or list scopes
+    (Acquia verified 2026-07-03).
+errors:
+  transport: JSON-RPC 2.0
+  http_401: Authentication required; JSON-RPC body carries -32001
+  jsonrpc_codes:
+    - code: '-32600'
+      meaning: Invalid request (malformed JSON-RPC envelope)
+    - code: '-32601'
+      meaning: Method not found (stale capability cache or protocol-version mismatch)
+    - code: '-32602'
+      meaning: Invalid params; data.validation_errors carries {pointer, keyword, message}
+    - code: '-32603'
+      meaning: Internal error
+    - code: '-32001'
+      meaning: Server-defined — Authentication required, and request timeouts on oversized queries
+  tool_level_gotcha: >-
+    Tool execution failures come back as a SUCCESSFUL JSON-RPC response with isError:false; check
+    structuredContent.success, not isError (Acquia verified 2026-07-03). Failures take one of two
+    forms: an error object {code, message, retryable, details, requestId}, or a populated violations
+    array of {field_name, message, invalid_value, code} with no error object.
+resources:
+  count: 13
+  uris:
+    - drupal://content-types
+    - drupal://media-types
+    - drupal://vocabularies
+    - drupal://filter-formats
+    - drupal://content-types/fields
+    - drupal://field-types
+    - drupal://menus
+    - drupal://site-info
+    - canvas://components
+    - canvas://pages
+    - canvas://page-regions
+    - canvas://auto-saves
+resource_templates:
+  count: 7
+  uris:
+    - drupal://entity/{entity_type_id}/{id}
+    - drupal://content-types/{bundle}
+    - drupal://content-types/{bundle}/fields/{field_name}
+    - drupal://media-types/{bundle}
+    - drupal://vocabularies/{vid}
+    - drupal://menus/{menu_name}
+    - canvas://components/{id}
+tool_count: 38
+tools:
+  - name: create_node
+    domain: Content management
+    description: Creates one content entry (node) of a given content type.
+  - name: update_node
+    domain: Content management
+    description: 'Updates an existing node. Partial update: only the provided fields change.'
+  - name: batch_create_nodes
+    domain: Content management
+    description: Creates multiple nodes of the same content type in one call.
+  - name: list_entities
+    domain: Content management
+    description: >-
+      Lists entities with filtering and pagination; supports node, taxonomy_term, media, user and
+      canvas_page.
+  - name: create_content_type
+    domain: Content modeling
+    description: Creates a new content type (node bundle) and returns its schema URI.
+  - name: add_field_to_content_type
+    domain: Content modeling
+    description: Adds a field to an existing content type, with field-storage reuse across bundles.
+  - name: batch_add_fields_to_content_type
+    domain: Content modeling
+    description: Adds multiple fields to one or more content types in a single ordered call.
+  - name: update_field_config
+    domain: Content modeling
+    description: >-
+      Updates an existing field's configuration — label, description, required, default_value,
+      field_settings, cardinality.
+  - name: create_vocabulary
+    domain: Taxonomy and menus
+    description: Creates a taxonomy vocabulary. Idempotent — returns the existing one if present.
+  - name: get_or_create_term
+    domain: Taxonomy and menus
+    description: Returns an existing term by case-insensitive exact name, or creates it (idempotent).
+  - name: create_menu
+    domain: Taxonomy and menus
+    description: Creates a new custom menu.
+  - name: update_menu
+    domain: Taxonomy and menus
+    description: Updates an existing menu's label or description.
+  - name: create_menu_item
+    domain: Taxonomy and menus
+    description: Creates a menu link, saved as an auto-save draft.
+  - name: update_menu_item
+    domain: Taxonomy and menus
+    description: Partially updates a menu item; changes are saved as an auto-save draft.
+  - name: delete_menu_item
+    domain: Taxonomy and menus
+    description: Deletes a menu item by entity ID. One of only two delete tools in the catalog.
+  - name: create_media
+    domain: Media
+    description: Creates a file-based media entity and returns a signed upload URL.
+  - name: create_remote_video
+    domain: Media
+    description: Creates a remote-video media entity from an OEmbed URL. Published immediately.
+  - name: create_dam_media
+    domain: Media
+    description: Creates a DAM-backed media entity referencing an existing Acquia DAM asset by asset_id.
+  - name: update_site_settings
+    domain: Site settings
+    description: Updates site settings such as the site name. Staged until auto-saves are published.
+  - name: update_site_logo
+    domain: Site settings
+    description: Uploads a new site logo via a signed upload URL and updates the theme configuration.
+  - name: set_homepage
+    domain: Site settings
+    description: Sets a Canvas page as the site homepage.
+  - name: create_canvas_page
+    domain: Canvas pages and components
+    description: Creates an unpublished Canvas page draft with optional metadata.
+  - name: update_canvas_page
+    domain: Canvas pages and components
+    description: Updates page metadata (title/path/description/status) on a Canvas page draft.
+  - name: delete_canvas_page
+    domain: Canvas pages and components
+    description: Deletes a Canvas page by ID. One of only two delete tools in the catalog.
+  - name: get_page_layout
+    domain: Canvas pages and components
+    description: Returns the native Canvas client-side layout/model representation for a page.
+  - name: set_page_layout
+    domain: Canvas pages and components
+    description: Replaces the current draft layout with a supplied Canvas layout payload.
+  - name: add_component_to_page
+    domain: Canvas pages and components
+    description: Adds a component instance at a slot/index target in a page's draft layout.
+  - name: batch_add_components_to_page
+    domain: Canvas pages and components
+    description: Adds multiple component instances in one all-or-nothing call.
+  - name: move_component
+    domain: Canvas pages and components
+    description: Moves a component instance to a new slot/index target in the draft layout.
+  - name: remove_component
+    domain: Canvas pages and components
+    description: Removes a component instance and its nested descendants from the draft layout.
+  - name: update_component_props
+    domain: Canvas pages and components
+    description: Partially updates the props of a component instance in a page's draft layout.
+  - name: get_page_region_layout
+    domain: Canvas pages and components
+    description: Returns the current layout of a global Canvas page region (header, footer).
+  - name: set_page_region_layout
+    domain: Canvas pages and components
+    description: Replaces the full layout of a global Canvas page region.
+  - name: add_component_to_page_region
+    domain: Canvas pages and components
+    description: Adds a component instance to a global Canvas page region.
+  - name: publish_canvas_page
+    domain: Drafts and publishing
+    description: Publishes a Canvas page and commits all pending draft changes.
+  - name: publish_auto_saves
+    domain: Drafts and publishing
+    description: Publishes one or more auto-saved drafts to their canonical entities.
+  - name: discard_auto_saves
+    domain: Drafts and publishing
+    description: Discards one or more auto-saved drafts without publishing.
+  - name: get_canvas_preview_signed_url
+    domain: Drafts and publishing
+    description: Generates a 5-minute signed preview URL for a page's draft without a Drupal login.
+clients_documented:
+  - Claude Code
+  - Claude Desktop
+  - Cursor
+  - VS Code
+  - GitHub Copilot
+  - OpenCode
+  - Codex
+  - MCP Inspector
+notes: >-
+  Tool inputSchemas were not captured: live introspection requires a customer Source CMS site and an
+  OAuth token, and Acquia's reference documents parameters in prose tables rather than as JSON
+  Schema. Names and descriptions above are Acquia's own; nothing was invented.

@@ -1,0 +1,122 @@
+generated: '2026-08-30'
+method: searched
+source: https://github.com/acquia/acquia-skills (manifests/skills-index.yaml, HTTP 200)
+provider: Acquia
+providerId: acquia
+description: >-
+  Acquia publishes its own Agent Skills. The dev.acquia.com llms.txt tells an agent to install them
+  with `npx skills add acquia/acquia-skills`, and the repository ships 16 SKILL.md files written to
+  the agentskills.io specification, grouped into four products. Every file under _acquia-published/
+  is Acquia's own text, fetched verbatim from raw.githubusercontent.com — API Evangelist authored
+  none of it.
+publisher: Acquia (first-party)
+repository: https://github.com/acquia/acquia-skills
+install: npx skills add acquia/acquia-skills
+format: agentskills.io
+license: see repository LICENSE
+compatible_harnesses:
+  - Claude Code
+  - GitHub Copilot
+  - Cursor
+  - Gemini CLI
+skill_count: 16
+products:
+  - id: acli
+    name: Acquia CLI
+    docs: https://dev.acquia.com/cloud-platform/reference/acli.md
+    skill_count: 10
+  - id: pipelines-cli
+    name: Acquia Pipelines CLI
+    docs: https://docs.acquia.com/acquia-cloud-platform/pipelines/
+    skill_count: 3
+  - id: drupal-maintenance
+    name: Drupal Dependency Management
+    skill_count: 2
+  - id: playbooks
+    name: End-to-End Workflows
+    skill_count: 1
+skills:
+  - id: acli-getting-started
+    product: acli
+    description: Install and authenticate acli for the first time
+    file: skills/_acquia-published/acli-getting-started.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/getting-started/SKILL.md
+  - id: acli-application-management
+    product: acli
+    description: List applications, link repos, check VCS status
+    file: skills/_acquia-published/acli-application-management.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/application-management/SKILL.md
+  - id: acli-environment-management
+    product: acli
+    description: List, create, delete, and mirror Cloud environments
+    file: skills/_acquia-published/acli-environment-management.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/environment-management/SKILL.md
+  - id: acli-ide-management
+    product: acli
+    description: Create, list, open, and manage Cloud IDEs
+    file: skills/_acquia-published/acli-ide-management.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/ide-management/SKILL.md
+  - id: acli-pull-push
+    product: acli
+    description: Sync code, database, and files between local and Cloud
+    file: skills/_acquia-published/acli-pull-push.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/pull-push/SKILL.md
+  - id: acli-remote-access
+    product: acli
+    description: SSH into environments, run Drush remotely, tail logs
+    file: skills/_acquia-published/acli-remote-access.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/remote-access/SKILL.md
+  - id: acli-ssh-key-management
+    product: acli
+    description: Add, list, and delete SSH keys
+    file: skills/_acquia-published/acli-ssh-key-management.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/ssh-key-management/SKILL.md
+  - id: acli-codestudio
+    product: acli
+    description: Set up Code Studio (GitLab CI/CD) projects
+    file: skills/_acquia-published/acli-codestudio.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/codestudio/SKILL.md
+  - id: acli-scripting
+    product: acli
+    description: Run acli non-interactively in scripts and CI/CD
+    file: skills/_acquia-published/acli-scripting.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/scripting/SKILL.md
+  - id: acli-troubleshooting
+    product: acli
+    description: Debug acli errors and authentication failures
+    file: skills/_acquia-published/acli-troubleshooting.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/acli/troubleshooting/SKILL.md
+  - id: pipelines-cli-getting-started
+    product: pipelines-cli
+    description: Install and authenticate the Pipelines CLI
+    file: skills/_acquia-published/pipelines-cli-getting-started.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/pipelines-cli/getting-started/SKILL.md
+  - id: pipelines-cli-application-management
+    product: pipelines-cli
+    description: Find application IDs and link repos
+    file: skills/_acquia-published/pipelines-cli-application-management.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/pipelines-cli/application-management/SKILL.md
+  - id: pipelines-cli-pipeline-operations
+    product: pipelines-cli
+    description: Trigger builds, check status, stream logs, terminate jobs
+    file: skills/_acquia-published/pipelines-cli-pipeline-operations.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/pipelines-cli/pipeline-operations/SKILL.md
+  - id: drupal-maintenance-security-updates
+    product: drupal-maintenance
+    description: Audit and fix vulnerable packages using Composer
+    file: skills/_acquia-published/drupal-maintenance-security-updates.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/drupal-maintenance/security-updates/SKILL.md
+  - id: drupal-maintenance-dependency-updates
+    product: drupal-maintenance
+    description: Update outdated packages, Drupal core, and contrib modules
+    file: skills/_acquia-published/drupal-maintenance-dependency-updates.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/drupal-maintenance/dependency-updates/SKILL.md
+  - id: playbooks-drupal-update-deploy
+    product: playbooks
+    description: >-
+      Update Drupal dependencies, push code, deploy to environment, and optionally trigger a pipeline
+    file: skills/_acquia-published/playbooks-drupal-update-deploy.SKILL.md
+    source: https://github.com/acquia/acquia-skills/blob/main/skills/playbooks/drupal-update-deploy/SKILL.md
+notes: >-
+  API Evangelist did not generate any skill for Acquia. SEARCH succeeded, so per the pipeline contract
+  the searched artifact stands and no generated one was written.

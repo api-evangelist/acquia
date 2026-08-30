@@ -1,0 +1,175 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  Derived from 4xx/5xx responses across the 20 Cloud Platform OpenAPI files in openapi/, then
+  enriched from Acquia's published error tables at
+  https://dev.acquia.com/source-cms/reference/content-api.md,
+  https://dev.acquia.com/source-cms/reference/authentication.md and
+  https://dev.acquia.com/source-cms/reference/mcp-server.md
+provider: Acquia
+providerId: acquia
+format: proprietary
+rfc9457: false
+description: >-
+  Acquia runs three different error envelopes across three surfaces, and they do not agree. The Cloud
+  Platform API answers application/hal+json with a proprietary {error, message} object; the Source
+  CMS Content API answers a JSON:API errors document; the MCP server answers JSON-RPC 2.0. None of
+  them is RFC 9457 problem+json. An agent that handles one shape will not handle the others.
+envelopes:
+  - surface: Cloud Platform API
+    media_type: application/hal+json
+    shape: '{ "error": "<slug>", "message": "<human readable>" }'
+    evidence: >-
+      551 of 657 declared 4xx/5xx responses across the Cloud Platform specs use
+      application/hal+json. The info.description of every Cloud API spec gives the canonical example:
+      {"error": "system", "message": "This action is currently unavailable. Please try again later."}
+  - surface: Source CMS Content API
+    media_type: application/vnd.api+json
+    shape: 'JSON:API errors document — { "errors": [ { "status", "title", "detail", "source" } ] }'
+    evidence: >-
+      openapi/acquia-content-api-openapi.yaml declares an ErrorDocument schema; Acquia's error table
+      says a 403 returns a "JSON:API error document whose detail names the missing permission".
+  - surface: OAuth token endpoint
+    media_type: application/json
+    shape: '{ "error", "error_description", "hint"? } — RFC 6749 shape'
+    evidence: >-
+      Captured by Acquia: {"error":"invalid_client","error_description":"Client authentication
+      failed"} and {"error":"invalid_scope","error_description":"The requested scope is invalid,
+      unknown, or malformed","hint":"Check the `content:read` scope"}
+  - surface: Source CMS MCP server
+    media_type: application/json (JSON-RPC 2.0)
+    shape: '{ "jsonrpc", "id", "error": { "code", "message", "data" } }'
+    evidence: See mcp/acquia-mcp.yml; codes -32600, -32601, -32602, -32603, -32001.
+declared_status_counts:
+  '400': 65
+  '401': 20
+  '403': 171
+  '404': 300
+  '409': 82
+  '500': 19
+problem_types:
+  - status: 400
+    title: Bad Request
+    surfaces: [Cloud Platform API, Content API]
+    detail: >-
+      The request itself is malformed. On the Content API: bad filter syntax, an unknown field path
+      in filter/sort/include, or an invalid page value.
+    remediation: >-
+      Check the query parameter reference; Acquia documents 400 responses for malformed queries
+      per-parameter.
+    docs: https://dev.acquia.com/source-cms/reference/query-parameters/
+  - status: 400
+    title: invalid_scope
+    surfaces: [OAuth token endpoint]
+    detail: >-
+      The token request's scope parameter names a scope that does not exist or is not selected on the
+      API client. The hint member names the offending scope.
+    remediation: >-
+      Omit the scope parameter entirely (the token then carries every scope selected on the client),
+      or name only selected scopes.
+    docs: https://dev.acquia.com/source-cms/reference/authentication.md
+  - status: 401
+    title: Unauthorized
+    surfaces: [Cloud Platform API, Content API, MCP]
+    detail: >-
+      No valid token. Three distinct causes with different diagnostics. (1) Expired token — the
+      access token outlived its 300-second lifetime; the explanation is in the WWW-Authenticate
+      header (error="access_denied", error_description="Access token could not be verified"), not the
+      body. (2) Malformed token — the body is HTML, not JSON, and the only diagnostic is the
+      WWW-Authenticate header, e.g. Bearer realm="OAuth", error="access_denied",
+      error_description="The JWT string must have two dots". (3) On MCP, WWW-Authenticate is only
+      Bearer realm="mcp_server" and the JSON-RPC body carries -32001 Authentication required.
+    remediation: >-
+      Read the WWW-Authenticate header with curl -i rather than parsing the body. Re-request a token
+      from /oauth/token; have the client refresh automatically rather than caching one token.
+    docs: https://dev.acquia.com/source-cms/reference/authentication.md
+  - status: 401
+    title: invalid_client
+    surfaces: [OAuth token endpoint]
+    detail: The client ID or secret sent to /oauth/token is wrong.
+    remediation: >-
+      Re-copy both from API > API clients. If the secret is lost, create a new client — the secret is
+      shown only once.
+  - status: 403
+    title: Forbidden
+    surfaces: [Cloud Platform API, Content API]
+    detail: >-
+      The token is valid but does not carry the scope or permission the request needs. Content writes
+      need content:administer. The JSON:API detail member names the missing permission, e.g.
+      "The 'administer nodes' permission is required."
+    remediation: >-
+      Select the scope on the API client at API > API clients, then request a NEW token — existing
+      tokens do not gain scopes retroactively.
+    occurrences: 171
+  - status: 404
+    title: Not Found
+    surfaces: [Cloud Platform API, Content API]
+    detail: >-
+      The resource does not exist: a wrong entity type or bundle machine name in the path, or a UUID
+      that does not exist.
+    remediation: >-
+      Check the site's own generated OpenAPI documentation (API > OpenAPI documentation) for the real
+      endpoint list — the shared spec cannot list per-bundle endpoints.
+    occurrences: 300
+  - status: 405
+    title: Method Not Allowed
+    surfaces: [Content API]
+    detail: >-
+      A write was sent while the site allows only reads. The Allowed operations setting at
+      API > JSON:API is Read-only BY DEFAULT — a fresh site rejects every write until an
+      administrator changes it.
+    remediation: >-
+      Change Allowed operations at API > JSON:API. The response detail names the settings page.
+    docs: https://dev.acquia.com/source-cms/content-api/writing-content/
+  - status: 409
+    title: Conflict
+    surfaces: [Cloud Platform API]
+    detail: >-
+      The requested state change conflicts with the resource's current state — most commonly a task
+      already running on the environment, or a duplicate record. As of 2026-08-07 the Cloud API also
+      validates SSH keys for uniqueness and rejects duplicate registrations.
+    remediation: Poll the notification/task resource until the in-flight task completes, then retry.
+    occurrences: 82
+  - status: 429
+    title: Too Many Requests
+    surfaces: [Content API]
+    detail: >-
+      Rate limited. Acquia explicitly states it does not publish Content API rate limits.
+    remediation: >-
+      Back off and honor a Retry-After header when present. Acquia's own wording is "when present" —
+      the header is not guaranteed.
+    docs: https://dev.acquia.com/source-cms/reference/content-api.md
+  - status: 500
+    title: Internal Server Error
+    surfaces: [Cloud Platform API]
+    detail: Server-side failure.
+    occurrences: 19
+  - status: 503
+    title: Service Unavailable
+    surfaces: [Cloud Platform API]
+    detail: >-
+      Returned when dependent services are unavailable. Canonical body, from the Cloud API spec's own
+      info.description: {"error": "system", "message": "This action is currently unavailable. Please
+      try again later."}
+    remediation: Retry with backoff.
+non_error_failure_modes:
+  - name: Omitted resources on a 200
+    surface: Content API
+    detail: >-
+      When access control hides entries from a collection, the response stays 200. meta.count is the
+      total INCLUDING entries the caller cannot see, so data can be shorter than meta.count or empty,
+      and a meta.omitted block appears with per-entry reasons. A caller that checks only the status
+      code will silently under-read.
+  - name: MCP tool failure on a successful JSON-RPC response
+    surface: MCP
+    detail: >-
+      Tool execution failures return isError:false (Acquia verified 2026-07-03). Check
+      structuredContent.success, not isError. Failures take one of two forms: an error object
+      {code, message, retryable, details, requestId} with captured codes validation and
+      configuration, or a populated violations array of {field_name, message, invalid_value, code}
+      with NO error object.
+  - name: Webhook payload without data.attributes
+    surface: Webhooks
+    detail: >-
+      The entity is normalized with the triggering user's permissions; if that user cannot view it,
+      the payload carries a JSON:API errors document in place of the entity and data holds only meta.

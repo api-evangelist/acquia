@@ -1,0 +1,6 @@
+# Mirrors https://www.acquia.com/.well-known/security.txt
+Contact: mailto:security@acquia.com
+Expires: 2027-01-01T00:00:00Z
+Acknowledgments: https://www.acquia.com/security#security-hall-of-fame
+Preferred-Languages: en
+Policy: https://www.acquia.com/security#responsible-disclosure

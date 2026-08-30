@@ -4,50 +4,80 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Acquia
 providerId: acquia
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+generated: '2026-08-30'
+method: searched
+modified: '2026-08-30'
+reconciled: true
+source: >-
+  https://dev.acquia.com/source-cms/reference/content-api.md (HTTP 200, fetched 2026-08-30),
+  https://cloudapi-docs.acquia.com/, and the 20 Cloud Platform OpenAPI files in openapi/
 tags:
   - Content
   - Experience
   - Drupal
   - DXP
   - Rate Limiting
-description: Acquia exposes a number of APIs across its DXP — Cloud API (operational control of Drupal
-  environments), Site Factory API, CDP ingestion, DAM, and Campaign Studio. Specific per-second / per-minute
-  rate-limit numbers are not published on the public Cloud API documentation home page; throttling is
-  applied per API and per subscription tier.
-sources:
-  - https://cloudapi-docs.acquia.com/
-  - https://docs.acquia.com/
-notes: Public Cloud API docs do not surface a numeric rate-limit table. Customers are expected to handle
-  HTTP 429 responses with backoff; specific limits are confirmed through Acquia support per subscription.
+description: >-
+  Acquia publishes NO numeric rate limits for any of its APIs, and says so in its own words. This
+  artifact is upgraded from generated to searched because the absence is now sourced rather than
+  assumed: Acquia's Content API reference states plainly, in its error table, "Acquia does not publish
+  Content API rate limits". No X-RateLimit-* or RateLimit-* response header family is documented on
+  any surface, and no 429 response is declared in any of the 20 Cloud Platform OpenAPI files.
+limit_count: 0
+limit_count_note: >-
+  Zero published numeric limits. This is an honest zero read from the provider's own documentation,
+  not a gap in this pass.
 responseCodes:
   throttled: 429
   serviceUnavailable: 503
-limits:
-  - name: Cloud API throttling
-    scope: api-token
-    metric: varies
-    limit: see Acquia Cloud API documentation
-    notes: Acquia does not publish a fixed RPS / RPM number on the public docs index; throttling is
-      applied at the gateway and surfaced via 429 responses.
-  - name: CDP ingestion
-    scope: tenant
-    metric: varies
-    limit: see CDP customer onboarding guide
-    notes: Profile-ingest and event-ingest throughput is sized at contract time based on event volume.
-policies:
-  - name: Backoff
-    description: Honor 429 responses with exponential backoff and jitter; the Cloud API may return Retry-After.
-  - name: Tenant Scoping
-    description: Limits are applied per Acquia subscription / tenant; multiple API tokens within the
-      same subscription share the underlying allowance.
-  - name: Support-Raise
-    description: Long-running migrations and bulk operations should be coordinated with Acquia support
-      so that ceilings can be temporarily lifted.
-maintainers:
-  - FN: Kin Lane
-    email: info@apievangelist.com
+headers:
+  request: []
+  response:
+    - name: Retry-After
+      guaranteed: false
+      evidence: >-
+        Acquia's wording is "back off and honor a Retry-After header WHEN PRESENT" — the header is
+        explicitly not guaranteed on a 429.
+  documented_families: []
+  note: >-
+    No X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset and no RFC-draft RateLimit-*
+    family is documented on the Content API, the Cloud Platform API, or the MCP server. An agent has
+    no runtime signal of remaining budget on any Acquia surface — it can only discover the limit by
+    hitting it.
+surfaces:
+  - name: Acquia Content API (Source CMS)
+    limits_published: false
+    exhaustion_status: 429
+    evidence: >-
+      "429 Too Many Requests | Rate limited | Too many requests in a short window. Acquia does not
+      publish Content API rate limits; if you receive a 429, back off and honor a Retry-After header
+      when present"
+    source: https://dev.acquia.com/source-cms/reference/content-api.md
+  - name: Cloud Platform API
+    limits_published: false
+    exhaustion_status: 429
+    evidence: >-
+      No 429 response is declared on any of the 657 4xx/5xx responses across the 20 Cloud Platform
+      OpenAPI files (declared codes are 400, 401, 403, 404, 409, 500), and cloudapi-docs.acquia.com
+      surfaces no rate-limit table. Throttling is applied at the gateway per subscription and
+      confirmed through Acquia support rather than published.
+    source: https://cloudapi-docs.acquia.com/
+  - name: Source CMS MCP server
+    limits_published: false
+    exhaustion_status: null
+    evidence: >-
+      No rate limit is documented. The nearest published constraint is JSON-RPC error -32001, which
+      Acquia records as covering request timeouts on oversized queries or batches — the guidance is
+      to narrow or split them.
+    source: https://dev.acquia.com/source-cms/reference/mcp-server.md
+  - name: Source CMS webhooks (outbound)
+    limits_published: true
+    detail: >-
+      The one place Acquia does publish hard numbers, though they govern delivery rather than
+      ingress: a failed delivery is retried 5 times at 30-second intervals, then abandoned.
+    source: https://dev.acquia.com/source-cms/reference/webhooks.md
+limits: []
+notes: >-
+  Previous rounds recorded this file as method:generated with prose placeholders ("see Acquia Cloud
+  API documentation"). It is now searched, and the finding is a sourced zero: Acquia documents the
+  429 and the back-off behavior but publishes no number and no budget header anywhere.

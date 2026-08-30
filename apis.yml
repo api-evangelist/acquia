@@ -13,7 +13,7 @@ apis:
   - Drupal
   - Multisite
   - Site Factory
-  humanURL: https://dev.acquia.com/api-documentation/acquia-cloud-site-factory-api
+  humanURL: https://docs.acquia.com/site-factory/extend/api
   properties:
   - type: Documentation
     url: https://docs.acquia.com/site-factory/extend/api
@@ -30,7 +30,7 @@ apis:
   - Content Hub
   - Drupal
   - Syndication
-  humanURL: https://dev.acquia.com/api-documentation/acquia-content-hub-api
+  humanURL: https://docs.acquia.com/drupal-starter-kits/add-ons/content-hub/api
   properties:
   - type: Documentation
     url: https://docs.acquia.com/drupal-starter-kits/add-ons/content-hub/api
@@ -44,6 +44,7 @@ apis:
   name: Acquia Account API
   description: The Account API from Acquia — 23 operation(s) for account.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Account
   properties:
@@ -55,6 +56,7 @@ apis:
   name: Acquia Agreements API
   description: The Agreements API from Acquia — 5 operation(s) for agreements.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Agreements
   properties:
@@ -68,6 +70,7 @@ apis:
     The Application Performance Monitoring Services API from Acquia — 4 operation(s) for application performance
     monitoring services.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Application Performance Monitoring Services
   properties:
@@ -79,6 +82,7 @@ apis:
   name: Acquia Applications API
   description: The Applications API from Acquia — 36 operation(s) for applications.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Application
   tags_raw:
@@ -92,6 +96,7 @@ apis:
   name: Acquia Cloud IDE API
   description: The Cloud IDE API from Acquia — 1 operation(s) for cloud ide.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Cloud IDE
   properties:
@@ -103,6 +108,7 @@ apis:
   name: Acquia Codebases API
   description: The Codebases API from Acquia — 8 operation(s) for codebases.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Codebases
   properties:
@@ -114,6 +120,7 @@ apis:
   name: Acquia Current system health API
   description: The Current system health API from Acquia — 1 operation(s) for current system health.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Current system health
   properties:
@@ -125,6 +132,7 @@ apis:
   name: Acquia Distributions API
   description: The Distributions API from Acquia — 2 operation(s) for distributions.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Distributions
   properties:
@@ -136,6 +144,7 @@ apis:
   name: Acquia Email API
   description: The Email API from Acquia — 1 operation(s) for email.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Email
   properties:
@@ -147,6 +156,7 @@ apis:
   name: Acquia Environments API
   description: The Environments API from Acquia — 73 operation(s) for environments.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Environments
   properties:
@@ -158,6 +168,7 @@ apis:
   name: Acquia Identity Providers API
   description: The Identity Providers API from Acquia — 4 operation(s) for identity providers.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Identity Providers
   properties:
@@ -169,6 +180,7 @@ apis:
   name: Acquia Invite API
   description: The Invite API from Acquia — 4 operation(s) for invite.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - invite
   tags_raw:
@@ -182,6 +194,7 @@ apis:
   name: Acquia Messages API
   description: The Messages API from Acquia — 2 operation(s) for messages.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Message
   tags_raw:
@@ -195,6 +208,7 @@ apis:
   name: Acquia Notifications API
   description: The Notifications API from Acquia — 1 operation(s) for notifications.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Notification
   tags_raw:
@@ -208,6 +222,7 @@ apis:
   name: Acquia Options API
   description: The Options API from Acquia — 6 operation(s) for options.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Options
   properties:
@@ -219,6 +234,7 @@ apis:
   name: Acquia Organizations API
   description: The Organizations API from Acquia — 18 operation(s) for organizations.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Organization
   tags_raw:
@@ -232,6 +248,7 @@ apis:
   name: Acquia Private Networks API
   description: Private Network Service API
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Private Networks
   properties:
@@ -243,6 +260,7 @@ apis:
   name: Acquia Subscriptions API
   description: The Subscriptions API from Acquia — 22 operation(s) for subscriptions.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Subscription
   tags_raw:
@@ -256,6 +274,7 @@ apis:
   name: Acquia Teams and Permissions API
   description: The Teams and Permissions API from Acquia — 10 operation(s) for teams and permissions.
   humanURL: https://cloudapi-docs.acquia.com/
+  baseURL: https://cloud.acquia.com/api
   tags:
   - Teams and Permissions
   properties:
@@ -263,10 +282,50 @@ apis:
     url: openapi/acquia-teams-and-permissions-api-openapi.yml
   - type: Documentation
     url: https://cloudapi-docs.acquia.com/
+- aid: acquia:acquia-content-api
+  name: Acquia Content API
+  description: >-
+    The stable JSON:API 1.1 surface shared by every Acquia Source CMS site, plus the OAuth 2.0
+    endpoints that issue the tokens it accepts. Ten operations cover token issuance, the authorization
+    redirect, the resource-type index, and JSON:API collection/entry/relationship reads and writes.
+    The base URL is the customer's own site, so servers[] is templated on {siteUrl}; the per-bundle
+    endpoint list is generated on each site at API > OpenAPI documentation.
+  humanURL: https://dev.acquia.com/source-cms/reference/content-api
+  baseURL: '{siteUrl}/api'
+  tags:
+  - Content
+  - JSON:API
+  - Source CMS
+  - Headless
+  properties:
+  - type: OpenAPI
+    url: openapi/acquia-content-api-openapi.yaml
+  - type: Documentation
+    url: https://dev.acquia.com/source-cms/reference/content-api
+  - type: APIReference
+    url: https://dev.acquia.com/source-cms/reference/content-api
+  - type: Authentication
+    url: https://dev.acquia.com/source-cms/reference/authentication
+  - type: GettingStarted
+    url: https://dev.acquia.com/source-cms/content-api/quickstart
+  - type: MCPServer
+    url: mcp/acquia-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/acquia-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/acquia-source-cms-webhooks.yml
+  - type: Overlay
+    url: overlays/acquia-content-api-overlay.yaml
 name: Acquia
 tags:
   - Content
   - Experience
+  - Drupal
+  - DXP
+  - CMS
+  - Digital Asset Management
+  - Cloud Hosting
+  - Headless
 type: Index
 deliveryModel:
   model: saas
@@ -296,6 +355,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/acquia.png
 access: 3rd-Party
 common:
+  - type: Website
+    url: https://www.acquia.com/
   - type: AgenticAccess
     url: agentic-access/acquia-agentic-access.yml
   - type: TrustCenter
@@ -330,10 +391,6 @@ common:
     name: Acquia Developer Portal Homepage
     type: Portal
     description: 'null'
-  - url: https://dev.acquia.com/tutorial
-    name: Acquia Developer Portal Tutorials
-    type: Tutorials
-    description: 'null'
   - url: https://docs.acquia.com/service-offerings/support/support-users-guide#contacting-acquia-support
     name: Support Users Guide | Service Offerings | Acquia Product Documentation
     type: Support
@@ -344,9 +401,6 @@ common:
     description: 'null'
   - type: GitHubOrganization
     url: https://github.com/acquia
-  - type: CLI
-    url: https://github.com/acquia/cli
-    title: Acquia CLI
   - type: SpectralRules
     url: https://raw.githubusercontent.com/api-evangelist/acquia/refs/heads/main/rules/acquia-spectral-rules.yml
   - type: Vocabulary
@@ -354,7 +408,7 @@ common:
   - type: TermsOfService
     url: https://www.acquia.com/about-us/legal
   - type: Signup
-    url: https://accounts.acquia.com/register
+    url: https://accounts.acquia.com/sign-up
   - type: Features
     data:
       - name: Cloud Hosting
@@ -393,8 +447,66 @@ common:
         description: Digital Asset Management integration via Widen Collective for media management in Drupal.
   - type: Integrations
     url: https://www.acquia.com/integrations
+  - type: Packages
+    url: packages/acquia-packages.yml
+  - type: SDKs
+    url: packages/acquia-packages.yml
+  - type: CLI
+    url: cli/acquia-cli.yml
+  - type: WellKnown
+    url: well-known/acquia-well-known.yml
+  - type: SecurityTxt
+    url: well-known/acquia-security.txt
+  - type: Security
+    url: security/acquia-vulnerability-disclosure.yml
+  - type: Compliance
+    url: security/acquia-trust-center.yml
+  - type: MCPServer
+    url: mcp/acquia-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/acquia-tool-crosswalk.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/acquia-llms.txt
+  - type: Conformance
+    url: conformance/acquia-conformance.yml
+  - type: ErrorCatalog
+    url: errors/acquia-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/acquia-lifecycle.yml
+  - type: Deprecation
+    url: lifecycle/acquia-lifecycle.yml
+  - type: Conventions
+    url: conventions/acquia-conventions.yml
+  - type: ChangeLog
+    url: changelog/acquia-changelog.yml
+  - type: Components
+    url: components/acquia-components.yml
+  - type: DataModel
+    url: data-model/acquia-data-model.yml
+  - type: Webhooks
+    url: asyncapi/acquia-source-cms-webhooks.yml
+  - type: Plans
+    url: plans/acquia-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/acquia-rate-limits.yml
+  - type: Documentation
+    url: https://docs.acquia.com/
+  - type: APIReference
+    url: https://cloudapi-docs.acquia.com/
+  - type: GettingStarted
+    url: https://dev.acquia.com/start-here/choose-your-backend
+  - type: Pricing
+    url: https://www.acquia.com/pricing
+  - type: Roadmap
+    url: https://www.acquia.com/product/roadmap
+  - type: PrivacyPolicy
+    url: https://www.acquia.com/about-us/legal/privacy-policy
+  - type: HelpCenter
+    url: https://support.acquia.com/
 created: '2025-02-17'
-modified: '2026-04-19'
+modified: '2026-08-30'
 position: Consumer
 description: >-
   Acquia is a leading provider of digital experience management solutions for organizations looking to enhance their
@@ -407,3 +519,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 specificationVersion: '0.23'
+x-enrichment:
+  date: '2026-08-30'
+  status: enriched
+  artifacts_added: 57
+  pass: local-v1

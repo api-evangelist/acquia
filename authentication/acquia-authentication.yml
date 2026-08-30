@@ -1,10 +1,10 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/acquia-cloud-account.yml, openapi/acquia-cloud-agreements.yml, openapi/acquia-cloud-application-performance-monitoring-services.yml,
-  openapi/acquia-cloud-applications.yml, openapi/acquia-cloud-cloud-ide.yml, openapi/acquia-cloud-codebases.yml,
-  openapi/acquia-cloud-current-system-health.yml, openapi/acquia-cloud-distributions.yml, openapi/acquia-cloud-email.yml,
-  openapi/acquia-cloud-environments.yml, openapi/acquia-cloud-identity-providers.yml, openapi/acquia-cloud-invite.yml
-  ...
+generated: '2026-08-30'
+method: searched
+source: openapi/acquia-account-api-openapi.yml, openapi/acquia-agreements-api-openapi.yml, openapi/acquia-application-performance-monitoring-services-api-openapi.yml,
+  openapi/acquia-applications-api-openapi.yml, openapi/acquia-cloud-ide-api-openapi.yml, openapi/acquia-codebases-api-openapi.yml,
+  openapi/acquia-current-system-health-api-openapi.yml, openapi/acquia-distributions-api-openapi.yml,
+  openapi/acquia-email-api-openapi.yml, openapi/acquia-environments-api-openapi.yml, openapi/acquia-identity-providers-api-openapi.yml,
+  openapi/acquia-invite-api-openapi.yml ...
 summary:
   types:
   - apiKey
@@ -20,58 +20,162 @@ schemes:
   - flow: clientCredentials
     tokenUrl: https://accounts.acquia.com/api/token
     scopes: 0
-  description: |-
-    All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
+  description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using
+    a token that you can generate on your Acquia Profile page.
+
 
     ### To generate a token:
 
-    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and Acquia password.
+
+    1. Sign in to the [Acquia Cloud](https://cloud.acquia.com/) interface using your email address and
+    Acquia password.
+
     2. Click your user avatar in the upper right corner, and then click **Account Settings**.
-    3. On the Profile page
+
+    3. On the Profile page'
   sources:
-  - openapi/acquia-cloud-account.yml
-  - openapi/acquia-cloud-agreements.yml
-  - openapi/acquia-cloud-application-performance-monitoring-services.yml
-  - openapi/acquia-cloud-applications.yml
-  - openapi/acquia-cloud-cloud-ide.yml
-  - openapi/acquia-cloud-codebases.yml
-  - openapi/acquia-cloud-current-system-health.yml
-  - openapi/acquia-cloud-distributions.yml
-  - openapi/acquia-cloud-email.yml
-  - openapi/acquia-cloud-environments.yml
-  - openapi/acquia-cloud-identity-providers.yml
-  - openapi/acquia-cloud-invite.yml
-  - openapi/acquia-cloud-messages.yml
-  - openapi/acquia-cloud-notifications.yml
-  - openapi/acquia-cloud-openapi-full.yml
-  - openapi/acquia-cloud-options.yml
-  - openapi/acquia-cloud-organizations.yml
-  - openapi/acquia-cloud-private-networks.yml
-  - openapi/acquia-cloud-subscriptions.yml
-  - openapi/acquia-cloud-teams-and-permissions.yml
+  - openapi/acquia-account-api-openapi.yml
+  - openapi/acquia-agreements-api-openapi.yml
+  - openapi/acquia-application-performance-monitoring-services-api-openapi.yml
+  - openapi/acquia-applications-api-openapi.yml
+  - openapi/acquia-cloud-ide-api-openapi.yml
+  - openapi/acquia-codebases-api-openapi.yml
+  - openapi/acquia-current-system-health-api-openapi.yml
+  - openapi/acquia-distributions-api-openapi.yml
+  - openapi/acquia-email-api-openapi.yml
+  - openapi/acquia-environments-api-openapi.yml
+  - openapi/acquia-identity-providers-api-openapi.yml
+  - openapi/acquia-invite-api-openapi.yml
+  - openapi/acquia-messages-api-openapi.yml
+  - openapi/acquia-notifications-api-openapi.yml
+  - openapi/acquia-options-api-openapi.yml
+  - openapi/acquia-organizations-api-openapi.yml
+  - openapi/acquia-private-networks-api-openapi.yml
+  - openapi/acquia-subscriptions-api-openapi.yml
+  - openapi/acquia-teams-and-permissions-api-openapi.yml
 - name: Codebase_Service_JWT
   type: apiKey
   in: header
   parameter: Authorization
   description: Value for the Authorization header parameter.
   sources:
-  - openapi/acquia-cloud-account.yml
-  - openapi/acquia-cloud-agreements.yml
-  - openapi/acquia-cloud-application-performance-monitoring-services.yml
-  - openapi/acquia-cloud-applications.yml
-  - openapi/acquia-cloud-cloud-ide.yml
-  - openapi/acquia-cloud-codebases.yml
-  - openapi/acquia-cloud-current-system-health.yml
-  - openapi/acquia-cloud-distributions.yml
-  - openapi/acquia-cloud-email.yml
-  - openapi/acquia-cloud-environments.yml
-  - openapi/acquia-cloud-identity-providers.yml
-  - openapi/acquia-cloud-invite.yml
-  - openapi/acquia-cloud-messages.yml
-  - openapi/acquia-cloud-notifications.yml
-  - openapi/acquia-cloud-openapi-full.yml
-  - openapi/acquia-cloud-options.yml
-  - openapi/acquia-cloud-organizations.yml
-  - openapi/acquia-cloud-private-networks.yml
-  - openapi/acquia-cloud-subscriptions.yml
-  - openapi/acquia-cloud-teams-and-permissions.yml
+  - openapi/acquia-account-api-openapi.yml
+  - openapi/acquia-agreements-api-openapi.yml
+  - openapi/acquia-application-performance-monitoring-services-api-openapi.yml
+  - openapi/acquia-applications-api-openapi.yml
+  - openapi/acquia-cloud-ide-api-openapi.yml
+  - openapi/acquia-codebases-api-openapi.yml
+  - openapi/acquia-current-system-health-api-openapi.yml
+  - openapi/acquia-distributions-api-openapi.yml
+  - openapi/acquia-email-api-openapi.yml
+  - openapi/acquia-environments-api-openapi.yml
+  - openapi/acquia-identity-providers-api-openapi.yml
+  - openapi/acquia-invite-api-openapi.yml
+  - openapi/acquia-messages-api-openapi.yml
+  - openapi/acquia-notifications-api-openapi.yml
+  - openapi/acquia-options-api-openapi.yml
+  - openapi/acquia-organizations-api-openapi.yml
+  - openapi/acquia-private-networks-api-openapi.yml
+  - openapi/acquia-subscriptions-api-openapi.yml
+  - openapi/acquia-teams-and-permissions-api-openapi.yml
+docs:
+- https://dev.acquia.com/source-cms/reference/authentication.md
+- https://docs.acquia.com/acquia-cloud-platform/cloud-platform-api-v2-authentication
+- https://cloudapi-docs.acquia.com/
+searched_upgrade_note: Upgraded derived -> searched on 2026-08-30. The derived profile saw only the Cloud
+  Platform securitySchemes; the Source CMS OAuth surface below - three grants, published token lifetimes,
+  a 22-scope vocabulary, dynamic client registration and the exact failure diagnostics - is read from
+  Acquia's own authentication reference and was absent from every prior round.
+surfaces:
+- name: Cloud Platform API
+  base_url: https://cloud.acquia.com/api
+  type: oauth2
+  flows:
+  - client_credentials
+  token_url: https://accounts.acquia.com/api/token
+  credential_origin: API key + secret generated by the user at cloud.acquia.com > Account Settings > API
+    Tokens. The secret is displayed once.
+  authorization_model: Teams and Permissions roles, not OAuth scopes
+  scopes: organization:{uuid} only, and only under Federated Authentication
+  docs: https://docs.acquia.com/acquia-cloud-platform/cloud-platform-api-v2-authentication
+- name: Acquia Content API (Source CMS)
+  base_url: '{DRUPAL_SITE_URL}'
+  type: oauth2
+  flows:
+  - client_credentials
+  - authorization_code
+  - refresh_token
+  token_url: '{DRUPAL_SITE_URL}/oauth/token'
+  authorize_url: '{DRUPAL_SITE_URL}/oauth/authorize'
+  request_header: 'Authorization: Bearer <token> (exactly one space after Bearer)'
+  token_format: JWT
+  credential_origin: API client ID and secret created in the site admin UI at API > API clients; the secret
+    is shown only once.
+  token_lifetimes:
+    access_token_seconds: 300
+    authorization_code_seconds: 300
+    refresh_token_seconds: 1209600
+  refresh_token_availability: Returned only by the authorization_code and refresh_token grants. client_credentials
+    NEVER returns one.
+  scope_count: 22
+  anonymous_access: A site's Public access setting (API > JSON:API) can allow unauthenticated GETs of
+    published content. Unpublished content always requires content:administer.
+  docs: https://dev.acquia.com/source-cms/reference/authentication.md
+- name: Acquia Source MCP server
+  base_url: '{DRUPAL_SITE_URL}/mcp'
+  type: oauth2
+  flows:
+  - client_credentials
+  - authorization_code (via dynamic client registration)
+  dynamic_client_registration: '{DRUPAL_SITE_URL}/oauth/register'
+  discovery:
+  - '{DRUPAL_SITE_URL}/.well-known/oauth-protected-resource'
+  - '{DRUPAL_SITE_URL}/.well-known/oauth-protected-resource/mcp'
+  - '{DRUPAL_SITE_URL}/.well-known/oauth-authorization-server'
+  - '{DRUPAL_SITE_URL}/.well-known/jwks.json'
+  scopes_supported: 16
+  challenge_gap: The 401 WWW-Authenticate header is only Bearer realm="mcp_server" - it does NOT carry
+    an RFC 9728 resource_metadata parameter, so a client must know the well-known URL out of band.
+  docs: https://dev.acquia.com/source-cms/reference/mcp-server.md
+- name: Acquia identity provider (accounts.acquia.com)
+  type: openIdConnect
+  issuer: https://id.acquia.com/oauth2/default
+  discovery: https://accounts.acquia.com/.well-known/openid-configuration
+  discovery_status: 200
+  saved_to: well-known/acquia-openid-configuration.json
+  grants_supported:
+  - authorization_code
+  - implicit
+  - refresh_token
+  - password
+  - client_credentials
+  - device_code
+  - CIBA
+  note: Okta-backed. This is the human/SSO identity layer, distinct from the API token surfaces above.
+failure_diagnostics:
+- condition: expired access token
+  status: 401
+  where: WWW-Authenticate header, NOT the body
+  detail: error="access_denied", error_description="Access token could not be verified"
+- condition: malformed token
+  status: 401
+  where: WWW-Authenticate header; the BODY IS HTML, not JSON
+  detail: e.g. Bearer realm="OAuth", error="access_denied", error_description="The JWT string must have
+    two dots"
+- condition: wrong client id or secret
+  status: 401
+  where: JSON body from /oauth/token
+  detail: '{"error":"invalid_client","error_description":"Client authentication failed"}'
+- condition: unknown or unselected scope requested
+  status: 400
+  where: JSON body from /oauth/token; hint names the offending scope
+  detail: '{"error":"invalid_scope","error_description":"The requested scope is invalid, unknown, or malformed"}'
+- condition: valid token missing the needed scope
+  status: 403
+  where: JSON:API error document; detail names the missing permission
+  detail: Existing tokens do NOT gain scopes retroactively - select the scope, then request a new token.
+cross_links:
+  scopes: scopes/acquia-scopes.yml
+  conventions: conventions/acquia-conventions.yml
+  errors: errors/acquia-problem-types.yml
+  mcp: mcp/acquia-mcp.yml

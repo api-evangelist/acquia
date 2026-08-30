@@ -1,0 +1,99 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://dev.acquia.com/cloud-platform/reference/acli.md (HTTP 200),
+  https://github.com/acquia/cli, https://github.com/acquia/acquia-skills,
+  https://www.npmjs.com/package/@drupal-canvas/cli
+provider: Acquia
+providerId: acquia
+description: >-
+  Acquia ships three first-party CLIs across its two platforms, and its own developer portal tells an
+  agent to drive the platform through them: "To operate Cloud Platform from an agent, install Acquia
+  Skills (npx skills add acquia/acquia-skills) or drive acli directly." The CLI is treated as an
+  agent interface, not only a human one.
+clis:
+  - id: acli
+    name: Acquia CLI
+    binary: acli
+    language: PHP
+    version: 4.0.1
+    published: '2026-08-27'
+    repository: https://github.com/acquia/cli
+    reference: https://dev.acquia.com/cloud-platform/reference/acli.md
+    distribution: PHAR from GitHub Releases (not published on Packagist)
+    scope: Cloud Platform (PaaS)
+    authentication: >-
+      acli auth:login; non-interactive via environment variables for scripts and CI. Credentials file
+      plus a project link file.
+    agent_notes: >-
+      Every command takes -n/--no-interaction, and -v/-vv/-vvv is documented as the first
+      troubleshooting tool. Exit codes are documented. Composer hook points let a caller wrap any
+      command with extra build steps.
+    command_groups:
+      - name: Authenticate
+        commands: ['auth:login']
+      - name: Applications and projects
+        commands: ['app:link', 'app:unlink', 'app:log:tail', 'app:task-wait', 'app:vcs:info']
+      - name: Pull from an environment
+        commands: ['pull:all', 'pull:database', 'pull:files']
+      - name: Push to an environment
+        commands: ['push:artifact', 'push:database', 'push:files']
+      - name: Manage environments
+        commands: ['env:create', 'env:delete', 'env:mirror', 'env:cron-copy']
+      - name: SSH, remote Drush, and aliases
+        commands: ['remote:aliases:download', 'remote:aliases:list', 'remote:drush', 'remote:ssh']
+      - name: SSH keys
+        commands: ['ssh-key:create-upload']
+      - name: Cloud IDEs
+        commands: ['ide:create']
+      - name: Code Studio
+        commands: ['codestudio:wizard', 'codestudio:pipelines-migrate']
+      - name: Site Factory
+        commands: []
+      - name: The Cloud Platform API
+        commands:
+          - 'api:environments:code-switch'
+          - 'api:environments:database-backup-create'
+          - 'api:environments:database-backup-restore'
+          - 'api:environments:cron-create'
+        note: >-
+          acli exposes the Cloud Platform API generically as api:* commands — the OpenAPI files in
+          openapi/ carry an x-cli-name extension on operations, which is how each endpoint gets its
+          command name. This makes the CLI a complete, self-documenting front end to the REST API.
+      - name: Maintain acli itself
+        commands: ['self-update']
+    key_flows:
+      - Deploy code as a build artifact (push:artifact)
+      - Roll production back to a previous ref (api:environments:code-switch)
+      - Back up and restore an environment database
+      - Create and tear down Continuous Delivery Environments
+      - Copy a database or files from Cloud to local
+  - id: pipelines-cli
+    name: Acquia Pipelines CLI
+    scope: Cloud Platform CI/CD
+    docs: https://docs.acquia.com/acquia-cloud-platform/pipelines/
+    key_flows:
+      - Trigger builds
+      - Check status
+      - Stream logs
+      - Terminate jobs
+    note: >-
+      Documented as a distinct CLI with its own Agent Skills product group in
+      github.com/acquia/acquia-skills.
+  - id: canvas-cli
+    name: Drupal Canvas CLI
+    binary: canvas
+    package: '@drupal-canvas/cli'
+    registry: npm
+    version: 0.23.1
+    published: '2026-08-18'
+    scope: Source CMS — Canvas code components
+    reference: https://dev.acquia.com/source-cms/reference/canvas-cli.md
+    scopes_required: ['canvas:asset_library', 'canvas:js_component']
+    agent_notes: >-
+      `npx canvas agents-context` scaffolds a Canvas component project WITH agent context included —
+      an explicit agent-onboarding command.
+agent_skills:
+  published: true
+  install: npx skills add acquia/acquia-skills
+  detail: skills/_index.yml

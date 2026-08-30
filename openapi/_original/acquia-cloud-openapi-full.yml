@@ -14234,7 +14234,7 @@ paths:
                     - id: 7
                       label: null
                       certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
                       ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       flags:
                         active: true
@@ -14255,7 +14255,7 @@ paths:
                     - id: 3
                       label: Test Certificate 1
                       certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
                       ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       flags:
                         active: true
@@ -14274,7 +14274,7 @@ paths:
                     - id: 4
                       label: Test Certificate 2
                       certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
                       ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                       flags:
                         active: false
@@ -14319,7 +14319,7 @@ paths:
             example:
               legacy: false
               certificate: '-----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----'
-              private_key: '-----BEGIN RSA PRIVATE KEY-----secret....-----END RSA PRIVATE KEY-----'
+              private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
               ca_certificates: '-----BEGIN CERTIFICATE-----123abc....-----END CERTIFICATE-----'
               csr_id: 123
               label: My New Cert
@@ -14329,7 +14329,7 @@ paths:
             example:
               legacy: false
               certificate: '-----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----'
-              private_key: '-----BEGIN RSA PRIVATE KEY-----secret....-----END RSA PRIVATE KEY-----'
+              private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
               ca_certificates: '-----BEGIN CERTIFICATE-----123abc....-----END CERTIFICATE-----'
               csr_id: 123
               label: My New Cert
@@ -14438,7 +14438,7 @@ paths:
                 id: 13
                 label: Test Certificate
                 certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-                private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
                 ca: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
                 flags:
                   active: true
@@ -14777,7 +14777,7 @@ paths:
                   items:
                     - id: 7
                       csr: '-----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----'
-                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
                       country: US
                       state: Massachusetts
                       locality: Boston
@@ -14800,7 +14800,7 @@ paths:
                           href: https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/certificates/7
                     - id: 8
                       csr: '-----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----'
-                      private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                      private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
                       country: US
                       state: Massachusetts
                       locality: Boston
@@ -15008,7 +15008,7 @@ paths:
               example:
                 id: 7
                 csr: '-----BEGIN CERTIFICATE REQUEST-----...-----END CERTIFICATE REQUEST-----'
-                private_key: '-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----'
+                private_key: 'REDACTED_PRIVATE_KEY_EXAMPLE'
                 country: US
                 state: Massachusetts
                 locality: Boston

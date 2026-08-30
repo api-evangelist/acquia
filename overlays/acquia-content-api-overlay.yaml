@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Acquia Content API
+  version: 1.0.0
+extends: acquia-content-api-openapi.yaml
+x-generated: '2026-08-30'
+x-method: generated
+x-source: 'Generated from the accompanying OpenAPI document plus the artifacts in this repository. Additive
+  only: this overlay never alters an existing operation, schema or server value, and the original OpenAPI
+  in openapi/ is left untouched.'
+actions:
+- target: $.info
+  description: Record API Evangelist provenance and the catalog identifiers for this API.
+  update:
+    x-apievangelist-provider: acquia
+    x-apievangelist-repository: https://github.com/api-evangelist/acquia
+    x-apievangelist-artifacts:
+      conventions: conventions/acquia-conventions.yml
+      errors: errors/acquia-problem-types.yml
+      lifecycle: lifecycle/acquia-lifecycle.yml
+      authentication: authentication/acquia-authentication.yml
+      rate-limits: rate-limits/acquia-rate-limits.yml
+- target: $.info
+  description: Surface the resource this single-tag document covers, for catalog faceting.
+  update:
+    x-apievangelist-tags:
+    - Authentication
+    - Content
+    x-apievangelist-operation-count: 10

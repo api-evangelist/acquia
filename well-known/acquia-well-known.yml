@@ -1,0 +1,128 @@
+generated: '2026-08-30'
+method: probed
+source: live HTTP probes of every apis.yml and OpenAPI host, 2026-08-30
+provider: Acquia
+providerId: acquia
+description: >-
+  Probe of the five standard /.well-known/ paths across every Acquia host in this repo. Three real
+  documents were served: a security.txt on www.acquia.com, a mirror of it on dev.acquia.com, and an
+  OpenID Connect discovery document on accounts.acquia.com (which reveals Acquia's identity layer is
+  Okta, issuer https://id.acquia.com/oauth2/default). Every other path returned 404, and on
+  cloud.acquia.com, www.acquia.com, docs.acquia.com and dev.acquia.com the 404 came back as a full
+  HTML page rather than a bare status — noted so that a later probe does not mistake the HTML body
+  for a document.
+hosts:
+  - host: www.acquia.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: well-known/acquia-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: dev.acquia.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: well-known/acquia-dev-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: accounts.acquia.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: well-known/acquia-openid-configuration.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: cloud.acquia.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: docs.acquia.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: cloudapi-docs.acquia.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+findings:
+  agent_card: >-
+    No A2A agent card on any host. Every /.well-known/agent-card.json and /.well-known/agent.json
+    probe returned 404. No a2a/ artifact was written — per the pipeline contract an agent card is
+    search-only and must never be authored on a provider's behalf.
+  api_catalog: No RFC 9727 api-catalog document on any host.
+  oauth_discovery: >-
+    Acquia serves no OAuth authorization-server metadata on an acquia.com host. The Source CMS OAuth
+    discovery documents Acquia's MCP reference describes
+    (/.well-known/oauth-protected-resource, /.well-known/oauth-authorization-server, /.well-known/jwks.json)
+    live on each CUSTOMER site, not on an Acquia-operated host, so they could not be probed here.
+  identity_provider: >-
+    accounts.acquia.com/.well-known/openid-configuration resolves to issuer
+    https://id.acquia.com/oauth2/default — an Okta tenant. Supported grants include
+    authorization_code, client_credentials, refresh_token, device_code and CIBA.

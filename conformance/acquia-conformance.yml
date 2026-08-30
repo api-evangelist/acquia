@@ -1,0 +1,178 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  openapi/acquia-content-api-openapi.yaml, openapi/acquia-*-api-openapi.yml (Cloud Platform),
+  https://dev.acquia.com/source-cms/reference/content-api.md,
+  https://dev.acquia.com/source-cms/reference/authentication.md,
+  https://dev.acquia.com/source-cms/reference/mcp-server.md,
+  https://accounts.acquia.com/.well-known/openid-configuration, https://security.acquia.com/
+provider: Acquia
+providerId: acquia
+description: >-
+  Cross-cutting and domain standards Acquia's own contracts and references declare. The headline is
+  the domain-standard signature: the Acquia Content API is not a bespoke REST surface, it is JSON:API
+  1.1, declared in the contract and reported back in every response's jsonapi.version member. A
+  consumer who already speaks JSON:API integrates with no bespoke connector.
+standards:
+  - id: jsonapi
+    name: 'JSON:API 1.1'
+    conforms: true
+    domain_standard: true
+    evidence:
+      - >-
+        openapi/acquia-content-api-openapi.yaml declares the media type application/vnd.api+json on
+        every content operation, and its schemas (ResourceObject, CollectionDocument, EntityDocument,
+        ErrorDocument) are the JSON:API document shapes.
+      - >-
+        Acquia's Content API reference states: "The surface follows the JSON:API 1.1 specification;
+        every response's jsonapi.version member reports 1.1."
+        (https://dev.acquia.com/source-cms/reference/content-api.md)
+      - >-
+        Endpoint shape /api/{entity_type}/{bundle}[/{uuid}[/relationships/{field}]] is the JSON:API
+        resource and relationship addressing scheme.
+      - >-
+        Query parameters filter, fields, include, page and sort are the JSON:API 1.1 parameter
+        family.
+    spec_location: https://jsonapi.org/
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence:
+      - >-
+        Source CMS: authorization_code, client_credentials and refresh_token grants at
+        POST {siteUrl}/oauth/token, documented with full parameter tables and captured responses
+        (https://dev.acquia.com/source-cms/reference/authentication.md); operationIds issueToken and
+        authorize in openapi/acquia-content-api-openapi.yaml.
+      - >-
+        Cloud Platform: clientCredentials flow with tokenUrl https://accounts.acquia.com/api/token,
+        declared as an oauth2 securityScheme across the Cloud API OpenAPI files.
+      - Token lifetimes published — access 300s, authorization code 300s, refresh token 1209600s.
+  - id: oauth2-dynamic-client-registration
+    name: OAuth 2.0 Dynamic Client Registration (RFC 7591)
+    conforms: true
+    evidence:
+      - >-
+        The Source CMS MCP reference states interactive clients self-register via dynamic client
+        registration at {DRUPAL_SITE_URL}/oauth/register
+        (https://dev.acquia.com/source-cms/reference/mcp-server.md).
+      - >-
+        accounts.acquia.com/.well-known/openid-configuration advertises
+        registration_endpoint https://id.acquia.com/oauth2/v1/clients.
+  - id: oauth2-protected-resource-metadata
+    name: OAuth 2.0 Protected Resource Metadata (RFC 9728)
+    conforms: partial
+    evidence:
+      - >-
+        Source CMS sites publish /.well-known/oauth-protected-resource and
+        /.well-known/oauth-protected-resource/mcp with 16 scopes_supported and
+        bearer_methods_supported ["header"].
+      - >-
+        PARTIAL because Acquia itself records the gap: the 401 WWW-Authenticate header is only
+        Bearer realm="mcp_server" and does NOT carry a resource_metadata parameter pointing at that
+        document (Acquia verified 2026-07-03). RFC 9728 discovery therefore requires out-of-band
+        knowledge of the URL.
+  - id: oidc
+    name: OpenID Connect Discovery
+    conforms: true
+    evidence:
+      - >-
+        https://accounts.acquia.com/.well-known/openid-configuration returns HTTP 200 with issuer
+        https://id.acquia.com/oauth2/default, authorization/token/jwks/registration endpoints, and
+        openid, profile, email, address, phone in scopes_supported. Saved verbatim to
+        well-known/acquia-openid-configuration.json.
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence:
+      - >-
+        Acquia Source MCP, server version 1.0.0, protocol version 2025-11-25 negotiated at
+        initialize; Streamable HTTP transport; capabilities logging, completions, prompts, resources
+        and tools (https://dev.acquia.com/source-cms/reference/mcp-server.md). 38 tools, 12 resources,
+        7 resource templates.
+  - id: openapi
+    name: OpenAPI
+    conforms: true
+    evidence:
+      - >-
+        openapi/acquia-content-api-openapi.yaml is OpenAPI 3.1.0, published by Acquia at the stable
+        URL https://dev.acquia.com/openapi/acquia-content-api.yaml and described in the docs as being
+        "published at a stable URL for code generators and API collections".
+      - >-
+        The Cloud Platform API master spec is served at
+        https://cloudapi-docs.acquia.com/acquia-spec.yaml (OpenAPI 3.0.0, HTTP 200, ~1.5 MB).
+      - >-
+        Every Source CMS site additionally generates its own live OpenAPI document at
+        API > OpenAPI documentation, covering the per-bundle endpoints that the shared spec cannot.
+  - id: rfc9457
+    name: 'RFC 9457 Problem Details'
+    conforms: false
+    evidence:
+      - >-
+        No application/problem+json response is declared anywhere in the Cloud Platform or Content
+        API specs. Content API errors use the JSON:API errors document; Cloud API errors use a
+        proprietary {error, message} envelope; OAuth errors use the RFC 6749
+        {error, error_description} shape.
+  - id: idempotency
+    name: Idempotency
+    conforms: partial
+    evidence:
+      - >-
+        OUTBOUND only. Source CMS webhook deliveries carry an Idempotency-Key header (SHA-1 of the
+        payload) so receivers can deduplicate retries
+        (https://dev.acquia.com/source-cms/reference/webhooks.md).
+      - >-
+        There is no inbound idempotency key on any write operation of the Content API or the Cloud
+        Platform API — no Idempotency-Key request header is documented or declared. Two MCP tools are
+        idempotent by semantics (create_vocabulary, get_or_create_term) but that is tool behavior,
+        not a protocol-level guarantee.
+  - id: pagination
+    name: Pagination
+    conforms: true
+    evidence:
+      - >-
+        JSON:API page[] query parameters with links.next/links.last on collection responses.
+      - >-
+        Documented sharp edge: pagination links are computed BEFORE access filtering, so a page can
+        be "data": [] and still carry links.next. An empty page is not the end of a collection
+        (https://dev.acquia.com/source-cms/reference/content-api.md).
+  - id: rfc8594
+    name: 'RFC 8594 Sunset header'
+    conforms: false
+    evidence:
+      - >-
+        Acquia signals deprecation with a proprietary X-CloudAPI-Deprecated response header and a
+        stability contract in X-CloudAPI-Stability, not with the standard Sunset or Deprecation
+        headers. The policy is real and published; the header names are not the RFC's.
+  - id: scim
+    name: SCIM
+    conforms: false
+    evidence:
+      - >-
+        No urn:ietf:params:scim:schemas:* URN appears in any Acquia contract. Acquia's identity
+        surface is the Identity Providers API (SAML/SSO configuration) plus Teams and Permissions,
+        not SCIM provisioning.
+  - id: odata
+    name: OData
+    conforms: false
+    evidence: [No $metadata surface; the query language is JSON:API, not OData.]
+  - id: fhir
+    name: FHIR
+    conforms: false
+    evidence: [Not a healthcare data provider; no FHIR resources in any contract.]
+  - id: fapi
+    name: FAPI
+    conforms: false
+    evidence: [Not a financial-services API; no FAPI profile declared.]
+compliance_programs:
+  source: https://security.acquia.com/
+  certifications:
+    - SOC 2
+    - ISO/IEC 27001
+    - PCI DSS
+    - HIPAA
+    - FedRAMP
+    - GDPR
+    - CSA STAR
+  note: >-
+    Named certifications published on Acquia's own trust center. Detail in
+    security/acquia-trust-center.yml.

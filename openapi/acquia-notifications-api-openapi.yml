@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     name: Customer Experience Engineering (CXE)
@@ -10,7 +10,10 @@ info:
     altText: Acquia Cloud
     backgroundColor: '#FFFFFF'
     url: assets/cloud-platform.svg
-servers: []
+servers:
+- url: https://cloud.acquia.com/api
+  description: Promoted from the path-level servers[] already present in this document
+    (API Evangelist 2026-08-30); the top-level block was empty.
 tags:
 - name: Notifications
 paths:
@@ -69,17 +72,19 @@ paths:
       - Notifications
       x-cli-name: notifications:find
 components:
-  parameters:
-    Acquia_Cloud_API_Documentation_notification-uuid:
-      description: The entity's universally unique identifier.
-      example: 2343b683-b194-4217-982a-6a95c72ad9a8
-      in: path
-      name: notificationUuid
-      required: true
-      schema:
-        format: uuid
-        type: string
   schemas:
+    Acquia_Cloud_API_Documentation_error:
+      properties:
+        error:
+          description: The error summary.
+          type: string
+        message:
+          description: The long description for the returned error.
+          type: string
+      required:
+      - error
+      - message
+      type: object
     Acquia_Cloud_API_Documentation_notification-stub:
       description: A notification about an event or a task.
       properties:
@@ -152,18 +157,16 @@ components:
       required:
       - self
       type: object
-    Acquia_Cloud_API_Documentation_error:
-      properties:
-        error:
-          description: The error summary.
-          type: string
-        message:
-          description: The long description for the returned error.
-          type: string
-      required:
-      - error
-      - message
-      type: object
+  parameters:
+    Acquia_Cloud_API_Documentation_notification-uuid:
+      description: The entity's universally unique identifier.
+      example: 2343b683-b194-4217-982a-6a95c72ad9a8
+      in: path
+      name: notificationUuid
+      required: true
+      schema:
+        format: uuid
+        type: string
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.

@@ -1,0 +1,132 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  registry.npmjs.org, repo.packagist.org/p2, api.github.com/repos/acquia/*, and the SDK/CLI links in
+  dev.acquia.com and docs.acquia.com. Versions and dates read from the registry metadata endpoints
+  on 2026-08-30.
+provider: Acquia
+providerId: acquia
+description: >-
+  Acquia distributes client tooling mainly through Packagist (Composer), which is the native registry
+  for a Drupal platform, plus one npm package for Drupal Canvas components. There is no first-party
+  Acquia client library on PyPI, RubyGems, crates.io, NuGet, Maven Central or pkg.go.dev — checked,
+  not assumed. The version/published pairs below are the decay evidence: acquia/blt has not shipped a
+  stable release since 2023 while the Cloud Platform API it wraps is still shipping changes monthly.
+package_count: 10
+official_count: 10
+packages:
+  - name: acquia/cli
+    registry: github
+    official: true
+    language: PHP
+    kind: cli
+    version: 4.0.1
+    published: '2026-08-27'
+    url: https://github.com/acquia/cli
+    docs: https://dev.acquia.com/cloud-platform/reference/acli.md
+    note: >-
+      The Acquia CLI (acli). Distributed as a PHAR from GitHub Releases, not from Packagist —
+      repo.packagist.org/p2/acquia/cli.json returns "404 not found, no packages here". Version read
+      from the GitHub latest-release API.
+  - name: acquia/http-hmac-php
+    registry: packagist
+    official: true
+    language: PHP
+    kind: sdk
+    version: 6.2.0
+    published: '2026-08-18'
+    url: https://packagist.org/packages/acquia/http-hmac-php
+    note: HMAC request signing used across Acquia service integrations. Most recently maintained SDK.
+  - name: acquia/content-hub-php
+    registry: packagist
+    official: true
+    language: PHP
+    kind: sdk
+    version: 3.9.0
+    published: '2025-11-21'
+    url: https://packagist.org/packages/acquia/content-hub-php
+    note: PHP client for the Acquia Content Hub API.
+  - name: acquia/coding-standards
+    registry: packagist
+    official: true
+    language: PHP
+    kind: tooling
+    version: v3.0.4
+    published: '2026-05-08'
+    url: https://packagist.org/packages/acquia/coding-standards
+  - name: acquia/drupal-recommended-project
+    registry: packagist
+    official: true
+    language: PHP
+    kind: project-template
+    version: 3.1.14
+    published: '2025-10-02'
+    url: https://packagist.org/packages/acquia/drupal-recommended-project
+  - name: acquia/drupal-cms-project
+    registry: packagist
+    official: true
+    language: PHP
+    kind: project-template
+    version: 2.1.0
+    published: '2026-02-26'
+    url: https://packagist.org/packages/acquia/drupal-cms-project
+  - name: acquia/acquia-cms-starterkit
+    registry: packagist
+    official: true
+    language: PHP
+    kind: project-template
+    version: 1.1.11
+    published: '2026-02-26'
+    url: https://packagist.org/packages/acquia/acquia-cms-starterkit
+  - name: acquia/blt
+    registry: packagist
+    official: true
+    language: PHP
+    kind: tooling
+    version: 13.7.4
+    published: '2023-11-16'
+    url: https://packagist.org/packages/acquia/blt
+    note: >-
+      DECAY SIGNAL. Build and Launch Tool, Acquia's long-standing Drupal build framework. Last stable
+      release 2023-11-16 — nearly three years before this check, while the Cloud Platform API it
+      automates against shipped changes as recently as 2026-08-07. Acquia's current agent-facing
+      guidance points at acli and the Pipelines CLI instead.
+  - name: acquia/cloudapi-php-client
+    registry: packagist
+    official: true
+    language: PHP
+    kind: sdk
+    version: null
+    published: null
+    url: https://packagist.org/packages/acquia/cloudapi-php-client
+    note: >-
+      Listed in the acquia Packagist vendor index but publishes NO stable release — every tagged
+      version on repo.packagist.org/p2 is a dev/pre-release branch. Recorded as null rather than
+      guessed. A consumer cannot pin a stable version of the Cloud API PHP client from this package.
+  - name: '@drupal-canvas/cli'
+    registry: npm
+    official: true
+    language: JavaScript
+    kind: cli
+    version: 0.23.1
+    published: '2026-08-18'
+    url: https://www.npmjs.com/package/@drupal-canvas/cli
+    repository: https://git.drupalcode.org/project/canvas.git
+    note: >-
+      CLI for managing Drupal Canvas code components. Upstream is the Drupal Canvas project on
+      drupalcode.org rather than an Acquia repo; Acquia's own developer portal documents it as the
+      tool for Source CMS Canvas components, and Acquia drives the Canvas initiative, so it is
+      recorded as official with that provenance stated.
+registries_checked_no_result:
+  - registry: pypi
+    note: No first-party Acquia client library found.
+  - registry: rubygems
+    note: No first-party Acquia client library found.
+  - registry: crates.io
+    note: No first-party Acquia client library found.
+  - registry: nuget
+    note: No first-party Acquia client library found.
+  - registry: maven-central
+    note: No first-party Acquia client library found.
+  - registry: pkg.go.dev
+    note: No first-party Acquia client library found.

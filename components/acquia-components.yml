@@ -1,0 +1,61 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://dev.acquia.com/llms.txt, https://dev.acquia.com/source-cms/reference/canvas-cli.md,
+  https://dev.acquia.com/source-cms/canvas-components/quickstart.md,
+  https://dev.acquia.com/source-cms/reference/mcp-server.md,
+  https://www.npmjs.com/package/@drupal-canvas/cli
+provider: Acquia
+providerId: acquia
+description: >-
+  Acquia's client-side component surface is Drupal Canvas: React components that live as code in the
+  customer's own git repository, are pushed into a site's component library, and are then placed
+  visually by editors in the Canvas editor. It is an inversion of the usual embeddable-widget model —
+  the provider does not ship a component library to the customer; the customer ships components to
+  the provider's editor, and the component contract is a component.yml schema rather than a script
+  tag.
+families:
+  - id: canvas-code-components
+    name: Drupal Canvas code components
+    kind: authored-by-customer React components
+    language: React (JSX/TSX)
+    hosting: >-
+      Source code in the customer's own git repository; built artifacts uploaded into the site's
+      component library.
+    schema: component.yml
+    schema_docs: https://dev.acquia.com/source-cms/reference/canvas-cli.md
+    scaffold: npx canvas (project scaffolding); npx canvas agents-context to include agent context
+    loader: '@drupal-canvas/cli'
+    loader_registry: npm
+    loader_version: 0.23.1
+    loader_published: '2026-08-18'
+    oauth_scopes: ['canvas:asset_library', 'canvas:js_component']
+    quickstart: https://dev.acquia.com/source-cms/canvas-components/quickstart.md
+  - id: canvas-editor-surfaces
+    name: Canvas editor page and region surfaces
+    kind: hosted editing surface
+    description: >-
+      Pages and global page regions (header, footer) assembled from component instances. Regions are
+      shared across every page using the active theme.
+    agent_addressable: true
+    agent_note: >-
+      Uniquely for a visual page builder, the whole surface is addressable by an agent: the Source
+      CMS MCP server exposes canvas://components, canvas://pages, canvas://page-regions and
+      canvas://auto-saves as resources, plus 13 Canvas tools covering page creation, layout get/set,
+      component add/move/remove, prop updates and region layout. See mcp/acquia-mcp.yml.
+  - id: headless-frontends
+    name: Headless frontend starters
+    kind: framework starters consuming the Content API
+    frameworks: [Next.js, Astro, Nuxt, TanStack Start]
+    description: >-
+      Scaffolded apps whose components editors then place in the Canvas editor, consuming content
+      over JSON:API.
+    quickstart: https://dev.acquia.com/source-cms/get-content/quickstart.md
+    deploy: https://dev.acquia.com/source-cms/deploy/quickstart.md
+not_found:
+  - kind: web components / custom elements
+    note: No first-party custom-element or web-component library is published.
+  - kind: hosted embeddable widget (script tag / iframe)
+    note: >-
+      No CDN-distributed drop-in widget was found. Acquia's client-side surface is the Canvas
+      component model, not an embeddable script.

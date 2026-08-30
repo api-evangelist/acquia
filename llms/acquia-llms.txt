@@ -1,0 +1,41 @@
+# Acquia Developer Portal
+
+> Acquia runs Drupal-based content platforms. Two products: Source CMS, a fully managed Drupal SaaS where editors build pages visually with the open-source Canvas editor and components are React code in your own git repository, with optional headless delivery over JSON:API to Next.js, Astro, Nuxt, or TanStack Start; and Cloud Platform, a PaaS where you run your own Drupal codebase on managed environments with the acli CLI, pipelines, caching, and log tooling. No Drupal experience is assumed; the quickstarts target a first working result in minutes.
+
+Every documentation page is also served as Markdown at its own URL with `.md` appended (for example `/source-cms/get-content/quickstart.md`). Code samples are verified against the real tools and packages before they ship.
+
+For a task on one product, fetch that product's set below instead of the whole-site files. To scaffold a Canvas component project with agent context included, run `npx canvas agents-context` inside it. To operate Cloud Platform from an agent, install Acquia Skills (`npx skills add acquia/acquia-skills`) or drive `acli` directly. Source CMS sites expose an MCP server; the connection spec and tool catalog are in the reference below. Ask the user before creating API clients or deploying to environments: both act on their real site.
+
+## Fastest first results
+
+- [Choose your path](https://dev.acquia.com/start-here/choose-your-backend.md): in-platform rendering or headless, Source CMS (SaaS) or Cloud Platform (PaaS); the two decisions that pick a starting quickstart
+- [Build a Canvas component](https://dev.acquia.com/source-cms/canvas-components/quickstart.md): scaffold a component project, build one React component, push it to the site's component library
+- [Canvas Headless quickstart](https://dev.acquia.com/source-cms/get-content/quickstart.md): scaffold a Next.js, Astro, Nuxt, or TanStack Start app whose components editors place in the Canvas editor
+- [Authenticate API requests](https://dev.acquia.com/source-cms/authenticate/quickstart.md): create an API client, get an OAuth 2.0 token, make one authenticated call; sets DRUPAL_SITE_URL, DRUPAL_CLIENT_ID, DRUPAL_CLIENT_SECRET
+- [First fetch](https://dev.acquia.com/source-cms/content-api/first-fetch.md): pull one content type over JSON:API and render it in your app
+- [Query content over JSON:API](https://dev.acquia.com/source-cms/content-api/quickstart.md): find a content type's machine name, list entries, filter and page with query parameters
+- [Connect an AI agent over MCP](https://dev.acquia.com/source-cms/ai-agents/quickstart.md): enable the Source CMS MCP server and make one tool call from Claude Code, Cursor, VS Code, or another harness
+- [Deploy a headless frontend](https://dev.acquia.com/source-cms/deploy/quickstart.md): GitHub repository to a live URL on Acquia hosting, rebuilding on every push
+- [Install and authenticate acli](https://dev.acquia.com/cloud-platform/cli/quickstart.md): the Cloud Platform CLI, from install to a first real command
+- [Ship code to an environment](https://dev.acquia.com/cloud-platform/code-workflow/quickstart.md): clone a Cloud Platform application, push a change, see it live on a dev environment
+
+## Documentation sets
+
+- [Start here](https://dev.acquia.com/_llms-txt/start-here.txt): what you can build on Acquia, how to choose a backend, and the glossary
+- [Source CMS](https://dev.acquia.com/_llms-txt/source-cms.txt): the SaaS CMS. Canvas components, MCP and AI agents, OAuth, JSON:API content, headless frontends and their deployment, full reference
+- [Cloud Platform](https://dev.acquia.com/_llms-txt/cloud-platform.txt): run-your-own-Drupal hosting. acli and the Platform API, deploy workflow, local development, CI/CD, caching, logs
+- [Abridged documentation](https://dev.acquia.com/llms-small.txt): the whole site with non-essential content removed
+- [Complete documentation](https://dev.acquia.com/llms-full.txt): every published page in full (large; prefer a product set)
+
+## Reference
+
+- [Content API](https://dev.acquia.com/source-cms/reference/content-api.md): the stable JSON:API surface of every Source CMS site; base URL, endpoint shape, headers, error codes
+- [MCP server](https://dev.acquia.com/source-cms/reference/mcp-server.md): connection spec, resources, and the full tool catalog of the Source CMS MCP server
+- [Canvas CLI and component schema](https://dev.acquia.com/source-cms/reference/canvas-cli.md): every @drupal-canvas/cli command, the component.yml schema, Canvas OAuth scopes
+- [acli command reference](https://dev.acquia.com/cloud-platform/reference/acli.md): Cloud Platform CLI commands and flags
+
+## Optional
+
+- [Acquia Content API OpenAPI specification](https://dev.acquia.com/openapi/acquia-content-api.yaml): the JSON:API surface of Source CMS as an OpenAPI document
+- [Acquia product documentation](https://docs.acquia.com/): the full product reference for every Acquia product
+- [Drupal JSON:API documentation](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module): the upstream module Source CMS's Content API is built on

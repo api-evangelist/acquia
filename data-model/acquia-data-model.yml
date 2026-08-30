@@ -1,0 +1,593 @@
+generated: '2026-08-30'
+method: derived
+source: the 20 Cloud Platform OpenAPI files in openapi/ ($ref links between component schemas, plus *_uuid
+  / *_id reference fields) and openapi/acquia-content-api-openapi.yaml
+provider: Acquia
+providerId: acquia
+description: 'Entity-relationship graph of the Acquia Cloud Platform API, derived from $ref edges between
+  the 258 component schemas across the 20 Cloud Platform specs. Acquia models relationships two ways:
+  HAL _embedded blocks that inline a related resource, and a "stub" idiom - 13 *-stub schemas carrying
+  just uuid + name - used wherever a resource points at another without inlining it. The Source CMS Content
+  API is modelled separately below because it has no fixed entity graph at all.'
+schema_count: 258
+collection_wrapper_count: 66
+stub_schema_count: 13
+conventions:
+  identifier: uuid on almost every resource; a few legacy resources also carry an integer id
+  hypermedia: HAL - every resource carries _links, collections carry _embedded plus total
+  stub_pattern: A *-stub schema (uuid + name) is Acquia's inline foreign key. Seeing organization-stub
+    on a resource means it belongs_to an organization without embedding the full record.
+  collection_wrapper: '{_embedded: {items: [...]}, _links, total}'
+stubs:
+- application-stub
+- artifact-stub
+- database-stub
+- environment-stub
+- notification-stub
+- organization-stub
+- organization-team-stub
+- role-stub
+- server-stub
+- subscription-stub
+- team-stub
+- user-stub
+- user-stub-nullable
+entities:
+- name: pagination
+  referenced_by: 7
+  relationships: []
+- name: health
+  referenced_by: 6
+  relationships: []
+- name: application
+  referenced_by: 4
+  relationships:
+  - to: organization-stub-embedded
+    via: _embedded
+    cardinality: has_one
+  - to: subscription-stub-embedded
+    via: _embedded
+    cardinality: has_one
+  - to: resource-tag-embedded
+    via: _embedded
+    cardinality: has_one
+  - to: application-flags
+    via: flags
+    cardinality: has_one
+  - to: organization-stub
+    via: organization
+    cardinality: has_one
+  - to: subscription-stub
+    via: subscription
+    cardinality: has_one
+- name: application-no-embedded
+  referenced_by: 4
+  relationships:
+  - to: application-flags
+    via: flags
+    cardinality: has_one
+  - to: organization-stub
+    via: organization
+    cardinality: has_one
+  - to: subscription-stub
+    via: subscription
+    cardinality: has_one
+- name: dns-record
+  referenced_by: 4
+  relationships: []
+- name: application-metadata
+  referenced_by: 3
+  relationships: []
+- name: environment-metadata
+  referenced_by: 3
+  relationships: []
+- name: invite-flags
+  referenced_by: 3
+  relationships: []
+- name: permission
+  referenced_by: 3
+  relationships:
+  - to: permission-flags
+    via: flags
+    cardinality: has_one
+- name: subscription-metadata
+  referenced_by: 3
+  relationships: []
+- name: application-flags
+  referenced_by: 2
+  relationships: []
+- name: backup-flags
+  referenced_by: 2
+  relationships: []
+- name: cloud-action-id
+  referenced_by: 2
+  relationships: []
+- name: configuration-set
+  referenced_by: 2
+  relationships:
+  - to: application
+    via: application_uuid
+    cardinality: belongs_to
+  - to: health
+    via: health
+    cardinality: has_one
+- name: csr
+  referenced_by: 2
+  relationships:
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: csr-flags
+    via: flags
+    cardinality: has_one
+- name: environment
+  referenced_by: 2
+  relationships:
+  - to: application-stub
+    via: application
+    cardinality: has_one
+  - to: artifact-stub
+    via: artifact
+    cardinality: has_one
+  - to: environment-configuration
+    via: configuration
+    cardinality: has_one
+  - to: environment-flags
+    via: flags
+    cardinality: has_one
+  - to: vcs
+    via: vcs
+    cardinality: has_one
+- name: invite
+  referenced_by: 2
+  relationships:
+  - to: application-stub
+    via: applications
+    cardinality: has_many
+  - to: user-stub
+    via: author
+    cardinality: has_one
+  - to: invite-flags
+    via: flags
+    cardinality: has_one
+  - to: organization-stub
+    via: organization
+    cardinality: has_one
+  - to: role-stub
+    via: roles
+    cardinality: has_many
+  - to: team-stub
+    via: team
+    cardinality: has_one
+- name: team
+  referenced_by: 2
+  relationships:
+  - to: organization-stub
+    via: organization
+    cardinality: has_one
+- name: agreement
+  referenced_by: 1
+  relationships:
+  - to: user-stub-nullable
+    via: actioned_by
+    cardinality: has_one
+  - to: document
+    via: document_uuid
+    cardinality: belongs_to
+- name: application-usage-metric
+  referenced_by: 1
+  relationships:
+  - to: application-metadata
+    via: metadata
+    cardinality: has_one
+  - to: environment-metadata
+    via: metadata
+    cardinality: has_one
+  - to: subscription-metadata
+    via: metadata
+    cardinality: has_one
+- name: backup-no-embedded
+  referenced_by: 1
+  relationships:
+  - to: database-stub
+    via: database
+    cardinality: has_one
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: backup-flags
+    via: flags
+    cardinality: has_one
+- name: certificate
+  referenced_by: 1
+  relationships:
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: certificate-flags
+    via: flags
+    cardinality: has_one
+- name: cloud-action
+  referenced_by: 1
+  relationships:
+  - to: cloud-actions-flags
+    via: flags
+    cardinality: has_one
+- name: code-studio-application
+  referenced_by: 1
+  relationships:
+  - to: code-studio-project-no-embedded
+    via: _embedded
+    cardinality: has_one
+- name: code-studio-project-no-embedded
+  referenced_by: 1
+  relationships:
+  - to: application
+    via: application_id
+    cardinality: belongs_to
+- name: cron
+  referenced_by: 1
+  relationships:
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: cron-flags
+    via: flags
+    cardinality: has_one
+  - to: server-stub
+    via: server
+    cardinality: has_one
+- name: database
+  referenced_by: 1
+  relationships:
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: database-flags
+    via: flags
+    cardinality: has_one
+- name: domain
+  referenced_by: 1
+  relationships:
+  - to: cdn-information
+    via: cdn
+    cardinality: has_one
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: domain-flags
+    via: flags
+    cardinality: has_one
+- name: domain-registration
+  referenced_by: 1
+  relationships:
+  - to: health
+    via: health
+    cardinality: has_one
+  - to: domain-registration-dns-records
+    via: dns_records
+    cardinality: has_many
+- name: domain-registration-dns-record
+  referenced_by: 1
+  relationships:
+  - to: health
+    via: health
+    cardinality: has_one
+- name: eip
+  referenced_by: 1
+  relationships:
+  - to: eip-flags
+    via: flags
+    cardinality: has_one
+- name: email-domain
+  referenced_by: 1
+  relationships:
+  - to: health
+    via: health
+    cardinality: has_one
+- name: environment-usage-metric
+  referenced_by: 1
+  relationships:
+  - to: application-metadata
+    via: metadata
+    cardinality: has_one
+  - to: environment-metadata
+    via: metadata
+    cardinality: has_one
+  - to: subscription-metadata
+    via: metadata
+    cardinality: has_one
+- name: ide
+  referenced_by: 1
+  relationships:
+  - to: user-profile
+    via: _embedded
+    cardinality: has_one
+- name: identity-provider
+  referenced_by: 1
+  relationships:
+  - to: idp_entity
+    via: idp_entity_id
+    cardinality: belongs_to
+  - to: sp_entity
+    via: sp_entity_id
+    cardinality: belongs_to
+- name: index
+  referenced_by: 1
+  relationships:
+  - to: configuration-set
+    via: _embedded
+    cardinality: has_one
+  - to: config_set
+    via: config_set_id
+    cardinality: belongs_to
+  - to: environment
+    via: environment_id
+    cardinality: belongs_to
+  - to: health
+    via: health
+    cardinality: has_one
+- name: log-forwarding-destination
+  referenced_by: 1
+  relationships:
+  - to: log-forwarding-destination-credentials
+    via: credentials
+    cardinality: has_one
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: log-forwarding-destination-flags
+    via: flags
+    cardinality: has_one
+  - to: health
+    via: health
+    cardinality: has_one
+- name: organization-admin-invite
+  referenced_by: 1
+  relationships:
+  - to: invite-flags
+    via: flags
+    cardinality: has_one
+  - to: user-stub
+    via: author
+    cardinality: has_one
+  - to: organization-stub
+    via: organization
+    cardinality: has_one
+- name: organization-no-embedded
+  referenced_by: 1
+  relationships:
+  - to: user-stub
+    via: owner
+    cardinality: has_one
+- name: organization-team-invite
+  referenced_by: 1
+  relationships:
+  - to: application-stub
+    via: applications
+    cardinality: has_many
+  - to: user-stub
+    via: author
+    cardinality: has_one
+  - to: organization-stub
+    via: organization
+    cardinality: has_one
+  - to: invite-flags
+    via: flags
+    cardinality: has_one
+  - to: team-stub
+    via: team
+    cardinality: has_one
+  - to: role-stub
+    via: roles
+    cardinality: has_many
+- name: organization-user-profile
+  referenced_by: 1
+  relationships:
+  - to: organization-team-stub
+    via: teams
+    cardinality: has_many
+- name: role
+  referenced_by: 1
+  relationships:
+  - to: permission
+    via: permissions
+    cardinality: has_many
+  - to: organization-stub
+    via: organization
+    cardinality: has_one
+  - to: user-stub
+    via: last_edited
+    cardinality: has_one
+- name: server
+  referenced_by: 1
+  relationships:
+  - to: server-configuration
+    via: configuration
+    cardinality: has_one
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: server-flags
+    via: flags
+    cardinality: has_one
+- name: shield-acl
+  referenced_by: 1
+  relationships:
+  - to: subscription-stub
+    via: subscription
+    cardinality: has_one
+- name: subscription
+  referenced_by: 1
+  relationships:
+  - to: subscription-flags
+    via: flags
+    cardinality: has_one
+  - to: organization-stub
+    via: _embedded
+    cardinality: has_one
+- name: subscription-usage-metric
+  referenced_by: 1
+  relationships:
+  - to: environment-metadata
+    via: metadata
+    cardinality: has_one
+  - to: application-metadata
+    via: metadata
+    cardinality: has_one
+  - to: subscription-metadata
+    via: metadata
+    cardinality: has_one
+- name: task
+  referenced_by: 1
+  relationships:
+  - to: reference
+    via: reference_uuid
+    cardinality: belongs_to
+  - to: user-stub
+    via: user
+    cardinality: has_one
+- name: team-user-profile
+  referenced_by: 1
+  relationships:
+  - to: role-stub
+    via: roles
+    cardinality: has_many
+- name: ux-message
+  referenced_by: 1
+  relationships:
+  - to: ux-message-filters
+    via: filters
+    cardinality: has_one
+  - to: ux-message-flags
+    via: flags
+    cardinality: has_one
+- name: backup
+  referenced_by: 0
+  relationships:
+  - to: database-stub
+    via: database
+    cardinality: has_one
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: backup-flags
+    via: flags
+    cardinality: has_one
+- name: code-studio-project
+  referenced_by: 0
+  relationships:
+  - to: application-stub
+    via: _embedded
+    cardinality: has_one
+  - to: application
+    via: application_id
+    cardinality: belongs_to
+- name: deploy-code
+  referenced_by: 0
+  relationships:
+  - to: cloud-action-id
+    via: cloud-actions
+    cardinality: has_many
+- name: dns
+  referenced_by: 0
+  relationships:
+  - to: dns-record
+    via: apex_domain
+    cardinality: has_many
+  - to: dns-record
+    via: global_configuration
+    cardinality: has_one
+  - to: dns-record
+    via: regional_configuration
+    cardinality: has_one
+  - to: dns-record
+    via: subdomains
+    cardinality: has_many
+- name: domain-status
+  referenced_by: 0
+  relationships:
+  - to: environment-stub
+    via: environment
+    cardinality: has_one
+  - to: domain-status-flags
+    via: flags
+    cardinality: has_one
+- name: entitlements
+  referenced_by: 0
+  relationships:
+  - to: entitlement-pipelines
+    via: _embedded
+    cardinality: has_one
+  - to: entitlement-cde
+    via: _embedded
+    cardinality: has_one
+  - to: entitlement-consumption-based-pricing
+    via: _embedded
+    cardinality: has_one
+  - to: entitlement-log-forwarding
+    via: _embedded
+    cardinality: has_one
+  - to: entitlement-shield
+    via: _embedded
+    cardinality: has_one
+  - to: entitlement-default-newrelic
+    via: _embedded
+    cardinality: has_one
+- name: hosting-settings
+  referenced_by: 0
+  relationships:
+  - to: hosting
+    via: hosting_id
+    cardinality: belongs_to
+- name: organization
+  referenced_by: 0
+  relationships:
+  - to: user-stub
+    via: owner
+    cardinality: has_one
+  - to: user-stub-embedded
+    via: _embedded
+    cardinality: has_one
+- name: post-certificate
+  referenced_by: 0
+  relationships:
+  - to: csr
+    via: csr_id
+    cardinality: belongs_to
+- name: remote-administration-settings
+  referenced_by: 0
+  relationships:
+  - to: application
+    via: application_uuid
+    cardinality: belongs_to
+- name: switch-code
+  referenced_by: 0
+  relationships:
+  - to: cloud-action-id
+    via: cloud-actions
+    cardinality: has_many
+content_api:
+  file: openapi/acquia-content-api-openapi.yaml
+  model: JSON:API 1.1 resource objects
+  fixed_entity_graph: false
+  note: The Content API has NO fixed entity model in its published contract. Its paths are /api/{entityType}/{bundle}[/{uuid}],
+    parameterised over whatever content types a site defines, and the concrete graph is generated per
+    site (API > OpenAPI documentation). The published schemas are the JSON:API envelope shapes - ResourceObject,
+    CollectionDocument, EntityDocument, ErrorDocument - not domain entities. Relationships travel in data.relationships
+    and are traversable at /api/{entityType}/{bundle}/{uuid}/relationships/{field}.
+  entity_types_addressable:
+  - node
+  - media
+  - taxonomy_term
+  - user
+  - canvas_page
+  entity_types_source: the list_entities MCP tool, which names the entity types the platform exposes
+  envelope_schemas:
+  - ResourceObject
+  - CollectionDocument
+  - EntityDocument
+  - ErrorDocument
+notes: The Private Network Service API uses an entirely different schema naming convention (Private_Network_Service_API_*)
+  and its own response wrappers rather than HAL - it is a separately built service folded into the same
+  portal, and it is excluded from the graph above rather than merged into it.
