@@ -158,6 +158,8 @@ apis:
   humanURL: https://cloudapi-docs.acquia.com/
   baseURL: https://cloud.acquia.com/api
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
