@@ -6,8 +6,17 @@ artifacts:
   agentic-access/acquia-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  asyncapi/acquia-source-cms-webhooks.yml:
+    method: searched
+    evidence: declared in the artifact
   authentication/acquia-authentication.yml:
-    method: derived
+    method: searched
+    evidence: declared in the artifact
+  changelog/acquia-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/acquia-cli.yml:
+    method: searched
     evidence: declared in the artifact
   collections/acquia-account-api.opencollection.json:
     method: derived
@@ -243,6 +252,21 @@ artifacts:
   collections/acquia-teams-and-permissions-api.postman_collection.json:
     method: derived
     evidence: openapi/acquia-teams-and-permissions-api
+  components/acquia-components.yml:
+    method: searched
+    evidence: declared in the artifact
+  conformance/acquia-conformance.yml:
+    method: searched
+    evidence: declared in the artifact
+  conventions/acquia-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/acquia-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/acquia-problem-types.yml:
+    method: searched
+    evidence: declared in the artifact
   examples/acquia-cloud-agreement-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -366,70 +390,7 @@ artifacts:
   json-structure/acquia-cloud-ux-message-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T094130.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T182523.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-26T223651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T083119.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T190208.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T115055.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T170848.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T172558.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T192327.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T200725.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T133250.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T151044.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T162206.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T202106.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163141.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163302.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T171935.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T113057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T161012.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-04T083143.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-05T153418.yml:
+  kin/checks-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-06T210741.yml:
@@ -513,68 +474,260 @@ artifacts:
   kin/score-2026-08-28T221322.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T213958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T230545.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T203505.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T220315.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-31T223420.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T063623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T210448.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T222808.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T224043.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T161828.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T174231.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T062714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T212454.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T224856.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T055819.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T072335.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/acquia-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/acquia-llms.txt:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  llms/acquia-www-llms.txt:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  mcp/acquia-mcp.yml:
+    method: searched
+    evidence: declared in the artifact
+  mcp/acquia-tool-crosswalk.yml:
+    method: derived
+    evidence: declared in the artifact
+  openapi/_original/acquia-cloud-account.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-agreements.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-application-performance-monitoring-services.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-applications.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-cloud-ide.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-codebases.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-current-system-health.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-distributions.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-email.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-environments.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-identity-providers.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-invite.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-messages.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-notifications.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-openapi-full.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-options.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-organizations.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-private-networks.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-subscriptions.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/acquia-cloud-teams-and-permissions.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
   openapi/acquia-account-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-agreements-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-application-performance-monitoring-services-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-applications-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-cloud-ide-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-codebases-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/acquia-content-api-openapi.yaml:
     method: unknown
     evidence: no authorship recorded
   openapi/acquia-current-system-health-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-distributions-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-email-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-environments-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-identity-providers-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-invite-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-messages-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-notifications-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-options-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-organizations-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-private-networks-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-subscriptions-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/acquia-teams-and-permissions-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  plans/acquia-plans-pricing.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/acquia-account-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
-  rate-limits/acquia-rate-limits.yml:
+  overlays/acquia-agreements-api-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/acquia-application-performance-monitoring-services-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-applications-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-cloud-ide-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-codebases-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-content-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-current-system-health-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-distributions-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-email-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-environments-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-identity-providers-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-invite-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-messages-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-notifications-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-options-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-organizations-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-private-networks-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-subscriptions-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/acquia-teams-and-permissions-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/acquia-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  plans/acquia-plans-pricing.yml:
+    method: searched
+    evidence: declared in the artifact
+  rate-limits/acquia-rate-limits.yml:
+    method: searched
     evidence: declared in the artifact
   rules/acquia-jsonschema-spectral-rules.yml:
     method: generated
@@ -594,6 +747,21 @@ artifacts:
   security/acquia-vulnerability-disclosure.yml:
     method: searched
     evidence: declared in the artifact
+  skills/_index.yml:
+    method: searched
+    evidence: declared in the artifact
   vocabulary/acquia-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/acquia-dev-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/acquia-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/acquia-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/acquia-well-known.yml:
     method: unknown
     evidence: no authorship recorded

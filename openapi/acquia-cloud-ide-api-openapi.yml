@@ -1,192 +1,152 @@
 openapi: 3.2.0
 info:
+  title: Acquia Cloud API Documentation Cloud IDE API
+  x-logo:
+    url: assets/cloud-platform.svg
+    backgroundColor: '#FFFFFF'
+    altText: Acquia Cloud
+  description: 'Acquia Cloud API
+
+
+    # Compatibility
+
+
+    ## Stability
+
+
+    The response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.'
+  version: 2.0.0
   contact:
     name: Customer Experience Engineering (CXE)
     url: https://www.acquia.com
-  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
-  title: Acquia Cloud API Account Cloud IDE API
-  version: 2.0.0
-  x-logo:
-    altText: Acquia Cloud
-    backgroundColor: '#FFFFFF'
-    url: assets/cloud-platform.svg
-servers:
-- url: https://cloud.acquia.com/api
-  description: Promoted from the path-level servers[] already present in this document
-    (API Evangelist 2026-08-30); the top-level block was empty.
 tags:
 - name: Cloud IDE
+  x-displayName: Cloud IDE
 paths:
   /ides/{ideUuid}:
     servers:
     - url: https://cloud.acquia.com/api
       description: Cloud API
-    delete:
-      description: De-provisions a specific Cloud IDE.
-      operationId: deleteIde
+    get:
+      tags:
+      - Cloud IDE
+      summary: Returns Cloud IDE info
+      description: Returns Cloud IDE info.
+      operationId: getIde
+      x-cli-name: ide:find
       parameters:
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_ide-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
       responses:
-        '202':
+        '200':
+          description: OK
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ide'
+              example:
+                uuid: 215824ff-272a-4a8c-9027-df32ed1d68a9
+                label: Example IDE
+                status: active
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/ides/215824ff-272a-4a8c-9027-df32ed1d68a9
+                  parent:
+                    href: https://cloud.acquia.com/api/ides
+                  application:
+                    href: https://cloud.acquia.com/api/applications/461fe350-7988-42b3-a73e-cffcdbb94199
+                  web:
+                    href: https://ide-215824ff-272a-4a8c-9027-df32ed1d68a9.prod.acquia-sites.com
+                  ide:
+                    href: https://215824ff-272a-4a8c-9027-df32ed1d68a9.ides.acquia.com
+                _embedded:
+                  owner:
+                    uuid: 10be1d3e-f2b4-4d34-855d-321df3938ffd
+                    first_name: First
+                    last_name: Last
+                    last_login_at: '2019-01-31T10:53:11-05:00'
+                    created_at: '2016-08-14T17:38:59-04:00'
+                    email: user.name@example.com
+                    picture_url: https://accounts.acquia.com/path/to/image.png
+                    username: user.name
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not found:
+                  value:
+                    error: not_found
+                    message: The IDE you are trying to access does not exist, or you do not have permission to access it.
+    delete:
+      tags:
+      - Cloud IDE
+      summary: De-provisions a specific Cloud IDE
+      description: De-provisions a specific Cloud IDE.
+      operationId: deleteIde
+      x-cli-name: ide:delete
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_ide-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
               examples:
                 De-provisioning IDE:
                   value:
+                    message: The Cloud IDE is being deleted.
                     _links:
-                      notification:
-                        href: https://cloud.acquia.com/api/notifications/e98577df-840a-4fef-8775-66cf90b3530e
-                      parent:
-                        href: https://cloud.acquia.com/api/ides
                       self:
                         href: https://cloud.acquia.com/api/ides/215824ff-272a-4a8c-9027-df32ed1d68a9
-                    message: The Cloud IDE is being deleted.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
-          description: Accepted
+                      parent:
+                        href: https://cloud.acquia.com/api/ides
+                      notification:
+                        href: https://cloud.acquia.com/api/notifications/e98577df-840a-4fef-8775-66cf90b3530e
         '404':
+          description: Not Found
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               examples:
                 Not found:
                   value:
                     error: not_found
                     message: The IDE you are trying to access does not exist, or you do not have permission to access it.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Not Found
-      security:
-      - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia De-provisions a Specific Cloud IDE.
-      tags:
-      - Cloud IDE
-      x-cli-name: ide:delete
-    get:
-      description: Returns Cloud IDE info.
-      operationId: getIde
-      parameters:
-      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_ide-uuid'
-      responses:
-        '200':
-          content:
-            application/hal+json:
-              example:
-                _embedded:
-                  owner:
-                    created_at: '2016-08-14T17:38:59-04:00'
-                    email: user.name@example.com
-                    first_name: First
-                    last_login_at: '2019-01-31T10:53:11-05:00'
-                    last_name: Last
-                    picture_url: https://accounts.acquia.com/path/to/image.png
-                    username: user.name
-                    uuid: 10be1d3e-f2b4-4d34-855d-321df3938ffd
-                _links:
-                  application:
-                    href: https://cloud.acquia.com/api/applications/461fe350-7988-42b3-a73e-cffcdbb94199
-                  ide:
-                    href: https://215824ff-272a-4a8c-9027-df32ed1d68a9.ides.acquia.com
-                  parent:
-                    href: https://cloud.acquia.com/api/ides
-                  self:
-                    href: https://cloud.acquia.com/api/ides/215824ff-272a-4a8c-9027-df32ed1d68a9
-                  web:
-                    href: https://ide-215824ff-272a-4a8c-9027-df32ed1d68a9.prod.acquia-sites.com
-                label: Example IDE
-                status: active
-                uuid: 215824ff-272a-4a8c-9027-df32ed1d68a9
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ide'
-          description: OK
-        '404':
-          content:
-            application/hal+json:
-              examples:
-                Not found:
-                  value:
-                    error: not_found
-                    message: The IDE you are trying to access does not exist, or you do not have permission to access it.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Not Found
-      security:
-      - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia Returns Cloud IDE Info.
-      tags:
-      - Cloud IDE
-      x-cli-name: ide:find
 components:
+  parameters:
+    Acquia_Cloud_API_Documentation_ide-uuid:
+      name: ideUuid
+      in: path
+      description: The Cloud IDE universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
   schemas:
-    Acquia_Cloud_API_Documentation_ide:
-      properties:
-        _embedded:
-          properties:
-            owner:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
-          type: object
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        label:
-          description: The human-friendly label of the Cloud IDE.
-          type: string
-        status:
-          description: The current provisioning status of the Cloud IDE.
-          enum:
-          - active
-          - provisioning
-          - deleting
-          - updating
-          - provision-failed
-          - update-failed
-          - delete-failed
-          type: string
-        uuid:
-          description: The unique identifier of the Cloud IDE.
-          format: uuid
-          type: string
-      required:
-      - uuid
-      - label
-      - status
-      - _links
+    Acquia_Cloud_API_Documentation_error:
       type: object
-    Acquia_Cloud_API_Documentation_user-profile:
-      description: A user profile.
+      required:
+      - error
+      - message
       properties:
-        created_at:
-          description: The date the user was created.
-          format: date-time
+        error:
           type: string
-        email:
-          description: The user's email address.
-          format: email
+          description: The error summary.
+        message:
           type: string
-        first_name:
-          description: The user's first name.
-          type: string
-        last_login_at:
-          deprecated: true
-          description: The date/time of the last login for the user.
-          format: date-time
-          type:
-          - string
-          - 'null'
-        last_name:
-          description: The user's last name.
-          type: string
-        picture_url:
-          description: The URL for the user's picture.
-          format: uri
-          type:
-          - string
-          - 'null'
-        username:
-          description: The user's internal user name.
-          type: string
-        uuid:
-          description: The user's UUID.
-          format: uuid
-          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_user-profile:
+      type: object
+      description: A user profile.
       required:
       - uuid
       - first_name
@@ -196,57 +156,104 @@ components:
       - email
       - picture_url
       - username
-      type: object
-    Acquia_Cloud_API_Documentation_links:
-      description: HAL links about the current resource.
       properties:
-        self:
-          description: A link to this page.
-          properties:
-            href:
-              description: The URI for this page.
-              format: uri
-              type: string
-          required:
-          - href
-          type: object
-      required:
-      - self
-      type: object
-    Acquia_Cloud_API_Documentation_message-with-links:
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        message:
-          description: The human-friendly confirmation of the creation of the resource.
+        uuid:
           type: string
+          format: uuid
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        last_login_at:
+          deprecated: true
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The date/time of the last login for the user.
+        created_at:
+          type: string
+          format: date-time
+          description: The date the user was created.
+        email:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URL for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
       required:
       - message
       - _links
-      type: object
-    Acquia_Cloud_API_Documentation_error:
       properties:
-        error:
-          description: The error summary.
-          type: string
         message:
-          description: The long description for the returned error.
           type: string
-      required:
-      - error
-      - message
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_ide:
       type: object
-  parameters:
-    Acquia_Cloud_API_Documentation_ide-uuid:
-      description: The Cloud IDE universally unique identifier.
-      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
-      in: path
-      name: ideUuid
-      required: true
-      schema:
-        type: string
+      required:
+      - uuid
+      - label
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the Cloud IDE.
+        label:
+          type: string
+          description: The human-friendly label of the Cloud IDE.
+        status:
+          type: string
+          description: The current provisioning status of the Cloud IDE.
+          enum:
+          - active
+          - provisioning
+          - deleting
+          - updating
+          - provision-failed
+          - update-failed
+          - delete-failed
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          properties:
+            owner:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
+      type: oauth2
       description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
 
 
@@ -268,21 +275,20 @@ components:
         '
       flows:
         clientCredentials:
-          scopes: {}
           tokenUrl: https://accounts.acquia.com/api/token
-      type: oauth2
+          scopes: {}
     Codebase_Service_JWT:
-      description: Value for the Authorization header parameter.
-      in: header
-      name: Authorization
       type: apiKey
+      description: Value for the Authorization header parameter.
+      name: Authorization
+      in: header
     MEO_Environment_Service_JWT:
-      description: Value for the Authorization header parameter.
-      in: header
-      name: Authorization
       type: apiKey
+      description: Value for the Authorization header parameter.
+      name: Authorization
+      in: header
     Site_Service_JWT:
-      description: Value for the Authorization header parameter.
-      in: header
-      name: Authorization
       type: apiKey
+      description: Value for the Authorization header parameter.
+      name: Authorization
+      in: header

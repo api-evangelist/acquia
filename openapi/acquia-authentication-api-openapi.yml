@@ -1,0 +1,187 @@
+openapi: 3.2.0
+info:
+  title: Acquia Content Authentication API
+  version: '1.1'
+  description: The stable JSON:API surface shared by every Source CMS site, plus the OAuth 2.0 authentication endpoints that issue the tokens it accepts.
+servers:
+- url: '{siteUrl}'
+  description: 'Your site''s base URL, the canonical ACQUIA_SITE_URL environment variable, with no trailing slash. Source CMS serves JSON:API under /api; headless Cloud Platform sites serve it under /jsonapi.
+
+    '
+  variables:
+    siteUrl:
+      default: https://your-site.example.com
+      description: The ACQUIA_SITE_URL environment variable (no trailing slash).
+tags:
+- name: Authentication
+  description: OAuth 2.0 token and authorization endpoints.
+paths:
+  /oauth/token:
+    post:
+      tags:
+      - Authentication
+      operationId: issueToken
+      summary: Issue an access token
+      description: Issues access tokens for all three grant types. The request body is form-encoded. `client_credentials` is server-to-server; `authorization_code` exchanges a code from `GET /oauth/authorize`; `refresh_token` exchanges a refresh token. Only `authorization_code` and `refresh_token` return a `refresh_token`; `client_credentials` never does.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  - authorization_code
+                  - refresh_token
+                client_id:
+                  type: string
+                  description: The API client's ID (ACQUIA_CLIENT_ID).
+                client_secret:
+                  type: string
+                  description: The API client's secret (ACQUIA_CLIENT_SECRET).
+                scope:
+                  type: string
+                  description: 'Space-separated subset of the client''s selected scopes. Omit to receive every selected scope. client_credentials and authorization_code only.
+
+                    '
+                code:
+                  type: string
+                  description: The authorization code from the redirect (authorization_code grant only).
+                redirect_uri:
+                  type: string
+                  description: The same redirect URI used at /oauth/authorize (authorization_code grant only).
+                refresh_token:
+                  type: string
+                  description: The refresh token to exchange (refresh_token grant only).
+            examples:
+              clientCredentials:
+                summary: client_credentials
+                value:
+                  grant_type: client_credentials
+                  client_id: $ACQUIA_CLIENT_ID
+                  client_secret: $ACQUIA_CLIENT_SECRET
+      responses:
+        '200':
+          description: A newly issued access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+              example:
+                token_type: Bearer
+                expires_in: 300
+                access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni
+        '400':
+          description: 'Invalid request, most commonly `invalid_scope` when the `scope` parameter names a scope that does not exist or is not selected on the client.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+              example:
+                error: invalid_scope
+                error_description: The requested scope is invalid, unknown, or malformed
+                hint: Check the `content:read` scope
+        '401':
+          description: 'Client authentication failed (`invalid_client`): the client ID or secret is wrong.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+              example:
+                error: invalid_client
+                error_description: Client authentication failed
+  /oauth/authorize:
+    get:
+      tags:
+      - Authentication
+      operationId: authorize
+      summary: Start the authorization_code grant
+      description: Redirects the user to log in and grant permissions, then redirects back to `redirect_uri` with a temporary authorization code to exchange at `POST /oauth/token`. Used only by the authorization_code grant.
+      parameters:
+      - name: response_type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - code
+        description: The literal value `code`.
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The API client's ID.
+      - name: redirect_uri
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Must match one of the client's configured Redirect URIs.
+      - name: scope
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Space-separated subset of the client's selected scopes.
+      responses:
+        '302':
+          description: Redirect to `redirect_uri` carrying the temporary authorization code.
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      required:
+      - token_type
+      - expires_in
+      - access_token
+      properties:
+        token_type:
+          type: string
+          const: Bearer
+        expires_in:
+          type: integer
+          description: Access token lifetime in seconds (300).
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+          description: Returned by authorization_code and refresh_token grants only; never by client_credentials.
+    OAuthError:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        hint:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: '`Authorization: Bearer <token>` with one space after Bearer. Tokens come from POST /oauth/token. Not required for published-content GETs when the site''s `Public access` (`API > JSON:API`) is Yes.
+
+        '
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://your-site.example.com/oauth/token
+          scopes:
+            content:administer: Create, update, and delete entries over JSON:API.
+        authorizationCode:
+          authorizationUrl: https://your-site.example.com/oauth/authorize
+          tokenUrl: https://your-site.example.com/oauth/token
+          scopes:
+            content:administer: Create, update, and delete entries over JSON:API.

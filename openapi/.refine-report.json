@@ -1,25 +1,9 @@
 {
   "provider": "acquia",
   "sources": [
-    "acquia-account-api-openapi.yml",
-    "acquia-agreements-api-openapi.yml",
-    "acquia-application-performance-monitoring-services-api-openapi.yml",
-    "acquia-applications-api-openapi.yml",
-    "acquia-cloud-ide-api-openapi.yml",
-    "acquia-codebases-api-openapi.yml",
-    "acquia-current-system-health-api-openapi.yml",
-    "acquia-distributions-api-openapi.yml",
-    "acquia-email-api-openapi.yml",
-    "acquia-environments-api-openapi.yml",
-    "acquia-identity-providers-api-openapi.yml",
-    "acquia-invite-api-openapi.yml",
-    "acquia-messages-api-openapi.yml",
-    "acquia-notifications-api-openapi.yml",
-    "acquia-options-api-openapi.yml",
-    "acquia-organizations-api-openapi.yml",
-    "acquia-private-networks-api-openapi.yml",
-    "acquia-subscriptions-api-openapi.yml",
-    "acquia-teams-and-permissions-api-openapi.yml"
+    "_original/acquia-cloud-openapi-full.yml",
+    "acquia-authentication-api-openapi.yml",
+    "acquia-content-api-openapi.yml"
   ],
   "outputs": [
     "acquia-account-api-openapi.yml",
@@ -40,13 +24,60 @@
     "acquia-organizations-api-openapi.yml",
     "acquia-private-networks-api-openapi.yml",
     "acquia-subscriptions-api-openapi.yml",
-    "acquia-teams-and-permissions-api-openapi.yml"
+    "acquia-teams-and-permissions-api-openapi.yml",
+    "acquia-authentication-api-openapi.yml",
+    "acquia-content-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
+  "warnings": [
+    "acquia-authentication-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /oauth/authorize get, /oauth/token post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "acquia-content-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /api get, /api/{entityType}/{bundle} get, /api/{entityType}/{bundle} post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
   "notes": [
+    "19 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "acquia-cloud-openapi-full.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "_original/acquia-cloud-teams-and-permissions.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-subscriptions.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-private-networks.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-organizations.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-options.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-notifications.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-messages.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-invite.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-identity-providers.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-environments.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-email.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-distributions.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-current-system-health.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-codebases.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-cloud-ide.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-applications.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-application-performance-monitoring-services.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-agreements.yml: archived document superseded by a larger archived document",
+    "_original/acquia-cloud-account.yml: archived document superseded by a larger archived document",
+    "acquia-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-agreements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-application-performance-monitoring-services-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-cloud-ide-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-codebases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-current-system-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-distributions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-email-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-identity-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-invite-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-notifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-options-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-private-networks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "acquia-teams-and-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

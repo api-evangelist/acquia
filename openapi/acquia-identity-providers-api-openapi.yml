@@ -1,27 +1,36 @@
 openapi: 3.2.0
 info:
+  title: Acquia Cloud API Documentation Identity Providers API
+  x-logo:
+    url: assets/cloud-platform.svg
+    backgroundColor: '#FFFFFF'
+    altText: Acquia Cloud
+  description: 'Acquia Cloud API
+
+
+    # Compatibility
+
+
+    ## Stability
+
+
+    The response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.'
+  version: 2.0.0
   contact:
     name: Customer Experience Engineering (CXE)
     url: https://www.acquia.com
-  description: "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n"
-  title: Acquia Cloud API Account Identity Providers API
-  version: 2.0.0
-  x-logo:
-    altText: Acquia Cloud
-    backgroundColor: '#FFFFFF'
-    url: assets/cloud-platform.svg
-servers:
-- url: https://cloud.acquia.com/api
-  description: Promoted from the path-level servers[] already present in this document
-    (API Evangelist 2026-08-30); the top-level block was empty.
 tags:
 - name: Identity Providers
+  x-displayName: Identity Providers
 paths:
   /identity-providers:
     servers:
     - url: https://cloud.acquia.com/api
       description: Cloud API
     get:
+      tags:
+      - Identity Providers
+      summary: Returns a list of identity providers for a user
       description: 'Returns a list of identity providers you have access to.
 
 
@@ -32,53 +41,39 @@ paths:
 
         Sortable fields:
 
-        * `label`
-
-        '
+        * `label`'
       operationId: getIdentityProviders
+      x-cli-name: identity-providers:list
       parameters:
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_sort'
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_filter'
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_limit'
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_offset'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
       responses:
         '200':
+          description: OK
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-providers'
               example:
-                _embedded:
-                  items:
-                  - _links:
-                      acs:
-                        href: https://accounts.acquia.com/api/auth/saml/acs/5fa84b25-a269-44bd-a2ae-e76d08ac8245
-                      parent:
-                        href: https://cloud.acquia.com/api/identity-providers
-                      self:
-                        href: https://cloud.acquia.com/api/identity-providers/5fa84b25-a269-44bd-a2ae-e76d08ac8245
-                    certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-                    idp_entity_id: https://idp.example.com/saml
-                    label: Identity provider label
-                    sp_entity_id: https://sp.example.com/saml
-                    sso_url: https://example.com/sso
-                    status: enabled
-                    uuid: 5fa84b25-a269-44bd-a2ae-e76d08ac8245
-                  - _links:
-                      acs:
-                        href: https://accounts.acquia.com/api/auth/saml/acs/908914ec-2354-4fb1-9298-637247eccc3a
-                      parent:
-                        href: https://cloud.acquia.com/api/identity-providers
-                      self:
-                        href: https://cloud.acquia.com/api/identity-providers/908914ec-2354-4fb1-9298-637247eccc3a
-                    certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-                    idp_entity_id: https://idp2.example.com/saml
-                    label: Identity provider label 2
-                    sp_entity_id: https://sp2.example.com/saml
-                    sso_url: https://example.com/sso
-                    status: enabled
-                    uuid: 908914ec-2354-4fb1-9298-637247eccc3a
+                total: 2
+                pagination:
+                  total: 2
+                  limit: 2
+                  offset: 0
                 _links:
+                  self:
+                    href: https://cloud.acquia.com/api/identity-providers
+                  parent:
+                    href: https://cloud.acquia.com/api/
                   filter:
                     href: https://cloud.acquia.com/api/identity-providers{?filter}
+                    templated: true
+                  sort:
+                    href: https://cloud.acquia.com/api/identity-providers{?sort}
                     templated: true
                   limit:
                     href: https://cloud.acquia.com/api/identity-providers{?limit}
@@ -86,198 +81,180 @@ paths:
                   offset:
                     href: https://cloud.acquia.com/api/identity-providers{?offset}
                     templated: true
-                  parent:
-                    href: https://cloud.acquia.com/api/
-                  self:
-                    href: https://cloud.acquia.com/api/identity-providers
-                  sort:
-                    href: https://cloud.acquia.com/api/identity-providers{?sort}
-                    templated: true
-                pagination:
-                  limit: 2
-                  offset: 0
-                  total: 2
-                total: 2
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-providers'
-          description: OK
-      security:
-      - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia Returns a List of Identity Providers for a User.
-      tags:
-      - Identity Providers
-      x-cli-name: identity-providers:list
+                _embedded:
+                  items:
+                  - uuid: 5fa84b25-a269-44bd-a2ae-e76d08ac8245
+                    label: Identity provider label
+                    idp_entity_id: https://idp.example.com/saml
+                    sp_entity_id: https://sp.example.com/saml
+                    sso_url: https://example.com/sso
+                    certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+                    status: enabled
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/identity-providers/5fa84b25-a269-44bd-a2ae-e76d08ac8245
+                      parent:
+                        href: https://cloud.acquia.com/api/identity-providers
+                      acs:
+                        href: https://accounts.acquia.com/api/auth/saml/acs/5fa84b25-a269-44bd-a2ae-e76d08ac8245
+                  - uuid: 908914ec-2354-4fb1-9298-637247eccc3a
+                    label: Identity provider label 2
+                    idp_entity_id: https://idp2.example.com/saml
+                    sp_entity_id: https://sp2.example.com/saml
+                    sso_url: https://example.com/sso
+                    certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+                    status: enabled
+                    _links:
+                      self:
+                        href: https://cloud.acquia.com/api/identity-providers/908914ec-2354-4fb1-9298-637247eccc3a
+                      parent:
+                        href: https://cloud.acquia.com/api/identity-providers
+                      acs:
+                        href: https://accounts.acquia.com/api/auth/saml/acs/908914ec-2354-4fb1-9298-637247eccc3a
   /identity-providers/{identityProviderUuid}:
     servers:
     - url: https://cloud.acquia.com/api
       description: Cloud API
-    delete:
-      description: Deletes a specific identity provider.
-      operationId: deleteIdentityProvider
-      parameters:
-      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_identity-provider-uuid'
-      responses:
-        '202':
-          content:
-            application/hal+json:
-              example:
-                _links:
-                  notification:
-                    href: https://cloud.acquia.com/api/notifications/29dcc1e2-3cfc-447c-9fcb-d51c1c26b4da
-                  parent:
-                    href: https://cloud.acquia.com/api/identity-providers
-                  self:
-                    href: https://cloud.acquia.com/api/identity-providers/da1c0a8e-ff69-45db-88fc-acd6d2affbb7
-                message: Identity provider has been deleted.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
-          description: Accepted
-        '403':
-          content:
-            application/hal+json:
-              example:
-                error: forbidden
-                message: You do not have permission to delete the identity provider.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Forbidden
-        '404':
-          content:
-            application/hal+json:
-              examples:
-                No Associated Organization:
-                  value:
-                    error: not_found
-                    message: An organization with associated identity provider UUID da1c0a8e-ff69-45db-88fc-acd6d2affbb7 cannot be found.
-                Not Found or Does Not Exist:
-                  value:
-                    error: not_found
-                    message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Not Found
-      security:
-      - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia Deletes a Specific Identity Provider by its UUID.
+    get:
       tags:
       - Identity Providers
-      x-cli-name: identity-providers:delete
-    get:
+      summary: Returns a specific identity provider by UUID
       description: Returns a specific identity provider.
       operationId: getIdentityProvider
+      x-cli-name: identity-providers:find
       parameters:
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_identity-provider-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
       responses:
         '200':
+          description: OK
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-provider'
               example:
+                uuid: 1bc5dbb4-6d59-403b-afc7-777e520aaa40
+                label: Test identity provider
+                idp_entity_id: https://idp.example.com/saml
+                sp_entity_id: https://sp.example.com/saml
+                sso_url: https://example.com/sso
+                certificate: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
+                status: enabled
                 _links:
+                  self:
+                    href: https://cloud.acquia.com/api/identity-providers/1bc5dbb4-6d59-403b-afc7-777e520aaa40
+                  parent:
+                    href: https://cloud.acquia.com/api/identity-providers
                   acs:
                     href: https://accounts.acquia.com/api/auth/saml/acs/1bc5dbb4-6d59-403b-afc7-777e520aaa40
                   organization:
                     href: https://cloud.acquia.com/api/organizations/a81c08c6-a02f-4b57-87e3-c3f395a2bb34
-                  parent:
-                    href: https://cloud.acquia.com/api/identity-providers
-                  self:
-                    href: https://cloud.acquia.com/api/identity-providers/1bc5dbb4-6d59-403b-afc7-777e520aaa40
-                certificate: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
-                idp_entity_id: https://idp.example.com/saml
-                label: Test identity provider
-                sp_entity_id: https://sp.example.com/saml
-                sso_url: https://example.com/sso
-                status: enabled
-                uuid: 1bc5dbb4-6d59-403b-afc7-777e520aaa40
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-provider'
-          description: OK
         '404':
+          description: Not Found
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               example:
                 error: not_found
                 message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Not Found
-      security:
-      - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia Returns a Specific Identity Provider by UUID.
+    put:
       tags:
       - Identity Providers
-      x-cli-name: identity-providers:find
-    put:
+      summary: Modifies an identity provider by its UUID
       description: Modifies an identity provider.
       operationId: putIdentityProvider
+      x-cli-name: identity-providers:update
       parameters:
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_identity-provider-uuid'
       requestBody:
+        required: true
         content:
           application/hal+json:
-            example:
-              certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-              entity_id: entity-id
-              label: New label
-              sso_url: https://idp.example.com
             schema:
+              type: object
               properties:
+                label:
+                  type: string
+                  description: The new identity provider label.
+                entity_id:
+                  type: string
+                  description: The entity ID of the identity provider
+                sso_url:
+                  type: string
+                  format: uri
+                  description: The URL of the SSO identity provider.
                 certificate:
+                  type: string
                   description: The PEM-encoded X.509 certificate.
-                  type: string
-                entity_id:
-                  description: The entity ID of the identity provider
-                  type: string
-                label:
-                  description: The new identity provider label.
-                  type: string
-                sso_url:
-                  description: The URL of the SSO identity provider.
-                  format: uri
-                  type: string
-              type: object
-          application/x-www-form-urlencoded:
             example:
-              certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-              entity_id: entity-id
               label: New label
+              entity_id: entity-id
               sso_url: https://idp.example.com
+              certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+          application/x-www-form-urlencoded:
             schema:
-              properties:
-                certificate:
-                  description: The PEM-encoded certificate.
-                  type: string
-                entity_id:
-                  description: The entity ID of the identity provider
-                  type: string
-                label:
-                  description: The new identity provider label.
-                  type: string
-                sso_url:
-                  description: The URL of the SSO identity provider.
-                  format: uri
-                  type: string
               type: object
-        required: true
+              properties:
+                label:
+                  type: string
+                  description: The new identity provider label.
+                entity_id:
+                  type: string
+                  description: The entity ID of the identity provider
+                sso_url:
+                  type: string
+                  format: uri
+                  description: The URL of the SSO identity provider.
+                certificate:
+                  type: string
+                  description: The PEM-encoded certificate.
+            example:
+              label: New label
+              entity_id: entity-id
+              sso_url: https://idp.example.com
+              certificate: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
       responses:
         '202':
+          description: Accepted
           content:
             application/hal+json:
-              example:
-                _links:
-                  notification:
-                    href: https://cloud.acquia.com/api/notifications/29dcc1e2-3cfc-447c-9fcb-d51c1c26b4da
-                  parent:
-                    href: https://cloud.acquia.com/api/identity-providers
-                  self:
-                    href: https://cloud.acquia.com/api/identity-providers/8030f025-47dc-4926-940b-0b04d98d1ea2
-                message: Identity Provider has been updated.
               schema:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message'
-          description: Accepted
+              example:
+                message: Identity Provider has been updated.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/identity-providers/8030f025-47dc-4926-940b-0b04d98d1ea2
+                  parent:
+                    href: https://cloud.acquia.com/api/identity-providers
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/29dcc1e2-3cfc-447c-9fcb-d51c1c26b4da
         '400':
+          description: Bad Request
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
               examples:
+                No Parameters:
+                  value:
+                    error: validation_failed
+                    message:
+                      general: No update executed, as no parameters were provided. Please update at least one property.
+                Invalid Certificate:
+                  value:
+                    error: validation_failed
+                    message:
+                      credentials: The certificate is invalid.
+                Inactive Certificate:
+                  value:
+                    error: validation_failed
+                    message:
+                      credentials: The certificate is not yet active.
                 Expired Certificate:
                   value:
                     error: validation_failed
@@ -288,37 +265,26 @@ paths:
                     error: validation_failed
                     message:
                       credentials: The certificate is expiring. Certificates must be valid for at least 90 days.
-                Inactive Certificate:
-                  value:
-                    error: validation_failed
-                    message:
-                      credentials: The certificate is not yet active.
-                Invalid Certificate:
-                  value:
-                    error: validation_failed
-                    message:
-                      credentials: The certificate is invalid.
-                No Parameters:
-                  value:
-                    error: validation_failed
-                    message:
-                      general: No update executed, as no parameters were provided. Please update at least one property.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_validation-error'
-          description: Bad Request
         '403':
+          description: Forbidden
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               example:
                 error: forbidden
                 message: You do not have permission to edit the identity provider.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Forbidden
         '404':
+          description: Not Found
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               examples:
+                Not Found or Does Not Exist:
+                  value:
+                    error: not_found
+                    message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
                 Does Not Exist:
                   value:
                     error: not_found
@@ -327,16 +293,12 @@ paths:
                   value:
                     error: not_found
                     message: An organization with associated identity provider UUID idp1234-aaaa-1234-abcd-0123456789ab cannot be found.
-                Not Found or Does Not Exist:
-                  value:
-                    error: not_found
-                    message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Not Found
         '409':
+          description: Conflict
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               examples:
                 Already Enabled and Active:
                   value:
@@ -346,289 +308,217 @@ paths:
                   value:
                     error: conflict
                     message: The organization does not have an identity provider registered with the UUID idp1234-aaaa-1234-abcd-0123456789ab.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Conflict
-      security:
-      - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia Modifies an Identity Provider by its UUID.
+    delete:
       tags:
       - Identity Providers
-      x-cli-name: identity-providers:update
-  /identity-providers/{identityProviderUuid}/actions/disable:
-    servers:
-    - url: https://cloud.acquia.com/api
-      description: Cloud API
-    post:
-      description: Disables an identity provider.
-      operationId: postDisableIdentityProvider
+      summary: Deletes a specific identity provider by its UUID
+      description: Deletes a specific identity provider.
+      operationId: deleteIdentityProvider
+      x-cli-name: identity-providers:delete
       parameters:
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_identity-provider-uuid'
-      responses:
-        '200':
-          content:
-            application/hal+json:
-              example:
-                _links:
-                  notification:
-                    href: https://cloud.acquia.com/api/notifications/31660dfd-def7-49f0-b1f2-847fa267a021
-                  parent:
-                    href: https://cloud.acquia.com/api/identity-providers
-                  self:
-                    href: https://cloud.acquia.com/api/identity-providers/e1851cef-aa3c-4153-bb81-1c25fcf7dc77
-                message: Identity Provider has been disabled.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
-          description: OK
-        '403':
-          content:
-            application/hal+json:
-              example:
-                error: conflict
-                message: You do not have permission to disable this identity provider.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Forbidden
-        '404':
-          content:
-            application/hal+json:
-              example:
-                error: conflict
-                message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Not Found
-        '409':
-          content:
-            application/hal+json:
-              examples:
-                Already disabled:
-                  value:
-                    error: conflict
-                    message: The identity provider is already disabled.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Conflict
       security:
       - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia Disables an Identity Provider by its UUID.
-      tags:
-      - Identity Providers
-      x-cli-name: identity-providers:disable
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: Identity provider has been deleted.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/identity-providers/da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+                  parent:
+                    href: https://cloud.acquia.com/api/identity-providers
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/29dcc1e2-3cfc-447c-9fcb-d51c1c26b4da
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              example:
+                error: forbidden
+                message: You do not have permission to delete the identity provider.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Not Found or Does Not Exist:
+                  value:
+                    error: not_found
+                    message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
+                No Associated Organization:
+                  value:
+                    error: not_found
+                    message: An organization with associated identity provider UUID da1c0a8e-ff69-45db-88fc-acd6d2affbb7 cannot be found.
   /identity-providers/{identityProviderUuid}/actions/enable:
     servers:
     - url: https://cloud.acquia.com/api
       description: Cloud API
     post:
+      tags:
+      - Identity Providers
+      summary: Enables an identity provider by its UUID
       description: Enables an identity provider.
       operationId: postEnableIdentityProvider
+      x-cli-name: identity-providers:enable
       parameters:
       - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_identity-provider-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
       responses:
         '200':
+          description: OK
           content:
             application/hal+json:
-              example:
-                _links:
-                  notification:
-                    href: https://cloud.acquia.com/api/notifications/31660dfd-def7-49f0-b1f2-847fa267a021
-                  parent:
-                    href: https://cloud.acquia.com/api/identity-providers
-                  self:
-                    href: https://cloud.acquia.com/api/identity-providers/e1851cef-aa3c-4153-bb81-1c25fcf7dc77
-                message: Identity Provider has been enabled.
               schema:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
-          description: OK
+              example:
+                message: Identity Provider has been enabled.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/identity-providers/e1851cef-aa3c-4153-bb81-1c25fcf7dc77
+                  parent:
+                    href: https://cloud.acquia.com/api/identity-providers
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/31660dfd-def7-49f0-b1f2-847fa267a021
         '403':
+          description: Forbidden
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               example:
                 error: conflict
                 message: You do not have permission to enable this identity provider.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Forbidden
         '404':
+          description: Not Found
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               example:
                 error: conflict
                 message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Not Found
         '409':
+          description: Conflict
           content:
             application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
               examples:
                 Already enabled:
                   value:
                     error: conflict
                     message: The identity provider is already enabled.
-              schema:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
-          description: Conflict
-      security:
-      - Acquia_Cloud_API_Documentation_OAuth2: []
-      summary: Acquia Enables an Identity Provider by its UUID.
+  /identity-providers/{identityProviderUuid}/actions/disable:
+    servers:
+    - url: https://cloud.acquia.com/api
+      description: Cloud API
+    post:
       tags:
       - Identity Providers
-      x-cli-name: identity-providers:enable
+      summary: Disables an identity provider by its UUID
+      description: Disables an identity provider.
+      operationId: postDisableIdentityProvider
+      x-cli-name: identity-providers:disable
+      parameters:
+      - $ref: '#/components/parameters/Acquia_Cloud_API_Documentation_identity-provider-uuid'
+      security:
+      - Acquia_Cloud_API_Documentation_OAuth2: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_message-with-links'
+              example:
+                message: Identity Provider has been disabled.
+                _links:
+                  self:
+                    href: https://cloud.acquia.com/api/identity-providers/e1851cef-aa3c-4153-bb81-1c25fcf7dc77
+                  parent:
+                    href: https://cloud.acquia.com/api/identity-providers
+                  notification:
+                    href: https://cloud.acquia.com/api/notifications/31660dfd-def7-49f0-b1f2-847fa267a021
+        '403':
+          description: Forbidden
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              example:
+                error: conflict
+                message: You do not have permission to disable this identity provider.
+        '404':
+          description: Not Found
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              example:
+                error: conflict
+                message: The identity provider you are trying to access does not exist, or you do not have permission to access it.
+        '409':
+          description: Conflict
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_error'
+              examples:
+                Already disabled:
+                  value:
+                    error: conflict
+                    message: The identity provider is already disabled.
 components:
-  schemas:
-    Acquia_Cloud_API_Documentation_identity-provider:
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        certificate:
-          description: The PEM-encoded X.509 certificate used to sign assertions.
-          type: string
-        idp_entity_id:
-          description: The SAML entity ID of the identity provider.
-          type: string
-        label:
-          description: The human-friendly label of the identity provider.
-          type: string
-        sp_entity_id:
-          description: The SAML entity ID of the service provider.
-          type: string
-        sso_url:
-          description: The URL of the SAML POST Binding / SP-initiated SSO.
-          format: uri
-          type: string
-        status:
-          description: The current state of the identity provider.
-          enum:
-          - enabled
-          - incomplete
-          - disabled
-          type: string
-        uuid:
-          description: The unique identifier of the identity provider.
-          format: uuid
-          type: string
-      required:
-      - uuid
-      - label
-      - idp_entity_id
-      - sp_entity_id
-      - sso_url
-      - certificate
-      - status
-      - _links
-      type: object
-    Acquia_Cloud_API_Documentation_validation-error:
-      description: A validation error.
-      properties:
-        error:
-          description: The error summary.
-          type: string
-        message:
-          additionalProperties:
-            type: string
-          description: The validation error message keyed by its field or group name.
-          type: object
-      required:
-      - error
-      - message
-      type: object
-    Acquia_Cloud_API_Documentation_links:
-      description: HAL links about the current resource.
-      properties:
-        self:
-          description: A link to this page.
-          properties:
-            href:
-              description: The URI for this page.
-              format: uri
-              type: string
-          required:
-          - href
-          type: object
-      required:
-      - self
-      type: object
-    Acquia_Cloud_API_Documentation_identity-providers:
-      properties:
-        _embedded:
-          description: A collection of identity providers matching the request parameters.
-          properties:
-            items:
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-provider'
-              type: array
-          type: object
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        total:
-          description: The number of items returned in the collection.
-          type: integer
-      required:
-      - total
-      - _links
-      - _embedded
-      type: object
-    Acquia_Cloud_API_Documentation_message-with-links:
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        message:
-          description: The human-friendly confirmation of the creation of the resource.
-          type: string
-      required:
-      - message
-      - _links
-      type: object
-    Acquia_Cloud_API_Documentation_error:
-      properties:
-        error:
-          description: The error summary.
-          type: string
-        message:
-          description: The long description for the returned error.
-          type: string
-      required:
-      - error
-      - message
-      type: object
-    Acquia_Cloud_API_Documentation_message:
-      properties:
-        message:
-          description: A simple message returned from the response.
-          type: string
-      required:
-      - message
-      type: object
   parameters:
-    Acquia_Cloud_API_Documentation_identity-provider-uuid:
-      description: The entity's universally unique identifier.
-      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
-      in: path
-      name: identityProviderUuid
-      required: true
-      schema:
-        type: string
     Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
       description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
 
         '
-      example: field1,-field2
-      in: query
-      name: sort
       required: false
       schema:
-        minimum: 1
         type: string
-    Acquia_Cloud_API_Documentation_limit:
-      description: The maximum number of items to return.
-      example: 10
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
       in: query
-      name: limit
+      description: An integer to signify the offset to paginate from.
       required: false
       schema:
         type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_identity-provider-uuid:
+      name: identityProviderUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
     Acquia_Cloud_API_Documentation_filter:
+      name: filter
+      in: query
       description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
 
 
@@ -666,22 +556,137 @@ components:
         * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
 
         '
-      in: query
-      name: filter
       required: false
       schema:
-        minimum: 1
         type: string
-    Acquia_Cloud_API_Documentation_offset:
-      description: An integer to signify the offset to paginate from.
-      example: 10
-      in: query
-      name: offset
-      required: false
-      schema:
-        type: integer
+        minimum: 1
+  schemas:
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_validation-error:
+      type: object
+      required:
+      - error
+      - message
+      description: A validation error.
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_identity-providers:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of identity providers matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-provider'
+    Acquia_Cloud_API_Documentation_identity-provider:
+      type: object
+      required:
+      - uuid
+      - label
+      - idp_entity_id
+      - sp_entity_id
+      - sso_url
+      - certificate
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the identity provider.
+        label:
+          type: string
+          description: The human-friendly label of the identity provider.
+        idp_entity_id:
+          type: string
+          description: The SAML entity ID of the identity provider.
+        sp_entity_id:
+          type: string
+          description: The SAML entity ID of the service provider.
+        sso_url:
+          type: string
+          format: uri
+          description: The URL of the SAML POST Binding / SP-initiated SSO.
+        certificate:
+          type: string
+          description: The PEM-encoded X.509 certificate used to sign assertions.
+        status:
+          type: string
+          description: The current state of the identity provider.
+          enum:
+          - enabled
+          - incomplete
+          - disabled
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
+      type: oauth2
       description: 'All Cloud API calls need to be authenticated in order to work. You authenticate using a token that you can generate on your Acquia Profile page.
 
 
@@ -703,21 +708,20 @@ components:
         '
       flows:
         clientCredentials:
-          scopes: {}
           tokenUrl: https://accounts.acquia.com/api/token
-      type: oauth2
+          scopes: {}
     Codebase_Service_JWT:
-      description: Value for the Authorization header parameter.
-      in: header
-      name: Authorization
       type: apiKey
+      description: Value for the Authorization header parameter.
+      name: Authorization
+      in: header
     MEO_Environment_Service_JWT:
-      description: Value for the Authorization header parameter.
-      in: header
-      name: Authorization
       type: apiKey
+      description: Value for the Authorization header parameter.
+      name: Authorization
+      in: header
     Site_Service_JWT:
-      description: Value for the Authorization header parameter.
-      in: header
-      name: Authorization
       type: apiKey
+      description: Value for the Authorization header parameter.
+      name: Authorization
+      in: header
