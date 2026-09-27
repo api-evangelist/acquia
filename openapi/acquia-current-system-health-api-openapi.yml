@@ -66,22 +66,6 @@ paths:
                     href: https://cloud.acquia.com/api/teams
 components:
   schemas:
-    Acquia_Cloud_API_Documentation_links:
-      type: object
-      required:
-      - self
-      description: HAL links about the current resource.
-      properties:
-        self:
-          type: object
-          description: A link to this page.
-          required:
-          - href
-          properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
     Acquia_Cloud_API_Documentation_root:
       type: object
       required:
@@ -106,6 +90,22 @@ components:
               description: Whether Acquia Cloud Free provisioning is currently enabled.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

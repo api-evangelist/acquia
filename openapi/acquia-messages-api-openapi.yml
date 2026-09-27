@@ -106,15 +106,6 @@ paths:
                     error: not_found
                     message: The message you are trying to follow the link for does not exist, or you do not have permission to access it.
 components:
-  parameters:
-    Acquia_Cloud_API_Documentation_message-uuid:
-      name: messageUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
   schemas:
     Acquia_Cloud_API_Documentation_message:
       type: object
@@ -136,6 +127,15 @@ components:
         message:
           type: string
           description: The long description for the returned error.
+  parameters:
+    Acquia_Cloud_API_Documentation_message-uuid:
+      name: messageUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

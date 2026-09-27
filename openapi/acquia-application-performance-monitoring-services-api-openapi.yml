@@ -383,14 +383,6 @@ components:
       schema:
         type: string
       example: newrelic
-    Acquia_Cloud_API_Documentation_subscription-uuid:
-      name: subscriptionUuid
-      in: path
-      description: The subscription entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
     Acquia_Cloud_API_Documentation_environment-id:
       name: environmentId
       in: path
@@ -399,27 +391,15 @@ components:
       schema:
         type: string
       example: 12-d314739e-296f-11e9-b210-d663bd873d93
+    Acquia_Cloud_API_Documentation_subscription-uuid:
+      name: subscriptionUuid
+      in: path
+      description: The subscription entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
   schemas:
-    Acquia_Cloud_API_Documentation_message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_apm:
       type: object
       description: Details application performance monitor settings.
@@ -461,17 +441,6 @@ components:
                 properties:
                   _links:
                     $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_message-with-links:
-      type: object
-      required:
-      - message
-      - _links
-      properties:
-        message:
-          type: string
-          description: The human-friendly confirmation of the creation of the resource.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
     Acquia_Cloud_API_Documentation_validation-error:
       type: object
       required:
@@ -512,6 +481,25 @@ components:
           description: The APM license key.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
     Acquia_Cloud_API_Documentation_apm-types:
       type: object
       required:
@@ -548,6 +536,18 @@ components:
               type: string
               format: uri
               description: The URI for this page.
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

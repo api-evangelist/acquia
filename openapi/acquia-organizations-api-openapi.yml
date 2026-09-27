@@ -2681,106 +2681,26 @@ paths:
                     error: conflict
                     message: A team with this name already exists in this organization.
 components:
-  parameters:
-    Acquia_Cloud_API_Documentation_sort:
-      name: sort
-      in: query
-      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-      example: field1,-field2
-    Acquia_Cloud_API_Documentation_range:
-      name: range
-      in: query
-      description: ISO-8601 date/time of invite create date/time.
-      required: false
-      schema:
-        type: string
-        format: date-time
-    Acquia_Cloud_API_Documentation_offset:
-      name: offset
-      in: query
-      description: An integer to signify the offset to paginate from.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_filter:
-      name: filter
-      in: query
-      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
-
-
-        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
-
-
-        * Equals: `= (%3D)`
-
-        * Does not equal: `!= (!%3D)`
-
-        * Greater than: `> (%3E)`
-
-        * Less than: `< (%3C)`
-
-        * Greater than or equal to: `>= (%3E%3D)`
-
-        * Less than or equal to: `<= (%3C%3D)`
-
-        * Contains substring: `=@ (%3D@)`
-
-        * Does not contain substring: `!@ (!@)`
-
-
-        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
-
-
-        Some examples:
-
-        * `filter=field%3Dvalue` (`field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-    Acquia_Cloud_API_Documentation_organization-uuid:
-      name: organizationUuid
-      in: path
-      description: The organization entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-        minLength: 36
-        maxLength: 36
-        format: uuid
-      example: 1e7efab9-0fac-4a2c-ad94-61efc78623ba
-    Acquia_Cloud_API_Documentation_user-uuid:
-      name: userUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
-    Acquia_Cloud_API_Documentation_limit:
-      name: limit
-      in: query
-      description: The maximum number of items to return.
-      required: false
-      schema:
-        type: integer
-      example: 10
   schemas:
+    Acquia_Cloud_API_Documentation_application-stub:
+      type: object
+      required:
+      - name
+      - uuid
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The application UUID.
+    Acquia_Cloud_API_Documentation_invite-flags:
+      type: object
+      description: An array of various flags providing more context for the Invite response object.
+      properties:
+        declined:
+          type: boolean
     Acquia_Cloud_API_Documentation_organization-team-invite:
       type: object
       required:
@@ -2831,62 +2751,76 @@ components:
             $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_application-flags:
+    Acquia_Cloud_API_Documentation_permission-flags:
       type: object
-      description: An array of various flags that indicate functionality associated with applications.
+      description: An array of various flags regarding the status of the permission.
       properties:
-        remote_admin:
+        deprecated:
           type: boolean
-          description: Whether this application has remote administration enabled.
-    Acquia_Cloud_API_Documentation_organization-admin-invite:
+          description: Whether the permission is deprecated or not.
+    Acquia_Cloud_API_Documentation_organization:
       type: object
-      description: An invitation to become an organization administrator.
+      description: Organization information.
       required:
+      - id
       - uuid
-      - email
-      - created_at
-      - token
+      - name
+      - subscriptions_total
+      - admins_total
+      - users_total
+      - teams_total
+      - roles_total
+      - owner
       - flags
-      - author
-      - organization
       - _links
+      - _embedded
       properties:
+        id:
+          type: string
+          description: The internal ID of the organization.
         uuid:
           type: string
-          description: The unique identifier of the Invite.
-          format: uuid
-        email:
+          description: The UUID of the organization.
+        name:
           type: string
-          description: The invitee email address.
-          format: email
-        created_at:
-          type: string
-          description: The invite creation time.
-          format: date-time
-        token:
-          type: string
-          description: The invite token.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite-flags'
-        author:
+          description: The name of the organization.
+        subscriptions_total:
+          type: integer
+          description: The number of subscriptions this organization has.
+        admins_total:
+          type: integer
+          description: The number of administrators this organization has.
+        users_total:
+          type: integer
+          description: The number of users this organization has.
+        teams_total:
+          type: integer
+          description: The number of teams this organization has.
+        roles_total:
+          type: integer
+          description: The number of roles this organization has.
+        owner:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
-        organization:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        flags:
+          type: object
+          description: An array of various flags that indicate functionality for the organization.
+          properties:
+            federated_authentication:
+              type: boolean
+              description: Indicates whether the organization supports federated authentication.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_message-with-links:
+        _embedded:
+          type: object
+          description: Entities related to the organization.
+          properties:
+            owner:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub-embedded'
+    Acquia_Cloud_API_Documentation_role-stub:
       type: object
       required:
-      - message
-      - _links
-      properties:
-        message:
-          type: string
-          description: The human-friendly confirmation of the creation of the resource.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_role:
-      type: object
+      - uuid
+      - name
       properties:
         uuid:
           type: string
@@ -2895,182 +2829,19 @@ components:
         name:
           type: string
           description: The role name.
-        description:
-          type: string
-          description: A description of the role.
-        permissions:
-          type: array
-          description: A collection of permissions a user with this role is granted.
-          items:
-            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission'
-        organization:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
-        last_edited:
-          type: object
-          description: When the role was last edited, and who edited it.
-          properties:
-            edited_at:
-              type: string
-              format: date-time
-              description: The date the role was edited.
-            user:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
-        flags:
-          type: object
-          description: Additional role status information.
-          properties:
-            default:
-              type: boolean
-              description: True if this is a default role, false if it was user created.
-    Acquia_Cloud_API_Documentation_roles:
+    Acquia_Cloud_API_Documentation_organization-stub:
       type: object
-      description: Collection of roles.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of roles.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role'
-    Acquia_Cloud_API_Documentation_organizations:
-      type: object
-      description: A collection of all organizations the current user has access to.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of organizations.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-no-embedded'
-    Acquia_Cloud_API_Documentation_organization-team-stub:
-      type: object
-      description: A team within an organization.
       required:
       - uuid
       - name
-      - roles
       properties:
         uuid:
           type: string
-          description: The team unique identifier.
           format: uuid
+          description: The organization's UUID.
         name:
           type: string
-          description: The team name.
-        roles:
-          type: array
-          description: An array of roles that the user has on this team.
-          items:
-            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
-    Acquia_Cloud_API_Documentation_identity-provider:
-      type: object
-      required:
-      - uuid
-      - label
-      - idp_entity_id
-      - sp_entity_id
-      - sso_url
-      - certificate
-      - status
-      - _links
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The unique identifier of the identity provider.
-        label:
-          type: string
-          description: The human-friendly label of the identity provider.
-        idp_entity_id:
-          type: string
-          description: The SAML entity ID of the identity provider.
-        sp_entity_id:
-          type: string
-          description: The SAML entity ID of the service provider.
-        sso_url:
-          type: string
-          format: uri
-          description: The URL of the SAML POST Binding / SP-initiated SSO.
-        certificate:
-          type: string
-          description: The PEM-encoded X.509 certificate used to sign assertions.
-        status:
-          type: string
-          description: The current state of the identity provider.
-          enum:
-          - enabled
-          - incomplete
-          - disabled
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_organization-admin-user-profile:
-      type: object
-      description: An organization admin user profile.
-      required:
-      - uuid
-      - first_name
-      - last_name
-      - last_login_at
-      - mail
-      - picture_url
-      - username
-      - flags
-      - _links
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The user's UUID.
-          minLength: 36
-          maxLength: 36
-        first_name:
-          type: string
-          description: The user's first name.
-        last_name:
-          type: string
-          description: The user's last name.
-        last_login_at:
-          deprecated: true
-          type:
-          - string
-          - 'null'
-          description: The ISO-8601 formatted date/time of when the user last logged in.
-        mail:
-          type: string
-          format: email
-          description: The user's email address.
-        picture_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: The URI for the user's picture.
-        username:
-          type: string
-          description: The user's internal user name.
-        flags:
-          type: object
-          description: An array of flags for a user profile.
-          properties:
-            owner:
-              type: boolean
-              description: Whether or not this user is the organization owner.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+          description: The human-readable organization name.
     Acquia_Cloud_API_Documentation_application-no-embedded:
       type: object
       required:
@@ -3134,17 +2905,9 @@ components:
           description: The current application status.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_message:
+    Acquia_Cloud_API_Documentation_organization-team-invites:
       type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_teams:
-      type: object
-      description: A collection of teams.
+      description: A collection of invitations to join a team.
       required:
       - total
       - _links
@@ -3157,52 +2920,111 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of teams matching the request parameters.
+          description: The collection of organization team invites.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team'
-    Acquia_Cloud_API_Documentation_subscription-stub:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-team-invite'
+    Acquia_Cloud_API_Documentation_links:
       type: object
-      description: The subscription this application belongs to.
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
+    Acquia_Cloud_API_Documentation_organization-user-profile:
+      type: object
+      description: A user profile for an organization member.
       required:
       - uuid
-      - name
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      - teams
+      - _links
       properties:
         uuid:
           type: string
           format: uuid
-          description: The UUID of the subscription.
-        name:
+          description: The user's UUID.
+        first_name:
           type: string
-          description: The name of the subscription.
-    Acquia_Cloud_API_Documentation_organization-stub:
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URL for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
+        teams:
+          type: array
+          description: A collection of teams this user has access to in an organization, and the roles they have on those teams.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-team-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_organization-available-tags:
       type: object
+      description: A collection of organization members.
       required:
-      - uuid
-      - name
+      - total
+      - _links
+      - _embedded
       properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The organization's UUID.
-        name:
-          type: string
-          description: The human-readable organization name.
-    Acquia_Cloud_API_Documentation_role-stub:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of tags associated with the organization.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_resource-tag-organization'
+    Acquia_Cloud_API_Documentation_organizations-notifications:
       type: object
-      required:
-      - uuid
-      - name
+      description: A collection of notifications matching the request parameters.
       properties:
-        uuid:
-          type: string
-          description: The role unique identifier.
-          format: uuid
-        name:
-          type: string
-          description: The role name.
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        pagination:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of notifications matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_notification-stub'
     Acquia_Cloud_API_Documentation_notification-stub:
       type: object
       description: A notification about an event or a task.
@@ -3259,6 +3081,35 @@ components:
         _embedded:
           type: object
           description: Data related to the notification, such as the author.
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_teams:
+      type: object
+      description: A collection of teams.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of teams matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_team'
     Acquia_Cloud_API_Documentation_team:
       type: object
       required:
@@ -3288,26 +3139,7 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_organizations-notifications:
-      type: object
-      description: A collection of notifications matching the request parameters.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        pagination:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of notifications matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_notification-stub'
-    Acquia_Cloud_API_Documentation_organization-available-tags:
+    Acquia_Cloud_API_Documentation_organization-members:
       type: object
       description: A collection of organization members.
       required:
@@ -3322,12 +3154,270 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of tags associated with the organization.
+          description: A collection of organization member profiles.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_resource-tag-organization'
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-user-profile'
+    Acquia_Cloud_API_Documentation_organization-admin-user-profile:
+      type: object
+      description: An organization admin user profile.
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - last_login_at
+      - mail
+      - picture_url
+      - username
+      - flags
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The user's UUID.
+          minLength: 36
+          maxLength: 36
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        last_login_at:
+          deprecated: true
+          type:
+          - string
+          - 'null'
+          description: The ISO-8601 formatted date/time of when the user last logged in.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URI for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
+        flags:
+          type: object
+          description: An array of flags for a user profile.
+          properties:
+            owner:
+              type: boolean
+              description: Whether or not this user is the organization owner.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_role:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The role unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The role name.
+        description:
+          type: string
+          description: A description of the role.
+        permissions:
+          type: array
+          description: A collection of permissions a user with this role is granted.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission'
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
+        last_edited:
+          type: object
+          description: When the role was last edited, and who edited it.
+          properties:
+            edited_at:
+              type: string
+              format: date-time
+              description: The date the role was edited.
+            user:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
+        flags:
+          type: object
+          description: Additional role status information.
+          properties:
+            default:
+              type: boolean
+              description: True if this is a default role, false if it was user created.
+    Acquia_Cloud_API_Documentation_organization-team-stub:
+      type: object
+      description: A team within an organization.
+      required:
+      - uuid
+      - name
+      - roles
+      properties:
+        uuid:
+          type: string
+          description: The team unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The team name.
+        roles:
+          type: array
+          description: An array of roles that the user has on this team.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
+    Acquia_Cloud_API_Documentation_subscription-stub:
+      type: object
+      description: The subscription this application belongs to.
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the subscription.
+        name:
+          type: string
+          description: The name of the subscription.
+    Acquia_Cloud_API_Documentation_user-stub:
+      type: object
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URI for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
+    Acquia_Cloud_API_Documentation_permission:
+      type: object
+      required:
+      - name
+      - label
+      - description
+      - group_label
+      - flags
+      properties:
+        name:
+          type: string
+          description: The name of the permission.
+        label:
+          type: string
+          description: The human readable label for the permission.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the permission.
+        group_label:
+          type: string
+          description: The human readable label for the group.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission-flags'
+    Acquia_Cloud_API_Documentation_identity-provider:
+      type: object
+      required:
+      - uuid
+      - label
+      - idp_entity_id
+      - sp_entity_id
+      - sso_url
+      - certificate
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the identity provider.
+        label:
+          type: string
+          description: The human-friendly label of the identity provider.
+        idp_entity_id:
+          type: string
+          description: The SAML entity ID of the identity provider.
+        sp_entity_id:
+          type: string
+          description: The SAML entity ID of the service provider.
+        sso_url:
+          type: string
+          format: uri
+          description: The URL of the SAML POST Binding / SP-initiated SSO.
+        certificate:
+          type: string
+          description: The PEM-encoded X.509 certificate used to sign assertions.
+        status:
+          type: string
+          description: The current state of the identity provider.
+          enum:
+          - enabled
+          - incomplete
+          - disabled
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_pagination:
+      type: object
+      description: A collection of pagination properties.
+      properties:
+        total:
+          type: integer
+          description: The total number of objects in the collection.
+        limit:
+          type: integer
+          description: The limit on the number of objects in the collection.
+        offset:
+          type: integer
+          description: The offset on the retrieved objects in the collection.
+    Acquia_Cloud_API_Documentation_organization-admin-user-profiles:
+      type: object
+      description: A collection of organization administrator user profiles.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: The collection of organization admin user profiles.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-admin-user-profile'
     Acquia_Cloud_API_Documentation_organization-applications:
       type: object
       description: A collection of applications associated with an organization.
@@ -3349,9 +3439,41 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
-    Acquia_Cloud_API_Documentation_organization-team-invites:
+    Acquia_Cloud_API_Documentation_team-stub:
       type: object
-      description: A collection of invitations to join a team.
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          description: The team unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The team name.
+    Acquia_Cloud_API_Documentation_application-flags:
+      type: object
+      description: An array of various flags that indicate functionality associated with applications.
+      properties:
+        remote_admin:
+          type: boolean
+          description: Whether this application has remote administration enabled.
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_organization-admin-invites:
+      type: object
+      description: A collection of invitations to become an organization administrator.
       required:
       - total
       - _links
@@ -3364,28 +3486,83 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: The collection of organization team invites.
+          description: The collection of organization admin invites.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-team-invite'
-    Acquia_Cloud_API_Documentation_links:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-admin-invite'
+    Acquia_Cloud_API_Documentation_validation-error:
       type: object
       required:
-      - self
-      description: HAL links about the current resource.
+      - error
+      - message
+      description: A validation error.
       properties:
-        self:
+        error:
+          type: string
+          description: The error summary.
+        message:
           type: object
-          description: A link to this page.
-          required:
-          - href
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_roles:
+      type: object
+      description: Collection of roles.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of roles.
           properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role'
+    Acquia_Cloud_API_Documentation_resource-tag-organization:
+      type: object
+      required:
+      - name
+      - color
+      - context
+      properties:
+        name:
+          type: string
+          description: The name of the tag.
+        color:
+          type: string
+          description: The color of the tag.
+        context:
+          type: object
+          description: Metadata related to the tag.
+          properties:
+            organization:
+              type: object
+              description: A collection of organization metadata for the tag.
+              properties:
+                uuids:
+                  type: array
+                  description: An array of organization UUIDs.
+                  items:
+                    type: string
+                    format: uuid
+                    description: The organization UUID.
+            application:
+              type: object
+              description: A collection of application metadata for the tag.
+              properties:
+                uuids:
+                  type: array
+                  description: An array of application UUIDs.
+                  items:
+                    type: string
+                    format: uuid
+                    description: The application UUID.
     Acquia_Cloud_API_Documentation_organization-no-embedded:
       type: object
       description: Organization information.
@@ -3437,333 +3614,86 @@ components:
               description: Indicates whether the organization supports federated authentication.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_validation-error:
+    Acquia_Cloud_API_Documentation_organizations:
       type: object
-      required:
-      - error
-      - message
-      description: A validation error.
+      description: A collection of all organizations the current user has access to.
       properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
           type: object
-          description: The validation error message keyed by its field or group name.
-          additionalProperties:
-            type: string
-    Acquia_Cloud_API_Documentation_team-stub:
+          description: A collection of organizations.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-no-embedded'
+    Acquia_Cloud_API_Documentation_message-with-links:
       type: object
       required:
-      - uuid
-      - name
-      properties:
-        uuid:
-          type: string
-          description: The team unique identifier.
-          format: uuid
-        name:
-          type: string
-          description: The team name.
-    Acquia_Cloud_API_Documentation_organization:
-      type: object
-      description: Organization information.
-      required:
-      - id
-      - uuid
-      - name
-      - subscriptions_total
-      - admins_total
-      - users_total
-      - teams_total
-      - roles_total
-      - owner
-      - flags
+      - message
       - _links
-      - _embedded
       properties:
-        id:
+        message:
           type: string
-          description: The internal ID of the organization.
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_applications:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of applications.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
+    Acquia_Cloud_API_Documentation_organization-admin-invite:
+      type: object
+      description: An invitation to become an organization administrator.
+      required:
+      - uuid
+      - email
+      - created_at
+      - token
+      - flags
+      - author
+      - organization
+      - _links
+      properties:
         uuid:
           type: string
-          description: The UUID of the organization.
-        name:
+          description: The unique identifier of the Invite.
+          format: uuid
+        email:
           type: string
-          description: The name of the organization.
-        subscriptions_total:
-          type: integer
-          description: The number of subscriptions this organization has.
-        admins_total:
-          type: integer
-          description: The number of administrators this organization has.
-        users_total:
-          type: integer
-          description: The number of users this organization has.
-        teams_total:
-          type: integer
-          description: The number of teams this organization has.
-        roles_total:
-          type: integer
-          description: The number of roles this organization has.
-        owner:
+          description: The invitee email address.
+          format: email
+        created_at:
+          type: string
+          description: The invite creation time.
+          format: date-time
+        token:
+          type: string
+          description: The invite token.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite-flags'
+        author:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
-        flags:
-          type: object
-          description: An array of various flags that indicate functionality for the organization.
-          properties:
-            federated_authentication:
-              type: boolean
-              description: Indicates whether the organization supports federated authentication.
+        organization:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: Entities related to the organization.
-          properties:
-            owner:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub-embedded'
-    Acquia_Cloud_API_Documentation_organization-user-profile:
-      type: object
-      description: A user profile for an organization member.
-      required:
-      - uuid
-      - first_name
-      - last_name
-      - mail
-      - picture_url
-      - username
-      - teams
-      - _links
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The user's UUID.
-        first_name:
-          type: string
-          description: The user's first name.
-        last_name:
-          type: string
-          description: The user's last name.
-        mail:
-          type: string
-          format: email
-          description: The user's email address.
-        picture_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: The URL for the user's picture.
-        username:
-          type: string
-          description: The user's internal user name.
-        teams:
-          type: array
-          description: A collection of teams this user has access to in an organization, and the roles they have on those teams.
-          items:
-            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-team-stub'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_user-stub:
-      type: object
-      required:
-      - uuid
-      - first_name
-      - last_name
-      - mail
-      - picture_url
-      - username
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The user's UUID.
-        first_name:
-          type: string
-          description: The user's first name.
-        last_name:
-          type: string
-          description: The user's last name.
-        mail:
-          type: string
-          format: email
-          description: The user's email address.
-        picture_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: The URI for the user's picture.
-        username:
-          type: string
-          description: The user's internal user name.
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
-    Acquia_Cloud_API_Documentation_organization-members:
-      type: object
-      description: A collection of organization members.
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of organization member profiles.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-user-profile'
-    Acquia_Cloud_API_Documentation_invite-flags:
-      type: object
-      description: An array of various flags providing more context for the Invite response object.
-      properties:
-        declined:
-          type: boolean
-    Acquia_Cloud_API_Documentation_resource-tag-organization:
-      type: object
-      required:
-      - name
-      - color
-      - context
-      properties:
-        name:
-          type: string
-          description: The name of the tag.
-        color:
-          type: string
-          description: The color of the tag.
-        context:
-          type: object
-          description: Metadata related to the tag.
-          properties:
-            organization:
-              type: object
-              description: A collection of organization metadata for the tag.
-              properties:
-                uuids:
-                  type: array
-                  description: An array of organization UUIDs.
-                  items:
-                    type: string
-                    format: uuid
-                    description: The organization UUID.
-            application:
-              type: object
-              description: A collection of application metadata for the tag.
-              properties:
-                uuids:
-                  type: array
-                  description: An array of application UUIDs.
-                  items:
-                    type: string
-                    format: uuid
-                    description: The application UUID.
-    Acquia_Cloud_API_Documentation_permission-flags:
-      type: object
-      description: An array of various flags regarding the status of the permission.
-      properties:
-        deprecated:
-          type: boolean
-          description: Whether the permission is deprecated or not.
-    Acquia_Cloud_API_Documentation_organization-admin-user-profiles:
-      type: object
-      description: A collection of organization administrator user profiles.
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: The collection of organization admin user profiles.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-admin-user-profile'
-    Acquia_Cloud_API_Documentation_permission:
-      type: object
-      required:
-      - name
-      - label
-      - description
-      - group_label
-      - flags
-      properties:
-        name:
-          type: string
-          description: The name of the permission.
-        label:
-          type: string
-          description: The human readable label for the permission.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the permission.
-        group_label:
-          type: string
-          description: The human readable label for the group.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_permission-flags'
-    Acquia_Cloud_API_Documentation_pagination:
-      type: object
-      description: A collection of pagination properties.
-      properties:
-        total:
-          type: integer
-          description: The total number of objects in the collection.
-        limit:
-          type: integer
-          description: The limit on the number of objects in the collection.
-        offset:
-          type: integer
-          description: The offset on the retrieved objects in the collection.
-    Acquia_Cloud_API_Documentation_organization-admin-invites:
-      type: object
-      description: A collection of invitations to become an organization administrator.
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: The collection of organization admin invites.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_organization-admin-invite'
     Acquia_Cloud_API_Documentation_user-stub-embedded:
       type: object
       description: A related user.
@@ -3801,35 +3731,105 @@ components:
           description: The user's internal user name.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_applications:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of applications.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-no-embedded'
-    Acquia_Cloud_API_Documentation_application-stub:
-      type: object
-      required:
-      - name
-      - uuid
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-        uuid:
-          type: string
-          format: uuid
-          description: The application UUID.
+  parameters:
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_range:
+      name: range
+      in: query
+      description: ISO-8601 date/time of invite create date/time.
+      required: false
+      schema:
+        type: string
+        format: date-time
+    Acquia_Cloud_API_Documentation_filter:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
+
+
+        * Equals: `= (%3D)`
+
+        * Does not equal: `!= (!%3D)`
+
+        * Greater than: `> (%3E)`
+
+        * Less than: `< (%3C)`
+
+        * Greater than or equal to: `>= (%3E%3D)`
+
+        * Less than or equal to: `<= (%3C%3D)`
+
+        * Contains substring: `=@ (%3D@)`
+
+        * Does not contain substring: `!@ (!@)`
+
+
+        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
+
+
+        Some examples:
+
+        * `filter=field%3Dvalue` (`field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_user-uuid:
+      name: userUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: f2daa9cc-e5a0-4036-a5c8-f96e336c62b5
+    Acquia_Cloud_API_Documentation_organization-uuid:
+      name: organizationUuid
+      in: path
+      description: The organization entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+        minLength: 36
+        maxLength: 36
+        format: uuid
+      example: 1e7efab9-0fac-4a2c-ad94-61efc78623ba
+    Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

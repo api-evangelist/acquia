@@ -65,6 +65,18 @@ paths:
                     message: The environment you are trying to access does not exist, or you do not have permission to access it.
 components:
   schemas:
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_links:
       type: object
       required:
@@ -96,18 +108,6 @@ components:
           - inactive
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
   parameters:
     Acquia_Cloud_API_Documentation_environment-id:
       name: environmentId

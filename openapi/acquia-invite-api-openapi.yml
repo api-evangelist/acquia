@@ -279,6 +279,52 @@ paths:
                     message: The invite you are trying to resent does not exist, or you do not have permission to resent it.
 components:
   schemas:
+    Acquia_Cloud_API_Documentation_user-stub:
+      type: object
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URI for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
+    Acquia_Cloud_API_Documentation_application-stub:
+      type: object
+      required:
+      - name
+      - uuid
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The application UUID.
     Acquia_Cloud_API_Documentation_invite:
       type: object
       required:
@@ -326,51 +372,12 @@ components:
             $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_user-stub:
+    Acquia_Cloud_API_Documentation_invite-flags:
       type: object
-      required:
-      - uuid
-      - first_name
-      - last_name
-      - mail
-      - picture_url
-      - username
+      description: An array of various flags providing more context for the Invite response object.
       properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The user's UUID.
-        first_name:
-          type: string
-          description: The user's first name.
-        last_name:
-          type: string
-          description: The user's last name.
-        mail:
-          type: string
-          format: email
-          description: The user's email address.
-        picture_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: The URI for the user's picture.
-        username:
-          type: string
-          description: The user's internal user name.
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
+        declined:
+          type: boolean
     Acquia_Cloud_API_Documentation_message:
       type: object
       required:
@@ -379,12 +386,6 @@ components:
         message:
           type: string
           description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_invite-flags:
-      type: object
-      description: An array of various flags providing more context for the Invite response object.
-      properties:
-        declined:
-          type: boolean
     Acquia_Cloud_API_Documentation_role-stub:
       type: object
       required:
@@ -411,6 +412,19 @@ components:
         name:
           type: string
           description: The human-readable organization name.
+    Acquia_Cloud_API_Documentation_team-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          description: The team unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The team name.
     Acquia_Cloud_API_Documentation_links:
       type: object
       required:
@@ -427,32 +441,18 @@ components:
               type: string
               format: uri
               description: The URI for this page.
-    Acquia_Cloud_API_Documentation_team-stub:
+    Acquia_Cloud_API_Documentation_error:
       type: object
       required:
-      - uuid
-      - name
+      - error
+      - message
       properties:
-        uuid:
+        error:
           type: string
-          description: The team unique identifier.
-          format: uuid
-        name:
+          description: The error summary.
+        message:
           type: string
-          description: The team name.
-    Acquia_Cloud_API_Documentation_application-stub:
-      type: object
-      required:
-      - name
-      - uuid
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-        uuid:
-          type: string
-          format: uuid
-          description: The application UUID.
+          description: The long description for the returned error.
   parameters:
     Acquia_Cloud_API_Documentation_token:
       name: token

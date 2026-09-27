@@ -78,6 +78,16 @@ paths:
                     error: not_found
                     message: The data you are trying to access does not exist, or you do not have permission to access it.
 components:
+  parameters:
+    Acquia_Cloud_API_Documentation_notification-uuid:
+      name: notificationUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+        format: uuid
+      example: 2343b683-b194-4217-982a-6a95c72ad9a8
   schemas:
     Acquia_Cloud_API_Documentation_links:
       type: object
@@ -163,16 +173,6 @@ components:
         _embedded:
           type: object
           description: Data related to the notification, such as the author.
-  parameters:
-    Acquia_Cloud_API_Documentation_notification-uuid:
-      name: notificationUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-        format: uuid
-      example: 2343b683-b194-4217-982a-6a95c72ad9a8
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

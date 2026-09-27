@@ -352,26 +352,6 @@ components:
         username:
           type: string
           description: The user's internal user name.
-    Acquia_Cloud_API_Documentation_message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_invitees:
       type: object
       required:
@@ -392,6 +372,14 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-stub'
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
     Acquia_Cloud_API_Documentation_agreement:
       type: object
       required:
@@ -491,6 +479,18 @@ components:
               type: string
               format: uri
               description: The URI for this page.
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_user-stub-nullable:
       type:
       - object
