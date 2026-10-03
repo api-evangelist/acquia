@@ -480,7 +480,155 @@ paths:
                     error: conflict
                     message: The identity provider is already disabled.
 components:
+  schemas:
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_identity-providers:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of identity providers matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-provider'
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_identity-provider:
+      type: object
+      required:
+      - uuid
+      - label
+      - idp_entity_id
+      - sp_entity_id
+      - sso_url
+      - certificate
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the identity provider.
+        label:
+          type: string
+          description: The human-friendly label of the identity provider.
+        idp_entity_id:
+          type: string
+          description: The SAML entity ID of the identity provider.
+        sp_entity_id:
+          type: string
+          description: The SAML entity ID of the service provider.
+        sso_url:
+          type: string
+          format: uri
+          description: The URL of the SAML POST Binding / SP-initiated SSO.
+        certificate:
+          type: string
+          description: The PEM-encoded X.509 certificate used to sign assertions.
+        status:
+          type: string
+          description: The current state of the identity provider.
+          enum:
+          - enabled
+          - incomplete
+          - disabled
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
+    Acquia_Cloud_API_Documentation_validation-error:
+      type: object
+      required:
+      - error
+      - message
+      description: A validation error.
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
   parameters:
+    Acquia_Cloud_API_Documentation_identity-provider-uuid:
+      name: identityProviderUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
     Acquia_Cloud_API_Documentation_sort:
       name: sort
       in: query
@@ -536,154 +684,6 @@ components:
       schema:
         type: string
         minimum: 1
-    Acquia_Cloud_API_Documentation_offset:
-      name: offset
-      in: query
-      description: An integer to signify the offset to paginate from.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_limit:
-      name: limit
-      in: query
-      description: The maximum number of items to return.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_identity-provider-uuid:
-      name: identityProviderUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
-  schemas:
-    Acquia_Cloud_API_Documentation_validation-error:
-      type: object
-      required:
-      - error
-      - message
-      description: A validation error.
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: object
-          description: The validation error message keyed by its field or group name.
-          additionalProperties:
-            type: string
-    Acquia_Cloud_API_Documentation_identity-provider:
-      type: object
-      required:
-      - uuid
-      - label
-      - idp_entity_id
-      - sp_entity_id
-      - sso_url
-      - certificate
-      - status
-      - _links
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The unique identifier of the identity provider.
-        label:
-          type: string
-          description: The human-friendly label of the identity provider.
-        idp_entity_id:
-          type: string
-          description: The SAML entity ID of the identity provider.
-        sp_entity_id:
-          type: string
-          description: The SAML entity ID of the service provider.
-        sso_url:
-          type: string
-          format: uri
-          description: The URL of the SAML POST Binding / SP-initiated SSO.
-        certificate:
-          type: string
-          description: The PEM-encoded X.509 certificate used to sign assertions.
-        status:
-          type: string
-          description: The current state of the identity provider.
-          enum:
-          - enabled
-          - incomplete
-          - disabled
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_message-with-links:
-      type: object
-      required:
-      - message
-      - _links
-      properties:
-        message:
-          type: string
-          description: The human-friendly confirmation of the creation of the resource.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_identity-providers:
-      type: object
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of identity providers matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_identity-provider'
-    Acquia_Cloud_API_Documentation_links:
-      type: object
-      required:
-      - self
-      description: HAL links about the current resource.
-      properties:
-        self:
-          type: object
-          description: A link to this page.
-          required:
-          - href
-          properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

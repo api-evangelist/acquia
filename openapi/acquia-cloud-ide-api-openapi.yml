@@ -123,50 +123,6 @@ paths:
                     message: The IDE you are trying to access does not exist, or you do not have permission to access it.
 components:
   schemas:
-    Acquia_Cloud_API_Documentation_ide:
-      type: object
-      required:
-      - uuid
-      - label
-      - status
-      - _links
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The unique identifier of the Cloud IDE.
-        label:
-          type: string
-          description: The human-friendly label of the Cloud IDE.
-        status:
-          type: string
-          description: The current provisioning status of the Cloud IDE.
-          enum:
-          - active
-          - provisioning
-          - deleting
-          - updating
-          - provision-failed
-          - update-failed
-          - delete-failed
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          properties:
-            owner:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
-    Acquia_Cloud_API_Documentation_message-with-links:
-      type: object
-      required:
-      - message
-      - _links
-      properties:
-        message:
-          type: string
-          description: The human-friendly confirmation of the creation of the resource.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
     Acquia_Cloud_API_Documentation_user-profile:
       type: object
       description: A user profile.
@@ -214,6 +170,50 @@ components:
         username:
           type: string
           description: The user's internal user name.
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_ide:
+      type: object
+      required:
+      - uuid
+      - label
+      - status
+      - _links
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the Cloud IDE.
+        label:
+          type: string
+          description: The human-friendly label of the Cloud IDE.
+        status:
+          type: string
+          description: The current provisioning status of the Cloud IDE.
+          enum:
+          - active
+          - provisioning
+          - deleting
+          - updating
+          - provision-failed
+          - update-failed
+          - delete-failed
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          properties:
+            owner:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
     Acquia_Cloud_API_Documentation_links:
       type: object
       required:

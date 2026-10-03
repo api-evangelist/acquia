@@ -212,45 +212,75 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    filter:
+      name: filter
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+      description: 'Match entries by field value. Short form `filter[field]=value` (equality) or canonical form with `[condition][path]`, `[condition][operator]`, `[condition][value]`. Operators: =, <>, >, >=, <, <=, STARTS_WITH, CONTAINS, ENDS_WITH, IN, NOT IN, BETWEEN, NOT BETWEEN, IS NULL, IS NOT NULL. Date fields compare as UNIX timestamps. Field paths use machine names. Every operator is shown with a worked example in the [query parameter reference](/source-cms/reference/query-parameters/#operators).
+
+        '
+    page:
+      name: page
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+      description: 'Pagination: `page[limit]` and `page[offset]`.'
+    uuid:
+      name: uuid
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The entry's UUID, the `id` member of every response.
+    fields:
+      name: fields
+      in: query
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        type: object
+      description: 'Sparse fieldsets: `fields[node--article]=title,created` limits returned fields per type.'
+    bundle:
+      name: bundle
+      in: path
+      required: true
+      schema:
+        type: string
+        example: article
+      description: A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern.
+    entityType:
+      name: entityType
+      in: path
+      required: true
+      schema:
+        type: string
+        example: node
+      description: An entity type machine name (for example `node`, `media`, `taxonomy_term`).
+    sort:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Comma-separated field machine names; prefix with `-` for descending, for example `-created`.
+    include:
+      name: include
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Comma-separated relationship paths to embed in `included`, for example `image,tags`.
   schemas:
-    CollectionDocument:
-      type: object
-      properties:
-        jsonapi:
-          type: object
-          properties:
-            version:
-              type: string
-              const: '1.1'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceObject'
-        meta:
-          type: object
-          properties:
-            count:
-              type: integer
-        links:
-          type: object
-        included:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceObject'
-    ErrorDocument:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-              title:
-                type: string
-              detail:
-                type: string
     ResourceObject:
       type: object
       properties:
@@ -281,83 +311,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceObject'
-  parameters:
-    bundle:
-      name: bundle
-      in: path
-      required: true
-      schema:
-        type: string
-        example: article
-      description: A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern.
-    sort:
-      name: sort
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Comma-separated field machine names; prefix with `-` for descending, for example `-created`.
-    entityType:
-      name: entityType
-      in: path
-      required: true
-      schema:
-        type: string
-        example: node
-      description: An entity type machine name (for example `node`, `media`, `taxonomy_term`).
-    page:
-      name: page
-      in: query
-      required: false
-      style: deepObject
-      explode: true
-      schema:
-        type: object
-      description: 'Pagination: `page[limit]` and `page[offset]`.'
-    uuid:
-      name: uuid
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-      description: The entry's UUID, the `id` member of every response.
-    filter:
-      name: filter
-      in: query
-      required: false
-      style: deepObject
-      explode: true
-      schema:
-        type: object
-      description: 'Match entries by field value. Short form `filter[field]=value` (equality) or canonical form with `[condition][path]`, `[condition][operator]`, `[condition][value]`. Operators: =, <>, >, >=, <, <=, STARTS_WITH, CONTAINS, ENDS_WITH, IN, NOT IN, BETWEEN, NOT BETWEEN, IS NULL, IS NOT NULL. Date fields compare as UNIX timestamps. Field paths use machine names. Every operator is shown with a worked example in the [query parameter reference](/source-cms/reference/query-parameters/#operators).
-
-        '
-    include:
-      name: include
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Comma-separated relationship paths to embed in `included`, for example `image,tags`.
-    fields:
-      name: fields
-      in: query
-      required: false
-      style: deepObject
-      explode: true
-      schema:
-        type: object
-      description: 'Sparse fieldsets: `fields[node--article]=title,created` limits returned fields per type.'
+    ErrorDocument:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
+    CollectionDocument:
+      type: object
+      properties:
+        jsonapi:
+          type: object
+          properties:
+            version:
+              type: string
+              const: '1.1'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
+        meta:
+          type: object
+          properties:
+            count:
+              type: integer
+        links:
+          type: object
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceObject'
   responses:
-    Unauthorized:
-      description: 'Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.
-
-        '
-      content:
-        application/vnd.api+json:
-          schema:
-            $ref: '#/components/schemas/ErrorDocument'
     Forbidden:
       description: 'The token is valid but lacks the required scope (for example writing without `content:administer`). The JSON:API error `detail` names the missing permission.
 
@@ -370,6 +362,14 @@ components:
             errors:
             - status: '403'
               detail: The 'administer nodes' permission is required.
+    Unauthorized:
+      description: 'Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.
+
+        '
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
   securitySchemes:
     bearerAuth:
       type: http
