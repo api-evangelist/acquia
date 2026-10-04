@@ -8898,331 +8898,6 @@ paths:
                     error: conflict
                     message: Environment variables are not available for this environment.
 components:
-  parameters:
-    Acquia_Cloud_API_Documentation_resolution:
-      name: resolution
-      in: query
-      description: 'Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.
-
-
-        Limits:
-
-        - 3 hour limit for “minute” resolution
-
-        - 1 week limit for “hour” resolution
-
-        - 6 month limit for “day” resolution
-
-        - 1 year limit for "week" resolution
-
-        - 3 year limit for “month” resolution
-
-        '
-      required: false
-      schema:
-        type: string
-        enum:
-        - minute
-        - hour
-        - day
-        - week
-        - month
-    Acquia_Cloud_API_Documentation_offset:
-      name: offset
-      in: query
-      description: An integer to signify the offset to paginate from.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_domain:
-      name: domain
-      in: path
-      description: A domain name.
-      required: true
-      schema:
-        type: string
-      example: example.com
-    Acquia_Cloud_API_Documentation_usage-metric:
-      name: usageMetric
-      in: path
-      description: A usage data metric type.
-      required: true
-      schema:
-        type: string
-      example: views
-    Acquia_Cloud_API_Documentation_deprecated-to:
-      name: to
-      in: query
-      description: (Use filter `to` instead.) Specifies an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted date. Used in conjunction with `from` query.
-      deprecated: true
-      required: false
-      schema:
-        type: string
-      example: '2020-01-01'
-    Acquia_Cloud_API_Documentation_log-type:
-      name: logType
-      in: path
-      required: true
-      description: An ID that uniquely identifies a log type.
-      schema:
-        type: string
-        enum:
-        - apache-access
-        - apache-error
-        - drupal-request
-        - drupal-watchdog
-        - fpm-access
-        - fpm-error
-        - php-error
-        - cloud-hook
-        - cronjob
-        - mysql-slow-query
-      example: php-error
-    Acquia_Cloud_API_Documentation_index-id:
-      name: indexId
-      in: path
-      required: true
-      description: An ID that uniquely identifies an index.
-      schema:
-        type: string
-      example: ABCDE-1234.test.example
-    Acquia_Cloud_API_Documentation_from-stack-metrics:
-      name: from
-      in: query
-      description: An ISO-8601 formatted date retrieve metrics from.
-      required: true
-      schema:
-        type: string
-      example: '2021-01-29T22:45:21+00:00'
-    Acquia_Cloud_API_Documentation_environment-id:
-      name: environmentId
-      in: path
-      description: The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID.
-      required: true
-      schema:
-        type: string
-      example: 12-d314739e-296f-11e9-b210-d663bd873d93
-    Acquia_Cloud_API_Documentation_filter-stack-metrics:
-      name: filter
-      in: query
-      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
-
-
-        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
-
-
-        * Equals: `= (%3D)`
-
-        * Does not equal: `!= (!%3D)`
-
-        * Greater than: `> (%3E)`
-
-        * Less than: `< (%3C)`
-
-        * Greater than or equal to: `>= (%3E%3D)`
-
-        * Less than or equal to: `<= (%3C%3D)`
-
-        * Contains substring: `=@ (%3D@)`
-
-        * Does not contain substring: `!@ (!@)`
-
-
-        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
-
-
-        Some examples:
-
-        * `filter=field%3Dvalue` (`field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
-
-
-        **For this endpoint, the "metric" filter is required. Multiple metrics can be returned in one request. The following metrics are available:**
-
-
-        * apache-requests, bal-cpu, bal-memory, cron-memory, db-cpu, db-disk-size, db-disk-usage, db-memory, file-disk-size, file-cpu, file-disk-usage, file-memory, http-2xx, http-3xx, http-4xx, http-5xx, mysql-slow-query-count, nginx-requests, out-of-memory, php-proc-max-reached-site, php-proc-max-reached-total, php-proc-site, php-proc-total, varnish-cache-hit-rate, varnish-requests, web-cpu, web-memory
-
-        '
-      required: true
-      schema:
-        type: string
-        minimum: 1
-    Acquia_Cloud_API_Documentation_log-forwarding-destination-uuid:
-      name: logForwardingDestinationUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: dbd8a966-2b25-11e9-b210-d663bd873d93
-    Acquia_Cloud_API_Documentation_certificate-id:
-      name: certificateId
-      in: path
-      required: true
-      description: An ID that uniquely identifies a certificate.
-      schema:
-        type: integer
-      example: 7
-    Acquia_Cloud_API_Documentation_backup-id:
-      name: backupId
-      in: path
-      required: true
-      description: The database backup identifier.
-      schema:
-        type: integer
-      example: 1
-    Acquia_Cloud_API_Documentation_server-id:
-      name: serverId
-      in: path
-      required: true
-      description: The internal database identifier of the server.
-      schema:
-        type: string
-      example: '42'
-    Acquia_Cloud_API_Documentation_filter-usage-metrics:
-      name: filter
-      in: query
-      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
-
-
-        Filter parameters include:
-
-        * `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
-
-        * `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.
-
-
-        Formatting examples:
-
-        * `2023-09-01`
-
-        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
-
-
-        Usage examples:
-
-        * `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)
-
-        * `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-    Acquia_Cloud_API_Documentation_cron-id:
-      name: cronId
-      in: path
-      required: true
-      description: An ID that uniquely identifies a cron job.
-      schema:
-        type: string
-      example: e10a665c-c9ec-4422-a82b-b32c82329f9d
-    Acquia_Cloud_API_Documentation_limit:
-      name: limit
-      in: query
-      description: The maximum number of items to return.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_database-name:
-      name: databaseName
-      in: path
-      required: true
-      description: The database name, typically lower snake case.
-      schema:
-        type: string
-      example: my_db
-    Acquia_Cloud_API_Documentation_deprecated-from:
-      name: from
-      in: query
-      description: (Use filter `from` instead.) Specifies an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted date. Used in conjunction with `to` query.
-      deprecated: true
-      required: false
-      schema:
-        type: string
-      example: '2019-10-01'
-    Acquia_Cloud_API_Documentation_to-no-default:
-      name: to
-      in: query
-      description: An ISO-8601 formatted date retrieve results to.
-      required: false
-      schema:
-        type: string
-      example: '2021-01-29T23:55:21+00:00'
-    Acquia_Cloud_API_Documentation_sort:
-      name: sort
-      in: query
-      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-      example: field1,-field2
-    Acquia_Cloud_API_Documentation_filter:
-      name: filter
-      in: query
-      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
-
-
-        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
-
-
-        * Equals: `= (%3D)`
-
-        * Does not equal: `!= (!%3D)`
-
-        * Greater than: `> (%3E)`
-
-        * Less than: `< (%3C)`
-
-        * Greater than or equal to: `>= (%3E%3D)`
-
-        * Less than or equal to: `<= (%3C%3D)`
-
-        * Contains substring: `=@ (%3D@)`
-
-        * Does not contain substring: `!@ (!@)`
-
-
-        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
-
-
-        Some examples:
-
-        * `filter=field%3Dvalue` (`field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-    Acquia_Cloud_API_Documentation_environment-variable-name:
-      name: environmentVariableName
-      in: path
-      description: The environment variable name.
-      required: true
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 255
-        pattern: ^(?!(ACQUIA_|AH_))[A-Za-z_][A-Za-z0-9_]*$
-      example: EXAMPLE_VARIABLE_NAME
   schemas:
     Acquia_Cloud_API_Documentation_servers:
       type: object
@@ -9245,42 +8920,58 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_server'
-    Acquia_Cloud_API_Documentation_log-forwarding-destination-flags:
+    Acquia_Cloud_API_Documentation_vcs:
       type: object
-      description: Various flags for this log forwarding destination.
-      properties:
-        enabled:
-          type: boolean
-          description: Destination enabled status.
-        certificate_expiring:
-          type: boolean
-          description: Whether the destination certificate is in danger of expiring soon (within 30 days).
-    Acquia_Cloud_API_Documentation_file-download:
-      type: object
-      description: A JSON response containing the url and url expiration.
       required:
+      - type
+      - path
       - url
-      - expires_at
       properties:
+        type:
+          type: string
+          description: The type of VCS.
+          enum:
+          - git
+          - svn
+        path:
+          type:
+          - string
+          - 'null'
+          description: The path or branch name.
         url:
           type: string
-          description: The url for the download.
-        expires_at:
-          type: string
-          description: The expiration for the url.
-    Acquia_Cloud_API_Documentation_health:
+          description: The VCS url.
+    Acquia_Cloud_API_Documentation_cloud-action:
       type: object
-      description: The current health for this resource.
+      required:
+      - id
+      - label
+      - description
+      - type
+      - flags
+      - _links
       properties:
-        code:
+        id:
           type: string
-          description: The status code for the current health.
-        details:
+          format: uuid
+          description: The Cloud Action ID.
+        label:
           type: string
-          description: Full details about the current health code.
-        summary:
+          description: The human-readable Cloud Action label.
+        description:
           type: string
-          description: A brief summary that explains why the health code is present.
+          description: The description of a Cloud Action.
+        type:
+          type: string
+          description: The type of Cloud Action.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cloud-actions-flags'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_cloud-action-id:
+      type: string
+      format: uuid
+      description: A Cloud Action ID.
     Acquia_Cloud_API_Documentation_database-php-config:
       type: object
       description: Response schema for a database PHP configuration.
@@ -9293,6 +8984,147 @@ components:
           description: The Drupal PHP configuration settings file content.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_backup-no-embedded:
+      type: object
+      description: Response schema for a database backup.
+      required:
+      - id
+      - database
+      - type
+      - started_at
+      - completed_at
+      - flags
+      - environment
+      - _links
+      properties:
+        id:
+          type: integer
+          description: The ID of the database backup.
+        database:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_database-stub'
+        type:
+          type: string
+          description: The type of backup this is.
+        started_at:
+          type: string
+          format: date-time
+          description: The ISO-8601 formatted date/time of when the backup process was started.
+        completed_at:
+          type: string
+          format: date-time
+          description: The ISO-8601 formatted date/time of when the backup process was completed.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_backup-flags'
+        environment:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_logs:
+      type: object
+      description: A collection of logs.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of logs matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log'
+    Acquia_Cloud_API_Documentation_server:
+      type: object
+      description: Server information.
+      required:
+      - id
+      - name
+      - hostname
+      - ssh_user
+      - ip
+      - status
+      - region
+      - roles
+      - ami_type
+      - operating_system
+      - configuration
+      - flags
+      - environment
+      - _links
+      properties:
+        id:
+          type: integer
+          description: The ID of the server.
+        name:
+          type: string
+          description: The machine name of the server.
+        hostname:
+          type: string
+          description: The hostname for the server.
+        ssh_user:
+          type: string
+          description: The name of the SSH user for this environment.
+        ip:
+          type: string
+          format: ipv4
+          description: The IP address of the server.
+        status:
+          type: string
+          description: The status of the server.
+          enum:
+          - normal
+          - stopped
+          - launching
+          - cancelled
+          - unknown
+        region:
+          type: string
+          description: The Amazon region the server is in.
+        roles:
+          type: array
+          description: The roles the server has, for its environment.
+          items:
+            type: string
+            enum:
+            - web
+            - db
+            - bal
+        ami_type:
+          type: string
+          description: The Amazon AMI type.
+        operating_system:
+          type: string
+          description: The operating system running on the server.
+        configuration:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_server-configuration'
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_server-flags'
+        environment:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_eip-flags:
+      type: object
+      description: Various flags for the Web EIP.
+      required:
+      - active
+      properties:
+        active:
+          type: boolean
+          description: A flag indicating whether the Web EIP is configured to actively receive traffic.
+        deprecated:
+          type: boolean
+          description: A flag indicating whether the Web EIP is flagged for deprecation.
+        legacy:
+          type: boolean
+          description: A flag indicating whether the Web EIP is associated with ACC infrastructure.
     Acquia_Cloud_API_Documentation_server-configuration:
       type: object
       description: An array of various configuration settings for the server.
@@ -9312,141 +9144,248 @@ components:
           - integer
           - 'null'
           description: Returns the memcache size (in MB) for this server (if it is a memcache server).
-    Acquia_Cloud_API_Documentation_csr:
+    Acquia_Cloud_API_Documentation_database-flags:
       type: object
-      description: A certificate signing request.
-      required:
-      - id
-      - csr
-      - private_key
-      - country
-      - state
-      - locality
-      - organization
-      - organizational_unit
-      - common_name
-      - alternate_names
-      - flags
-      - environment
-      - _links
+      description: Response schema for database flags.
       properties:
-        id:
-          type: integer
-          description: The hosting ID of the CSR/SSL Certificate (0 for 'elb' type).
-        csr:
-          type: string
-          description: The PEM encoded string containing the entire CSR.
-        private_key:
-          type: string
-          description: The PEM encoded private key.
-        country:
-          type: string
-          description: The ISO-3166 country code.
-        state:
-          type: string
-          description: The state/province.
-        locality:
-          type: string
-          description: The locality (city/town/township).
-        organization:
-          type: string
-          description: The organization name.
-        organizational_unit:
-          type: string
-          description: The organizational unit (department).
-        common_name:
-          type: string
-          description: The common name (host and domain name).
-        alternate_names:
-          type: array
-          description: The subject alternate names (sni only).
-          items:
-            type: string
-            format: hostname
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_csr-flags'
-        environment:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_environment-settings:
+        default:
+          type: boolean
+          description: Whether this is the default database.
+        perform_backup:
+          type: boolean
+          description: Whether this database is backed up.
+    Acquia_Cloud_API_Documentation_put-cloud-actions:
       type: object
-      description: A collection of links to environment settings.
+      description: A Cloud Action or a series of Cloud Actions paired with enable or disable boolean value.
       required:
-      - _links
+      - cloud-actions
       properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_configuration-set:
-      type: object
-      description: An Acquia Search configuration set.
-      required:
-      - id
-      - application_uuid
-      - label
-      - flags
-      - status
-      - _links
-      properties:
-        id:
-          type: string
-          description: The search configuration set ID.
-        application_uuid:
-          type: string
-          description: The UUID for the application the search configuration belongs to.
-        label:
-          type: string
-          description: The human-readable search configuration set label.
-        flags:
+        cloud-actions:
           type: object
-          description: The collection of flags for the search configuration set.
-          properties:
-            custom:
-              type: boolean
-              description: Indicates whether the search configuration set is a custom configuration set.
-        status:
-          type: string
-          description: The provisioning status of the search configuration set.
-          enum:
-          - active
-          - pending
-          - failed
-          - inactive
-        health:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_mod-proxy:
+          additionalProperties:
+            type: boolean
+            description: Whether this Cloud Action is enabled.
+    Acquia_Cloud_API_Documentation_operating-systems:
       type: object
       required:
-      - status
-      properties:
-        status:
-          type: string
-          description: The enablement state of Mod Proxy.
-          enum:
-          - active
-          - inactive
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_available-runtimes:
-      type: object
-      required:
-      - runtime
       - versions
       - _links
       properties:
-        runtime:
-          type: string
-          description: The runtime.
-          enum:
-          - php
-          - node
         versions:
           type: array
-          description: The available versions for this runtime.
+          description: The operating systems.
           items:
-            type: string
+            type: object
+            properties:
+              name:
+                description: The codename associated with the version.
+                type: string
+              label:
+                description: The label of the version.
+                type: string
+              version:
+                description: The numerical representation of the version.
+                type: string
+              available:
+                description: Flag to show if the version is available for which to switch.
+                type: boolean
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_crons:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of cron jobs.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cron'
+    Acquia_Cloud_API_Documentation_logstream:
+      type: object
+      description: Connection details for Logstream backend.
+      required:
+      - logstream
+      - _links
+      properties:
+        logstream:
+          type: object
+          required:
+          - url
+          - params
+          - commands
+          description: Connection details for Logstream backend.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: WebSocket URL.
+            params:
+              type: object
+              description: Connection details such as a timestamp, hmac, site name and environment.
+            commands:
+              type: array
+              description: Commands for the logstream backend.
+              items:
+                type: string
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
+    Acquia_Cloud_API_Documentation_application-stub:
+      type: object
+      required:
+      - name
+      - uuid
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The application UUID.
+    Acquia_Cloud_API_Documentation_stack-metrics-metric:
+      type: object
+      description: An object containing StackMetrics datapoints.
+      required:
+      - metric
+      - datapoints
+      - last_data_at
+      - metadata
+      properties:
+        metric:
+          type: string
+          description: The name of the type of StackMetrics metric.
+          enum:
+          - apache-requests
+          - bal-cpu
+          - bal-memory
+          - cron-memory
+          - db-cpu
+          - db-disk-size
+          - db-disk-usage
+          - db-memory
+          - file-disk-size
+          - file-cpu
+          - file-disk-usage
+          - file-memory
+          - http-2xx
+          - http-3xx
+          - http-4xx
+          - http-5xx
+          - mysql-slow-query-count
+          - nginx-requests
+          - out-of-memory
+          - php-proc-max-reached-site
+          - php-proc-max-reached-total
+          - php-proc-site
+          - php-proc-total
+          - varnish-cache-hit-rate
+          - varnish-requests
+          - web-cpu
+          - web-memory
+        datapoints:
+          type: array
+          description: The data points for the StackMetrics request.
+          items:
+            type: array
+            description: Each element includes the value and the sampling time for the requested metric.
+            items:
+              type: string
+              description: Each datapoint is a tuple consisting of two elements - a value and a Unix timestamp.
+        last_data_at:
+          type: string
+          description: The ISO-8601 date time when the last datapoint was sampled.
+          format: date-time
+        metadata:
+          type: object
+          description: The metadata describing the context for the metric.
+          properties:
+            host:
+              type: string
+              description: The corresponding hostname for the StackMetrics datapoints.
+    Acquia_Cloud_API_Documentation_search:
+      type: object
+      description: A collection of links that provides traversal of search endpoints.
+      required:
+      - _links
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_backup-flags:
+      type: object
+      description: Response schema for database backup flags.
+      properties:
+        deleted:
+          type: boolean
+          description: Whether this database is deleted.
+    Acquia_Cloud_API_Documentation_environment-usage-metric:
+      type: object
+      description: Provides details about views and visits for an environment.
+      required:
+      - metric
+      - datapoints
+      - metadata
+      - last_data_at
+      properties:
+        metric:
+          type: string
+          description: The type of metric requested.
+          enum:
+          - views
+          - visits
+        datapoints:
+          type: array
+          description: The data points for the pricing metrics request.
+          items:
+            type: array
+            description: Each element includes the value for the requested metric and the sampling time.
+            items:
+              type: string
+              description: The first element is the metric value and the second is the sampling time.
+        metadata:
+          type: object
+          description: The metadata for the data points being returned.
+          properties:
+            environment:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-metadata'
+            application:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-metadata'
+            subscription:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-metadata'
+        last_data_at:
+          type: string
+          description: The last time data was polled for the requested metric.
+          format: date-time
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
     Acquia_Cloud_API_Documentation_domain-flags:
@@ -9466,6 +9405,203 @@ components:
         wildcard:
           type: boolean
           description: If this is a wildcard domain.
+    Acquia_Cloud_API_Documentation_application-metadata:
+      type: object
+      description: Application metadata.
+      properties:
+        uuids:
+          type: array
+          description: Collection of application UUIDs.
+          items:
+            type: string
+            format: uuid
+            description: The application UUID.
+    Acquia_Cloud_API_Documentation_environment-configuration:
+      type: object
+      description: An array of configuration details for the environment.
+      properties:
+        version:
+          type: string
+          description: The PHP or Node version.
+        memory_limit:
+          type:
+          - integer
+          - 'null'
+          description: Limits PHP request memory usage in megabytes.
+          default: 128
+          minimum: 128
+          maximum: 1024
+        opcache:
+          type:
+          - integer
+          - 'null'
+          description: This is the total amount of memory available for caching precompiled script bytecode per PHP/FPM process.
+          default: 96
+          minimum: 96
+          maximum: 512
+        apcu:
+          type:
+          - integer
+          - 'null'
+          description: APCu shared memory size per web server.
+          default: 32
+          minimum: 32
+          maximum: 512
+        interned_strings_buffer:
+          type:
+          - integer
+          - 'null'
+          description: Sets PHP Opcache key count per server.
+          default: 8
+          minimum: 8
+          maximum: 32
+        client_max_body_size:
+          type:
+          - integer
+          - 'null'
+          description: Sets the maximum size of the client request body.
+          default: 256
+          minimum: 0
+          maximum: 1024
+        upload_max_filesize:
+          type:
+          - integer
+          - 'null'
+          description: Sets the maximum size of an uploaded file.
+          default: 256
+          minimum: 0
+          maximum: 1024
+        max_execution_time:
+          type:
+          - integer
+          - 'null'
+          description: Limits PHP request time in seconds.
+          default: 300
+          minimum: 1
+          maximum: 300
+        max_post_size:
+          type:
+          - integer
+          - 'null'
+          description: Sets the PHP limit on POST body size.
+          default: 256
+          minimum: 64
+          maximum: 1024
+        max_input_vars:
+          type:
+          - integer
+          - 'null'
+          description: Limits the number of various request items in PHP.
+          default: 1000
+          minimum: 500
+          maximum: 20000
+        memcached_limit:
+          type:
+          - integer
+          - 'null'
+          description: Sets the maximum amount of memory in MB that can be allocated to memcached. Only available on Acquia Cloud Next.
+          default: 64
+          minimum: 0
+          maximum: 12288
+        operating_system:
+          type: string
+          description: The operating system version.
+    Acquia_Cloud_API_Documentation_environment-stub:
+      type: object
+      description: Schema for a stub of information regarding an environment.
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: The ID of the environment. The ID is a compound key consisting of the internal database ID of the environment and the application UUID.
+        name:
+          type: string
+          description: The stage name of the environment.
+    Acquia_Cloud_API_Documentation_cloud-actions:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Cloud Actions.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cloud-action'
+    Acquia_Cloud_API_Documentation_backups:
+      type: object
+      description: A collection of database backups.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of database backups matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_backup-no-embedded'
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_environment-settings:
+      type: object
+      description: A collection of links to environment settings.
+      required:
+      - _links
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_log-forwarding-destination-credentials:
+      type: object
+      required:
+      - certificate
+      description: The Log Forwarding destination credentials.
+      properties:
+        certificate:
+          type: object
+          description: A public X.509 certificate in PEM format. Required for Splunk, Sumologic, and Syslog. Not supported by Loggly.
+          properties:
+            certificate:
+              type: string
+              description: A public X.509 certificate in PEM format.
+            expires_at:
+              type: string
+              format: date-time
+              description: The ISO-8601 date the certificate will expire at. Required by Logly and Sumologic. Optional for Syslog. Not supported by Splunk.
+        key:
+          type:
+          - string
+          - 'null'
+          description: The certificate private key, in PEM format, used to encrypt the log traffic. Optional for Splunk, Sumologic, and Syslog. Not supported by Loggly.
+        token:
+          type:
+          - string
+          - 'null'
+          description: An API token associated with the consumer. Required by Logly and Sumologic. Optional for Syslog. Not supported by Splunk.
     Acquia_Cloud_API_Documentation_database:
       type: object
       description: Response schema for a database.
@@ -9511,56 +9647,14 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_application-stub:
+    Acquia_Cloud_API_Documentation_metrics:
       type: object
+      description: A collection of links that provides traversal of metrics endpoints.
       required:
-      - name
-      - uuid
+      - _links
       properties:
-        name:
-          type: string
-          description: The name of the application.
-        uuid:
-          type: string
-          format: uuid
-          description: The application UUID.
-    Acquia_Cloud_API_Documentation_pagination:
-      type: object
-      description: A collection of pagination properties.
-      properties:
-        total:
-          type: integer
-          description: The total number of objects in the collection.
-        limit:
-          type: integer
-          description: The limit on the number of objects in the collection.
-        offset:
-          type: integer
-          description: The offset on the retrieved objects in the collection.
-    Acquia_Cloud_API_Documentation_environment-metadata:
-      type: object
-      description: Environment metadata.
-      properties:
-        ids:
-          type: array
-          description: An array of environment identifiers.
-          items:
-            type: string
-    Acquia_Cloud_API_Documentation_artifact-stub:
-      type:
-      - object
-      - 'null'
-      required:
-      - name
-      - id
-      properties:
-        name:
-          type: string
-          description: The name of the artifact.
-        id:
-          type: integer
-          format: id
-          description: The artifact identifier.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
     Acquia_Cloud_API_Documentation_stack-metrics-data:
       type: object
       description: An object containing StackMetrics metrics.
@@ -9582,136 +9676,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_stack-metrics-metric'
-    Acquia_Cloud_API_Documentation_environment-options:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: An array of environment options.
-          properties:
-            items:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    description: The environment configuration option name.
-                    enum:
-                    - apcu
-                    - interned_strings_buffer
-                    - client_max_body_size
-                    - max_execution_time
-                    - max_input_vars
-                    - max_post_size
-                    - upload_max_filesize
-                    - memory_limit
-                    - memcached_limit
-                    - opcache
-                    - operating_system
-                    - version
-                  minimum:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The lowest value a configuration option can be set.
-                  maximum:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The highest value a configuration option can be set.
-                  default:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The default value for a configuration option.
-                  step:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The step between configuration option values.
-    Acquia_Cloud_API_Documentation_eip:
-      type: object
-      required:
-      - id
-      - status
-      - ipv4
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The Web EIP ID.
-        status:
-          type: string
-          description: The provisioning status of the Web EIP.
-        ipv4:
-          type: string
-          description: The IPv4 address.
-        ipv6:
-          type: string
-          description: The IPv6 address.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_eip-flags'
-    Acquia_Cloud_API_Documentation_links:
-      type: object
-      required:
-      - self
-      description: HAL links about the current resource.
-      properties:
-        self:
-          type: object
-          description: A link to this page.
-          required:
-          - href
-          properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
-    Acquia_Cloud_API_Documentation_cloud-actions-flags:
-      type: object
-      description: Various flags for the Cloud Action.
-      properties:
-        enabled:
-          type: boolean
-          description: Indicates whether the Cloud Action is enabled.
-        default:
-          type: boolean
-          description: Indicates whether the Cloud Action is a default action.
-    Acquia_Cloud_API_Documentation_deploy-code:
-      type: object
-      required:
-      - source
-      properties:
-        source:
-          type: string
-          description: The ID of the environment to deploy code from.
-        message:
-          type: string
-          description: An optional commit message to include when creating a new tag.
-        cloud-actions:
-          type: array
-          description: An optional array of Cloud Actions.
-          items:
-            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cloud-action-id'
-    Acquia_Cloud_API_Documentation_server-stub:
-      type: object
-      required:
-      - id
-      - name
-      description: Information about the server this cron job is attached to.
-      properties:
-        id:
-          type: string
-          description: The server ID.
-        name:
-          type: string
-          description: The server name.
     Acquia_Cloud_API_Documentation_dns:
       type: object
       description: Response schema for environment DNS configuration.
@@ -9764,36 +9728,90 @@ components:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_dns-record'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_post-cron:
+    Acquia_Cloud_API_Documentation_ssl:
       type: object
+      description: The SSL settings for an environment.
       required:
-      - command
-      - frequency
-      - label
-      properties:
-        command:
-          type: string
-          description: The command to run.
-        frequency:
-          type: string
-          description: The cron string that describes the frequency the cron will be run at.
-        label:
-          type: string
-          description: The label for this cron.
-    Acquia_Cloud_API_Documentation_message-with-links:
-      type: object
-      required:
-      - message
+      - balancer
+      - ips
       - _links
       properties:
-        message:
-          type: string
-          description: The human-friendly confirmation of the creation of the resource.
+        balancer:
+          type: object
+          description: SSL configuration for the load balancer associated with this environment.
+          properties:
+            hostname:
+              type: string
+              description: The balancer CNAME.
+              format: hostname
+        ips:
+          type: array
+          description: The IP addresses for the environment.
+          items:
+            type: string
+            format: ipv4
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_environment-usage-metrics:
+    Acquia_Cloud_API_Documentation_server-stub:
       type: object
-      description: A collection of usage metrics for an environment.
+      required:
+      - id
+      - name
+      description: Information about the server this cron job is attached to.
+      properties:
+        id:
+          type: string
+          description: The server ID.
+        name:
+          type: string
+          description: The server name.
+    Acquia_Cloud_API_Documentation_pagination:
+      type: object
+      description: A collection of pagination properties.
+      properties:
+        total:
+          type: integer
+          description: The total number of objects in the collection.
+        limit:
+          type: integer
+          description: The limit on the number of objects in the collection.
+        offset:
+          type: integer
+          description: The offset on the retrieved objects in the collection.
+    Acquia_Cloud_API_Documentation_domain-status:
+      type: object
+      required:
+      - hostname
+      - flags
+      - ip_addresses
+      - cnames
+      - environment
+      - _links
+      description: Domain status information.
+      properties:
+        hostname:
+          type: string
+          description: The domain hostname.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-status-flags'
+        ip_addresses:
+          type: array
+          description: An array of this domain's IP addresses.
+          items:
+            type: string
+            format: ipv4
+        cnames:
+          type: array
+          description: An array of this domain's cnames.
+          items:
+            type: string
+        environment:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_databases:
+      type: object
+      description: A collection of databases.
       required:
       - total
       - _links
@@ -9806,146 +9824,99 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of environment metric items matching the request parameters.
+          description: A collection of databases matching the request parameters.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-usage-metric'
-    Acquia_Cloud_API_Documentation_message:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_database'
+    Acquia_Cloud_API_Documentation_available-runtimes:
       type: object
       required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_server-flags:
-      type: object
-      description: An array of various flags that indicate functionality for the server.
-      properties:
-        elastic_ip:
-          type: boolean
-          description: Determines if the server has an elastic (static) IP or not.
-        active_web:
-          type: boolean
-          description: Determines if the server is an active balancer or not.
-        active_bal:
-          type: boolean
-          description: Determines if the server is an active web server or not.
-        primary_db:
-          type: boolean
-          description: 'Determines if the server is the primary database.
-
-
-            Note that "false" does not imply that this is the secondary database. The server must be a database, and not primary in order to be the secondary database.
-
-            '
-        web:
-          type: boolean
-          description: Determines if the server is a web server.
-        database:
-          type: boolean
-          description: Determines if the server is a database server.
-        balancer:
-          type: boolean
-          description: Determines if the server is a balancer.
-        fs:
-          type: boolean
-          description: Determines if the server is a file server.
-        memcache:
-          type: boolean
-          description: Determines if the server is a memcache server.
-        dedicated:
-          type: boolean
-          description: Determines if the server is dedicated or shared.
-        self_service:
-          type: boolean
-          description: Determines if the server is self-service.
-    Acquia_Cloud_API_Documentation_put-cloud-actions:
-      type: object
-      description: A Cloud Action or a series of Cloud Actions paired with enable or disable boolean value.
-      required:
-      - cloud-actions
-      properties:
-        cloud-actions:
-          type: object
-          additionalProperties:
-            type: boolean
-            description: Whether this Cloud Action is enabled.
-    Acquia_Cloud_API_Documentation_eip-flags:
-      type: object
-      description: Various flags for the Web EIP.
-      required:
-      - active
-      properties:
-        active:
-          type: boolean
-          description: A flag indicating whether the Web EIP is configured to actively receive traffic.
-        deprecated:
-          type: boolean
-          description: A flag indicating whether the Web EIP is flagged for deprecation.
-        legacy:
-          type: boolean
-          description: A flag indicating whether the Web EIP is associated with ACC infrastructure.
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
-    Acquia_Cloud_API_Documentation_certificate:
-      type: object
-      description: An SSL certificate.
-      required:
-      - id
-      - certificate
-      - private_key
-      - ca
-      - flags
-      - expires_at
-      - domains
-      - environment
+      - runtime
+      - versions
       - _links
       properties:
-        id:
-          type: integer
-          description: The ID of the certificate.
-        label:
-          type:
-          - string
-          - 'null'
-          description: The certificate label (SNI only).
-        certificate:
+        runtime:
           type: string
-          description: Returns the PEM encoded certificate.
-        private_key:
-          type: string
-          description: The PEM encoded private key.
-        ca:
-          type: string
-          description: The CA intermediary chain.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_certificate-flags'
-        expires_at:
-          type: string
-          format: date-time
-          description: The ISO-8601 formatted date/time of the certificates expiration date.
-        domains:
+          description: The runtime.
+          enum:
+          - php
+          - node
+        versions:
           type: array
-          description: The domain names that this certificate is covering.
+          description: The available versions for this runtime.
           items:
             type: string
-        environment:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_post-csr:
+      type: object
+      description: Certificate signing request POST schema.
+      required:
+      - country
+      - state
+      - locality
+      - organization
+      - organizational_unit
+      - common_name
+      properties:
+        country:
+          type: string
+          description: The ISO-3166 country code for CSR generation.
+        state:
+          type: string
+          description: The state/province for CSR generation.
+        locality:
+          type: string
+          description: The locality (city/town/township) for CSR generation.
+        organization:
+          type: string
+          description: The organization name for CSR generation.
+        organizational_unit:
+          type: string
+          description: The organizational unit (department) for CSR generation.
+        common_name:
+          type: string
+          description: The common name (domain) for CSR generation.
+        alternate_names:
+          description: The Subject Alternate Names (SNI only) for CSR generation.
+          type: array
+          items:
+            type: string
+            format: hostname
+    Acquia_Cloud_API_Documentation_eip:
+      type: object
+      required:
+      - id
+      - status
+      - ipv4
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The Web EIP ID.
+        status:
+          type: string
+          description: The provisioning status of the Web EIP.
+        ipv4:
+          type: string
+          description: The IPv4 address.
+        ipv6:
+          type: string
+          description: The IPv6 address.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_eip-flags'
+    Acquia_Cloud_API_Documentation_csr-flags:
+      type: object
+      description: An array of various flags that indicate functionality associated with the CSR.
+      properties:
+        used:
+          type: boolean
+          description: Whether this CSR has already been used for a certificate.
+        legacy:
+          type: boolean
+          description: Whether this is a legacy CSR (meant for use with ELB certificates).
     Acquia_Cloud_API_Documentation_log-forwarding-destination:
       type: object
       required:
@@ -10019,6 +9990,190 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_eips:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Web EIPs.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_eip'
+    Acquia_Cloud_API_Documentation_csrs:
+      type: object
+      description: A collection of csrs.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of CSRs.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_csr'
+    Acquia_Cloud_API_Documentation_certificates:
+      type: object
+      description: A collection of certificates.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of certificates.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_certificate'
+    Acquia_Cloud_API_Documentation_domain-status-flags:
+      type: object
+      description: An array of hosting flags for the domain.
+      properties:
+        default:
+          type: boolean
+          description: Whether or not this is the default domain.
+        active:
+          type: boolean
+          description: Whether or not this domain is active.
+        dns_resolves:
+          type: boolean
+          description: Whether or not this domain resolves in DNS.
+        acquia_hosted:
+          type: boolean
+          description: Whether or not this domain is Acquia-hosted.
+    Acquia_Cloud_API_Documentation_usage:
+      type: object
+      description: A collection of traversal links for an entity.
+      required:
+      - _links
+      properties:
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_certificate:
+      type: object
+      description: An SSL certificate.
+      required:
+      - id
+      - certificate
+      - private_key
+      - ca
+      - flags
+      - expires_at
+      - domains
+      - environment
+      - _links
+      properties:
+        id:
+          type: integer
+          description: The ID of the certificate.
+        label:
+          type:
+          - string
+          - 'null'
+          description: The certificate label (SNI only).
+        certificate:
+          type: string
+          description: Returns the PEM encoded certificate.
+        private_key:
+          type: string
+          description: The PEM encoded private key.
+        ca:
+          type: string
+          description: The CA intermediary chain.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_certificate-flags'
+        expires_at:
+          type: string
+          format: date-time
+          description: The ISO-8601 formatted date/time of the certificates expiration date.
+        domains:
+          type: array
+          description: The domain names that this certificate is covering.
+          items:
+            type: string
+        environment:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_backup:
+      type: object
+      description: Response schema for a database backup.
+      required:
+      - id
+      - database
+      - type
+      - started_at
+      - completed_at
+      - flags
+      - environment
+      - _links
+      - _embedded
+      properties:
+        id:
+          type: integer
+          description: The ID of the database backup.
+        database:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_database-stub'
+        type:
+          type: string
+          description: The type of backup this is.
+        started_at:
+          type: string
+          format: date-time
+          description: The ISO-8601 formatted date/time of when the backup process was started.
+        completed_at:
+          type: string
+          format: date-time
+          description: The ISO-8601 formatted date/time of when the backup process was completed.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_backup-flags'
+        environment:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: Related entities.
+          properties:
+            environment:
+              type: object
+              description: The related environment.
+              properties:
+                id:
+                  type: string
+                  description: The environment ID.
+                name:
+                  type: string
+                  description: The environment name.
+                _links:
+                  $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+            database:
+              type: object
+              description: The related database.
+              properties:
+                id:
+                  type: integer
+                  description: The database ID.
+                name:
+                  type: string
+                  description: The database name.
+                _links:
+                  $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
     Acquia_Cloud_API_Documentation_post-certificate:
       type: object
       description: Certificate POST schema.
@@ -10044,13 +10199,28 @@ components:
         label:
           type: string
           description: The label for this certificate. Required for standard certificates. Optional for legacy certificates.
-    Acquia_Cloud_API_Documentation_log-forwarding-destinations:
+    Acquia_Cloud_API_Documentation_artifact-stub:
+      type:
+      - object
+      - 'null'
+      required:
+      - name
+      - id
+      properties:
+        name:
+          type: string
+          description: The name of the artifact.
+        id:
+          type: integer
+          format: id
+          description: The artifact identifier.
+    Acquia_Cloud_API_Documentation_domains:
       type: object
+      description: A collection of domains.
       required:
       - total
       - _links
       - _embedded
-      description: A collection of Log Forwarding destinations.
       properties:
         total:
           type: integer
@@ -10059,130 +10229,398 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of log forwarding destinations matching the request parameters.
+          description: A collection of domains matching the request parameters.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-destination'
-    Acquia_Cloud_API_Documentation_stack-metrics-metric:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain'
+    Acquia_Cloud_API_Documentation_configuration-set:
       type: object
-      description: An object containing StackMetrics datapoints.
+      description: An Acquia Search configuration set.
       required:
-      - metric
-      - datapoints
-      - last_data_at
-      - metadata
-      properties:
-        metric:
-          type: string
-          description: The name of the type of StackMetrics metric.
-          enum:
-          - apache-requests
-          - bal-cpu
-          - bal-memory
-          - cron-memory
-          - db-cpu
-          - db-disk-size
-          - db-disk-usage
-          - db-memory
-          - file-disk-size
-          - file-cpu
-          - file-disk-usage
-          - file-memory
-          - http-2xx
-          - http-3xx
-          - http-4xx
-          - http-5xx
-          - mysql-slow-query-count
-          - nginx-requests
-          - out-of-memory
-          - php-proc-max-reached-site
-          - php-proc-max-reached-total
-          - php-proc-site
-          - php-proc-total
-          - varnish-cache-hit-rate
-          - varnish-requests
-          - web-cpu
-          - web-memory
-        datapoints:
-          type: array
-          description: The data points for the StackMetrics request.
-          items:
-            type: array
-            description: Each element includes the value and the sampling time for the requested metric.
-            items:
-              type: string
-              description: Each datapoint is a tuple consisting of two elements - a value and a Unix timestamp.
-        last_data_at:
-          type: string
-          description: The ISO-8601 date time when the last datapoint was sampled.
-          format: date-time
-        metadata:
-          type: object
-          description: The metadata describing the context for the metric.
-          properties:
-            host:
-              type: string
-              description: The corresponding hostname for the StackMetrics datapoints.
-    Acquia_Cloud_API_Documentation_cdn:
-      type: object
-      required:
+      - id
+      - application_uuid
+      - label
+      - flags
       - status
-      description: CDN status information.
+      - _links
+      properties:
+        id:
+          type: string
+          description: The search configuration set ID.
+        application_uuid:
+          type: string
+          description: The UUID for the application the search configuration belongs to.
+        label:
+          type: string
+          description: The human-readable search configuration set label.
+        flags:
+          type: object
+          description: The collection of flags for the search configuration set.
+          properties:
+            custom:
+              type: boolean
+              description: Indicates whether the search configuration set is a custom configuration set.
+        status:
+          type: string
+          description: The provisioning status of the search configuration set.
+          enum:
+          - active
+          - pending
+          - failed
+          - inactive
+        health:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_log-forwarding-destination-flags:
+      type: object
+      description: Various flags for this log forwarding destination.
+      properties:
+        enabled:
+          type: boolean
+          description: Destination enabled status.
+        certificate_expiring:
+          type: boolean
+          description: Whether the destination certificate is in danger of expiring soon (within 30 days).
+    Acquia_Cloud_API_Documentation_cron:
+      type: object
+      required:
+      - id
+      - server
+      - command
+      - minute
+      - hour
+      - day_month
+      - month
+      - day_week
+      - label
+      - flags
+      - environment
+      - _links
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The ID of the cron job.
+        server:
+          oneOf:
+          - type: array
+            items: {}
+          - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_server-stub'
+        command:
+          type: string
+          description: The cron command.
+        minute:
+          type: string
+          description: The cron expression minute.
+        hour:
+          type: string
+          description: The cron expression hour.
+        day_month:
+          type: string
+          description: The cron expression day of the month.
+        month:
+          type: string
+          description: The cron expression month.
+        day_week:
+          type: string
+          description: The cron expression day of the week.
+        label:
+          type: string
+          description: The label for the cron.
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cron-flags'
+        environment:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_cloud-actions-flags:
+      type: object
+      description: Various flags for the Cloud Action.
+      properties:
+        enabled:
+          type: boolean
+          description: Indicates whether the Cloud Action is enabled.
+        default:
+          type: boolean
+          description: Indicates whether the Cloud Action is a default action.
+    Acquia_Cloud_API_Documentation_environment-flags:
+      type: object
+      description: An array of various flags that indicate functionality associated with the environment.
+      properties:
+        cde:
+          type: boolean
+          description: Determines if the environment is on-demand.
+        cdn:
+          type: boolean
+          description: Determines if the environment has Platform CDN enabled.
+        cloud-actions:
+          type: boolean
+          description: Determines if the environment has Cloud Actions enabled.
+        eips:
+          type: boolean
+          description: Determines if the environment has Web EIPs enabled.
+        email:
+          type: boolean
+          description: Determines if the environment has Platform Email enabled.
+        hsd:
+          type: boolean
+          description: Determines if the environment is under high-site density.
+        livedev:
+          type: boolean
+          description: Determines if the environment has live development enabled.
+        multicert:
+          type: boolean
+          description: Determines if the environment has multicert enabled.
+        multi_region:
+          type: boolean
+          description: Whether or not the environment is multi-regioned.
+        production:
+          type: boolean
+          description: Determines if the environment is production.
+        production_mode:
+          type: boolean
+          description: Determines if the environment has production mode enabled.
+        remote_admin:
+          type: boolean
+          description: Determines if the environment is a remote administration environment.
+        varnish:
+          type: boolean
+          description: Determines if the environment has Varnish.
+        varnish_over_ssl:
+          type: boolean
+          description: Determines if the environment is configured for varnish over SSL.
+    Acquia_Cloud_API_Documentation_environment-options:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: An array of environment options.
+          properties:
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: The environment configuration option name.
+                    enum:
+                    - apcu
+                    - interned_strings_buffer
+                    - client_max_body_size
+                    - max_execution_time
+                    - max_input_vars
+                    - max_post_size
+                    - upload_max_filesize
+                    - memory_limit
+                    - memcached_limit
+                    - opcache
+                    - operating_system
+                    - version
+                  minimum:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The lowest value a configuration option can be set.
+                  maximum:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The highest value a configuration option can be set.
+                  default:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The default value for a configuration option.
+                  step:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The step between configuration option values.
+    Acquia_Cloud_API_Documentation_deploy-code:
+      type: object
+      required:
+      - source
+      properties:
+        source:
+          type: string
+          description: The ID of the environment to deploy code from.
+        message:
+          type: string
+          description: An optional commit message to include when creating a new tag.
+        cloud-actions:
+          type: array
+          description: An optional array of Cloud Actions.
+          items:
+            $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cloud-action-id'
+    Acquia_Cloud_API_Documentation_environment-usage-metrics:
+      type: object
+      description: A collection of usage metrics for an environment.
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of environment metric items matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-usage-metric'
+    Acquia_Cloud_API_Documentation_environment-variable:
+      type: object
+      required:
+      - name
+      - value
+      - _links
+      description: An environment variable key and value.
+      properties:
+        name:
+          type: string
+          description: The name of the variable.
+          minLength: 1
+          maxLength: 255
+          pattern: ^(?!(ACQUIA_|AH_))[A-Za-z_][A-Za-z0-9_]*$
+        value:
+          type: string
+          description: The value of the variable.
+          minLength: 0
+          maxLength: 5000
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_index:
+      type: object
+      description: An Acquia Search index.
+      required:
+      - id
+      - environment_id
+      - config_set_id
+      - database_role
+      - status
+      - solr_version
+      - url
+      - _links
+      - _embedded
+      properties:
+        id:
+          type: string
+          description: The index ID.
+        environment_id:
+          type: string
+          description: The ID for the environment the search index belongs to.
+        config_set_id:
+          type: string
+          description: The search configuration set ID.
+        database_role:
+          type: string
+          description: The database role.
+        status:
+          type: string
+          description: The state for the index.
+          enum:
+          - active
+          - pending
+          - failed
+          - inactive
+        health:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
+        solr_version:
+          type: string
+          description: The Solr version the index is currently running on.
+        url:
+          type: string
+          description: The index URL.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: The configuration set associated with the index.
+          properties:
+            configuration_set:
+              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_configuration-set'
+    Acquia_Cloud_API_Documentation_post-cron:
+      type: object
+      required:
+      - command
+      - frequency
+      - label
+      properties:
+        command:
+          type: string
+          description: The command to run.
+        frequency:
+          type: string
+          description: The cron string that describes the frequency the cron will be run at.
+        label:
+          type: string
+          description: The label for this cron.
+    Acquia_Cloud_API_Documentation_database-stub:
+      type: object
+      description: Schema for a stub of information regarding a database.
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: integer
+          description: The ID of the database.
+        name:
+          type: string
+          description: The database name.
+    Acquia_Cloud_API_Documentation_cdn-information:
+      type:
+      - object
+      - 'null'
+      description: Domain-specific CDN information, if CDN is enabled.
       properties:
         status:
           type: string
-          description: The CDN status.
           enum:
           - active
-          - delete-failed
-          - deleting
-          - disable-failed
-          - disabling
-          - install-failed
           - installing
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_csr-flags:
+          - install-failed
+          - deleting
+          - delete-failed
+          - unknown
+          description: The current provisioning status of CDN for this domain.
+    Acquia_Cloud_API_Documentation_subscription-metadata:
       type: object
-      description: An array of various flags that indicate functionality associated with the CSR.
+      description: Subscription metadata.
       properties:
-        used:
-          type: boolean
-          description: Whether this CSR has already been used for a certificate.
-        legacy:
-          type: boolean
-          description: Whether this is a legacy CSR (meant for use with ELB certificates).
-    Acquia_Cloud_API_Documentation_vcs:
+        uuids:
+          type: array
+          description: An array of subscription unique identifiers.
+          items:
+            type: string
+            format: uuid
+    Acquia_Cloud_API_Documentation_file-download:
       type: object
+      description: A JSON response containing the url and url expiration.
       required:
-      - type
-      - path
       - url
+      - expires_at
       properties:
-        type:
-          type: string
-          description: The type of VCS.
-          enum:
-          - git
-          - svn
-        path:
-          type:
-          - string
-          - 'null'
-          description: The path or branch name.
         url:
           type: string
-          description: The VCS url.
-    Acquia_Cloud_API_Documentation_metrics:
-      type: object
-      description: A collection of links that provides traversal of metrics endpoints.
-      required:
-      - _links
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+          description: The url for the download.
+        expires_at:
+          type: string
+          description: The expiration for the url.
     Acquia_Cloud_API_Documentation_domain:
       type: object
       description: Response schema for a domain.
@@ -10204,13 +10642,126 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_logs:
+    Acquia_Cloud_API_Documentation_mod-proxy:
       type: object
-      description: A collection of logs.
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          description: The enablement state of Mod Proxy.
+          enum:
+          - active
+          - inactive
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_put-cron:
+      type: object
+      properties:
+        command:
+          type: string
+          description: The command to run.
+        frequency:
+          type: string
+          description: The cron string that describes the frequency the cron will be run at.
+        label:
+          type: string
+          description: The label for this cron.
+    Acquia_Cloud_API_Documentation_indexes:
+      type: object
+      description: A collection of indexes.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        pagination:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of indexes.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_index'
+    Acquia_Cloud_API_Documentation_csr:
+      type: object
+      description: A certificate signing request.
+      required:
+      - id
+      - csr
+      - private_key
+      - country
+      - state
+      - locality
+      - organization
+      - organizational_unit
+      - common_name
+      - alternate_names
+      - flags
+      - environment
+      - _links
+      properties:
+        id:
+          type: integer
+          description: The hosting ID of the CSR/SSL Certificate (0 for 'elb' type).
+        csr:
+          type: string
+          description: The PEM encoded string containing the entire CSR.
+        private_key:
+          type: string
+          description: The PEM encoded private key.
+        country:
+          type: string
+          description: The ISO-3166 country code.
+        state:
+          type: string
+          description: The state/province.
+        locality:
+          type: string
+          description: The locality (city/town/township).
+        organization:
+          type: string
+          description: The organization name.
+        organizational_unit:
+          type: string
+          description: The organizational unit (department).
+        common_name:
+          type: string
+          description: The common name (host and domain name).
+        alternate_names:
+          type: array
+          description: The subject alternate names (sni only).
+          items:
+            type: string
+            format: hostname
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_csr-flags'
+        environment:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_import-site:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The URL of the make file or tarball containing the site to import.
+        name:
+          type: string
+          description: The name of the distribution being installed.
+    Acquia_Cloud_API_Documentation_log-forwarding-destinations:
+      type: object
       required:
       - total
       - _links
       - _embedded
+      description: A collection of Log Forwarding destinations.
       properties:
         total:
           type: integer
@@ -10219,42 +10770,78 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
         _embedded:
           type: object
-          description: A collection of logs matching the request parameters.
+          description: A collection of log forwarding destinations matching the request parameters.
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log'
-    Acquia_Cloud_API_Documentation_cron-flags:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_log-forwarding-destination'
+    Acquia_Cloud_API_Documentation_validation-error:
       type: object
-      description: An array of various flags that indicate functionality associated with cron jobs.
+      required:
+      - error
+      - message
+      description: A validation error.
       properties:
-        enabled:
-          type: boolean
-          description: Whether this this cron is enabled.
-        system:
-          type: boolean
-          description: Whether this is a system cron, which cannot be modified.
-        on_any_web:
-          type: boolean
-          description: Whether this cron will run on the lowest numbered web.
-    Acquia_Cloud_API_Documentation_dns-record:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
+    Acquia_Cloud_API_Documentation_log:
       type: object
-      description: A DNS record.
+      description: Details for a log file.
       required:
       - type
-      - value
+      - label
+      - flags
+      - _links
       properties:
         type:
           type: string
-          description: The type of DNS record.
-          enum:
-          - A
-          - AAAA
-          - CNAME
-        value:
+          description: The machine name for the type of logfile.
+        label:
           type: string
-          description: The DNS record value.
+          description: The human readable label of the logfile.
+        flags:
+          type: object
+          description: An array of various flags that indicate functionality associated with the log.
+          properties:
+            available:
+              type: boolean
+              description: Whether or not this log file is available.
+        _links:
+          type: object
+          description: Links associated with the logfile.
+          properties:
+            download:
+              type: object
+              description: Download data for the logfile.
+              properties:
+                href:
+                  type: string
+                  format: uri
+                  description: The download link for the logfile.
+    Acquia_Cloud_API_Documentation_file:
+      type: string
+      description: A binary file response.
+      format: binary
+    Acquia_Cloud_API_Documentation_health:
+      type: object
+      description: The current health for this resource.
+      properties:
+        code:
+          type: string
+          description: The status code for the current health.
+        details:
+          type: string
+          description: Full details about the current health code.
+        summary:
+          type: string
+          description: A brief summary that explains why the health code is present.
     Acquia_Cloud_API_Documentation_environment:
       type: object
       required:
@@ -10410,108 +10997,84 @@ components:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_artifact-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_cdn-information:
-      type:
-      - object
-      - 'null'
-      description: Domain-specific CDN information, if CDN is enabled.
-      properties:
-        status:
-          type: string
-          enum:
-          - active
-          - installing
-          - install-failed
-          - deleting
-          - delete-failed
-          - unknown
-          description: The current provisioning status of CDN for this domain.
-    Acquia_Cloud_API_Documentation_indexes:
+    Acquia_Cloud_API_Documentation_dns-record:
       type: object
-      description: A collection of indexes.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        pagination:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_pagination'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of indexes.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_index'
-    Acquia_Cloud_API_Documentation_log:
-      type: object
-      description: Details for a log file.
+      description: A DNS record.
       required:
       - type
-      - label
-      - flags
-      - _links
+      - value
       properties:
         type:
           type: string
-          description: The machine name for the type of logfile.
-        label:
+          description: The type of DNS record.
+          enum:
+          - A
+          - AAAA
+          - CNAME
+        value:
           type: string
-          description: The human readable label of the logfile.
-        flags:
-          type: object
-          description: An array of various flags that indicate functionality associated with the log.
-          properties:
-            available:
-              type: boolean
-              description: Whether or not this log file is available.
-        _links:
-          type: object
-          description: Links associated with the logfile.
-          properties:
-            download:
-              type: object
-              description: Download data for the logfile.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                  description: The download link for the logfile.
-    Acquia_Cloud_API_Documentation_backups:
+          description: The DNS record value.
+    Acquia_Cloud_API_Documentation_server-flags:
       type: object
-      description: A collection of database backups.
-      required:
-      - total
-      - _links
-      - _embedded
+      description: An array of various flags that indicate functionality for the server.
       properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
+        elastic_ip:
+          type: boolean
+          description: Determines if the server has an elastic (static) IP or not.
+        active_web:
+          type: boolean
+          description: Determines if the server is an active balancer or not.
+        active_bal:
+          type: boolean
+          description: Determines if the server is an active web server or not.
+        primary_db:
+          type: boolean
+          description: 'Determines if the server is the primary database.
+
+
+            Note that "false" does not imply that this is the secondary database. The server must be a database, and not primary in order to be the secondary database.
+
+            '
+        web:
+          type: boolean
+          description: Determines if the server is a web server.
+        database:
+          type: boolean
+          description: Determines if the server is a database server.
+        balancer:
+          type: boolean
+          description: Determines if the server is a balancer.
+        fs:
+          type: boolean
+          description: Determines if the server is a file server.
+        memcache:
+          type: boolean
+          description: Determines if the server is a memcache server.
+        dedicated:
+          type: boolean
+          description: Determines if the server is dedicated or shared.
+        self_service:
+          type: boolean
+          description: Determines if the server is self-service.
+    Acquia_Cloud_API_Documentation_cdn:
+      type: object
+      required:
+      - status
+      description: CDN status information.
+      properties:
+        status:
+          type: string
+          description: The CDN status.
+          enum:
+          - active
+          - delete-failed
+          - deleting
+          - disable-failed
+          - disabling
+          - install-failed
+          - installing
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of database backups matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_backup-no-embedded'
-    Acquia_Cloud_API_Documentation_import-site:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The URL of the make file or tarball containing the site to import.
-        name:
-          type: string
-          description: The name of the distribution being installed.
     Acquia_Cloud_API_Documentation_environment-variables:
       type: object
       required:
@@ -10546,609 +11109,40 @@ components:
         legacy:
           type: boolean
           description: Whether this is a legacy certificate (ELB).
-    Acquia_Cloud_API_Documentation_cron:
+    Acquia_Cloud_API_Documentation_cron-flags:
       type: object
-      required:
-      - id
-      - server
-      - command
-      - minute
-      - hour
-      - day_month
-      - month
-      - day_week
-      - label
-      - flags
-      - environment
-      - _links
+      description: An array of various flags that indicate functionality associated with cron jobs.
       properties:
-        id:
-          type: string
-          format: uuid
-          description: The ID of the cron job.
-        server:
-          oneOf:
-          - type: array
-            items: {}
-          - $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_server-stub'
-        command:
-          type: string
-          description: The cron command.
-        minute:
-          type: string
-          description: The cron expression minute.
-        hour:
-          type: string
-          description: The cron expression hour.
-        day_month:
-          type: string
-          description: The cron expression day of the month.
-        month:
-          type: string
-          description: The cron expression month.
-        day_week:
-          type: string
-          description: The cron expression day of the week.
-        label:
-          type: string
-          description: The label for the cron.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cron-flags'
-        environment:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_cloud-action:
+        enabled:
+          type: boolean
+          description: Whether this this cron is enabled.
+        system:
+          type: boolean
+          description: Whether this is a system cron, which cannot be modified.
+        on_any_web:
+          type: boolean
+          description: Whether this cron will run on the lowest numbered web.
+    Acquia_Cloud_API_Documentation_environment-metadata:
       type: object
-      required:
-      - id
-      - label
-      - description
-      - type
-      - flags
-      - _links
+      description: Environment metadata.
       properties:
-        id:
-          type: string
-          format: uuid
-          description: The Cloud Action ID.
-        label:
-          type: string
-          description: The human-readable Cloud Action label.
-        description:
-          type: string
-          description: The description of a Cloud Action.
-        type:
-          type: string
-          description: The type of Cloud Action.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cloud-actions-flags'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_certificates:
-      type: object
-      description: A collection of certificates.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of certificates.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_certificate'
-    Acquia_Cloud_API_Documentation_crons:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of cron jobs.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cron'
-    Acquia_Cloud_API_Documentation_server:
-      type: object
-      description: Server information.
-      required:
-      - id
-      - name
-      - hostname
-      - ssh_user
-      - ip
-      - status
-      - region
-      - roles
-      - ami_type
-      - operating_system
-      - configuration
-      - flags
-      - environment
-      - _links
-      properties:
-        id:
-          type: integer
-          description: The ID of the server.
-        name:
-          type: string
-          description: The machine name of the server.
-        hostname:
-          type: string
-          description: The hostname for the server.
-        ssh_user:
-          type: string
-          description: The name of the SSH user for this environment.
-        ip:
-          type: string
-          format: ipv4
-          description: The IP address of the server.
-        status:
-          type: string
-          description: The status of the server.
-          enum:
-          - normal
-          - stopped
-          - launching
-          - cancelled
-          - unknown
-        region:
-          type: string
-          description: The Amazon region the server is in.
-        roles:
+        ids:
           type: array
-          description: The roles the server has, for its environment.
+          description: An array of environment identifiers.
           items:
             type: string
-            enum:
-            - web
-            - db
-            - bal
-        ami_type:
-          type: string
-          description: The Amazon AMI type.
-        operating_system:
-          type: string
-          description: The operating system running on the server.
-        configuration:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_server-configuration'
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_server-flags'
-        environment:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_usage:
-      type: object
-      description: A collection of traversal links for an entity.
-      required:
-      - _links
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_backup-no-embedded:
-      type: object
-      description: Response schema for a database backup.
-      required:
-      - id
-      - database
-      - type
-      - started_at
-      - completed_at
-      - flags
-      - environment
-      - _links
-      properties:
-        id:
-          type: integer
-          description: The ID of the database backup.
-        database:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_database-stub'
-        type:
-          type: string
-          description: The type of backup this is.
-        started_at:
-          type: string
-          format: date-time
-          description: The ISO-8601 formatted date/time of when the backup process was started.
-        completed_at:
-          type: string
-          format: date-time
-          description: The ISO-8601 formatted date/time of when the backup process was completed.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_backup-flags'
-        environment:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_domain-status-flags:
-      type: object
-      description: An array of hosting flags for the domain.
-      properties:
-        default:
-          type: boolean
-          description: Whether or not this is the default domain.
-        active:
-          type: boolean
-          description: Whether or not this domain is active.
-        dns_resolves:
-          type: boolean
-          description: Whether or not this domain resolves in DNS.
-        acquia_hosted:
-          type: boolean
-          description: Whether or not this domain is Acquia-hosted.
-    Acquia_Cloud_API_Documentation_log-forwarding-destination-credentials:
-      type: object
-      required:
-      - certificate
-      description: The Log Forwarding destination credentials.
-      properties:
-        certificate:
-          type: object
-          description: A public X.509 certificate in PEM format. Required for Splunk, Sumologic, and Syslog. Not supported by Loggly.
-          properties:
-            certificate:
-              type: string
-              description: A public X.509 certificate in PEM format.
-            expires_at:
-              type: string
-              format: date-time
-              description: The ISO-8601 date the certificate will expire at. Required by Logly and Sumologic. Optional for Syslog. Not supported by Splunk.
-        key:
-          type:
-          - string
-          - 'null'
-          description: The certificate private key, in PEM format, used to encrypt the log traffic. Optional for Splunk, Sumologic, and Syslog. Not supported by Loggly.
-        token:
-          type:
-          - string
-          - 'null'
-          description: An API token associated with the consumer. Required by Logly and Sumologic. Optional for Syslog. Not supported by Splunk.
-    Acquia_Cloud_API_Documentation_environment-configuration:
-      type: object
-      description: An array of configuration details for the environment.
-      properties:
-        version:
-          type: string
-          description: The PHP or Node version.
-        memory_limit:
-          type:
-          - integer
-          - 'null'
-          description: Limits PHP request memory usage in megabytes.
-          default: 128
-          minimum: 128
-          maximum: 1024
-        opcache:
-          type:
-          - integer
-          - 'null'
-          description: This is the total amount of memory available for caching precompiled script bytecode per PHP/FPM process.
-          default: 96
-          minimum: 96
-          maximum: 512
-        apcu:
-          type:
-          - integer
-          - 'null'
-          description: APCu shared memory size per web server.
-          default: 32
-          minimum: 32
-          maximum: 512
-        interned_strings_buffer:
-          type:
-          - integer
-          - 'null'
-          description: Sets PHP Opcache key count per server.
-          default: 8
-          minimum: 8
-          maximum: 32
-        client_max_body_size:
-          type:
-          - integer
-          - 'null'
-          description: Sets the maximum size of the client request body.
-          default: 256
-          minimum: 0
-          maximum: 1024
-        upload_max_filesize:
-          type:
-          - integer
-          - 'null'
-          description: Sets the maximum size of an uploaded file.
-          default: 256
-          minimum: 0
-          maximum: 1024
-        max_execution_time:
-          type:
-          - integer
-          - 'null'
-          description: Limits PHP request time in seconds.
-          default: 300
-          minimum: 1
-          maximum: 300
-        max_post_size:
-          type:
-          - integer
-          - 'null'
-          description: Sets the PHP limit on POST body size.
-          default: 256
-          minimum: 64
-          maximum: 1024
-        max_input_vars:
-          type:
-          - integer
-          - 'null'
-          description: Limits the number of various request items in PHP.
-          default: 1000
-          minimum: 500
-          maximum: 20000
-        memcached_limit:
-          type:
-          - integer
-          - 'null'
-          description: Sets the maximum amount of memory in MB that can be allocated to memcached. Only available on Acquia Cloud Next.
-          default: 64
-          minimum: 0
-          maximum: 12288
-        operating_system:
-          type: string
-          description: The operating system version.
-    Acquia_Cloud_API_Documentation_validation-error:
+    Acquia_Cloud_API_Documentation_error:
       type: object
       required:
       - error
       - message
-      description: A validation error.
       properties:
         error:
           type: string
           description: The error summary.
         message:
-          type: object
-          description: The validation error message keyed by its field or group name.
-          additionalProperties:
-            type: string
-    Acquia_Cloud_API_Documentation_domains:
-      type: object
-      description: A collection of domains.
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of domains matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain'
-    Acquia_Cloud_API_Documentation_environment-stub:
-      type: object
-      description: Schema for a stub of information regarding an environment.
-      required:
-      - id
-      - name
-      properties:
-        id:
           type: string
-          description: The ID of the environment. The ID is a compound key consisting of the internal database ID of the environment and the application UUID.
-        name:
-          type: string
-          description: The stage name of the environment.
-    Acquia_Cloud_API_Documentation_databases:
-      type: object
-      description: A collection of databases.
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of databases matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_database'
-    Acquia_Cloud_API_Documentation_environment-usage-metric:
-      type: object
-      description: Provides details about views and visits for an environment.
-      required:
-      - metric
-      - datapoints
-      - metadata
-      - last_data_at
-      properties:
-        metric:
-          type: string
-          description: The type of metric requested.
-          enum:
-          - views
-          - visits
-        datapoints:
-          type: array
-          description: The data points for the pricing metrics request.
-          items:
-            type: array
-            description: Each element includes the value for the requested metric and the sampling time.
-            items:
-              type: string
-              description: The first element is the metric value and the second is the sampling time.
-        metadata:
-          type: object
-          description: The metadata for the data points being returned.
-          properties:
-            environment:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-metadata'
-            application:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_application-metadata'
-            subscription:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_subscription-metadata'
-        last_data_at:
-          type: string
-          description: The last time data was polled for the requested metric.
-          format: date-time
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_search:
-      type: object
-      description: A collection of links that provides traversal of search endpoints.
-      required:
-      - _links
-      properties:
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_cloud-action-id:
-      type: string
-      format: uuid
-      description: A Cloud Action ID.
-    Acquia_Cloud_API_Documentation_eips:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of Web EIPs.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_eip'
-    Acquia_Cloud_API_Documentation_backup:
-      type: object
-      description: Response schema for a database backup.
-      required:
-      - id
-      - database
-      - type
-      - started_at
-      - completed_at
-      - flags
-      - environment
-      - _links
-      - _embedded
-      properties:
-        id:
-          type: integer
-          description: The ID of the database backup.
-        database:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_database-stub'
-        type:
-          type: string
-          description: The type of backup this is.
-        started_at:
-          type: string
-          format: date-time
-          description: The ISO-8601 formatted date/time of when the backup process was started.
-        completed_at:
-          type: string
-          format: date-time
-          description: The ISO-8601 formatted date/time of when the backup process was completed.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_backup-flags'
-        environment:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: Related entities.
-          properties:
-            environment:
-              type: object
-              description: The related environment.
-              properties:
-                id:
-                  type: string
-                  description: The environment ID.
-                name:
-                  type: string
-                  description: The environment name.
-                _links:
-                  $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-            database:
-              type: object
-              description: The related database.
-              properties:
-                id:
-                  type: integer
-                  description: The database ID.
-                name:
-                  type: string
-                  description: The database name.
-                _links:
-                  $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_database-flags:
-      type: object
-      description: Response schema for database flags.
-      properties:
-        default:
-          type: boolean
-          description: Whether this is the default database.
-        perform_backup:
-          type: boolean
-          description: Whether this database is backed up.
-    Acquia_Cloud_API_Documentation_put-cron:
-      type: object
-      properties:
-        command:
-          type: string
-          description: The command to run.
-        frequency:
-          type: string
-          description: The cron string that describes the frequency the cron will be run at.
-        label:
-          type: string
-          description: The label for this cron.
-    Acquia_Cloud_API_Documentation_environment-variable:
-      type: object
-      required:
-      - name
-      - value
-      - _links
-      description: An environment variable key and value.
-      properties:
-        name:
-          type: string
-          description: The name of the variable.
-          minLength: 1
-          maxLength: 255
-          pattern: ^(?!(ACQUIA_|AH_))[A-Za-z_][A-Za-z0-9_]*$
-        value:
-          type: string
-          description: The value of the variable.
-          minLength: 0
-          maxLength: 5000
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_switch-code:
       type: object
       required:
@@ -11162,325 +11156,331 @@ components:
           description: An optional array of Cloud Actions.
           items:
             $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cloud-action-id'
-    Acquia_Cloud_API_Documentation_file:
-      type: string
-      description: A binary file response.
-      format: binary
-    Acquia_Cloud_API_Documentation_domain-status:
-      type: object
-      required:
-      - hostname
-      - flags
-      - ip_addresses
-      - cnames
-      - environment
-      - _links
-      description: Domain status information.
-      properties:
-        hostname:
-          type: string
-          description: The domain hostname.
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_domain-status-flags'
-        ip_addresses:
-          type: array
-          description: An array of this domain's IP addresses.
-          items:
-            type: string
-            format: ipv4
-        cnames:
-          type: array
-          description: An array of this domain's cnames.
-          items:
-            type: string
-        environment:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_environment-stub'
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_index:
-      type: object
-      description: An Acquia Search index.
-      required:
-      - id
-      - environment_id
-      - config_set_id
-      - database_role
-      - status
-      - solr_version
-      - url
-      - _links
-      - _embedded
-      properties:
-        id:
-          type: string
-          description: The index ID.
-        environment_id:
-          type: string
-          description: The ID for the environment the search index belongs to.
-        config_set_id:
-          type: string
-          description: The search configuration set ID.
-        database_role:
-          type: string
-          description: The database role.
-        status:
-          type: string
-          description: The state for the index.
-          enum:
-          - active
-          - pending
-          - failed
-          - inactive
-        health:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_health'
-        solr_version:
-          type: string
-          description: The Solr version the index is currently running on.
-        url:
-          type: string
-          description: The index URL.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: The configuration set associated with the index.
-          properties:
-            configuration_set:
-              $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_configuration-set'
-    Acquia_Cloud_API_Documentation_backup-flags:
-      type: object
-      description: Response schema for database backup flags.
-      properties:
-        deleted:
-          type: boolean
-          description: Whether this database is deleted.
-    Acquia_Cloud_API_Documentation_environment-flags:
-      type: object
-      description: An array of various flags that indicate functionality associated with the environment.
-      properties:
-        cde:
-          type: boolean
-          description: Determines if the environment is on-demand.
-        cdn:
-          type: boolean
-          description: Determines if the environment has Platform CDN enabled.
-        cloud-actions:
-          type: boolean
-          description: Determines if the environment has Cloud Actions enabled.
-        eips:
-          type: boolean
-          description: Determines if the environment has Web EIPs enabled.
-        email:
-          type: boolean
-          description: Determines if the environment has Platform Email enabled.
-        hsd:
-          type: boolean
-          description: Determines if the environment is under high-site density.
-        livedev:
-          type: boolean
-          description: Determines if the environment has live development enabled.
-        multicert:
-          type: boolean
-          description: Determines if the environment has multicert enabled.
-        multi_region:
-          type: boolean
-          description: Whether or not the environment is multi-regioned.
-        production:
-          type: boolean
-          description: Determines if the environment is production.
-        production_mode:
-          type: boolean
-          description: Determines if the environment has production mode enabled.
-        remote_admin:
-          type: boolean
-          description: Determines if the environment is a remote administration environment.
-        varnish:
-          type: boolean
-          description: Determines if the environment has Varnish.
-        varnish_over_ssl:
-          type: boolean
-          description: Determines if the environment is configured for varnish over SSL.
-    Acquia_Cloud_API_Documentation_ssl:
-      type: object
-      description: The SSL settings for an environment.
-      required:
-      - balancer
-      - ips
-      - _links
-      properties:
-        balancer:
-          type: object
-          description: SSL configuration for the load balancer associated with this environment.
-          properties:
-            hostname:
-              type: string
-              description: The balancer CNAME.
-              format: hostname
-        ips:
-          type: array
-          description: The IP addresses for the environment.
-          items:
-            type: string
-            format: ipv4
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_subscription-metadata:
-      type: object
-      description: Subscription metadata.
-      properties:
-        uuids:
-          type: array
-          description: An array of subscription unique identifiers.
-          items:
-            type: string
-            format: uuid
-    Acquia_Cloud_API_Documentation_logstream:
-      type: object
-      description: Connection details for Logstream backend.
-      required:
-      - logstream
-      - _links
-      properties:
-        logstream:
-          type: object
-          required:
-          - url
-          - params
-          - commands
-          description: Connection details for Logstream backend.
-          properties:
-            url:
-              type: string
-              format: uri
-              description: WebSocket URL.
-            params:
-              type: object
-              description: Connection details such as a timestamp, hmac, site name and environment.
-            commands:
-              type: array
-              description: Commands for the logstream backend.
-              items:
-                type: string
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_post-csr:
-      type: object
-      description: Certificate signing request POST schema.
-      required:
-      - country
-      - state
-      - locality
-      - organization
-      - organizational_unit
-      - common_name
-      properties:
-        country:
-          type: string
-          description: The ISO-3166 country code for CSR generation.
-        state:
-          type: string
-          description: The state/province for CSR generation.
-        locality:
-          type: string
-          description: The locality (city/town/township) for CSR generation.
-        organization:
-          type: string
-          description: The organization name for CSR generation.
-        organizational_unit:
-          type: string
-          description: The organizational unit (department) for CSR generation.
-        common_name:
-          type: string
-          description: The common name (domain) for CSR generation.
-        alternate_names:
-          description: The Subject Alternate Names (SNI only) for CSR generation.
-          type: array
-          items:
-            type: string
-            format: hostname
-    Acquia_Cloud_API_Documentation_cloud-actions:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of Cloud Actions.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_cloud-action'
-    Acquia_Cloud_API_Documentation_operating-systems:
-      type: object
-      required:
-      - versions
-      - _links
-      properties:
-        versions:
-          type: array
-          description: The operating systems.
-          items:
-            type: object
-            properties:
-              name:
-                description: The codename associated with the version.
-                type: string
-              label:
-                description: The label of the version.
-                type: string
-              version:
-                description: The numerical representation of the version.
-                type: string
-              available:
-                description: Flag to show if the version is available for which to switch.
-                type: boolean
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_csrs:
-      type: object
-      description: A collection of csrs.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of CSRs.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_csr'
-    Acquia_Cloud_API_Documentation_application-metadata:
-      type: object
-      description: Application metadata.
-      properties:
-        uuids:
-          type: array
-          description: Collection of application UUIDs.
-          items:
-            type: string
-            format: uuid
-            description: The application UUID.
-    Acquia_Cloud_API_Documentation_database-stub:
-      type: object
-      description: Schema for a stub of information regarding a database.
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: integer
-          description: The ID of the database.
-        name:
-          type: string
-          description: The database name.
+  parameters:
+    Acquia_Cloud_API_Documentation_to-no-default:
+      name: to
+      in: query
+      description: An ISO-8601 formatted date retrieve results to.
+      required: false
+      schema:
+        type: string
+      example: '2021-01-29T23:55:21+00:00'
+    Acquia_Cloud_API_Documentation_filter:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
+
+
+        * Equals: `= (%3D)`
+
+        * Does not equal: `!= (!%3D)`
+
+        * Greater than: `> (%3E)`
+
+        * Less than: `< (%3C)`
+
+        * Greater than or equal to: `>= (%3E%3D)`
+
+        * Less than or equal to: `<= (%3C%3D)`
+
+        * Contains substring: `=@ (%3D@)`
+
+        * Does not contain substring: `!@ (!@)`
+
+
+        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
+
+
+        Some examples:
+
+        * `filter=field%3Dvalue` (`field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_log-type:
+      name: logType
+      in: path
+      required: true
+      description: An ID that uniquely identifies a log type.
+      schema:
+        type: string
+        enum:
+        - apache-access
+        - apache-error
+        - drupal-request
+        - drupal-watchdog
+        - fpm-access
+        - fpm-error
+        - php-error
+        - cloud-hook
+        - cronjob
+        - mysql-slow-query
+      example: php-error
+    Acquia_Cloud_API_Documentation_usage-metric:
+      name: usageMetric
+      in: path
+      description: A usage data metric type.
+      required: true
+      schema:
+        type: string
+      example: views
+    Acquia_Cloud_API_Documentation_environment-variable-name:
+      name: environmentVariableName
+      in: path
+      description: The environment variable name.
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 255
+        pattern: ^(?!(ACQUIA_|AH_))[A-Za-z_][A-Za-z0-9_]*$
+      example: EXAMPLE_VARIABLE_NAME
+    Acquia_Cloud_API_Documentation_environment-id:
+      name: environmentId
+      in: path
+      description: The environment identifier. The identifier is a compound key consisting of the internal database ID of the environment and the application UUID.
+      required: true
+      schema:
+        type: string
+      example: 12-d314739e-296f-11e9-b210-d663bd873d93
+    Acquia_Cloud_API_Documentation_backup-id:
+      name: backupId
+      in: path
+      required: true
+      description: The database backup identifier.
+      schema:
+        type: integer
+      example: 1
+    Acquia_Cloud_API_Documentation_filter-stack-metrics:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
+
+
+        * Equals: `= (%3D)`
+
+        * Does not equal: `!= (!%3D)`
+
+        * Greater than: `> (%3E)`
+
+        * Less than: `< (%3C)`
+
+        * Greater than or equal to: `>= (%3E%3D)`
+
+        * Less than or equal to: `<= (%3C%3D)`
+
+        * Contains substring: `=@ (%3D@)`
+
+        * Does not contain substring: `!@ (!@)`
+
+
+        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
+
+
+        Some examples:
+
+        * `filter=field%3Dvalue` (`field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
+
+
+        **For this endpoint, the "metric" filter is required. Multiple metrics can be returned in one request. The following metrics are available:**
+
+
+        * apache-requests, bal-cpu, bal-memory, cron-memory, db-cpu, db-disk-size, db-disk-usage, db-memory, file-disk-size, file-cpu, file-disk-usage, file-memory, http-2xx, http-3xx, http-4xx, http-5xx, mysql-slow-query-count, nginx-requests, out-of-memory, php-proc-max-reached-site, php-proc-max-reached-total, php-proc-site, php-proc-total, varnish-cache-hit-rate, varnish-requests, web-cpu, web-memory
+
+        '
+      required: true
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_certificate-id:
+      name: certificateId
+      in: path
+      required: true
+      description: An ID that uniquely identifies a certificate.
+      schema:
+        type: integer
+      example: 7
+    Acquia_Cloud_API_Documentation_from-stack-metrics:
+      name: from
+      in: query
+      description: An ISO-8601 formatted date retrieve metrics from.
+      required: true
+      schema:
+        type: string
+      example: '2021-01-29T22:45:21+00:00'
+    Acquia_Cloud_API_Documentation_index-id:
+      name: indexId
+      in: path
+      required: true
+      description: An ID that uniquely identifies an index.
+      schema:
+        type: string
+      example: ABCDE-1234.test.example
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_server-id:
+      name: serverId
+      in: path
+      required: true
+      description: The internal database identifier of the server.
+      schema:
+        type: string
+      example: '42'
+    Acquia_Cloud_API_Documentation_database-name:
+      name: databaseName
+      in: path
+      required: true
+      description: The database name, typically lower snake case.
+      schema:
+        type: string
+      example: my_db
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_deprecated-from:
+      name: from
+      in: query
+      description: (Use filter `from` instead.) Specifies an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted date. Used in conjunction with `to` query.
+      deprecated: true
+      required: false
+      schema:
+        type: string
+      example: '2019-10-01'
+    Acquia_Cloud_API_Documentation_cron-id:
+      name: cronId
+      in: path
+      required: true
+      description: An ID that uniquely identifies a cron job.
+      schema:
+        type: string
+      example: e10a665c-c9ec-4422-a82b-b32c82329f9d
+    Acquia_Cloud_API_Documentation_resolution:
+      name: resolution
+      in: query
+      description: 'Specifies the data granularity of the request. Available resolutions: minute, hour, day, week or month.
+
+
+        Limits:
+
+        - 3 hour limit for “minute” resolution
+
+        - 1 week limit for “hour” resolution
+
+        - 6 month limit for “day” resolution
+
+        - 1 year limit for "week" resolution
+
+        - 3 year limit for “month” resolution
+
+        '
+      required: false
+      schema:
+        type: string
+        enum:
+        - minute
+        - hour
+        - day
+        - week
+        - month
+    Acquia_Cloud_API_Documentation_filter-usage-metrics:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        Filter parameters include:
+
+        * `from` - Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
+
+        * `to` - Specifies absolute time period to retrieve results until. Requires ISO 8601 format.
+
+
+        Formatting examples:
+
+        * `2023-09-01`
+
+        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
+
+
+        Usage examples:
+
+        * `{endpoint}?filter=from%3D2025-04-01,to%3D2025-04-30` (`from` is `2025-04-01` and `to` is `2025-04-30`)
+
+        * `{endpoint}?filter=from%3D2025-04-01T00:00:00.000Z,to%3D2025-04-30T23:59:59.000Z` (`from` is `2025-04-01T00:00:00.000Z` and `to` is `2025-04-30T23:59:59.000Z`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_domain:
+      name: domain
+      in: path
+      description: A domain name.
+      required: true
+      schema:
+        type: string
+      example: example.com
+    Acquia_Cloud_API_Documentation_log-forwarding-destination-uuid:
+      name: logForwardingDestinationUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: dbd8a966-2b25-11e9-b210-d663bd873d93
+    Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_deprecated-to:
+      name: to
+      in: query
+      description: (Use filter `to` instead.) Specifies an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) formatted date. Used in conjunction with `from` query.
+      deprecated: true
+      required: false
+      schema:
+        type: string
+      example: '2020-01-01'
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

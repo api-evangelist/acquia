@@ -1608,21 +1608,198 @@ paths:
                     error: conflict
                     message: The access token has already been revoked.
 components:
+  parameters:
+    Acquia_Cloud_API_Documentation_offset:
+      name: offset
+      in: query
+      description: An integer to signify the offset to paginate from.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_subscription-uuid:
+      name: subscriptionUuid
+      in: path
+      description: The subscription entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
+    Acquia_Cloud_API_Documentation_team-uuid:
+      name: teamUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 3eef5d81-62f4-429c-aa94-e17d05ab4740
+    Acquia_Cloud_API_Documentation_from:
+      name: from
+      in: query
+      description: 'Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
+
+
+        Some examples:
+
+        * `2023-09-01`
+
+        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
+
+        '
+      required: false
+      schema:
+        type: string
+      example: '2023-09-01'
+    Acquia_Cloud_API_Documentation_token-delete-reason:
+      name: tokenDeleteReason
+      in: query
+      description: Specifies the reason for the token revocation for future reference.
+      schema:
+        type: string
+      example: The quick brown fox jumped over the lazy dog.
+    Acquia_Cloud_API_Documentation_application-uuid:
+      name: applicationUuid
+      in: path
+      description: The entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
+    Acquia_Cloud_API_Documentation_limit:
+      name: limit
+      in: query
+      description: The maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+      example: 10
+    Acquia_Cloud_API_Documentation_organization-uuid:
+      name: organizationUuid
+      in: path
+      description: The organization entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+        minLength: 36
+        maxLength: 36
+        format: uuid
+      example: 1e7efab9-0fac-4a2c-ad94-61efc78623ba
+    Acquia_Cloud_API_Documentation_ssh-key-uuid:
+      name: sshKeyUuid
+      in: path
+      description: The SSH key entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 981b7910-2fe9-11e9-b210-d663bd873d93
+    Acquia_Cloud_API_Documentation_filter:
+      name: filter
+      in: query
+      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
+
+
+        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
+
+
+        * Equals: `= (%3D)`
+
+        * Does not equal: `!= (!%3D)`
+
+        * Greater than: `> (%3E)`
+
+        * Less than: `< (%3C)`
+
+        * Greater than or equal to: `>= (%3E%3D)`
+
+        * Less than or equal to: `<= (%3C%3D)`
+
+        * Contains substring: `=@ (%3D@)`
+
+        * Does not contain substring: `!@ (!@)`
+
+
+        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
+
+
+        Some examples:
+
+        * `filter=field%3Dvalue` (`field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
+
+        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+    Acquia_Cloud_API_Documentation_drush-version:
+      name: version
+      in: query
+      description: Specifies the drush aliases formatting, either 8 (example.aliases.drushrc.php) or 9 (example.site.yaml)
+      required: true
+      schema:
+        type: integer
+        enum:
+        - 8
+        - 9
+      example: 8
+    Acquia_Cloud_API_Documentation_sort:
+      name: sort
+      in: query
+      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
+
+        '
+      required: false
+      schema:
+        type: string
+        minimum: 1
+      example: field1,-field2
+    Acquia_Cloud_API_Documentation_permission:
+      name: permission
+      in: query
+      description: Specifies the permission you wish to check access for.
+      required: true
+      schema:
+        type: string
+      example: deploy to prod
+    Acquia_Cloud_API_Documentation_to:
+      name: to
+      in: query
+      description: 'Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.
+
+
+        Some examples:
+
+        * `2023-09-29`
+
+        * `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)
+
+        '
+      required: false
+      schema:
+        type: string
+      example: '2023-09-29'
+    Acquia_Cloud_API_Documentation_token-uuid:
+      name: tokenUuid
+      in: path
+      description: The token entity's universally unique identifier.
+      required: true
+      schema:
+        type: string
+      example: 882f3258-2fe9-11e9-b210-d663bd873d93
   schemas:
-    Acquia_Cloud_API_Documentation_ssh-key-request:
+    Acquia_Cloud_API_Documentation_password-validation:
       type: object
-      required:
-      - label
-      - public_key
-      description: Describes the request body for an SSH key.
+      description: The password validation response.
       properties:
-        label:
-          type: string
-          description: The SSH key label.
-        public_key:
-          type: string
-          description: The public key.
-    Acquia_Cloud_API_Documentation_role-stub:
+        valid:
+          type: boolean
+          description: Whether or not the password is valid.
+    Acquia_Cloud_API_Documentation_organization-stub:
       type: object
       required:
       - uuid
@@ -1630,64 +1807,11 @@ components:
       properties:
         uuid:
           type: string
-          description: The role unique identifier.
           format: uuid
+          description: The organization's UUID.
         name:
           type: string
-          description: The role name.
-    Acquia_Cloud_API_Documentation_ux-message:
-      type: object
-      required:
-      - id
-      - uuid
-      - title
-      - body
-      - url
-      - filters
-      - flags
-      - weight
-      - start_at
-      - expire_at
-      - _links
-      properties:
-        id:
-          type: integer
-          description: The message identifier.
-        uuid:
-          type: string
-          description: The message unique identifier.
-          format: uuid
-        title:
-          type: string
-          description: The message title.
-        body:
-          type:
-          - string
-          - 'null'
-          description: The message body.
-        url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: The message url.
-        filters:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-filters'
-        flags:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-flags'
-        weight:
-          type: integer
-          description: The message priority weight.
-        start_at:
-          type: string
-          format: date-time
-          description: The UTC timestamp of when the message started.
-        expire_at:
-          type: string
-          format: date-time
-          description: The UTC timestamp of when the message expires.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+          description: The human-readable organization name.
     Acquia_Cloud_API_Documentation_user-flags:
       type: object
       description: The various flags for the user.
@@ -1701,6 +1825,230 @@ components:
         support:
           type: boolean
           description: Whether or not this user is a member of Acquia support.
+    Acquia_Cloud_API_Documentation_password:
+      type: object
+      required:
+      - password
+      description: Describes the request body for a password.
+      properties:
+        password:
+          type: string
+          description: The password to verify.
+    Acquia_Cloud_API_Documentation_is-administrator:
+      type: object
+      required:
+      - admin
+      - _links
+      description: Determines if a user account is an administrator.
+      properties:
+        admin:
+          type: boolean
+          description: Whether or not the user account is an administrator.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_token-request:
+      type: object
+      required:
+      - label
+      description: Describes the request body for a token.
+      properties:
+        label:
+          type: string
+          description: The label to give to the token for future reference.
+          minLength: 1
+    Acquia_Cloud_API_Documentation_ides:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of Cloud IDEs matching the request parameters.
+          required:
+          - items
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ide'
+    Acquia_Cloud_API_Documentation_token:
+      type: object
+      required:
+      - uuid
+      - active
+      - label
+      - revocation
+      - flags
+      - created_at
+      - _links
+      description: Details a token.
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The token UUID.
+        active:
+          type: boolean
+          description: Whether or not this token is active.
+        label:
+          type: string
+          description: The human-readable name for this token.
+        revocation:
+          type:
+          - string
+          - 'null'
+          description: If set, the reason why this token was revoked.
+        flags:
+          type: object
+          description: Flags detailing the token's status.
+          properties:
+            active:
+              type: boolean
+              description: Whether or not this token is active.
+        created_at:
+          type: string
+          format: date-time
+          description: The creation date and time.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_ssh-key:
+      type: object
+      required:
+      - uuid
+      - label
+      - public_key
+      - fingerprint
+      - created_at
+      - _links
+      description: Details an SSH key.
+      properties:
+        uuid:
+          type: string
+          description: The unique identifier of the SSH key.
+          format: uuid
+        label:
+          type: string
+          description: The human-readable key label.
+        public_key:
+          type: string
+          description: The public key.
+          minLength: 64
+        fingerprint:
+          type: string
+          description: The public key fingerprint.
+        created_at:
+          type: string
+          format: date-time
+          description: The key creation date.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_ssh-keys:
+      type: object
+      required:
+      - total
+      - _links
+      - _embedded
+      description: A collection of SSH keys.
+      properties:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of SSH keys matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ssh-key'
+    Acquia_Cloud_API_Documentation_has-permission:
+      type: object
+      description: Determines if a user account has a specific permission.
+      required:
+      - access
+      - _links
+      properties:
+        access:
+          type: boolean
+          description: Whether or not the user account has the specific permission.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_message-with-links:
+      type: object
+      required:
+      - message
+      - _links
+      properties:
+        message:
+          type: string
+          description: The human-friendly confirmation of the creation of the resource.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_ux-message-flags:
+      type: object
+      description: An array of various flags associated with a message.
+      properties:
+        dismissed:
+          type: boolean
+        dismissible:
+          type: boolean
+        active:
+          type: boolean
+    Acquia_Cloud_API_Documentation_user-stub:
+      type: object
+      required:
+      - uuid
+      - first_name
+      - last_name
+      - mail
+      - picture_url
+      - username
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The user's UUID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        mail:
+          type: string
+          format: email
+          description: The user's email address.
+        picture_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URI for the user's picture.
+        username:
+          type: string
+          description: The user's internal user name.
+    Acquia_Cloud_API_Documentation_ssh-key-request:
+      type: object
+      required:
+      - label
+      - public_key
+      description: Describes the request body for an SSH key.
+      properties:
+        label:
+          type: string
+          description: The SSH key label.
+        public_key:
+          type: string
+          description: The public key.
     Acquia_Cloud_API_Documentation_user:
       type: object
       required:
@@ -2158,34 +2506,21 @@ components:
           properties:
             owner:
               $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_user-profile'
-    Acquia_Cloud_API_Documentation_message-with-links:
+    Acquia_Cloud_API_Documentation_validation-error:
       type: object
       required:
+      - error
       - message
-      - _links
+      description: A validation error.
       properties:
-        message:
+        error:
           type: string
-          description: The human-friendly confirmation of the creation of the resource.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_ux-message-flags:
-      type: object
-      description: An array of various flags associated with a message.
-      properties:
-        dismissed:
-          type: boolean
-        dismissible:
-          type: boolean
-        active:
-          type: boolean
-    Acquia_Cloud_API_Documentation_password-validation:
-      type: object
-      description: The password validation response.
-      properties:
-        valid:
-          type: boolean
-          description: Whether or not the password is valid.
+          description: The error summary.
+        message:
+          type: object
+          description: The validation error message keyed by its field or group name.
+          additionalProperties:
+            type: string
     Acquia_Cloud_API_Documentation_invite:
       type: object
       required:
@@ -2233,246 +2568,6 @@ components:
             $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_role-stub'
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_file:
-      type: string
-      description: A binary file response.
-      format: binary
-    Acquia_Cloud_API_Documentation_is-administrator:
-      type: object
-      required:
-      - admin
-      - _links
-      description: Determines if a user account is an administrator.
-      properties:
-        admin:
-          type: boolean
-          description: Whether or not the user account is an administrator.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_password:
-      type: object
-      required:
-      - password
-      description: Describes the request body for a password.
-      properties:
-        password:
-          type: string
-          description: The password to verify.
-    Acquia_Cloud_API_Documentation_message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A simple message returned from the response.
-    Acquia_Cloud_API_Documentation_ux-messages:
-      type: object
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of application messages matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message'
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
-    Acquia_Cloud_API_Documentation_organization-stub:
-      type: object
-      required:
-      - uuid
-      - name
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The organization's UUID.
-        name:
-          type: string
-          description: The human-readable organization name.
-    Acquia_Cloud_API_Documentation_tokens:
-      type: object
-      required:
-      - total
-      - _links
-      - _embedded
-      description: A collection of tokens.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of tokens matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_token'
-    Acquia_Cloud_API_Documentation_ides:
-      type: object
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of Cloud IDEs matching the request parameters.
-          required:
-          - items
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ide'
-    Acquia_Cloud_API_Documentation_user-stub:
-      type: object
-      required:
-      - uuid
-      - first_name
-      - last_name
-      - mail
-      - picture_url
-      - username
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The user's UUID.
-        first_name:
-          type: string
-          description: The user's first name.
-        last_name:
-          type: string
-          description: The user's last name.
-        mail:
-          type: string
-          format: email
-          description: The user's email address.
-        picture_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: The URI for the user's picture.
-        username:
-          type: string
-          description: The user's internal user name.
-    Acquia_Cloud_API_Documentation_ssh-key:
-      type: object
-      required:
-      - uuid
-      - label
-      - public_key
-      - fingerprint
-      - created_at
-      - _links
-      description: Details an SSH key.
-      properties:
-        uuid:
-          type: string
-          description: The unique identifier of the SSH key.
-          format: uuid
-        label:
-          type: string
-          description: The human-readable key label.
-        public_key:
-          type: string
-          description: The public key.
-          minLength: 64
-        fingerprint:
-          type: string
-          description: The public key fingerprint.
-        created_at:
-          type: string
-          format: date-time
-          description: The key creation date.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_account-invites:
-      type: object
-      description: A collection of invites.
-      required:
-      - total
-      - _links
-      - _embedded
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of invites matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
-    Acquia_Cloud_API_Documentation_ssh-keys:
-      type: object
-      required:
-      - total
-      - _links
-      - _embedded
-      description: A collection of SSH keys.
-      properties:
-        total:
-          type: integer
-          description: The number of items returned in the collection.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-        _embedded:
-          type: object
-          description: A collection of SSH keys matching the request parameters.
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ssh-key'
-    Acquia_Cloud_API_Documentation_application-stub:
-      type: object
-      required:
-      - name
-      - uuid
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-        uuid:
-          type: string
-          format: uuid
-          description: The application UUID.
     Acquia_Cloud_API_Documentation_ux-message-filters:
       type: object
       description: Defines where a message should appear.
@@ -2497,80 +2592,26 @@ components:
           - general
           - new
           - warning
-    Acquia_Cloud_API_Documentation_token-request:
+    Acquia_Cloud_API_Documentation_ux-messages:
       type: object
       required:
-      - label
-      description: Describes the request body for a token.
-      properties:
-        label:
-          type: string
-          description: The label to give to the token for future reference.
-          minLength: 1
-    Acquia_Cloud_API_Documentation_token:
-      type: object
-      required:
-      - uuid
-      - active
-      - label
-      - revocation
-      - flags
-      - created_at
+      - total
       - _links
-      description: Details a token.
+      - _embedded
       properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The token UUID.
-        active:
-          type: boolean
-          description: Whether or not this token is active.
-        label:
-          type: string
-          description: The human-readable name for this token.
-        revocation:
-          type:
-          - string
-          - 'null'
-          description: If set, the reason why this token was revoked.
-        flags:
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
           type: object
-          description: Flags detailing the token's status.
+          description: A collection of application messages matching the request parameters.
           properties:
-            active:
-              type: boolean
-              description: Whether or not this token is active.
-        created_at:
-          type: string
-          format: date-time
-          description: The creation date and time.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-    Acquia_Cloud_API_Documentation_token-creation:
-      type: object
-      required:
-      - client_id
-      - client_secret
-      - _links
-      description: Details about a created user access token.
-      properties:
-        api_key:
-          deprecated: true
-          type: string
-          description: The API key.
-        api_secret:
-          deprecated: true
-          type: string
-          description: The API key secret.
-        client_id:
-          type: string
-          description: The API client id.
-        client_secret:
-          type: string
-          description: The API client secret.
-        _links:
-          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message'
     Acquia_Cloud_API_Documentation_user-profile:
       type: object
       description: A user profile.
@@ -2618,25 +2659,39 @@ components:
         username:
           type: string
           description: The user's internal user name.
-    Acquia_Cloud_API_Documentation_team-stub:
+    Acquia_Cloud_API_Documentation_file:
+      type: string
+      description: A binary file response.
+      format: binary
+    Acquia_Cloud_API_Documentation_message:
       type: object
       required:
-      - uuid
-      - name
+      - message
       properties:
-        uuid:
+        message:
           type: string
-          description: The team unique identifier.
-          format: uuid
-        name:
-          type: string
-          description: The team name.
-    Acquia_Cloud_API_Documentation_invite-flags:
+          description: A simple message returned from the response.
+    Acquia_Cloud_API_Documentation_account-invites:
       type: object
-      description: An array of various flags providing more context for the Invite response object.
+      description: A collection of invites.
+      required:
+      - total
+      - _links
+      - _embedded
       properties:
-        declined:
-          type: boolean
+        total:
+          type: integer
+          description: The number of items returned in the collection.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+        _embedded:
+          type: object
+          description: A collection of invites matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_invite'
     Acquia_Cloud_API_Documentation_is-owner:
       type: object
       required:
@@ -2665,216 +2720,161 @@ components:
               type: string
               format: uri
               description: The URI for this page.
-    Acquia_Cloud_API_Documentation_validation-error:
+    Acquia_Cloud_API_Documentation_invite-flags:
+      type: object
+      description: An array of various flags providing more context for the Invite response object.
+      properties:
+        declined:
+          type: boolean
+    Acquia_Cloud_API_Documentation_application-stub:
+      type: object
+      required:
+      - name
+      - uuid
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+        uuid:
+          type: string
+          format: uuid
+          description: The application UUID.
+    Acquia_Cloud_API_Documentation_role-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          description: The role unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The role name.
+    Acquia_Cloud_API_Documentation_token-creation:
+      type: object
+      required:
+      - client_id
+      - client_secret
+      - _links
+      description: Details about a created user access token.
+      properties:
+        api_key:
+          deprecated: true
+          type: string
+          description: The API key.
+        api_secret:
+          deprecated: true
+          type: string
+          description: The API key secret.
+        client_id:
+          type: string
+          description: The API client id.
+        client_secret:
+          type: string
+          description: The API client secret.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_ux-message:
+      type: object
+      required:
+      - id
+      - uuid
+      - title
+      - body
+      - url
+      - filters
+      - flags
+      - weight
+      - start_at
+      - expire_at
+      - _links
+      properties:
+        id:
+          type: integer
+          description: The message identifier.
+        uuid:
+          type: string
+          description: The message unique identifier.
+          format: uuid
+        title:
+          type: string
+          description: The message title.
+        body:
+          type:
+          - string
+          - 'null'
+          description: The message body.
+        url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The message url.
+        filters:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-filters'
+        flags:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_ux-message-flags'
+        weight:
+          type: integer
+          description: The message priority weight.
+        start_at:
+          type: string
+          format: date-time
+          description: The UTC timestamp of when the message started.
+        expire_at:
+          type: string
+          format: date-time
+          description: The UTC timestamp of when the message expires.
+        _links:
+          $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
+    Acquia_Cloud_API_Documentation_error:
       type: object
       required:
       - error
       - message
-      description: A validation error.
       properties:
         error:
           type: string
           description: The error summary.
         message:
-          type: object
-          description: The validation error message keyed by its field or group name.
-          additionalProperties:
-            type: string
-    Acquia_Cloud_API_Documentation_has-permission:
+          type: string
+          description: The long description for the returned error.
+    Acquia_Cloud_API_Documentation_tokens:
       type: object
-      description: Determines if a user account has a specific permission.
       required:
-      - access
+      - total
       - _links
+      - _embedded
+      description: A collection of tokens.
       properties:
-        access:
-          type: boolean
-          description: Whether or not the user account has the specific permission.
+        total:
+          type: integer
+          description: The number of items returned in the collection.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-  parameters:
-    Acquia_Cloud_API_Documentation_application-uuid:
-      name: applicationUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: da1c0a8e-ff69-45db-88fc-acd6d2affbb7
-    Acquia_Cloud_API_Documentation_permission:
-      name: permission
-      in: query
-      description: Specifies the permission you wish to check access for.
-      required: true
-      schema:
-        type: string
-      example: deploy to prod
-    Acquia_Cloud_API_Documentation_offset:
-      name: offset
-      in: query
-      description: An integer to signify the offset to paginate from.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_organization-uuid:
-      name: organizationUuid
-      in: path
-      description: The organization entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-        minLength: 36
-        maxLength: 36
-        format: uuid
-      example: 1e7efab9-0fac-4a2c-ad94-61efc78623ba
-    Acquia_Cloud_API_Documentation_token-delete-reason:
-      name: tokenDeleteReason
-      in: query
-      description: Specifies the reason for the token revocation for future reference.
-      schema:
-        type: string
-      example: The quick brown fox jumped over the lazy dog.
-    Acquia_Cloud_API_Documentation_drush-version:
-      name: version
-      in: query
-      description: Specifies the drush aliases formatting, either 8 (example.aliases.drushrc.php) or 9 (example.site.yaml)
-      required: true
-      schema:
-        type: integer
-        enum:
-        - 8
-        - 9
-      example: 8
-    Acquia_Cloud_API_Documentation_to:
-      name: to
-      in: query
-      description: 'Optionally specifies absolute time period to retrieve results until. Requires ISO 8601 format.
-
-
-        Some examples:
-
-        * `2023-09-29`
-
-        * `2023-09-29T00%3A00%3A00.000Z` (`2023-09-29T00:00:00.000Z`)
-
-        '
-      required: false
-      schema:
-        type: string
-      example: '2023-09-29'
-    Acquia_Cloud_API_Documentation_from:
-      name: from
-      in: query
-      description: 'Specifies absolute time period to retrieve results from. Requires ISO 8601 format.
-
-
-        Some examples:
-
-        * `2023-09-01`
-
-        * `2023-09-01T00%3A00%3A00.000Z` (`2023-09-01T00:00:00.000Z`)
-
-        '
-      required: false
-      schema:
-        type: string
-      example: '2023-09-01'
-    Acquia_Cloud_API_Documentation_ssh-key-uuid:
-      name: sshKeyUuid
-      in: path
-      description: The SSH key entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: 981b7910-2fe9-11e9-b210-d663bd873d93
-    Acquia_Cloud_API_Documentation_filter:
-      name: filter
-      in: query
-      description: 'The filters query string parameter restricts the data returned from your request. Filtered queries restrict the rows that do (or do not) get included in the result by testing each row in the result against the filters. Not all fields are filterable.
-
-
-        There are eight filter operators that can be used and they must be URL encoded in order to be included. The operators are:
-
-
-        * Equals: `= (%3D)`
-
-        * Does not equal: `!= (!%3D)`
-
-        * Greater than: `> (%3E)`
-
-        * Less than: `< (%3C)`
-
-        * Greater than or equal to: `>= (%3E%3D)`
-
-        * Less than or equal to: `<= (%3C%3D)`
-
-        * Contains substring: `=@ (%3D@)`
-
-        * Does not contain substring: `!@ (!@)`
-
-
-        Filters can be combined using `OR` and `AND` boolean logic. The `OR` operator is defined using a comma (`,`) and the `AND` operator is defined using a semi-colon (`;`).
-
-
-        Some examples:
-
-        * `filter=field%3Dvalue` (`field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch` (`field` ends with `''partialmatch''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue` (`field` ends with `''partialmatch''` OR `field` equals `''value''`)
-
-        * `filter=field%3D@*partialmatch,field%3Dvalue;field2%3C5` (`field` ends with `''partialmatch''` OR `field` equals `''value''` AND `field2` > `5`)
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-    Acquia_Cloud_API_Documentation_token-uuid:
-      name: tokenUuid
-      in: path
-      description: The token entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: 882f3258-2fe9-11e9-b210-d663bd873d93
-    Acquia_Cloud_API_Documentation_limit:
-      name: limit
-      in: query
-      description: The maximum number of items to return.
-      required: false
-      schema:
-        type: integer
-      example: 10
-    Acquia_Cloud_API_Documentation_team-uuid:
-      name: teamUuid
-      in: path
-      description: The entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: 3eef5d81-62f4-429c-aa94-e17d05ab4740
-    Acquia_Cloud_API_Documentation_subscription-uuid:
-      name: subscriptionUuid
-      in: path
-      description: The subscription entity's universally unique identifier.
-      required: true
-      schema:
-        type: string
-      example: 0f3ad33e-2fe4-11e9-b210-d663bd873d93
-    Acquia_Cloud_API_Documentation_sort:
-      name: sort
-      in: query
-      description: 'A comma-delimited string with fields used for sorting. The order of the fields is significant. A leading - in the field indicates the field should be sorted in a descending order. Not all fields are sortable.
-
-        '
-      required: false
-      schema:
-        type: string
-        minimum: 1
-      example: field1,-field2
+        _embedded:
+          type: object
+          description: A collection of tokens matching the request parameters.
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_token'
+    Acquia_Cloud_API_Documentation_team-stub:
+      type: object
+      required:
+      - uuid
+      - name
+      properties:
+        uuid:
+          type: string
+          description: The team unique identifier.
+          format: uuid
+        name:
+          type: string
+          description: The team name.
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

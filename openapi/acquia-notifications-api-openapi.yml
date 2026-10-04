@@ -79,6 +79,18 @@ paths:
                     message: The data you are trying to access does not exist, or you do not have permission to access it.
 components:
   schemas:
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_notification-stub:
       type: object
       description: A notification about an event or a task.
@@ -135,18 +147,6 @@ components:
         _embedded:
           type: object
           description: Data related to the notification, such as the author.
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_links:
       type: object
       required:

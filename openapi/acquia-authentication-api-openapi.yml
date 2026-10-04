@@ -138,15 +138,6 @@ paths:
           description: Redirect to `redirect_uri` carrying the temporary authorization code.
 components:
   schemas:
-    OAuthError:
-      type: object
-      properties:
-        error:
-          type: string
-        error_description:
-          type: string
-        hint:
-          type: string
     TokenResponse:
       type: object
       required:
@@ -165,6 +156,15 @@ components:
         refresh_token:
           type: string
           description: Returned by authorization_code and refresh_token grants only; never by client_credentials.
+    OAuthError:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        hint:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
