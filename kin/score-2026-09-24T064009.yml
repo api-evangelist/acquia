@@ -1,32 +1,30 @@
-# Kin Score artifact — acquia — 2026-09-01T222808
+# Kin Score artifact — acquia — 2026-09-24T064009
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: acquia
-  schema_version: 0.18.0
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T222808
-  composite: 74.4
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T064009
+  composite: 74.5
   band: exemplar
   facets:
     discoverability: 72.2
-    contract_quality: 72.9
-    governance: 47.0
+    contract_quality: 67.4
+    contract_governance: 47.0
     operational_transparency: 65.8
     developer_ergonomics: 73.8
-    commercial_clarity: 100.0
-    contract_governance: 47.0
     access_clarity: 100.0
   agent_readiness:
-    score: 51.3
+    score: 60.6
     band: agent-ready
     band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: verified
-      mcp_server: documented
-      auth_clarity: negotiable
+      mcp_server: templated
+      auth_clarity: served
       idempotency: false
       error_semantics: verified
       openapi_examples: verified
@@ -37,9 +35,9 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
-      delegated_identity: documented
+      delegated_identity: served
       protected_resource_metadata: false
-      dynamic_client_registration: false
+      dynamic_client_registration: true
       agentic_commerce: false
   provenance:
     mcp: first-party
@@ -47,7 +45,7 @@ kin_score:
     agentic_access: derived
     conformance: first-party
     contracts:
-      total: 20
+      total: 21
       derived: 0
       coverage: 0.0
-      callable: 90.0
+      callable: 0.0
