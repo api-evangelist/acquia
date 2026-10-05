@@ -1,0 +1,71 @@
+slug: acquia
+provider: Acquia
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Environments
+  spec_file: acquia-environments-api-openapi.yml
+  capability_id: BC-4210.20
+  capability_id_l1: BC-4210
+  capability_name: Environment Management
+  confidence: 0.8
+  evidence: POST /environments/{environmentId}/artifacts/actions/switch postDeployArtifact Deploys an
+    artifact to this environment; DELETE /environments/{environmentId} Deletes a CD environment
+  reason: Provisioning, configuring and deleting CD/hosting environments plus deploying artefacts to them
+    is Environment Management within software release and deployment. Some overlap with Deployment Orchestration
+    and IT Infrastructure Management, hence 0.8.
+- tag: Identity Providers
+  spec_file: acquia-identity-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /identity-providers Returns a list of identity providers for a user; POST /identity-providers/{identityProviderUuid}/actions/enable
+    Enables an identity provider
+  reason: CRUD and enable/disable of SAML/OIDC identity providers is federation configuration — Identity
+    & Access Management. Could alternatively be read as tenant identity federation (BC-4230.50), hence
+    not 0.95.
+- tag: Private Networks
+  spec_file: acquia-private-networks-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: 'POST /private-networks/{privateNetworkId}/connections/vpns addVpnToPrivateNetwork Add a new
+    VPN to an existing private network; schemas: VPCPeersResponse, Ingress, Isolation'
+  reason: Creation and management of private networks, VPNs and VPC peering is cloud network infrastructure
+    management. Could also be argued as tenant isolation, but the operations are plainly networking infrastructure.
+- tag: Teams and Permissions
+  spec_file: acquia-teams-and-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /permissions 'Return a list of permissions'; GET /roles/{roleUuid} 'Return details about
+    a specific role'; 'Returns a list of applications this team has access to'; schemas 'role', 'permission',
+    'team-members', 'invite'
+  reason: Roles, permissions, teams, member invites and granting teams access to applications is access
+    control administration — Identity & Access Management. Not a product/marketing capability. Slight
+    residual ambiguity with tenant identity management since this is a cloud platform's own user administration,
+    but no SSO/SCIM federation operations appear.
+- tag: Application Performance Monitoring Services
+  spec_file: acquia-application-performance-monitoring-services-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.7
+  evidence: '"Returns a list of Application Performance Monitoring services associated with…", "Update
+    configuration for an Application Performance Monitoring tool", "Enables New Relic Pro APM license
+    for all applications on a subscription"'
+  reason: Configuring APM tooling for hosted environments is observability management of the running service;
+    some ambiguity as the opt-in operation is partly a subscription entitlement action.
