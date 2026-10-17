@@ -149,35 +149,16 @@ paths:
                 error: not_found
                 message: The distribution you are trying to access does not exist.
 components:
+  parameters:
+    Acquia_Cloud_API_Documentation_name:
+      name: name
+      in: path
+      description: A name that uniquely identifies an entity.
+      required: true
+      schema:
+        type: string
+      example: drupal8
   schemas:
-    Acquia_Cloud_API_Documentation_error:
-      type: object
-      required:
-      - error
-      - message
-      properties:
-        error:
-          type: string
-          description: The error summary.
-        message:
-          type: string
-          description: The long description for the returned error.
-    Acquia_Cloud_API_Documentation_links:
-      type: object
-      required:
-      - self
-      description: HAL links about the current resource.
-      properties:
-        self:
-          type: object
-          description: A link to this page.
-          required:
-          - href
-          properties:
-            href:
-              type: string
-              format: uri
-              description: The URI for this page.
     Acquia_Cloud_API_Documentation_distributions:
       type: object
       properties:
@@ -194,6 +175,18 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_distribution'
+    Acquia_Cloud_API_Documentation_error:
+      type: object
+      required:
+      - error
+      - message
+      properties:
+        error:
+          type: string
+          description: The error summary.
+        message:
+          type: string
+          description: The long description for the returned error.
     Acquia_Cloud_API_Documentation_distribution:
       type: object
       required:
@@ -260,15 +253,22 @@ components:
               description: Whether this distribution is the default.
         _links:
           $ref: '#/components/schemas/Acquia_Cloud_API_Documentation_links'
-  parameters:
-    Acquia_Cloud_API_Documentation_name:
-      name: name
-      in: path
-      description: A name that uniquely identifies an entity.
-      required: true
-      schema:
-        type: string
-      example: drupal8
+    Acquia_Cloud_API_Documentation_links:
+      type: object
+      required:
+      - self
+      description: HAL links about the current resource.
+      properties:
+        self:
+          type: object
+          description: A link to this page.
+          required:
+          - href
+          properties:
+            href:
+              type: string
+              format: uri
+              description: The URI for this page.
   securitySchemes:
     Acquia_Cloud_API_Documentation_OAuth2:
       type: oauth2

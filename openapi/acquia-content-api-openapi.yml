@@ -213,13 +213,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    include:
-      name: include
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Comma-separated relationship paths to embed in `included`, for example `image,tags`.
     page:
       name: page
       in: query
@@ -229,22 +222,13 @@ components:
       schema:
         type: object
       description: 'Pagination: `page[limit]` and `page[offset]`.'
-    entityType:
-      name: entityType
-      in: path
-      required: true
+    sort:
+      name: sort
+      in: query
+      required: false
       schema:
         type: string
-        example: node
-      description: An entity type machine name (for example `node`, `media`, `taxonomy_term`).
-    uuid:
-      name: uuid
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-      description: The entry's UUID, the `id` member of every response.
+      description: Comma-separated field machine names; prefix with `-` for descending, for example `-created`.
     fields:
       name: fields
       in: query
@@ -254,6 +238,21 @@ components:
       schema:
         type: object
       description: 'Sparse fieldsets: `fields[node--article]=title,created` limits returned fields per type.'
+    uuid:
+      name: uuid
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The entry's UUID, the `id` member of every response.
+    include:
+      name: include
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Comma-separated relationship paths to embed in `included`, for example `image,tags`.
     filter:
       name: filter
       in: query
@@ -265,13 +264,14 @@ components:
       description: 'Match entries by field value. Short form `filter[field]=value` (equality) or canonical form with `[condition][path]`, `[condition][operator]`, `[condition][value]`. Operators: =, <>, >, >=, <, <=, STARTS_WITH, CONTAINS, ENDS_WITH, IN, NOT IN, BETWEEN, NOT BETWEEN, IS NULL, IS NOT NULL. Date fields compare as UNIX timestamps. Field paths use machine names. Every operator is shown with a worked example in the [query parameter reference](/source-cms/reference/query-parameters/#operators).
 
         '
-    sort:
-      name: sort
-      in: query
-      required: false
+    entityType:
+      name: entityType
+      in: path
+      required: true
       schema:
         type: string
-      description: Comma-separated field machine names; prefix with `-` for descending, for example `-created`.
+        example: node
+      description: An entity type machine name (for example `node`, `media`, `taxonomy_term`).
     bundle:
       name: bundle
       in: path
@@ -280,21 +280,45 @@ components:
         type: string
         example: article
       description: A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern.
+  responses:
+    Unauthorized:
+      description: 'Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.
+
+        '
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+    Forbidden:
+      description: 'The token is valid but lacks the required scope (for example writing without `content:administer`). The JSON:API error `detail` names the missing permission.
+
+        '
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/ErrorDocument'
+          example:
+            errors:
+            - status: '403'
+              detail: The 'administer nodes' permission is required.
   schemas:
-    ErrorDocument:
+    EntityDocument:
       type: object
       properties:
-        errors:
+        jsonapi:
+          type: object
+          properties:
+            version:
+              type: string
+              const: '1.1'
+        data:
+          $ref: '#/components/schemas/ResourceObject'
+        links:
+          type: object
+        included:
           type: array
           items:
-            type: object
-            properties:
-              status:
-                type: string
-              title:
-                type: string
-              detail:
-                type: string
+            $ref: '#/components/schemas/ResourceObject'
     CollectionDocument:
       type: object
       properties:
@@ -319,23 +343,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceObject'
-    EntityDocument:
+    ErrorDocument:
       type: object
       properties:
-        jsonapi:
-          type: object
-          properties:
-            version:
-              type: string
-              const: '1.1'
-        data:
-          $ref: '#/components/schemas/ResourceObject'
-        links:
-          type: object
-        included:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/ResourceObject'
+            type: object
+            properties:
+              status:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
     ResourceObject:
       type: object
       properties:
@@ -349,27 +370,6 @@ components:
           type: object
         relationships:
           type: object
-  responses:
-    Unauthorized:
-      description: 'Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.
-
-        '
-      content:
-        application/vnd.api+json:
-          schema:
-            $ref: '#/components/schemas/ErrorDocument'
-    Forbidden:
-      description: 'The token is valid but lacks the required scope (for example writing without `content:administer`). The JSON:API error `detail` names the missing permission.
-
-        '
-      content:
-        application/vnd.api+json:
-          schema:
-            $ref: '#/components/schemas/ErrorDocument'
-          example:
-            errors:
-            - status: '403'
-              detail: The 'administer nodes' permission is required.
   securitySchemes:
     bearerAuth:
       type: http
