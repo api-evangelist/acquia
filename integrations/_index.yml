@@ -67,3 +67,16 @@
       latest_authorization: '2021-05-21'
   status: not-a-workflow
   arazzo: null
+- slug: acquia-brightcove-own
+  label: Brightcove (own)
+  partner: brightcove
+  partner_name: Brightcove (own)
+  category: Content Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/acquia-dam
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
