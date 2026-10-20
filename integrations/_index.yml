@@ -28,6 +28,19 @@
     builder: unknown (not in the directory record)
   status: not-a-workflow
   arazzo: null
+- slug: acquia-brightcove-own
+  label: Brightcove (own)
+  partner: brightcove
+  partner_name: Brightcove (own)
+  category: Content Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/acquia-dam
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: acquia-fedramp
   label: FedRAMP
   partner_name: FedRAMP
@@ -67,16 +80,57 @@
       latest_authorization: '2021-05-21'
   status: not-a-workflow
   arazzo: null
-- slug: acquia-brightcove-own
-  label: Brightcove (own)
-  partner: brightcove
-  partner_name: Brightcove (own)
-  category: Content Management
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.brightcove.com/partners/acquia-dam
+- slug: acquia-cloud-security-alliance-star-registry
+  label: Cloud Security Alliance STAR Registry
+  partner_name: Cloud Security Alliance STAR Registry
+  category: Cloud security assurance
+  type: register
+  channel: standard-directory
+  evidence: https://cloudsecurityalliance.org/star/registry/acquia/services/digital-experience-platform
   source: edge
-  relationship: platform-app
+  relationship: standard-participant
+  contract_reference:
+    register: CSA STAR Registry (cloudsecurityalliance.org/star/registry)
+    spec_file: null
+    standard: CSA STAR
+    role: star-level-2
+    registered_name: Acquia, Inc.
+    registry_id: acquia
+    service_url: https://www.acquia.com/platform/acquia-dxp
+    matched_domain: acquia.com
+    matched_by: domain+name-among-holders
+    identity_source: the service URL the organisation filed on its STAR listing (no lookup)
+    levels:
+    - STAR Level 1
+    - STAR Level 2
+    certified_products:
+    - product: STAR Certification
+      lapsed: true
+      latest: '2021-11-17'
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: acquia-agent-skills-own-github-org
+  label: Agent Skills (own GitHub org)
+  partner_name: Agent Skills (own GitHub org)
+  category: Agent Skills package
+  type: register
+  channel: provider-built
+  evidence: https://github.com/acquia/acquia-skills
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: 'provider''s own GitHub org (GitHub REST API: repo + git tree holds SKILL.md)'
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-repo
+    matched_org: acquia
+    matched_by: org-profile-domain:acquia.com
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
