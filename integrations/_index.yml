@@ -28,19 +28,6 @@
     builder: unknown (not in the directory record)
   status: not-a-workflow
   arazzo: null
-- slug: acquia-brightcove-own
-  label: Brightcove (own)
-  partner: brightcove
-  partner_name: Brightcove (own)
-  category: Content Management
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.brightcove.com/partners/acquia-dam
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: acquia-fedramp
   label: FedRAMP
   partner_name: FedRAMP
@@ -454,5 +441,71 @@
       24 months'
     detected_by: sweep-php-dart-elixir-package-registries.py
     detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: acquia-drupal-association-supporter-programmes
+  label: Drupal Association supporter programmes
+  partner: drupal-org
+  partner_name: Drupal Association supporter programmes
+  category: Drupal Association partner / supporter programme
+  type: register
+  channel: standard-directory
+  evidence: https://www.drupal.org/acquia
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: drupal.org organization directory, Drupal Association supporter flags (api-d7 organization)
+    standard: null
+    spec_file: null
+    role: drupal-association-supporter
+    registered_name: Acquia
+    register_id: '1204416'
+    register_country: US
+    matched_domain: acquia.com
+    matched_by: domain+name-among-holders
+    programmes:
+    - programme: Drupal AI Initiative sponsor
+      levels:
+      - founding
+    - programme: Drupal Certified Partner
+      levels:
+      - top tier
+    - programme: DrupalCares 2020
+      levels:
+      - premiere
+    support_flags:
+    - certified_top_tier
+    - drupal_ai_founding_sponsor
+    - drupalcares_2020_premiere
+    signal_note: 'participation only: Drupal Association partner / supporter programme flags; listing is not conformance
+      (no certified_products)'
+    detected_by: sweep-drupal-contrib-ecosystem.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: acquia-brightcove-own
+  label: Brightcove (own)
+  partner: brightcove
+  partner_name: Brightcove (own)
+  category: Content Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.brightcove.com/partners/acquia-dam
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: acquia-drupal-own
+  label: Drupal (own)
+  partner: drupal
+  partner_name: Drupal (own)
+  category: Drupal contributed module
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.drupal.org/project/pathauto
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
