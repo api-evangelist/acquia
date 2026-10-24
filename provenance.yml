@@ -45,9 +45,6 @@ artifacts:
   collections/acquia-applications-api.postman_collection.json:
     method: derived
     evidence: openapi/acquia-applications-api
-  collections/acquia-authentication-api.postman_collection.json:
-    method: derived
-    evidence: openapi/acquia-authentication-api
   collections/acquia-cloud-account.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -180,9 +177,6 @@ artifacts:
   collections/acquia-codebases-api.postman_collection.json:
     method: derived
     evidence: openapi/acquia-codebases-api
-  collections/acquia-content-api.postman_collection.json:
-    method: derived
-    evidence: openapi/acquia-content-api
   collections/acquia-current-system-health-api.opencollection.json:
     method: derived
     evidence: openapi/acquia-current-system-health-api
@@ -408,43 +402,7 @@ artifacts:
   json-structure/acquia-cloud-ux-message-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-10-11T110117.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-12T062655.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-12T080032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-12T204651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-12T221936.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-13T214537.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-14T064754.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-14T210656.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-14T225847.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-15T211329.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-15T230249.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-16T210549.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-16T225339.yml:
+  kin/checks-2026-10-17T182844.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-17T211151.yml:
@@ -504,7 +462,25 @@ artifacts:
   kin/score-2026-10-03T024842.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-04T202412.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-04T225258.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-09T213714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-17T145100.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-17T153854.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-17T182844.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/acquia-lifecycle.yml:
