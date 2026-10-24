@@ -1,0 +1,1771 @@
+{
+  "info": {
+    "_postman_id": "2b21d116-2f27-4510-b6b5-2c1bea3c2aaf",
+    "name": "Acquia Content API",
+    "description": "The stable JSON:API surface shared by every Source CMS site, plus the OAuth 2.0 authentication endpoints that issue the tokens it accepts.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:32.000Z",
+    "updatedAt": "2026-10-22T01:31:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b21d116-2f27-4510-b6b5-2c1bea3c2aaf"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "{entityType}",
+          "item": [
+            {
+              "name": "{bundle}",
+              "item": [
+                {
+                  "name": "{uuid}",
+                  "item": [
+                    {
+                      "name": "{field}",
+                      "item": [
+                        {
+                          "name": "Get related entries",
+                          "id": "b595d543-5356-4f46-a300-c93f22cbbafe",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid/:field",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid",
+                                ":field"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1c97ea2a-8f57-4529-a612-fa8816e93540",
+                                  "key": "entityType",
+                                  "value": "<string>",
+                                  "description": "(Required) An entity type machine name (for example `node`, `media`, `taxonomy_term`)."
+                                },
+                                {
+                                  "id": "f379d6dc-b916-4122-b41b-9c700d5113f0",
+                                  "key": "bundle",
+                                  "value": "<string>",
+                                  "description": "(Required) A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern."
+                                },
+                                {
+                                  "id": "cde3d60c-8be2-4634-a43c-440ae75fd460",
+                                  "key": "uuid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The entry's UUID, the `id` member of every response."
+                                },
+                                {
+                                  "id": "d66b58f0-c9e8-4af7-8ec4-5df153a15769",
+                                  "key": "field",
+                                  "value": "<string>",
+                                  "description": "(Required) A relationship field machine name."
+                                }
+                              ]
+                            },
+                            "description": "The referenced entries themselves, with full attributes, that a relationship field points at."
+                          },
+                          "response": [
+                            {
+                              "id": "97c6c8af-0ded-4e39-8aa2-dbec1727985b",
+                              "name": "A JSON:API document of the related entries.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid/:field",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    ":entityType",
+                                    ":bundle",
+                                    ":uuid",
+                                    ":field"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityType"
+                                    },
+                                    {
+                                      "key": "bundle"
+                                    },
+                                    {
+                                      "key": "uuid"
+                                    },
+                                    {
+                                      "key": "field"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-10-22T01:31:33.000Z",
+                              "updatedAt": "2026-10-22T01:31:33.000Z",
+                              "uid": "35240-97c6c8af-0ded-4e39-8aa2-dbec1727985b"
+                            },
+                            {
+                              "id": "5a56f23d-9125-4066-888a-b97965157687",
+                              "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid/:field",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    ":entityType",
+                                    ":bundle",
+                                    ":uuid",
+                                    ":field"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "entityType"
+                                    },
+                                    {
+                                      "key": "bundle"
+                                    },
+                                    {
+                                      "key": "uuid"
+                                    },
+                                    {
+                                      "key": "field"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:31:33.000Z",
+                              "updatedAt": "2026-10-22T01:31:33.000Z",
+                              "uid": "35240-5a56f23d-9125-4066-888a-b97965157687"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-b595d543-5356-4f46-a300-c93f22cbbafe"
+                        }
+                      ],
+                      "id": "8bb7cfbc-e29b-45e4-8e34-544ce88e33b8",
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-8bb7cfbc-e29b-45e4-8e34-544ce88e33b8"
+                    },
+                    {
+                      "name": "relationships",
+                      "item": [
+                        {
+                          "name": "{field}",
+                          "item": [
+                            {
+                              "name": "Get a relationship's linkage",
+                              "id": "4d93a2d9-0502-447d-af3f-4d7a5276a8bc",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid/relationships/:field",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    ":entityType",
+                                    ":bundle",
+                                    ":uuid",
+                                    "relationships",
+                                    ":field"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ddf8e486-759b-451e-be33-20c79b01080c",
+                                      "key": "entityType",
+                                      "value": "<string>",
+                                      "description": "(Required) An entity type machine name (for example `node`, `media`, `taxonomy_term`)."
+                                    },
+                                    {
+                                      "id": "17e1b54e-d74b-4efc-939e-45a74c98484c",
+                                      "key": "bundle",
+                                      "value": "<string>",
+                                      "description": "(Required) A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern."
+                                    },
+                                    {
+                                      "id": "00413629-39f6-499d-8d34-9dca144dc261",
+                                      "key": "uuid",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The entry's UUID, the `id` member of every response."
+                                    },
+                                    {
+                                      "id": "3f9d846b-e31b-40a4-9acd-0fb398584246",
+                                      "key": "field",
+                                      "value": "<string>",
+                                      "description": "(Required) A relationship field machine name."
+                                    }
+                                  ]
+                                },
+                                "description": "The linkage only (type + id identifiers, no attributes). Use it to read or rewrite what an entry points at without fetching the targets."
+                              },
+                              "response": [
+                                {
+                                  "id": "7ea4e1ff-fd62-4a95-a355-f9454541738e",
+                                  "name": "A JSON:API relationship document.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/vnd.api+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid/relationships/:field",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        ":entityType",
+                                        ":bundle",
+                                        ":uuid",
+                                        "relationships",
+                                        ":field"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityType"
+                                        },
+                                        {
+                                          "key": "bundle"
+                                        },
+                                        {
+                                          "key": "uuid"
+                                        },
+                                        {
+                                          "key": "field"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/vnd.api+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-10-22T01:31:33.000Z",
+                                  "updatedAt": "2026-10-22T01:31:33.000Z",
+                                  "uid": "35240-7ea4e1ff-fd62-4a95-a355-f9454541738e"
+                                },
+                                {
+                                  "id": "51b4015d-6019-4a10-9732-0046cad22b87",
+                                  "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/vnd.api+json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid/relationships/:field",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        ":entityType",
+                                        ":bundle",
+                                        ":uuid",
+                                        "relationships",
+                                        ":field"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "entityType"
+                                        },
+                                        {
+                                          "key": "bundle"
+                                        },
+                                        {
+                                          "key": "uuid"
+                                        },
+                                        {
+                                          "key": "field"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/vnd.api+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T01:31:33.000Z",
+                                  "updatedAt": "2026-10-22T01:31:33.000Z",
+                                  "uid": "35240-51b4015d-6019-4a10-9732-0046cad22b87"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:31:33.000Z",
+                              "updatedAt": "2026-10-22T01:31:33.000Z",
+                              "uid": "35240-4d93a2d9-0502-447d-af3f-4d7a5276a8bc"
+                            }
+                          ],
+                          "id": "23f6c290-65ce-4fc9-93f9-e62e533e7c58",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-23f6c290-65ce-4fc9-93f9-e62e533e7c58"
+                        }
+                      ],
+                      "id": "32b05174-4296-4a06-b45d-914131b91e3e",
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-32b05174-4296-4a06-b45d-914131b91e3e"
+                    },
+                    {
+                      "name": "Get one entry",
+                      "id": "0226a947-448f-44f9-97a1-c9ef5d7dd2c7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid?include=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle",
+                            ":uuid"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated relationship paths to embed in `included`, for example `image,tags`.",
+                              "key": "include",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "b5beffd1-ed63-4afe-a8a2-d2f12e563856",
+                              "key": "entityType",
+                              "value": "<string>",
+                              "description": "(Required) An entity type machine name (for example `node`, `media`, `taxonomy_term`)."
+                            },
+                            {
+                              "id": "62d3dda1-524d-4ccc-8ada-befd0fd30381",
+                              "key": "bundle",
+                              "value": "<string>",
+                              "description": "(Required) A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern."
+                            },
+                            {
+                              "id": "8162aa54-8549-4f74-959c-17c3ca56c836",
+                              "key": "uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The entry's UUID, the `id` member of every response."
+                            }
+                          ]
+                        },
+                        "description": "One entry addressed by its UUID (the `id` in every response). `data` is a single object."
+                      },
+                      "response": [
+                        {
+                          "id": "df938513-ed4d-4484-beb5-175d7b9d077c",
+                          "name": "A JSON:API entity document.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid?include=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated relationship paths to embed in `included`, for example `image,tags`.",
+                                  "key": "include",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-df938513-ed4d-4484-beb5-175d7b9d077c"
+                        },
+                        {
+                          "id": "ce138954-275d-41ac-a82d-5f9855ce3c48",
+                          "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid?include=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated relationship paths to embed in `included`, for example `image,tags`.",
+                                  "key": "include",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-ce138954-275d-41ac-a82d-5f9855ce3c48"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-0226a947-448f-44f9-97a1-c9ef5d7dd2c7"
+                    },
+                    {
+                      "name": "Update an entry",
+                      "id": "b90c5dcb-dc60-43ee-919e-f512ea6e1282",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle",
+                            ":uuid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8401179c-fd19-4d3f-9420-82f378c631e7",
+                              "key": "entityType",
+                              "value": "<string>",
+                              "description": "(Required) An entity type machine name (for example `node`, `media`, `taxonomy_term`)."
+                            },
+                            {
+                              "id": "beb5a472-6857-4492-ad4b-3dde4a75c055",
+                              "key": "bundle",
+                              "value": "<string>",
+                              "description": "(Required) A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern."
+                            },
+                            {
+                              "id": "9b9ee045-7321-498a-ad51-17b1d9def0ff",
+                              "key": "uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The entry's UUID, the `id` member of every response."
+                            }
+                          ]
+                        },
+                        "description": "Requires writes enabled and the `content:administer` scope (same as POST)."
+                      },
+                      "response": [
+                        {
+                          "id": "b3df139f-f72c-44b7-9346-ceea779a1cfb",
+                          "name": "The updated entry.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-b3df139f-f72c-44b7-9346-ceea779a1cfb"
+                        },
+                        {
+                          "id": "db53e30c-3b04-486c-a577-9db7856f7749",
+                          "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-db53e30c-3b04-486c-a577-9db7856f7749"
+                        },
+                        {
+                          "id": "42ea2ba0-42b2-45a4-87ed-132510a02ddb",
+                          "name": "The token is valid but lacks the required scope (for example writing without `content:administer`). The JSON:API error `detail` names the missing permission.\n",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-42ea2ba0-42b2-45a4-87ed-132510a02ddb"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-b90c5dcb-dc60-43ee-919e-f512ea6e1282"
+                    },
+                    {
+                      "name": "Delete an entry",
+                      "id": "ec2a4a54-ed59-43f6-8367-97a0cd59b5a0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle",
+                            ":uuid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dfd8dfd7-e07b-4f1c-ba24-45755c8a5e1c",
+                              "key": "entityType",
+                              "value": "<string>",
+                              "description": "(Required) An entity type machine name (for example `node`, `media`, `taxonomy_term`)."
+                            },
+                            {
+                              "id": "0f13cba9-8151-4ff1-8e11-82784cd7e6b3",
+                              "key": "bundle",
+                              "value": "<string>",
+                              "description": "(Required) A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern."
+                            },
+                            {
+                              "id": "a3f9973a-1b48-4a22-9b04-75d1f3e7acac",
+                              "key": "uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The entry's UUID, the `id` member of every response."
+                            }
+                          ]
+                        },
+                        "description": "Requires writes enabled and the `content:administer` scope (same as POST)."
+                      },
+                      "response": [
+                        {
+                          "id": "ce4f0890-7f6d-482b-8007-12e9779f2963",
+                          "name": "The entry was deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-ce4f0890-7f6d-482b-8007-12e9779f2963"
+                        },
+                        {
+                          "id": "c866bd3d-c5da-4142-b7b4-416918d31a02",
+                          "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-c866bd3d-c5da-4142-b7b4-416918d31a02"
+                        },
+                        {
+                          "id": "cf5e019d-3c43-4522-b9a1-acc97636e27a",
+                          "name": "The token is valid but lacks the required scope (for example writing without `content:administer`). The JSON:API error `detail` names the missing permission.\n",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/:entityType/:bundle/:uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                ":entityType",
+                                ":bundle",
+                                ":uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entityType"
+                                },
+                                {
+                                  "key": "bundle"
+                                },
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:31:33.000Z",
+                          "updatedAt": "2026-10-22T01:31:33.000Z",
+                          "uid": "35240-cf5e019d-3c43-4522-b9a1-acc97636e27a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-ec2a4a54-ed59-43f6-8367-97a0cd59b5a0"
+                    }
+                  ],
+                  "id": "58059370-0e15-4b40-82f4-b26da1925aff",
+                  "createdAt": "2026-10-22T01:31:33.000Z",
+                  "updatedAt": "2026-10-22T01:31:33.000Z",
+                  "uid": "35240-58059370-0e15-4b40-82f4-b26da1925aff"
+                },
+                {
+                  "name": "List entries of a bundle",
+                  "id": "e823f462-3b42-44ed-96a7-87bcadb4f10c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/:entityType/:bundle?include=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        ":entityType",
+                        ":bundle"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated relationship paths to embed in `included`, for example `image,tags`.",
+                          "key": "include",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated field machine names; prefix with `-` for descending, for example `-created`.",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ede5c9f-2973-414c-96a9-8bbff9928d65",
+                          "key": "entityType",
+                          "value": "<string>",
+                          "description": "(Required) An entity type machine name (for example `node`, `media`, `taxonomy_term`)."
+                        },
+                        {
+                          "id": "59a64f18-a539-42e8-afcb-c49a94cd7617",
+                          "key": "bundle",
+                          "value": "<string>",
+                          "description": "(Required) A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern."
+                        }
+                      ]
+                    },
+                    "description": "A collection of entries of one bundle, for example `/api/node/article`. `data` is an array. `meta.count` is the collection total including entries the request cannot see, so `data` can be shorter than `meta.count`, or empty; check `meta.omitted` and follow `links.next`."
+                  },
+                  "response": [
+                    {
+                      "id": "fb494967-af57-42db-a497-a3f75344d3f2",
+                      "name": "A JSON:API collection document.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle?include=<string>&sort=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated relationship paths to embed in `included`, for example `image,tags`.",
+                              "key": "include",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated field machine names; prefix with `-` for descending, for example `-created`.",
+                              "key": "sort",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "entityType"
+                            },
+                            {
+                              "key": "bundle"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ],\n  \"meta\": {\n    \"count\": \"<integer>\"\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-fb494967-af57-42db-a497-a3f75344d3f2"
+                    },
+                    {
+                      "id": "16462934-2801-4047-b21e-c9049c6b1441",
+                      "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle?include=<string>&sort=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated relationship paths to embed in `included`, for example `image,tags`.",
+                              "key": "include",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated field machine names; prefix with `-` for descending, for example `-created`.",
+                              "key": "sort",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "entityType"
+                            },
+                            {
+                              "key": "bundle"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-16462934-2801-4047-b21e-c9049c6b1441"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:31:33.000Z",
+                  "updatedAt": "2026-10-22T01:31:33.000Z",
+                  "uid": "35240-e823f462-3b42-44ed-96a7-87bcadb4f10c"
+                },
+                {
+                  "name": "Create an entry",
+                  "id": "4d16c1f8-65fd-4b17-9cf5-17db9357d701",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/:entityType/:bundle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        ":entityType",
+                        ":bundle"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9274b0d4-a8df-4a32-a39f-5fa8102d95f2",
+                          "key": "entityType",
+                          "value": "<string>",
+                          "description": "(Required) An entity type machine name (for example `node`, `media`, `taxonomy_term`)."
+                        },
+                        {
+                          "id": "fa8cc166-3819-4909-9cf0-44071ff8dee2",
+                          "key": "bundle",
+                          "value": "<string>",
+                          "description": "(Required) A bundle machine name (for example `article`). The [content model reference](/source-cms/reference/content-model/#entity-types-and-bundles) maps each entity type to its bundle term and endpoint pattern."
+                        }
+                      ]
+                    },
+                    "description": "Requires the site's allowed-operations setting (`API > JSON:API`) set to \"Read and write\" and a token whose client has the `content:administer` scope."
+                  },
+                  "response": [
+                    {
+                      "id": "b12592e7-77bb-47f2-8ea4-5f9ada45413b",
+                      "name": "The created entry.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entityType"
+                            },
+                            {
+                              "key": "bundle"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-b12592e7-77bb-47f2-8ea4-5f9ada45413b"
+                    },
+                    {
+                      "id": "2bc010ff-bfb1-4fd8-8cc7-d68321f21e6e",
+                      "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entityType"
+                            },
+                            {
+                              "key": "bundle"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-2bc010ff-bfb1-4fd8-8cc7-d68321f21e6e"
+                    },
+                    {
+                      "id": "9423d79e-9037-4359-901d-24823dda9e41",
+                      "name": "The token is valid but lacks the required scope (for example writing without `content:administer`). The JSON:API error `detail` names the missing permission.\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jsonapi\": {\n    \"version\": \"<string>\"\n  },\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"attributes\": {},\n    \"relationships\": {}\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"type\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/:entityType/:bundle",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            ":entityType",
+                            ":bundle"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entityType"
+                            },
+                            {
+                              "key": "bundle"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:31:33.000Z",
+                      "updatedAt": "2026-10-22T01:31:33.000Z",
+                      "uid": "35240-9423d79e-9037-4359-901d-24823dda9e41"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:31:33.000Z",
+                  "updatedAt": "2026-10-22T01:31:33.000Z",
+                  "uid": "35240-4d16c1f8-65fd-4b17-9cf5-17db9357d701"
+                }
+              ],
+              "id": "bc622abd-e9b3-4d4a-800b-0f502e11d21e",
+              "createdAt": "2026-10-22T01:31:33.000Z",
+              "updatedAt": "2026-10-22T01:31:33.000Z",
+              "uid": "35240-bc622abd-e9b3-4d4a-800b-0f502e11d21e"
+            }
+          ],
+          "id": "f1900bdd-1c99-46f7-bf76-41697ff7acc4",
+          "createdAt": "2026-10-22T01:31:33.000Z",
+          "updatedAt": "2026-10-22T01:31:33.000Z",
+          "uid": "35240-f1900bdd-1c99-46f7-bf76-41697ff7acc4"
+        },
+        {
+          "name": "List available resource endpoints",
+          "id": "ecb0456c-2f52-4bbc-93ba-a70811197300",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api"
+              ]
+            },
+            "description": "Returns the index of resource endpoints available on the site, keyed by resource type (for example `node--article`). No version segment appears in the path; every response reports `jsonapi.version` `1.1`."
+          },
+          "response": [
+            {
+              "id": "885998b8-bd5e-49ac-ba6d-3b9ea36eb5b2",
+              "name": "The API root document.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-22T01:31:33.000Z",
+              "updatedAt": "2026-10-22T01:31:33.000Z",
+              "uid": "35240-885998b8-bd5e-49ac-ba6d-3b9ea36eb5b2"
+            },
+            {
+              "id": "be57f43c-f7b0-4f47-8e3b-d441fc5ed0b6",
+              "name": "Missing, malformed, or expired token. Access tokens live 300 seconds. The diagnostic is in the `WWW-Authenticate` response header; the body may be HTML, not JSON.\n",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:31:33.000Z",
+              "updatedAt": "2026-10-22T01:31:33.000Z",
+              "uid": "35240-be57f43c-f7b0-4f47-8e3b-d441fc5ed0b6"
+            }
+          ],
+          "createdAt": "2026-10-22T01:31:33.000Z",
+          "updatedAt": "2026-10-22T01:31:33.000Z",
+          "uid": "35240-ecb0456c-2f52-4bbc-93ba-a70811197300"
+        }
+      ],
+      "id": "7bc8ad92-0fad-4b49-a300-da395f05e8a3",
+      "createdAt": "2026-10-22T01:31:33.000Z",
+      "updatedAt": "2026-10-22T01:31:33.000Z",
+      "uid": "35240-7bc8ad92-0fad-4b49-a300-da395f05e8a3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "siteUrl",
+      "value": "https://your-site.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{siteUrl}}"
+    }
+  ]
+}

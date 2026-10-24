@@ -1,0 +1,472 @@
+{
+  "info": {
+    "_postman_id": "e0375365-602a-4f2f-9600-236b49ce8fd9",
+    "name": "Acquia Content Authentication API",
+    "description": "The stable JSON:API surface shared by every Source CMS site, plus the OAuth 2.0 authentication endpoints that issue the tokens it accepts.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:31:26.000Z",
+    "updatedAt": "2026-10-22T01:31:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e0375365-602a-4f2f-9600-236b49ce8fd9"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Issue an access token",
+              "id": "d7723cf7-bad9-400f-ba7d-acb4b0b006a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) ",
+                      "key": "grant_type",
+                      "value": "refresh_token"
+                    },
+                    {
+                      "description": "(Required) The API client's ID (ACQUIA_CLIENT_ID).",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The API client's secret (ACQUIA_CLIENT_SECRET).",
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Space-separated subset of the client's selected scopes. Omit to receive every selected scope. client_credentials and authorization_code only.\n",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The authorization code from the redirect (authorization_code grant only).",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The same redirect URI used at /oauth/authorize (authorization_code grant only).",
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The refresh token to exchange (refresh_token grant only).",
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                },
+                "description": "Issues access tokens for all three grant types. The request body is form-encoded. `client_credentials` is server-to-server; `authorization_code` exchanges a code from `GET /oauth/authorize`; `refresh_token` exchanges a refresh token. Only `authorization_code` and `refresh_token` return a `refresh_token`; `client_credentials` never does."
+              },
+              "response": [
+                {
+                  "id": "dd61930b-ab84-4267-bf10-9915cb7a9ee5",
+                  "name": "A newly issued access token.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) The API client's ID (ACQUIA_CLIENT_ID).",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The API client's secret (ACQUIA_CLIENT_SECRET).",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Space-separated subset of the client's selected scopes. Omit to receive every selected scope. client_credentials and authorization_code only.\n",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The authorization code from the redirect (authorization_code grant only).",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The same redirect URI used at /oauth/authorize (authorization_code grant only).",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The refresh token to exchange (refresh_token grant only).",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:31:27.000Z",
+                  "updatedAt": "2026-10-22T01:31:27.000Z",
+                  "uid": "35240-dd61930b-ab84-4267-bf10-9915cb7a9ee5"
+                },
+                {
+                  "id": "5e4f5d0a-5453-4c3b-9782-96a1745149c5",
+                  "name": "Invalid request, most commonly `invalid_scope` when the `scope` parameter names a scope that does not exist or is not selected on the client.\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) The API client's ID (ACQUIA_CLIENT_ID).",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The API client's secret (ACQUIA_CLIENT_SECRET).",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Space-separated subset of the client's selected scopes. Omit to receive every selected scope. client_credentials and authorization_code only.\n",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The authorization code from the redirect (authorization_code grant only).",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The same redirect URI used at /oauth/authorize (authorization_code grant only).",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The refresh token to exchange (refresh_token grant only).",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\",\n  \"hint\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:31:27.000Z",
+                  "updatedAt": "2026-10-22T01:31:27.000Z",
+                  "uid": "35240-5e4f5d0a-5453-4c3b-9782-96a1745149c5"
+                },
+                {
+                  "id": "0e565df8-14f7-4717-8897-c825740679a5",
+                  "name": "Client authentication failed (`invalid_client`): the client ID or secret is wrong.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) The API client's ID (ACQUIA_CLIENT_ID).",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The API client's secret (ACQUIA_CLIENT_SECRET).",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Space-separated subset of the client's selected scopes. Omit to receive every selected scope. client_credentials and authorization_code only.\n",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The authorization code from the redirect (authorization_code grant only).",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The same redirect URI used at /oauth/authorize (authorization_code grant only).",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The refresh token to exchange (refresh_token grant only).",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\",\n  \"hint\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:31:27.000Z",
+                  "updatedAt": "2026-10-22T01:31:27.000Z",
+                  "uid": "35240-0e565df8-14f7-4717-8897-c825740679a5"
+                }
+              ],
+              "createdAt": "2026-10-22T01:31:27.000Z",
+              "updatedAt": "2026-10-22T01:31:27.000Z",
+              "uid": "35240-d7723cf7-bad9-400f-ba7d-acb4b0b006a0"
+            }
+          ],
+          "id": "cc21bbdf-7441-431f-83f4-b01c7aa9742c",
+          "createdAt": "2026-10-22T01:31:27.000Z",
+          "updatedAt": "2026-10-22T01:31:27.000Z",
+          "uid": "35240-cc21bbdf-7441-431f-83f4-b01c7aa9742c"
+        },
+        {
+          "name": "authorize",
+          "item": [
+            {
+              "name": "Start the authorization_code grant",
+              "id": "7967c049-4217-4e25-a865-1993e03a3805",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/authorize?response_type=code&client_id=<string>&redirect_uri=<string>&scope=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "authorize"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The literal value `code`.",
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "description": "(Required) The API client's ID.",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Must match one of the client's configured Redirect URIs.",
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Space-separated subset of the client's selected scopes.",
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Redirects the user to log in and grant permissions, then redirects back to `redirect_uri` with a temporary authorization code to exchange at `POST /oauth/token`. Used only by the authorization_code grant."
+              },
+              "response": [
+                {
+                  "id": "30695c2f-890d-4484-a372-96a4132947ad",
+                  "name": "Redirect to `redirect_uri` carrying the temporary authorization code.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/authorize?response_type=code&client_id=<string>&redirect_uri=<string>&scope=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The literal value `code`.",
+                          "key": "response_type",
+                          "value": "code"
+                        },
+                        {
+                          "description": "(Required) The API client's ID.",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Must match one of the client's configured Redirect URIs.",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Space-separated subset of the client's selected scopes.",
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Found",
+                  "code": 302,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:31:27.000Z",
+                  "updatedAt": "2026-10-22T01:31:27.000Z",
+                  "uid": "35240-30695c2f-890d-4484-a372-96a4132947ad"
+                }
+              ],
+              "createdAt": "2026-10-22T01:31:27.000Z",
+              "updatedAt": "2026-10-22T01:31:27.000Z",
+              "uid": "35240-7967c049-4217-4e25-a865-1993e03a3805"
+            }
+          ],
+          "id": "ad583458-5c11-4f52-899c-d054b5d0f358",
+          "createdAt": "2026-10-22T01:31:27.000Z",
+          "updatedAt": "2026-10-22T01:31:27.000Z",
+          "uid": "35240-ad583458-5c11-4f52-899c-d054b5d0f358"
+        }
+      ],
+      "id": "0c46f76c-cdee-4b44-841c-bccb028587c6",
+      "createdAt": "2026-10-22T01:31:27.000Z",
+      "updatedAt": "2026-10-22T01:31:27.000Z",
+      "uid": "35240-0c46f76c-cdee-4b44-841c-bccb028587c6"
+    }
+  ],
+  "variable": [
+    {
+      "key": "siteUrl",
+      "value": "https://your-site.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "{{siteUrl}}"
+    }
+  ]
+}

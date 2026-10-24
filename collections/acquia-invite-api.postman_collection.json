@@ -1,1082 +1,1043 @@
 {
+  "info": {
+    "_postman_id": "b54ef6c0-c14f-4727-8afe-d0def599efaf",
+    "name": "Acquia Cloud API Documentation Invite API",
+    "description": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:30:36.000Z",
+    "updatedAt": "2026-10-22T01:30:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b54ef6c0-c14f-4727-8afe-d0def599efaf"
+  },
   "item": [
     {
-      "id": "464d18c4-37a0-486e-81f6-934caf2b94f5",
-      "name": "Invite",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "invites",
       "item": [
         {
-          "id": "c6f562f0-01e2-4ddd-b654-f594415f44cc",
-          "name": "Acquia Cancels an Invitation.",
-          "request": {
-            "name": "Acquia Cancels an Invitation.",
-            "description": {
-              "content": "Cancels an invitation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "invites",
-                ":token"
-              ],
-              "host": [
-                "{{invites-token-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) The token identifier."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/hal+json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://accounts.acquia.com/api/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{token}",
+          "item": [
             {
-              "id": "22c3fb74-0403-44b8-8767-325fe2f192c2",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{invites-token-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "actions",
+              "item": [
+                {
+                  "name": "accept",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
+                      "name": "Accepts an invite",
+                      "id": "7dadb9c7-e24d-4dd4-9db0-e09cf984d703",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://accounts.acquia.com/api/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/hal+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/invites/:token/actions/accept",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "invites",
+                            ":token",
+                            "actions",
+                            "accept"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d18641cb-194f-4ba1-9626-954f9c58eaf1",
+                              "key": "token",
+                              "value": "<string>",
+                              "description": "(Required) The token identifier."
+                            }
+                          ]
+                        },
+                        "description": "Accepts an invite."
+                      },
+                      "response": [
+                        {
+                          "id": "23e6dc60-4813-4def-9482-6699ff979129",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-23e6dc60-4813-4def-9482-6699ff979129"
+                        },
+                        {
+                          "id": "abe73a92-6304-48aa-bd8b-8cad7871d897",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-abe73a92-6304-48aa-bd8b-8cad7871d897"
+                        },
+                        {
+                          "id": "7f2794ab-f6ba-459e-9c18-40e38452a841",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-7f2794ab-f6ba-459e-9c18-40e38452a841"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:30:37.000Z",
+                      "updatedAt": "2026-10-22T01:30:37.000Z",
+                      "uid": "35240-7dadb9c7-e24d-4dd4-9db0-e09cf984d703"
                     }
-                  ]
+                  ],
+                  "id": "275e8d06-ead7-48b8-aa29-5c4fc8f18223",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-275e8d06-ead7-48b8-aa29-5c4fc8f18223"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
+                {
+                  "name": "decline",
+                  "item": [
+                    {
+                      "name": "Declines an invite",
+                      "id": "8098509a-ba38-43b2-81ed-00b3466645fe",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://accounts.acquia.com/api/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/hal+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/invites/:token/actions/decline",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "invites",
+                            ":token",
+                            "actions",
+                            "decline"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e16f0caf-a94b-4fb0-8c46-b7594274bd45",
+                              "key": "token",
+                              "value": "<string>",
+                              "description": "(Required) The token identifier."
+                            }
+                          ]
+                        },
+                        "description": "Declines an invite."
+                      },
+                      "response": [
+                        {
+                          "id": "16059677-2d26-4857-8ed9-92a91821ce4c",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/decline",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "decline"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-16059677-2d26-4857-8ed9-92a91821ce4c"
+                        },
+                        {
+                          "id": "20d247d1-4e21-4602-b3a0-4c75e1811b59",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/decline",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "decline"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-20d247d1-4e21-4602-b3a0-4c75e1811b59"
+                        },
+                        {
+                          "id": "85547f2a-0c7d-4158-8e4b-be2190c8681d",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/decline",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "decline"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-85547f2a-0c7d-4158-8e4b-be2190c8681d"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:30:37.000Z",
+                      "updatedAt": "2026-10-22T01:30:37.000Z",
+                      "uid": "35240-8098509a-ba38-43b2-81ed-00b3466645fe"
+                    }
+                  ],
+                  "id": "175c7821-945e-4391-94cb-a60ba316673a",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-175c7821-945e-4391-94cb-a60ba316673a"
+                },
+                {
+                  "name": "resend",
+                  "item": [
+                    {
+                      "name": "Resend an invite",
+                      "id": "b8525701-0d0e-4a07-bb0a-c67b094fa1f9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://accounts.acquia.com/api/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/hal+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/invites/:token/actions/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "invites",
+                            ":token",
+                            "actions",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "id": "34573e58-4def-4e5b-8503-0a0c7060dd48",
+                              "key": "token",
+                              "value": "<string>",
+                              "description": "(Required) The token identifier."
+                            }
+                          ]
+                        },
+                        "description": "Resend an invite."
+                      },
+                      "response": [
+                        {
+                          "id": "0f53f5f7-518d-4c0a-9f47-84e9065471f7",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-0f53f5f7-518d-4c0a-9f47-84e9065471f7"
+                        },
+                        {
+                          "id": "059b0294-d2c1-468a-aea4-703893c8d67e",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/hal+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/invites/:token/actions/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "invites",
+                                ":token",
+                                "actions",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/hal+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:30:37.000Z",
+                          "updatedAt": "2026-10-22T01:30:37.000Z",
+                          "uid": "35240-059b0294-d2c1-468a-aea4-703893c8d67e"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:30:37.000Z",
+                      "updatedAt": "2026-10-22T01:30:37.000Z",
+                      "uid": "35240-b8525701-0d0e-4a07-bb0a-c67b094fa1f9"
+                    }
+                  ],
+                  "id": "fb2f4298-dee4-441d-82d6-5ffcdf5e2eaa",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-fb2f4298-dee4-441d-82d6-5ffcdf5e2eaa"
+                }
+              ],
+              "id": "88c09b6d-df6a-4153-a6f0-abcf80b303cd",
+              "createdAt": "2026-10-22T01:30:37.000Z",
+              "updatedAt": "2026-10-22T01:30:37.000Z",
+              "uid": "35240-88c09b6d-df6a-4153-a6f0-abcf80b303cd"
+            },
+            {
+              "name": "Returns details about an invitation",
+              "id": "47df30ab-9374-4ad7-b747-704b83e17db0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"message\": \"Cancelled invite.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3395947e-356f-4958-86c6-c119f95b0821",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{invites-token-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
+                      "key": "accessTokenUrl",
+                      "value": "https://accounts.acquia.com/api/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"You do not have permission to access this resource.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1c949626-5118-4665-8fa3-000c098fa1c1",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{invites-token-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The invite you are trying to view does not exist, or you do not have permission to view it.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9df2c22b-5932-4874-8c89-647d8efab6b6",
-          "name": "Acquia Returns Details About an Invitation.",
-          "request": {
-            "name": "Acquia Returns Details About an Invitation.",
-            "description": {
-              "content": "Returns details about an invitation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "invites",
-                ":token"
-              ],
-              "host": [
-                "{{invites-token-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) The token identifier."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/hal+json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://accounts.acquia.com/api/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "f2aaa06a-3cae-449b-8f6e-de253d453e6e",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{invites-token-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
                 "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://cloud.acquia.com/api/invites/189d2089-c7f1-418c-a437-9676f4edb1b3\"\n    }\n  },\n  \"applications\": [\n    {\n      \"name\": \"App 1\",\n      \"uuid\": \"7659fe2a-7322-4132-a4b7-0795f1246a54\"\n    },\n    {\n      \"name\": \"App 2\",\n      \"uuid\": \"23a99f37-0eb8-450e-a5bf-e69c48e25e86\"\n    }\n  ],\n  \"author\": {\n    \"created_at\": \"2015-08-14T17:37:23-04:00\",\n    \"first_name\": \"Joe\",\n    \"last_login_at\": \"2019-01-30T08:58:07-05:00\",\n    \"last_name\": \"Smith\",\n    \"mail\": \"joe.smith@example.com\",\n    \"picture_url\": \"https://accounts.acquia.com/images/users/2429bf71-9145-4266-b532-1f4e3beaed55/style/avatar\",\n    \"username\": \"joe.smith\",\n    \"uuid\": \"2429bf71-9145-4266-b532-1f4e3beaed55\"\n  },\n  \"created_at\": \"2019-01-30T09:12:15-05:00\",\n  \"email\": \"joe.smith@example.com\",\n  \"flags\": {\n    \"declined\": false\n  },\n  \"organization\": {\n    \"name\": \"My Organization\",\n    \"uuid\": \"d258dc23-90c5-447c-b550-981b469796d9\"\n  },\n  \"roles\": [\n    {\n      \"name\": \"My Role\",\n      \"uuid\": \"d258dc23-90c5-447c-b550-981b469796d9\"\n    }\n  ],\n  \"team\": {\n    \"name\": \"My Team\",\n    \"uuid\": \"d258dc23-90c5-447c-b550-981b469796d9\"\n  },\n  \"token\": \"189d2089-c7f1-418c-a437-9676f4edb1b3\",\n  \"uuid\": \"d258dc23-90c5-447c-b550-981b469796d9\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "290ff5db-0230-49a8-a244-8cee8fb79a4b",
-              "name": "Forbidden",
-              "originalRequest": {
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/invites/:token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "invites",
                     ":token"
                   ],
-                  "host": [
-                    "{{invites-token-Url}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "341534d4-7f99-4fc7-aeb3-2ff9992511b0",
                       "key": "token",
+                      "value": "<string>",
                       "description": "(Required) The token identifier."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                "description": "Returns details about an invitation."
+              },
+              "response": [
+                {
+                  "id": "64fe42d9-888b-4c4e-9241-b4be0c2fcfa5",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invites/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invites",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token"
+                        }
+                      ]
+                    }
                   },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<uuid>\",\n  \"email\": \"<email>\",\n  \"created_at\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"flags\": {\n    \"declined\": \"<boolean>\"\n  },\n  \"author\": {\n    \"uuid\": \"<uuid>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"mail\": \"<email>\",\n    \"picture_url\": \"<string,null-uri>\",\n    \"username\": \"<string>\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<uri>\"\n    }\n  },\n  \"organization\": {\n    \"uuid\": \"<uuid>\",\n    \"name\": \"<string>\"\n  },\n  \"team\": {\n    \"uuid\": \"<uuid>\",\n    \"name\": \"<string>\"\n  },\n  \"applications\": [\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<uuid>\"\n    }\n  ],\n  \"roles\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-64fe42d9-888b-4c4e-9241-b4be0c2fcfa5"
+                },
+                {
+                  "id": "823ad226-5e88-48f5-a307-881eb51304b3",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invites/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invites",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-823ad226-5e88-48f5-a307-881eb51304b3"
+                },
+                {
+                  "id": "fddab7b8-ed92-4b01-afce-aaa9bdda4e14",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invites/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invites",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-fddab7b8-ed92-4b01-afce-aaa9bdda4e14"
+                }
+              ],
+              "createdAt": "2026-10-22T01:30:37.000Z",
+              "updatedAt": "2026-10-22T01:30:37.000Z",
+              "uid": "35240-47df30ab-9374-4ad7-b747-704b83e17db0"
+            },
+            {
+              "name": "Cancels an invitation",
+              "id": "088f60b6-fc49-4ac1-94ea-f161d34e2fb7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://accounts.acquia.com/api/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/hal+json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"You do not have permission to access this resource.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "02706958-11d1-482b-8949-5070443c176d",
-              "name": "Not Found",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/invites/:token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "invites",
                     ":token"
                   ],
-                  "host": [
-                    "{{invites-token-Url}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "6fb0fb7d-ef4b-421b-af60-22cb4161e439",
                       "key": "token",
+                      "value": "<string>",
                       "description": "(Required) The token identifier."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Cancels an invitation."
               },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
+                  "id": "8220a1be-88df-4897-abdc-799103fb9e40",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invites/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invites",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-8220a1be-88df-4897-abdc-799103fb9e40"
+                },
+                {
+                  "id": "8377ddcd-3206-4f44-9cf5-6d92ca456bed",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invites/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invites",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-8377ddcd-3206-4f44-9cf5-6d92ca456bed"
+                },
+                {
+                  "id": "504923ea-02d6-406e-96f9-5698f3207464",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/hal+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invites/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invites",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/hal+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:30:37.000Z",
+                  "updatedAt": "2026-10-22T01:30:37.000Z",
+                  "uid": "35240-504923ea-02d6-406e-96f9-5698f3207464"
                 }
               ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The invite you are trying to view does not exist, or you do not have permission to view it.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:30:37.000Z",
+              "updatedAt": "2026-10-22T01:30:37.000Z",
+              "uid": "35240-088f60b6-fc49-4ac1-94ea-f161d34e2fb7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cfb362d1-cf3b-418a-9f37-58b42c96d576",
-          "name": "Acquia Accepts an Invite.",
-          "request": {
-            "name": "Acquia Accepts an Invite.",
-            "description": {
-              "content": "Accepts an invite.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "invites",
-                ":token",
-                "actions",
-                "accept"
-              ],
-              "host": [
-                "{{invites-token-actions-accept-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) The token identifier."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/hal+json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://accounts.acquia.com/api/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "7bb05d72-84b2-4c55-929e-ad4da7a27464",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "accept"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-accept-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"message\": \"The invite has been accepted.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b07256ec-ba09-4483-93c3-9a7ba0ec5a3b",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "accept"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-accept-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The invite you are trying to accept does not exist, or you do not have permission to accept it.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b67dae43-a8e0-4920-af30-370108986769",
-              "name": "Conflict",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "accept"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-accept-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Conflict",
-              "code": 409,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"conflict\",\n  \"message\": \"This invite has already been accepted.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f6e0554f-79a6-4bde-a219-c1e7e2374097",
-          "name": "Acquia Declines an Invite.",
-          "request": {
-            "name": "Acquia Declines an Invite.",
-            "description": {
-              "content": "Declines an invite.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "invites",
-                ":token",
-                "actions",
-                "decline"
-              ],
-              "host": [
-                "{{invites-token-actions-decline-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) The token identifier."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/hal+json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://accounts.acquia.com/api/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "d99cf44c-1529-4761-97e2-4e0e510458fc",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "decline"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-decline-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"message\": \"The invite has been declined.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c36e1365-0562-4faf-9a41-a6b8ab55a68e",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "decline"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-decline-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The invite you are trying to decline does not exist, or you do not have permission to decline it.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "277fc296-d3be-4e74-87de-d14f5f4c7523",
-              "name": "Conflict",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "decline"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-decline-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Conflict",
-              "code": 409,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"conflict\",\n  \"message\": \"This invite has already been declined.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "572d8d28-bffe-4edd-a34d-fa6d00c085ed",
-          "name": "Acquia Resend an Invite.",
-          "request": {
-            "name": "Acquia Resend an Invite.",
-            "description": {
-              "content": "Resend an invite.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "invites",
-                ":token",
-                "actions",
-                "resend"
-              ],
-              "host": [
-                "{{invites-token-actions-resend-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) The token identifier."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/hal+json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://accounts.acquia.com/api/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "5cd055b5-1e94-496f-a092-f58ef9c0ceec",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "resend"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-resend-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"message\": \"Resent invitation.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "32ab4e05-01be-41ba-badc-b237211bfa9a",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "invites",
-                    ":token",
-                    "actions",
-                    "resend"
-                  ],
-                  "host": [
-                    "{{invites-token-actions-resend-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) The token identifier."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/hal+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/hal+json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The invite you are trying to resent does not exist, or you do not have permission to resent it.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f97d2c95-f5de-4eba-a222-edaf8079abd1",
+          "createdAt": "2026-10-22T01:30:37.000Z",
+          "updatedAt": "2026-10-22T01:30:37.000Z",
+          "uid": "35240-f97d2c95-f5de-4eba-a222-edaf8079abd1"
         }
       ],
-      "event": []
+      "id": "8932b1f8-acf2-4436-b4e4-c55bc8dc85ca",
+      "createdAt": "2026-10-22T01:30:37.000Z",
+      "updatedAt": "2026-10-22T01:30:37.000Z",
+      "uid": "35240-8932b1f8-acf2-4436-b4e4-c55bc8dc85ca"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "/",
-      "key": "baseUrl"
-    },
-    {
-      "type": "string",
-      "value": "https://cloud.acquia.com/api",
-      "key": "invites-token-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://cloud.acquia.com/api",
-      "key": "invites-token-actions-accept-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://cloud.acquia.com/api",
-      "key": "invites-token-actions-decline-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://cloud.acquia.com/api",
-      "key": "invites-token-actions-resend-Url"
+      "key": "baseUrl",
+      "value": "/"
     }
-  ],
-  "info": {
-    "_postman_id": "7e3ed30d-b1dc-42d7-8016-fe281f49482e",
-    "name": "Acquia Cloud API Account Invite API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Acquia Cloud API\n\n# Compatibility\n\n## Stability\n\nThe response for all resource endpoints includes an `X-CloudAPI-Stability` header that indicates what changes, if any, Acquia will make to the resource and how changes will be communicated.\n\nThere are three levels of stability:\n\n* `prototype`: A prototype resource is experimental and major changes are likely. A prototype resource may not reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one week notice\n    * Deprecated resources will remain available for at least one month after deprecation\n* `development`: A resource that is unlikely to change, but is still being worked on, will be marked as in development. These resources are very likely to reach production.\n    * Compatible and emergency changes may be made with no advance notice\n    * Disruptive changes may be made with one month notice\n    * Deprecated resources will remain available for at least six months after deprecation\n* `production`: A production resource will not introduce breaking changes within a version, and any breaking changes between versions will be communicated ahead of time.\n\n## Deprecation\n\nOver time, endpoints may become obsolete and will be removed in the future. These endpoints will be marked with an `X-CloudAPI-Deprecated` header indicating the version in which they were deprecated and the reason for the deprecation. Deprecated endpoints may be removed in the next version of the resource.\n\n## Versioning\n\nAll resource endpoints are versioned within the API. Endpoints that have reached production will not introduce breaking changes between versions. Non-production endpoints will not version for changes.\n\nA specific version of an endpoint can be requested via the `Accept` header:\n\n    Accept: application/hal+json, version=2\n\nIf the version is not specified, the latest version of the endpoint will be used.\n\nStarting with version 3, we will support the current version of an endpoint and the previous version. Version 1 of the API is [provided elsewhere](https://cloudapi.acquia.com/).\n\n## Errors\n\nSome endpoints will return a 503 status when dependent services are unavailable:\n\n    application/hal+json\n    {\n        \"error\": \"system\",\n        \"message\": \"This action is currently unavailable. Please try again later.\"\n    }\n\n## Authentication\n\nAll Acquia Cloud API calls require authentication to work properly.\n\nLearn more: <a href='https://docs.acquia.com/acquia-cloud/develop/api/auth/' target='_blank'>https://docs.acquia.com/acquia-cloud/develop/api/auth/</a>\n\n### Example implementation\n\nAn example PHP script for making authenticated API requests can be found <a href='https://docs.acquia.com/resources/useful-references' target='_blank'>here</a>. This script uses the <a href='https://oauth2-client.thephpleague.com/' target='_blank'>League/oauth2-client</a> library, installed via Composer.\n\n\nContact Support:\n Name: Customer Experience Engineering (CXE)",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
